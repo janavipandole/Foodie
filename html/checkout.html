@@ -10,6 +10,7 @@
   <!-- CSS links -->
   <link rel="stylesheet" href="../css/style.css" />
   <link rel="stylesheet" href="../css/checkout.css" />
+  <link rel="stylesheet" href="../css/promo.css" />
   <link rel="stylesheet" href="../css/cursor.css" />
 
   <!-- Font Awesome -->
@@ -165,6 +166,20 @@
         <div class="checkout-section order-summary">
           <h3><i class="fa-solid fa-receipt"></i> Order Summary</h3>
           <div id="orderItems"></div>
+
+          <!-- PROMO CODE SECTION -->
+          <div class="promo-code-section">
+            <h4>Have a Promo Code?</h4>
+            <div class="promo-input-group">
+              <input type="text" id="promoCode" placeholder="Enter promo code" maxlength="20">
+              <button id="applyPromoBtn" class="apply-promo-btn">Apply</button>
+            </div>
+            <div id="promoError" class="promo-error"></div>
+            <div id="appliedPromo" class="applied-promo" style="display: none;">
+              <span id="appliedPromoText"></span>
+              <button id="removePromoBtn" class="remove-promo-btn">Remove</button>
+            </div>
+          </div>
 
           <div class="order-totals">
             <div class="total-row">
