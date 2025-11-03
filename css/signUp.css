@@ -1,38 +1,6 @@
 /* css for signup page */
 
-:root {
-  /* Light theme (default) */
-  --lead: #212121;
-  --gold-finger: #f2bd12;
-  --eye-ball: #fffdf7;
-  --hint-yellow: #fcf1cc;
-  --pure-while: #fff;
-  --text-primary: #212121;
-  --text-secondary: #666666;
-  --bg-primary: #fffdf7;
-  --bg-secondary: #fff;
-  --bg-accent: #fcf1cc;
-  --border-color: #e0e0e0;
-  --shadow: rgba(0, 0, 0, 0.1);
-  --shadow-strong: rgba(0, 0, 0, 0.2);
-}
-
-[data-theme="dark"] {
-  /* Dark theme */
-  --lead: #e0e0e0;
-  --gold-finger: #f2bd12;
-  --eye-ball: #1a1a1a;
-  --hint-yellow: #2d2d2d;
-  --pure-while: #2d2d2d;
-  --text-primary: #e0e0e0;
-  --text-secondary: #b0b0b0;
-  --bg-primary: #1a1a1a;
-  --bg-secondary: #2d2d2d;
-  --bg-accent: #2d2d2d;
-  --border-color: #404040;
-  --shadow: rgba(0, 0, 0, 0.3);
-  --shadow-strong: rgba(0, 0, 0, 0.5);
-}
+/* Use shared colors from css/style.css :root */
 
 /* Back to Home Button Styles */
 .back-home {
@@ -44,7 +12,7 @@
   align-items: center;
   gap: 8px;
   padding: 12px 20px;
-  background: linear-gradient(135deg, #f2bd12 0%, #e89800 100%);
+  background: var(--gold-finger);
   color: #2a2a2a;
   text-decoration: none;
   font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
@@ -128,7 +96,7 @@ body {
 
 .hero-section {
   flex: 1;
-  background: linear-gradient(135deg, #f2bd12 0%, #e89800 100%);
+  background: var(--gold-finger);
   padding: 60px 40px;
   display: flex;
   flex-direction: column;
@@ -244,12 +212,7 @@ body {
   margin-bottom: 20px;
   z-index: 1;
   position: relative;
-  background: linear-gradient(45deg, #2a2a2a, #4a4a4a, #2a2a2a, #ff6b35, #f7931e, #2a2a2a);
-  background-size: 300% 300%;
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
-  animation: gradientShift 4s ease infinite;
+  color: var(--gold-finger);
   will-change: background-position;
   transition: transform 0.3s ease;
 }
@@ -259,7 +222,7 @@ body {
 }
 
 .hero-text {
-  color: #2a2a2a;
+  color: var(--lead);
   font-size: 18px;
   line-height: 1.6;
   z-index: 1;
@@ -488,7 +451,7 @@ input::placeholder {
 }
 
 .toggle-password:hover {
-  color: #f4b400;
+  color: var(--gold-finger);
 }
 
 .forgot-password {
@@ -505,13 +468,13 @@ input::placeholder {
 }
 
 .forgot-password a:hover {
-  color: #ffc933;
+  color: var(--lead);
 }
 
 .btn {
   width: 100%;
   padding: 14px;
-  background: linear-gradient(135deg, #f2bd12 0%, #e89800 100%);
+  background: var(--gold-finger);
   border: none;
   border-radius: 10px;
   color: var(--pure-while);
@@ -574,7 +537,7 @@ input::placeholder {
 }
 
 .social-btn:hover {
-  border-color: #f4b400;
+  border-color: var(--gold-finger);
   background: var(--bg-secondary);
 }
 
@@ -594,7 +557,7 @@ input::placeholder {
 }
 
 .switch-form a:hover {
-  color: #ffc933;
+  color: var(--lead);
 }
 
 .checkbox-group {
@@ -612,7 +575,7 @@ input::placeholder {
 .checkbox-group label {
   margin: 0;
   cursor: pointer;
-  color: #aaa;
+  color: var(--text-secondary);
   font-size: 13px;
 }
 
