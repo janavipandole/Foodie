@@ -59,7 +59,7 @@ const updateThemeIcons = theme => {
         if (theme === 'dark') {
             icon.classList.replace('fa-moon', 'fa-sun');
             toggle.classList.add('dark');
-            if (label) label.textContent = 'Light Mode ☀️';
+            if (label) label.textContent = 'Light Mode ☀';
         } else {
             icon.classList.replace('fa-sun', 'fa-moon');
             toggle.classList.remove('dark');
@@ -593,16 +593,84 @@ const loadProducts = async (retryCount = 0) => {
         // Show skeleton loading state
         showSkeletonCards();
 
-        const res = await fetch('../products.json');
-        if (!res.ok) throw new Error(`HTTP ${res.status}: ${res.statusText}`);
+        // Determine the correct path to products.json based on current page location
+        // When using a server, absolute paths work best
+        const pathname = window.location.pathname;
+        let productsPath;
+        const isUsingServer = pathname.startsWith('/') || window.location.protocol === 'http:' || window.location.protocol === 'https:';
+        
+        if (isUsingServer) {
+            // When using a server, try absolute path first (most reliable)
+            productsPath = '/products.json';
+        } else if (pathname.includes('/html/')) {
+            // File protocol: we're in the html directory, go up one level
+            productsPath = '../products.json';
+        } else {
+            // Default: try relative path
+            productsPath = '../products.json';
+        }
+        
+        // Try the primary path first
+        let res;
+        try {
+            res = await fetch(productsPath);
+        } catch (err) {
+            res = null;
+        }
+        
+        // If that fails, try alternate paths
+        if (!res || !res.ok) {
+            const alternatePaths = isUsingServer 
+                ? ['/products.json', '../products.json', './products.json']
+                : ['../products.json', '/products.json', './products.json'];
+            
+            let found = false;
+            let lastError = null;
+            
+            for (const altPath of alternatePaths) {
+                if (altPath === productsPath && res) continue; // Skip the one we already tried
+                try {
+                    const altRes = await fetch(altPath);
+                    if (altRes.ok) {
+                        res = altRes;
+                        productsPath = altPath;
+                        found = true;
+                        break;
+                    }
+                } catch (err) {
+                    lastError = err;
+                    continue;
+                }
+            }
+            
+            if (!found || !res || !res.ok) {
+                const errorDetails = lastError ? lastError.message : (res ? `HTTP ${res.status}: ${res.statusText}` : 'Network error');
+                throw new Error(`Failed to load products.json. ${errorDetails}. Current URL: ${window.location.href}. Make sure you're accessing via http://localhost:8000/html/menu.html (not file://)`);
+            }
+        }
+        
         const data = await res.json();
         productList = data;
         showCards(productList);
         restoreCartFromStorage();
+        
+        // Check for search query in URL and auto-populate search input
+        // Wait for DOM to be fully ready before accessing searchInput
+        setTimeout(() => {
+            const urlParams = new URLSearchParams(window.location.search);
+            const searchQuery = urlParams.get('search');
+            if (searchQuery) {
+                const searchInput = document.getElementById('search');
+                if (searchInput) {
+                    searchInput.value = decodeURIComponent(searchQuery);
+                    applyFilters();
+                }
+            }
+        }, 100);
     } catch (error) {
         console.error('Failed to load products:', error);
         if (cardList) {
-            cardList.innerHTML = '<div class="error">Unable to load products. Please check your connection and try again.</div>';
+            cardList.innerHTML = `<div class="error">Unable to load products. Please check your connection and try again.<br><small>Error: ${error.message}</small></div>`;
             // Add retry button
             const retryBtn = document.createElement('button');
             retryBtn.textContent = 'Retry';
