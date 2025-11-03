@@ -33,11 +33,23 @@
 
   <main class="container">
     <section class="hero-section" aria-label="Foodie Hero Section">
+      <!-- Animated decorative lines -->
+      <div class="animated-line"></div>
+      <div class="animated-line"></div>
+      <div class="animated-line"></div>
+      <div class="animated-line"></div>
+      
+      <!-- Floating food icons -->
+      <span class="floating-food-icon" aria-hidden="true">🍔</span>
+      <span class="floating-food-icon" aria-hidden="true">🍟</span>
+      <span class="floating-food-icon" aria-hidden="true">🥤</span>
+      <span class="floating-food-icon" aria-hidden="true">🍰</span>
+      
       <div class="logo">Foodie.</div>
       <p class="hero-text">
         We fill your tummy with delicious food with fast delivery
       </p>
-      <div class="pizza-icon" aria-hidden="true">🍕</div>
+      <div class="pizza-icon" id="foodIcon" aria-hidden="true">🍕</div>
     </section>
 
     <section class="form-section" aria-label="Login and Sign Up Forms">
@@ -156,8 +168,8 @@
 
   <script src="../js/auth.js" type="module"></script>
   <script src="../js/cursor.js"></script>
+  <script src="../js/hero-animation.js"></script>
 
 </body>
 
 </html>
-
