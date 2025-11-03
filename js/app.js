@@ -458,6 +458,8 @@ const priceSelector = document.getElementById('priceSelector');
 const selected = priceSelector?.querySelector('.selected');
 const options = priceSelector?.querySelectorAll('.options li');
 let currentPriceFilter = 'all';
+let currentCuisineFilter = 'all';
+let currentRatingFilter = 'all';
 let favoritesOnly = false;
 
 selected?.addEventListener('click', () => priceSelector.classList.toggle('open'));
@@ -471,6 +473,42 @@ options?.forEach(opt => {
 });
 document.addEventListener('click', e => {
     if (!priceSelector.contains(e.target)) priceSelector.classList.remove('open');
+});
+
+// ===== CUISINE FILTER =====
+const cuisineSelector = document.getElementById('cuisineSelector');
+const cuisineSelected = cuisineSelector?.querySelector('.selected');
+const cuisineOptions = cuisineSelector?.querySelectorAll('.options li');
+
+cuisineSelected?.addEventListener('click', () => cuisineSelector.classList.toggle('open'));
+cuisineOptions?.forEach(opt => {
+    opt.addEventListener('click', e => {
+        currentCuisineFilter = e.target.dataset.value;
+        cuisineSelected.textContent = e.target.textContent + ' ▾';
+        cuisineSelector.classList.remove('open');
+        applyFilters();
+    });
+});
+document.addEventListener('click', e => {
+    if (!cuisineSelector.contains(e.target)) cuisineSelector.classList.remove('open');
+});
+
+// ===== RATING FILTER =====
+const ratingSelector = document.getElementById('ratingSelector');
+const ratingSelected = ratingSelector?.querySelector('.selected');
+const ratingOptions = ratingSelector?.querySelectorAll('.options li');
+
+ratingSelected?.addEventListener('click', () => ratingSelector.classList.toggle('open'));
+ratingOptions?.forEach(opt => {
+    opt.addEventListener('click', e => {
+        currentRatingFilter = e.target.dataset.value;
+        ratingSelected.textContent = e.target.textContent + ' ▾';
+        ratingSelector.classList.remove('open');
+        applyFilters();
+    });
+});
+document.addEventListener('click', e => {
+    if (!ratingSelector.contains(e.target)) ratingSelector.classList.remove('open');
 });
 
 const searchInput = document.getElementById('search');
@@ -503,7 +541,15 @@ function applyFilters() {
         if (currentTypeFilter === 'veg') matchesType = (p.type === 'veg');
         else if (currentTypeFilter === 'non-veg') matchesType = (p.type === 'non-veg');
 
-        return matchesSearch && matchesPrice && matchesFavorite && matchesType;
+        let matchesCuisine = true;
+        if (currentCuisineFilter !== 'all') matchesCuisine = (p.cuisine === currentCuisineFilter);
+
+        let matchesRating = true;
+        if (currentRatingFilter === 'above4') matchesRating = (p.rating >= 4.0);
+        else if (currentRatingFilter === 'above3') matchesRating = (p.rating >= 3.0);
+        else if (currentRatingFilter === 'below3') matchesRating = (p.rating < 3.0);
+
+        return matchesSearch && matchesPrice && matchesFavorite && matchesType && matchesCuisine && matchesRating;
     });
     showCards(filtered);
 }
