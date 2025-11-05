@@ -562,7 +562,7 @@ const modalPrice = document.getElementById('modalPrice');
 const modalDescription = document.getElementById('modalDescription');
 const modalAddBtn = document.getElementById('addToCartBtn');
 const modalViewBtn = document.getElementById('viewCartBtn');
-const modalClose = document.querySelector('#foodModal .modal-close');
+const modalClose = document.querySelector('#foodModal .close');
 
 function openFoodModal(product) {
     modalImage.src = product.image;
@@ -634,25 +634,65 @@ const showSkeletonCartItems = (count = 3) => {
 };
 
 // ===== INIT APP =====
+const showLoadError = (message, retryCallback = null, status = '') => {
+    if (!cardList) return;
+    const errorDiv = document.createElement('div');
+    errorDiv.className = 'error-container';
+    errorDiv.innerHTML = `
+        <div class="error-icon">
+            <i class="fa-solid fa-exclamation-circle"></i>
+        </div>
+        <h3 class="error-title">Oops! Something went wrong</h3>
+        <p class="error-message">${message}</p>
+        ${status ? `<div class="error-status">${status}</div>` : ''}
+        ${retryCallback ? `
+            <button class="retry-button">
+                <i class="fa-solid fa-sync"></i> Try Again
+            </button>
+            <div class="retry-countdown"></div>
+        ` : ''}
+    `;
+    
+    if (retryCallback) {
+        const retryBtn = errorDiv.querySelector('.retry-button');
+        retryBtn.onclick = () => {
+            retryBtn.disabled = true;
+            retryBtn.innerHTML = `
+                <div class="loading-spinner"></div> Retrying...
+            `;
+            retryCallback();
+        };
+    }
+    
+    cardList.innerHTML = '';
+    cardList.appendChild(errorDiv);
+};
+
 const loadProducts = async (retryCount = 0) => {
+    const MAX_RETRIES = 3;
+    const RETRY_DELAY = 1000;
+
+    if (!navigator.onLine) {
+        showLoadError(
+            'No internet connection. Please check your connection and try again.',
+            () => loadProducts(retryCount)
+        );
+        return;
+    }
+
     try {
         // Show skeleton loading state
         showSkeletonCards();
 
-        // Determine the correct path to products.json based on current page location
-        // When using a server, absolute paths work best
         const pathname = window.location.pathname;
         let productsPath;
         const isUsingServer = pathname.startsWith('/') || window.location.protocol === 'http:' || window.location.protocol === 'https:';
         
         if (isUsingServer) {
-            // When using a server, try absolute path first (most reliable)
             productsPath = '/products.json';
         } else if (pathname.includes('/html/')) {
-            // File protocol: we're in the html directory, go up one level
             productsPath = '../products.json';
         } else {
-            // Default: try relative path
             productsPath = '../products.json';
         }
         
@@ -715,14 +755,66 @@ const loadProducts = async (retryCount = 0) => {
         }, 100);
     } catch (error) {
         console.error('Failed to load products:', error);
-        if (cardList) {
-            cardList.innerHTML = `<div class="error">Unable to load products. Please check your connection and try again.<br><small>Error: ${error.message}</small></div>`;
-            // Add retry button
-            const retryBtn = document.createElement('button');
-            retryBtn.textContent = 'Retry';
-            retryBtn.className = 'retry-btn';
-            retryBtn.onclick = () => loadProducts(retryCount + 1);
-            cardList.appendChild(retryBtn);
+        
+        let errorMessage = '';
+        let statusMessage = '';
+        let icon = 'exclamation-circle';
+
+        if (!navigator.onLine) {
+            errorMessage = 'You appear to be offline. Please check your internet connection and try again.';
+            icon = 'wifi-slash';
+            statusMessage = 'Network Status: Offline';
+        } else if (error.message.includes('timeout')) {
+            errorMessage = 'The server is taking too long to respond. This might be a temporary issue.';
+            icon = 'clock';
+            statusMessage = 'Request Timeout';
+        } else if (error.message.includes('404')) {
+            errorMessage = 'We couldn\'t find the menu data. Our team has been notified.';
+            icon = 'file-alt';
+            statusMessage = 'Error 404: File Not Found';
+        } else if (error.message.includes('parse')) {
+            errorMessage = 'There was a problem reading the menu data. Our team has been notified.';
+            icon = 'file-code';
+            statusMessage = 'Invalid Data Format';
+        } else {
+            errorMessage = 'We\'re having trouble loading the menu right now.';
+            statusMessage = 'Unexpected Error';
+        }
+        
+        if (retryCount < MAX_RETRIES) {
+            const retryDelay = RETRY_DELAY * Math.pow(2, retryCount);
+            const nextRetry = retryCount + 1;
+            
+            showLoadError(
+                errorMessage,
+                () => loadProducts(nextRetry),
+                `${statusMessage}<br>Attempt ${nextRetry} of ${MAX_RETRIES}`
+            );
+            
+            // Update countdown timer
+            const countdownDiv = document.querySelector('.retry-countdown');
+            if (countdownDiv) {
+                let timeLeft = retryDelay / 1000;
+                const countdownInterval = setInterval(() => {
+                    timeLeft--;
+                    if (timeLeft > 0) {
+                        countdownDiv.textContent = `Auto-retrying in ${timeLeft} seconds...`;
+                    } else {
+                        clearInterval(countdownInterval);
+                    }
+                }, 1000);
+            }
+            
+            // Auto-retry with exponential backoff
+            setTimeout(() => {
+                loadProducts(nextRetry);
+            }, retryDelay);
+        } else {
+            showLoadError(
+                `${errorMessage}<br>We've tried several times but couldn't load the menu.`,
+                () => loadProducts(0),
+                'Maximum Retry Attempts Reached'
+            );
         }
     }
 };
@@ -739,17 +831,48 @@ const loadCart = () => {
 };
 const saveCart = () => {
     try {
-        const arr = addProduct.map(p => ({ id: p.id, quantity: p.quantity }));
+        // Persist full product objects (id, name, price, image, quantity)
+        const arr = addProduct.map(p => ({
+            id: p.id,
+            name: p.name,
+            price: p.price,
+            image: p.image,
+            quantity: p.quantity || 1
+        }));
         localStorage.setItem(CART_STORAGE_KEY, JSON.stringify(arr));
+        // Keep sessionStorage.checkoutCart in sync so direct navigation to checkout
+        // (which prefers sessionStorage) reflects the current cart state.
+        if (arr.length > 0) {
+            try { sessionStorage.setItem('checkoutCart', JSON.stringify(arr)); } catch (_) {}
+        } else {
+            try { sessionStorage.removeItem('checkoutCart'); } catch (_) {}
+        }
     } catch (_) {}
 };
 const restoreCartFromStorage = () => {
     const saved = loadCart();
     if (!saved || saved.length === 0) { updateTotalPrice(); return; }
+
+    // Support both legacy {id,quantity} and new full-product objects
     saved.forEach(s => {
-        const base = productList.find(p => p.id === s.id);
-        if (!base) return;
-        const product = { ...base, quantity: s.quantity && s.quantity > 0 ? s.quantity : 1 };
+        let product = null;
+
+        if (s && s.name && s.price && s.image) {
+            // New format: full product object persisted
+            product = {
+                id: s.id,
+                name: s.name,
+                price: s.price,
+                image: s.image,
+                quantity: s.quantity && s.quantity > 0 ? s.quantity : 1
+            };
+        } else {
+            // Legacy format: find from productList
+            const base = productList.find(p => p.id === s.id);
+            if (!base) return; // can't restore this item
+            product = { ...base, quantity: s.quantity && s.quantity > 0 ? s.quantity : 1 };
+        }
+
         addProduct.push(product);
         if (cartList) {
             const price = parseFloat(product.price.replace(/[₹$]/g, ''));

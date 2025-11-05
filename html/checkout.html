@@ -285,10 +285,17 @@
   </div>
 
   <script>
-    // Get cart data from sessionStorage
-    const cartData = JSON.parse(
-      sessionStorage.getItem("checkoutCart") || "[]"
-    );
+    // Get cart data from sessionStorage, fallback to canonical localStorage ('foodie:cart')
+    let cartData = null;
+    try {
+      cartData = JSON.parse(sessionStorage.getItem("checkoutCart") || "null");
+    } catch (_) { cartData = null; }
+    if (!Array.isArray(cartData) || cartData.length === 0) {
+      try {
+        cartData = JSON.parse(localStorage.getItem('foodie:cart') || '[]');
+      } catch (_) { cartData = []; }
+    }
+    if (!Array.isArray(cartData)) cartData = [];
     const deliveryFee = 29.0;
     const taxRate = 0.1;
     let selectedPayment = "card";
@@ -356,31 +363,33 @@
 
     function displayOrderItems() {
       const container = document.getElementById("orderItems");
-      container.innerHTML = cartData
-        .map(
-          (item) => `
-                <div class="order-item">
-                    <img src="${item.image}" alt="${item.name}">
-                    <div class="order-item-details">
-                        <div class="order-item-name">${item.name}</div>
-                        <div class="order-item-quantity">Qty: ${item.quantity
-            }</div>
-                    </div>
-                    <div class="order-item-price">₹${(
-              item.quantity *
-              parseFloat(item.price.replace(/[₹$]/g, ""))
-            ).toFixed(2)}</div>
-                </div>
-            `
-        )
-        .join("");
+        container.innerHTML = cartData
+          .map((item) => {
+            const name = item && item.name ? item.name : 'Item';
+            const qty = item && item.quantity ? item.quantity : 1;
+            const priceRaw = item && item.price ? item.price.toString() : '0';
+            const priceNum = parseFloat(priceRaw.replace ? priceRaw.replace(/[₹$]/g, "") : priceRaw) || 0;
+            const img = item && item.image ? item.image : '../imgs/placeholder.png';
+            return `
+                  <div class="order-item">
+                      <img src="${img}" alt="${name}">
+                      <div class="order-item-details">
+                          <div class="order-item-name">${name}</div>
+                          <div class="order-item-quantity">Qty: ${qty}</div>
+                      </div>
+                      <div class="order-item-price">₹${(qty * priceNum).toFixed(2)}</div>
+                  </div>
+              `;
+          })
+          .join("");
     }
 
     function calculateTotals() {
       const subtotal = cartData.reduce((sum, item) => {
-        return (
-          sum + item.quantity * parseFloat(item.price.replace(/[₹$]/g, ""))
-        );
+        const qty = item && item.quantity ? item.quantity : 1;
+        const priceRaw = item && item.price ? item.price.toString() : '0';
+        const priceNum = parseFloat(priceRaw.replace ? priceRaw.replace(/[₹$]/g, "") : priceRaw) || 0;
+        return sum + qty * priceNum;
       }, 0);
       const tax = subtotal * taxRate;
       const total = subtotal + deliveryFee + tax;
