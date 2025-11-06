@@ -5,6 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>FAQs — Foodie</title>
   <meta name="description" content="Frequently Asked Questions about Foodie services, orders, and features." />
+  <link rel="icon" href="../imgs/favicon.png" type="image/png" />
   <style>
     :root {
       --bg: #fffdf7;
@@ -65,51 +66,86 @@
       background: var(--card);
       border-radius: 14px;
       box-shadow: 0 6px 18px rgba(0,0,0,0.05);
-      margin-bottom: 16px;
+      margin-bottom: 28px; /* Increased spacing */
       overflow: hidden;
-      transition: transform 0.2s ease;
+      transition: transform 0.2s ease, box-shadow 0.2s;
+    }
+
+    .faq-item:last-child {
+      margin-bottom: 60px; /* More space before footer */
     }
 
     .faq-item:hover {
-      transform: translateY(-3px);
+      transform: translateY(-3px) scale(1.01);
+      box-shadow: 0 10px 24px rgba(0,0,0,0.08);
     }
 
     .faq-question {
       background: var(--accent-light);
       color: var(--text);
-      padding: 18px 22px;
+      padding: 20px 28px;
       font-weight: 600;
-      font-size: 1.05rem;
+      font-size: 1.08rem;
       cursor: pointer;
       display: flex;
       justify-content: space-between;
       align-items: center;
+      transition: background 0.2s, color 0.2s;
+      border-bottom: 1px solid #f3e6b3;
     }
+
+    .faq-question:hover,
+    .faq-item.active .faq-question {
+      background: var(--accent);
+      color: #fff;
+    }
+
+    .faq-question .faq-icon {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 28px;
+      height: 28px;
+      font-size: 1.4rem;
+      color: var(--accent);
+      background: #fffbe6;
+      border-radius: 50%;
+      margin-left: 18px;
+      transition: background 0.2s, color 0.2s, transform 0.2s;
+    }
+
+    .faq-question:hover .faq-icon,
+    .faq-item.active .faq-question .faq-icon {
+      background: #fff;
+      color: var(--accent);
+      transform: rotate(90deg);
+    }
+
+    .faq-question::after {
+  content: '+';
+  font-size: 1.4rem;
+  color: var(--accent);
+  margin-left: 18px;
+  display: inline-block;
+  transition: transform 0.2s, color 0.2s;
+}
+
+.faq-item.active .faq-question::after {
+  content: '–';
+  color: var(--text);
+}
 
     .faq-answer {
       display: none;
-      padding: 18px 22px;
+      padding: 18px 28px;
       color: var(--muted);
-      font-size: 0.95rem;
-      line-height: 1.6;
+      font-size: 1.01rem;
+      line-height: 1.7;
       background: var(--bg);
     }
 
     .faq-item.active .faq-answer {
       display: block;
-    }
-
-    .faq-item.active .faq-question::after {
-      content: '−';
-      font-size: 1.4rem;
-      color: var(--accent);
-    }
-
-    .faq-question::after {
-      content: '+';
-      font-size: 1.4rem;
-      color: var(--accent);
-      transition: transform 0.2s ease;
     }
 
     footer {
