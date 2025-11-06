@@ -1,0 +1,15 @@
+/* dark-mode.css */
+body.dark-mode {
+    background-color: #121212;
+    color: #f1f1f1;
+    transition: background-color 0.3s, color 0.3s;
+}
+
+.navbar.dark-mode, .footer.dark-mode {
+    background-color: #1f1f1f;
+}
+
+.card.dark-mode {
+    background-color: #1e1e1e;
+    color: #ffffff;
+}
