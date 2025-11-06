@@ -206,5 +206,9 @@ If you found this helpful:
 > “Good food brings people together — so does open source.” 🍕💻
 <img src="https://capsule-render.vercel.app/api?type=waving&color=gradient&height=100&section=footer" width="100%"/>
 
+## New Feature: Dark Mode
+- Added dark mode toggle to all pages
+- User can switch between light and dark themes
+- Changes reflected in `dark-mode.css` and `dark-mode.js`
 
 
