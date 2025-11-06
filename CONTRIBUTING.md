@@ -1,4 +1,5 @@
 # Contributing to Foodie.
+# Contributing to DineFit
 
 First off, thank you for considering contributing to **DineFit**!
 Your help makes this project better for everyone.  
@@ -51,10 +52,3 @@ Your help makes this project better for everyone.
 ### ✅ Pull Request Checklist
 - I updated relevant documentation (if needed)
 - I linked the PR to any relevant issues
-
-
-### Legal / License
-
-By contributing to this repository, you agree that your contributions will be licensed under the terms of the [MIT License](LICENSE).
-
-All contributions should be original work or properly credited if derived from other sources.
