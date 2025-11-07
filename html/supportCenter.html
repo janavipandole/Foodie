@@ -27,19 +27,37 @@
     </header>
 
     <!-- Main Content -->
-    <main class="support-container" role="main">
-        <a href="#" class="support-card" role="button" aria-label="Account Issues - Manage your account">
-            <h2>Account Issues</h2>
-            <p>Manage your account, reset password, and update your info.</p>
-        </a>
-        <a href="#" class="support-card" role="button" aria-label="Order Problems - Report missing or late orders">
-            <h2>Order Problems</h2>
-            <p>Report missing items, late delivery, or other order issues.</p>
-        </a>
-        <a href="#" class="support-card" role="button" aria-label="General Help - Get assistance with the app">
-            <h2>General Help</h2>
-            <p>Get assistance with general questions about our app and services.</p>
-        </a>
+    <main class="support-container" role="main" aria-label="Support Categories">
+        <section class="support-card" tabindex="0" aria-labelledby="account-issues-heading"
+            aria-describedby="account-issues-desc">
+            <h2 id="account-issues-heading">Account Issues</h2>
+            <p id="account-issues-desc">Manage your account, reset your password, and update your personal information.
+            </p>
+            <ul class="support-contact">
+                <li>Email: <a href="mailto:support@foodie.com">support@foodie.com</a></li>
+                <li>Phone: <a href="tel:+18001234567">+1 800 123 4567</a></li>
+            </ul>
+        </section>
+        <section class="support-card" tabindex="0" aria-labelledby="order-problems-heading"
+            aria-describedby="order-problems-desc">
+            <h2 id="order-problems-heading">Order Problems</h2>
+            <p id="order-problems-desc">Report missing items, late delivery, payment issues, or other order-related
+                problems.</p>
+            <ul class="support-contact">
+                <li>Email: <a href="mailto:orders@foodie.com">orders@foodie.com</a></li>
+                <li>Phone: <a href="tel:+18007654321">+1 800 765 4321</a></li>
+            </ul>
+        </section>
+        <section class="support-card" tabindex="0" aria-labelledby="general-help-heading"
+            aria-describedby="general-help-desc">
+            <h2 id="general-help-heading">General Help</h2>
+            <p id="general-help-desc">Get assistance with app features, feedback, or general questions about our
+                services.</p>
+            <ul class="support-contact">
+                <li>Email: <a href="mailto:help@foodie.com">help@foodie.com</a></li>
+                <li>Phone: <a href="tel:+18009876543">+1 800 987 6543</a></li>
+            </ul>
+        </section>
     </main>
 
     <!-- Footer (reuse from main footer) -->
