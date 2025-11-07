@@ -308,61 +308,132 @@
         </div>
     </section>
 
-    <!-- FOOTER -->
-    <footer id="contacts">
-        <div class="footer-container">
-            <div class="flex wrapper gap-4">
-                <div class="footer-wrapper">
-                    <a href="#" class="logo">Foodie.</a>
-                    <p class="mt-one" data-i18n="footer.description">We will fill your tummy with delicious <br>food with fast delivery</p>
-                    <div class="media flex gap-2 mt-one">
-                        <a href="https://github.com/janavipandole" class="social-media">
-                            <img src="../imgs/GitHub.png" alt="GitHub social icon in footer">
-                        </a>
-                        <a href="https://www.linkedin.com/in/janavi-pandole-80a7b2290" class="social-media linkdin">
-                            <img src="../imgs/linkdin.png" alt="LinkedIn social icon in footer">
-                        </a>
-                        <a href="https://www.youtube.com/@JanaviPandole" class="social-media">
-                            <img src="../imgs/youtube.png" alt="YouTube social icon in footer">
-                        </a>
-                        <a href="https://x.com/JanaviPandole" class="social-media">
-                            <img src="../imgs/twitter.png" alt="Twitter social icon in footer">
-                        </a>
-                    </div>
-                </div>
+   <!-- FOOTER -->
+<footer id="contacts">
+  <div class="footer-container">
+    <div class="flex wrapper gap-4">
+      <!-- Brand / Description / Social -->
+      <div class="footer-wrapper">
+        <a href="../html/index.html" class="logo">Foodie.</a>
+        <p class="mt-one" data-i18n="footer.description">
+          We will fill your tummy with delicious <br />food with fast delivery
+        </p>
 
-                <ul class="footer-wrapper">
-                    <li>
-                        <h4 data-i18n="footer.ourMenu">Our Menu</h4>
-                    </li>
-                    <li class="mt-one"><a href="../html/index.html" class="footer-link" data-i18n="footer.special">Special</a></li>
-                    <li class="mt-one"><a href="../html/index.html" class="footer-link" data-i18n="footer.popular">Popular</a></li>
-                    <li class="mt-one"><a href="../html/index.html" class="footer-link" data-i18n="footer.category">Category</a></li>
-                </ul>
+        <!-- NEW Newsletter Section -->
+        <form class="newsletter-form mt-one" onsubmit="subscribeNewsletter(event)">
+          <label for="newsletter-email">Subscribe to our newsletter:</label>
+          <div class="flex gap-1 mt-half">
+            <input
+              type="email"
+              id="newsletter-email"
+              name="email"
+              placeholder="Enter your email"
+              required
+            />
+            <button type="submit" class="btn-subscribe">Subscribe</button>
+          </div>
+          <p id="newsletter-msg" class="newsletter-msg"></p>
+        </form>
 
-                <ul class="footer-wrapper">
-                    <li>
-                        <h4 data-i18n="footer.company">Company</h4>
-                    </li>
-                    <li class="mt-one"><a href="#" class="footer-link" data-i18n="footer.whyFoodie"> Why Foodie</a></li>
-                    <li class="mt-one"><a href="../html/PartnerWithUs.html" class="footer-link" data-i18n="footer.partnerWithUs"> Partner with us</a></li>
-                    <li class="mt-one"><a href="../html/aboutUs.html" class="footer-link" data-i18n="footer.aboutUs"> About us </a></li>
-                    <li class="mt-one"><a href="../html/contactUs.html" class="footer-link" data-i18n="footer.faq"> FAQ's</a></li>
-                </ul>
-
-                <ul class="footer-wrapper">
-                    <li>
-                        <h4 data-i18n="footer.support">Support</h4>
-                    </li>
-                    <li class="mt-one"><a href="../html/signup.html" class="footer-link" data-i18n="footer.account">Account</a></li>
-                    <li class="mt-one"><a href="../html/supportCenter.html" class="footer-link" data-i18n="footer.supportCenter"> Support center </a>
-                    </li>
-                    <li class="mt-one"><a href="../html/feedback.html" class="footer-link" data-i18n="footer.feedback"> Feedback</a></li>
-                    <li class="mt-one"><a href="../html/contactUs.html" class="footer-link" data-i18n="footer.contactUs">Contact Us </a></li>
-                </ul>
-            </div>
+        <!-- Social Media Links -->
+        <div class="media flex gap-2 mt-one">
+          <a href="https://github.com/janavipandole" class="social-media">
+            <img src="../imgs/GitHub.png" alt="GitHub social icon in footer" />
+          </a>
+          <a
+            href="https://www.linkedin.com/in/janavi-pandole-80a7b2290"
+            class="social-media linkdin"
+          >
+            <img src="../imgs/linkdin.png" alt="LinkedIn social icon in footer" />
+          </a>
+          <a href="https://www.youtube.com/@JanaviPandole" class="social-media">
+            <img src="../imgs/youtube.png" alt="YouTube social icon in footer" />
+          </a>
+          <a href="https://x.com/JanaviPandole" class="social-media">
+            <img src="../imgs/twitter.png" alt="Twitter social icon in footer" />
+          </a>
         </div>
-    </footer>
+      </div>
+
+      <!-- Our Menu -->
+      <ul class="footer-wrapper">
+        <li><h4 data-i18n="footer.ourMenu">Our Menu</h4></li>
+        <li class="mt-one">
+          <a href="../html/index.html#special" class="footer-link" data-i18n="footer.special">Special</a>
+        </li>
+        <li class="mt-one">
+          <a href="../html/index.html#popular" class="footer-link" data-i18n="footer.popular">Popular</a>
+        </li>
+        <li class="mt-one">
+          <a href="../html/index.html#category" class="footer-link" data-i18n="footer.category">Category</a>
+        </li>
+      </ul>
+
+      <!-- Company -->
+      <ul class="footer-wrapper">
+        <li><h4 data-i18n="footer.company">Company</h4></li>
+        <li class="mt-one">
+          <a href="../html/whyFoodie.html" class="footer-link" data-i18n="footer.whyFoodie">Why Foodie</a>
+        </li>
+        <li class="mt-one">
+          <a href="../html/PartnerWithUs.html" class="footer-link" data-i18n="footer.partnerWithUs">Partner with us</a>
+        </li>
+        <li class="mt-one">
+          <a href="../html/aboutUs.html" class="footer-link" data-i18n="footer.aboutUs">About us</a>
+        </li>
+        <li class="mt-one">
+          <a href="../html/contactUs.html" class="footer-link" data-i18n="footer.faq">FAQ's</a>
+        </li>
+      </ul>
+
+      <!-- Support -->
+      <ul class="footer-wrapper">
+        <li><h4 data-i18n="footer.support">Support</h4></li>
+        <li class="mt-one">
+          <a href="../html/signup.html" class="footer-link" data-i18n="footer.account">Account</a>
+        </li>
+        <li class="mt-one">
+          <a href="../html/supportCenter.html" class="footer-link" data-i18n="footer.supportCenter">Support center</a>
+        </li>
+        <li class="mt-one">
+          <a href="../html/feedback.html" class="footer-link" data-i18n="footer.feedback">Feedback</a>
+        </li>
+        <li class="mt-one">
+          <a href="../html/contactUs.html" class="footer-link" data-i18n="footer.contactUs">Contact Us</a>
+        </li>
+      </ul>
+    </div>
+
+    <!-- Footer Bottom Section -->
+    <div class="footer-bottom mt-two flex justify-between align-center">
+      <p>© <span id="year"></span> Foodie. All rights reserved.</p>
+      <button id="scrollTopBtn" title="Go to top">↑ Top</button>
+    </div>
+  </div>
+</footer>
+
+<!-- Footer Scripts -->
+<script>
+  // Newsletter subscription handler (demo only)
+  function subscribeNewsletter(e) {
+    e.preventDefault();
+    const emailInput = document.getElementById("newsletter-email");
+    const msg = document.getElementById("newsletter-msg");
+    msg.textContent = `🎉 Thanks for subscribing, ${emailInput.value}!`;
+    msg.style.color = "#00c851";
+    emailInput.value = "";
+  }
+
+  // Dynamic year display
+  document.getElementById("year").textContent = new Date().getFullYear();
+
+  // Scroll-to-top button
+  const scrollTopBtn = document.getElementById("scrollTopBtn");
+  scrollTopBtn.addEventListener("click", () => {
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  });
+</script>
+
 
     <a href="#home" class="back-to-top" aria-label="Back to top">
         <i class="fa-solid fa-arrow-up"></i>

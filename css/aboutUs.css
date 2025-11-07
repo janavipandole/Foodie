@@ -739,3 +739,77 @@ p {
         border: 1px solid #000;
     }
 }
+/* =======================
+   Footer Enhancements
+======================= */
+
+/* Newsletter Form */
+.newsletter-form {
+  margin-top: 1.5rem;
+}
+
+.newsletter-form label {
+  font-size: 0.95rem;
+  font-weight: 500;
+  color: var(--text-color, #333);
+}
+
+.newsletter-form input[type="email"] {
+  padding: 0.5rem 0.8rem;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  outline: none;
+  flex: 1;
+  font-size: 0.9rem;
+}
+
+.newsletter-form input[type="email"]:focus {
+  border-color: var(--primary-color, #ff5722);
+}
+
+.btn-subscribe {
+  background: var(--primary-color, #ff5722);
+  color: #fff;
+  border: none;
+  padding: 0.55rem 1rem;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.btn-subscribe:hover {
+  background: #e64a19;
+}
+
+.newsletter-msg {
+  margin-top: 0.5rem;
+  font-size: 0.85rem;
+  color: var(--primary-color, #ff5722);
+}
+
+/* Footer Bottom */
+.footer-bottom {
+  margin-top: 2rem;
+  padding-top: 1rem;
+  border-top: 1px solid rgba(0, 0, 0, 0.1);
+  font-size: 0.9rem;
+  color: #666;
+}
+
+/* Scroll to Top Button */
+#scrollTopBtn {
+  background: var(--primary-color, #ff5722);
+  color: #fff;
+  border: none;
+  padding: 0.4rem 0.8rem;
+  border-radius: 4px;
+  cursor: pointer;
+  font-weight: bold;
+  font-size: 0.9rem;
+  transition: all 0.3s ease;
+}
+
+#scrollTopBtn:hover {
+  background: #e64a19;
+  transform: translateY(-2px);
+}
