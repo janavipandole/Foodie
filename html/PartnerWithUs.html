@@ -10,82 +10,49 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
     <link rel="stylesheet" href="../css/style.css">
     <link rel="stylesheet" href="../css/aboutUs.css" />
-    <link rel="stylesheet" href="../css/PartnerWithUs.css" />
+    <link rel="stylesheet" href="../css/PartnerWithUs.css"/>
     <link rel="stylesheet" href="../css/cursor.css">
 </head>
 
 <body>
 
+    <!-- UNIVERSAL NAVBAR -->
     <header>
         <nav class="navbar flex between wrapper">
             <div class="logo">Foodie.</div>
 
             <!-- DESKTOP MENU -->
             <ul class="navList flex gap-3 between">
-                <li><a class="active" href="./index.html#home" data-i18n="nav.home">Home</a></li>
-                <li><a href="./menu.html" data-i18n="nav.menu">Menu</a></li>
-                <li><a href="./aboutUs.html" data-i18n="nav.about">About Us</a></li>
-                <li><a href="./contactUs.html" data-i18n="nav.contact">Contact Us</a></li>
-                <li><a href="nearbyres.html" data-i18n="nav.nearby">Nearby Restaurants</a></li>
+                <li><a href="./index.html#home">Home</a></li>
+                <li><a href="./index.html#services">Services</a></li>
+                <li><a href="./menu.html">Menu</a></li>
+                <li><a href="./aboutUs.html">About Us</a></li>
+                <li><a href="./contactUs.html">Contact Us</a></li>
+                <li><a href="nearbyres.html">Nearby Restaurants</a></li>
             </ul>
+
             <div class="desktop-action flex gap-2">
-                <!-- Language Selector -->
-                <div class="custom-select" id="language-custom-select">
-                    <div class="selected" tabindex="0" aria-haspopup="listbox" aria-expanded="false"
-                        aria-labelledby="language-custom-select">
-                        English
-                    </div>
-                    <ul class="options" role="listbox" tabindex="-1">
-                        <li data-value="en" role="option" aria-selected="true">English</li>
-                        <li data-value="hi" role="option">हिंदी</li>
-                    </ul>
-                </div>
-
-                <!-- Search Input -->
-                <form class="navbar-search" action="#" method="get">
-                    <input type="text" name="search" id="navbar-search" placeholder="Search your food ..."
-                        aria-label="Search menu items">
-                    <button type="submit" id="navbar-search-btn" aria-label="Search">
-                        <i class="fa-solid fa-magnifying-glass"></i>
-                    </button>
-                </form>
-
-                <!-- Theme toggle -->
                 <button class="desktop-action theme-toggle" aria-label="Toggle dark mode">
                     <i class="fa-solid fa-moon"></i>
                 </button>
-
-                <!-- Cart Icon -->
                 <a href="./checkout.html" class="cart-icon">
                     <i class="fa-solid fa-bag-shopping"></i>
                     <span class="cart-value">0</span>
                 </a>
-
-                <!-- Sign-in button -->
                 <a href="./signup.html" class="btn">
                     Sign in&nbsp;<i class="fa-solid fa-arrow-right-from-bracket"></i>
                 </a>
-
-                <!-- Hamburger -->
                 <a href="#" class="hamberger"><i class="fa-solid fa-bars"></i></a>
             </div>
 
-
             <!-- MOBILE MENU -->
             <ul class="mobile-menu">
-                <li><a class="active" href="./index.html#home" data-i18n="nav.home">Home</a></li>
-                <li><a href="./menu.html" data-i18n="nav.menu">Menu</a></li>
-                <li><a href="./aboutUs.html" data-i18n="nav.about">About Us</a></li>
-                <li><a href="./contactUs.html" data-i18n="nav.contact">Contact Us</a></li>
-                <li><a href="nearbyres.html" data-i18n="nav.nearby">Nearby Restaurants</a></li>
-                <!-- Search Input -->
-                <form class="navbar-search" action="#" method="get">
-                    <input type="text" name="search" id="navbar-search" placeholder="Search your food ..."
-                        aria-label="Search menu items">
-                    <button type="submit" id="navbar-search-btn" aria-label="Search">
-                        <i class="fa-solid fa-magnifying-glass"></i>
-                    </button>
-                </form>
+                <li><a href="./index.html#home">Home</a></li>
+                <li><a href="./index.html#services">Services</a></li>
+                <li><a href="./index.html#menu">Menu</a></li>
+                <li><a href="./aboutUs.html">About Us</a></li>
+                <li><a href="./contactUs.html">Contact Us</a></li>
+                <li><a href="nearbyres.html">Nearby Restaurants</a></li>
                 <li>
                     <button class="theme-toggle mobile-theme-toggle" aria-label="Toggle dark mode">
                         <i class="fa-solid fa-moon"></i><span>Dark Mode</span>
@@ -117,6 +84,7 @@
                     <p>Reach a wider audience and increase your sales with our platform.</p>
                 </div>
                 <div class="feature-card">
+                    <span class="ribbon">Most Popular</span>
                     <div class="feature-icon">⚡</div>
                     <h3>Fast Delivery Integration</h3>
                     <p>Seamlessly integrate with our delivery system to ensure your food arrives hot and on time.</p>
@@ -141,61 +109,66 @@
     </section>
 
     <!-- Partner Form Section -->
-    <section class="partner-form-section">
-        <div class="wrapper">
-            <h2><span>Become a Partner</span></h2>
-            <p>Fill out the form below and our team will reach out to you shortly.</p>
+<section class="partner-form-section">
+    <div class="wrapper">
+        <h2><span>Become a Partner</span></h2>
+        <p>Fill out the form below and our team will reach out to you shortly.</p>
 
-            <form action="#" class="partner-form two-column-form">
+        <form action="#" class="partner-form two-column-form">
 
-                <!-- Row 1 -->
-                <div class="form-row">
-                    <div class="form-group">
-                        <label for="restaurantName">Restaurant Name</label>
-                        <input type="text" id="restaurantName" name="restaurantName" placeholder="Enter restaurant name"
-                            required>
-                    </div>
-                    <div class="form-group">
-                        <label for="ownerName">Owner Name</label>
-                        <input type="text" id="ownerName" name="ownerName" placeholder="Enter your name" required>
-                    </div>
+            <!-- Row 1 -->
+            <div class="form-row">
+                <div class="form-group">
+                    <label for="restaurantName">Restaurant Name</label>
+                    <input type="text" id="restaurantName" name="restaurantName" placeholder="Enter restaurant name" required>
                 </div>
-
-                <!-- Row 2 -->
-                <div class="form-row">
-                    <div class="form-group">
-                        <label for="email">Email Address</label>
-                        <input type="email" id="email" name="email" placeholder="Enter email" required>
-                    </div>
-                    <div class="form-group">
-                        <label for="phone">Phone Number</label>
-                        <input type="tel" id="phone" name="phone" placeholder="Enter phone number" required>
-                    </div>
+                <div class="form-group">
+                    <label for="ownerName">Owner Name</label>
+                    <input type="text" id="ownerName" name="ownerName" placeholder="Enter your name" required>
                 </div>
+            </div>
 
-                <!-- Row 3 -->
-                <div class="form-row">
-                    <div class="form-group">
-                        <label for="city">City</label>
-                        <input type="text" id="city" name="city" placeholder="Enter city" required>
-                    </div>
-                    <div class="form-group">
-                        <label for="cuisine">Type of Cuisine</label>
-                        <input type="text" id="cuisine" name="cuisine" placeholder="e.g., Italian, Indian" required>
-                    </div>
+            <!-- Row 2 -->
+            <div class="form-row">
+                <div class="form-group">
+                    <label for="email">Email Address</label>
+                    <input type="email" id="email" name="email" placeholder="Enter email" required>
                 </div>
-
-                <!-- Full-width field -->
-                <div class="form-group full-width">
-                    <label for="message">Additional Info</label>
-                    <textarea id="message" name="message" placeholder="Any other information"></textarea>
+                <div class="form-group">
+                    <label for="phone">Phone Number</label>
+                    <input type="tel" id="phone" name="phone" placeholder="Enter phone number" required>
                 </div>
+            </div>
 
-                <!-- Submit Button -->
-                <button type="submit" class="cta-btn primary">Submit Application</button>
-            </form>
+            <!-- Row 3 -->
+            <div class="form-row">
+                <div class="form-group">
+                    <label for="city">City</label>
+                    <input type="text" id="city" name="city" placeholder="Enter city" required>
+                </div>
+                <div class="form-group">
+                    <label for="cuisine">Type of Cuisine</label>
+                    <input type="text" id="cuisine" name="cuisine" placeholder="e.g., Italian, Indian" required>
+                </div>
+            </div>
+
+            <!-- Full-width field -->
+            <div class="form-group full-width">
+                <label for="message">Additional Info</label>
+                <textarea id="message" name="message" placeholder="Any other information"></textarea>
+            </div>
+
+            <!-- Submit Button -->
+            <button type="submit" class="cta-btn primary">Submit Application</button>
+        </form>
+
+        <!-- Success Toast for Partner Form -->
+        <div id="partner-success-toast" class="partner-success-toast" role="status" aria-live="polite">
+            <span class="partner-toast-icon">✔️</span>
+            <span class="partner-toast-msg">Application submitted successfully!</span>
         </div>
-    </section>
+    </div>
+</section>
 
 
 
@@ -257,6 +230,7 @@
     <a href="#" class="back-to-top" aria-label="Back to top"><i class="fa-solid fa-arrow-up"></i></a>
 
     <script src="../js/cursor.js"></script>
+    <script src="../js/partnerWithUs.js"></script>
 </body>
 
 </html>
