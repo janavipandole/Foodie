@@ -1,87 +1,175 @@
 @import url('style.css');
 
-/* ====== General Page Layout ====== */
+html, body {
+    height: 100%;
+}
+
 body {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
     background-color: var(--bg-primary);
     color: var(--text-primary);
     font-family: "Roboto Condensed", sans-serif;
     margin: 0;
-    padding-top: 12vh; 
+    padding-top: 12vh;
 }
 
-/* ====== Hero Section ====== */
 .hero {
     text-align: center;
-    margin-top: 3rem;
+    margin-top: 2.5rem;
     margin-bottom: 2rem;
     color: var(--text-primary);
 }
 
 .hero h1 {
-    font-size: 2.5rem;
-    font-weight: 700;
+    font-size: 2.7rem;
+    font-weight: 900;
     color: var(--gold-finger);
     margin-bottom: 0.5rem;
+    letter-spacing: 1px;
 }
 
 .hero .highlight {
     color: var(--lead);
+    font-weight: 900;
 }
 
 .hero p {
-    font-size: 1.2rem;
+    font-size: 1.25rem;
     color: var(--text-secondary);
+    margin-top: 0.5rem;
 }
 
-/* ====== Support Cards Section ====== */
 .support-container {
+    flex: 1 0 auto;
     display: flex;
     justify-content: center;
-    align-items: stretch;
-    gap: 2rem;
+    align-items: center;
+    gap: 2.5rem;
     flex-wrap: wrap;
-    padding: 3rem 2rem;
+    padding: 3rem 2rem 4rem 2rem;
     max-width: 1200px;
     margin: 0 auto;
+    min-height: 350px;
 }
 
-/* ====== Individual Card Styling ====== */
 .support-card {
-    flex: 1 1 300px;
-    background-color: var(--bg-secondary);
+    flex: 1 1 320px;
+    max-width: 350px;
+    background: linear-gradient(135deg, var(--bg-secondary) 80%, var(--bg-accent) 100%);
     border: 2px solid var(--gold-finger);
     border-radius: 1.5rem;
-    padding: 2rem;
+    padding: 2.2rem 2rem 2.2rem 2rem;
     text-align: center;
-    transition: all 0.3s ease;
-    box-shadow: 0 4px 10px var(--shadow);
+    transition: transform 0.35s cubic-bezier(.4,2,.6,1), box-shadow 0.35s cubic-bezier(.4,2,.6,1), background 0.3s, border-color 0.3s;
+    box-shadow: 0 6px 24px 0 rgba(242,189,18,0.08), 0 1.5px 6px 0 var(--shadow-strong);
+    min-height: 320px;
+    outline: none;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    opacity: 0;
+    transform: translateY(40px) scale(0.98);
+    animation: cardFadeIn 0.7s cubic-bezier(.4,2,.6,1) forwards;
+    will-change: transform, box-shadow;
+}
+
+.support-card:nth-child(1) { animation-delay: 0.1s; }
+.support-card:nth-child(2) { animation-delay: 0.25s; }
+.support-card:nth-child(3) { animation-delay: 0.4s; }
+
+@keyframes cardFadeIn {
+    to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+    }
 }
 
 .support-card h2 {
     color: var(--gold-finger);
-    font-size: 1.5rem;
-    margin-bottom: 1rem;
+    font-size: 1.45rem;
+    margin-bottom: 1.1rem;
+    font-weight: 800;
+    letter-spacing: 0.5px;
 }
 
 .support-card p {
     color: var(--text-secondary);
-    font-size: 1rem;
+    font-size: 1.08rem;
+    margin-bottom: 1.1rem;
+    line-height: 1.6;
 }
 
-/* ====== Hover Effects ====== */
-.support-card:hover {
-    transform: translateY(-8px);
-    box-shadow: 0 8px 16px var(--shadow);
-    background-color: var(--bg-hover, rgba(255,255,255,0.03));
-    border-color: var(--lead);
+.support-contact {
+    list-style: none;
+    padding: 0;
+    margin: 0.5rem 0 0 0;
+    font-size: 1.01rem;
 }
 
-/* ====== Footer ====== */
+.support-contact a {
+    color: var(--lead);
+    text-decoration: underline;
+    word-break: break-all;
+    font-weight: 600;
+    transition: color 0.2s;
+}
+
+.support-contact a:hover {
+    color: var(--gold-finger);
+}
+
+.support-card:hover, .support-card:focus {
+    z-index: 2;
+    transform: translateY(-22px) scale(1.06) !important;
+    box-shadow: 0 20px 48px 0 rgba(242,189,18,0.22), 0 2px 8px 0 var(--shadow-strong);
+    background: linear-gradient(135deg, var(--bg-accent) 80%, var(--bg-secondary) 100%);
+    outline: 2px solid var(--gold-finger);
+}
+
 footer {
+    flex-shrink: 0;
     text-align: center;
-    padding: 2rem;
+    padding: 2.5rem 1rem 2rem 1rem;
     color: var(--text-secondary);
     background-color: var(--bg-secondary);
-    margin-top: 3rem;
+    margin-top: 0;
     border-top: 1px solid var(--border-color);
+    font-size: 1.15rem;
+}
+
+@media (max-width: 1100px) {
+    .support-container {
+        gap: 1.5rem;
+        padding: 2rem 1rem 3rem 1rem;
+    }
+    .support-card {
+        min-width: 260px;
+        max-width: 100%;
+        padding: 1.5rem 1rem;
+    }
+}
+
+@media (max-width: 800px) {
+    .support-container {
+        flex-direction: column;
+        align-items: center;
+        gap: 1.5rem;
+        padding: 1.5rem 0 2.5rem 0;
+    }
+    .support-card {
+        width: 90vw;
+        min-width: 0;
+        max-width: 500px;
+        margin: 0 auto;
+    }
+    .hero h1 {
+        font-size: 2rem;
+    }
+}
+
+body {
+    background: linear-gradient(180deg, var(--bg-primary) 60%, #fffbe6 100%);
 }

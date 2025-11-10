@@ -1,0 +1,300 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Popular & Trending Dishes — Foodie</title>
+  <meta name="description" content="A page showcasing top-rated and trending Indian dishes with ratings and appealing visuals." />
+  <script>
+    // Immediately apply saved theme to prevent FOUC
+    (function() {
+      const savedTheme = localStorage.getItem('theme');
+      if (savedTheme === 'dark') {
+        document.documentElement.setAttribute('data-theme', 'dark');
+      }
+    })();
+  </script>
+  <style>
+    :root {
+      --bg: #fffdf7;
+      --text: #1e1e1e;
+      --accent: #ffd000;
+      --accent-light: #fff4c4;
+      --muted: #6b6b6b;
+      --card: #ffffff;
+      --header-bg: #fff6d8;
+      --star: #ffd000;
+    }
+    [data-theme="dark"] {
+      --bg: #1a1a1a;
+      --text: #f8fafc;
+      --accent: #ffd000;
+      --accent-light: #3b3b3b;
+      --muted: #a1a1aa;
+      --card: #262626;
+      --header-bg: #333333;
+      --star: #ffd000;
+    }
+
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      font-family: 'Poppins', sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      background : 0.3s ease;
+      color : 0.3s ease;
+    }
+
+    header {
+      text-align: center;
+      padding: 60px 20px 40px;
+      background: var(--header-bg);
+      border-bottom-left-radius: 40px;
+      border-bottom-right-radius: 40px;
+      box-shadow: 0 5px 18px rgba(0,0,0,0.05);
+    }
+
+    header h1 {
+      font-size: 2.4rem;
+      color: var(--accent);
+      margin-bottom: 10px;
+    }
+
+    header p {
+      color: var(--muted);
+      font-size: 1.1rem;
+      margin: 0;
+    }
+
+    main {
+      max-width: 1200px;
+      margin: 60px auto 90px;
+      margin-bottom: 70px;
+      padding: 0 25px;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 28px;
+    }
+
+    .dish-card {
+      background: var(--card);
+      border-radius: 18px;
+      overflow: hidden;
+      box-shadow: 0 10px 25px rgba(0,0,0,0.05);
+      margin: 10px;
+      transition: transform 0.4s ease, color 0.4s ease;
+      cursor: pointer;
+      animation: fadeUp 0.6s ease both;
+    }
+
+    .dish-card:hover {
+      transform: translateY(-10px) ;
+      box-shadow: 0 12px 30px rgb(246, 231, 66);
+      scale: 1.02;
+    }
+
+    .dish-card img {
+    width: 100%;
+    height: 230px;
+    object-fit: cover;
+    border-top-left-radius: 18px;
+    border-top-right-radius: 18px;
+    display: block;
+    transform: scale(1.05);
+    transition: transform 0.5s ease;
+    }
+
+    .dish-info {
+      padding: 24px 20px;
+      background: var(--accent-light);
+      border-bottom-left-radius: 18px;
+      border-bottom-right-radius: 18px;
+      transition: transform 0.3s ease;
+    }
+
+    .dish-info h2 {
+      margin: 0 0 8px;
+      font-size: 1.3rem;
+      color: var(--accent);
+    }
+
+    .dish-info p {
+      font-size: 0.95rem;
+      color: var(--text);
+      opacity: 0.8;
+      line-height: 1.5;
+    }
+
+    .rating {
+      margin-top: 8px;
+      color: var(--star);
+      font-size: 1.1rem;
+    }
+
+    footer {
+      text-align: center;
+      padding: 25px 15px;
+      color: var(--muted);
+      font-size: 0.9rem;
+      border-top: 1px solid rgba(0,0,0,0.05);
+      background: var(--header-bg);
+      border-top-left-radius: 30px;
+      border-top-right-radius: 30px;
+      margin-top: 100px;
+    }
+
+/* --- Simple entrance animation --- */
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(25px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+/* --- Responsiveness --- */
+@media (max-width: 992px) {
+  .dish-card img { height: 200px; }
+}
+@media (max-width: 600px) {
+  header h1 { font-size: 1.7rem; }
+  header p  { font-size: 1rem; }
+  .dish-card img { height: 170px; }
+  .dish-info { padding: 18px; }
+}
+
+[data-theme="light"] header {
+  background: #ffed96;
+  border-bottom: 1px solid #f4d03f;
+}
+
+[data-theme="light"] footer {
+  background: #fff1a6;
+  border-top: 1px solid #f4d03f;
+}
+
+
+    #themeToggle {
+      position: fixed;
+      top: 15px;
+      right: 15px;
+      background: var(--accent);
+      color: #fff;
+      border: none;
+      padding: 10px 15px;
+      border-radius: 30px;
+      cursor: pointer;
+      font-weight: 600;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+      transition: background 0.3s ease;
+    }
+    #themeToggle:hover {
+      background: #ffbf00;
+    }
+
+/* ===== LIGHT MODE COLOR ENHANCEMENTS ===== */
+[data-theme="light"] header h1,
+[data-theme="light"] .dish-info h2 {
+  color: #d4a000; /* deeper golden-yellow for headings */
+}
+
+[data-theme="light"] header p {
+  color: #b08a00; /* darker yellow tone for subtext */
+}
+
+[data-theme="light"] footer {
+  background: #fff2b2; /* softer footer background */
+  color: #b08a00; /* footer text color */
+  border-top: 1px solid #f5d55f;
+}
+
+[data-theme="light"] .rating {
+  color: #f1c40f; /* warm gold for rating stars */
+}
+
+
+  </style>
+</head>
+<body data-theme="light">
+
+  <button id="themeToggle">🌙</button>
+  <header>
+    <h1>Popular & Trending Dishes</h1>
+    <p>Discover India’s most loved and top-rated dishes, trending across regions.</p>
+  </header>
+
+  <main>
+    <div class="dish-card">
+      <img src="../imgs/p1.jpg" alt="Butter Chicken">
+      <div class="dish-info">
+        <h2>Butter Chicken</h2>
+        <p>Creamy, flavorful North Indian curry made with tender chicken pieces cooked in buttery tomato gravy.</p>
+        <div class="rating">★★★★★ (5.0)</div>
+      </div>
+    </div>
+
+    <div class="dish-card">
+      <img src="../imgs/p2.jpg" alt="Masala Dosa">
+      <div class="dish-info">
+        <h2>Masala Dosa</h2>
+        <p>South Indian crispy crepe stuffed with spicy potato filling, served with coconut chutney and sambar.</p>
+        <div class="rating">★★★★★ (4.9)</div>
+      </div>
+    </div>
+
+    <div class="dish-card">
+      <img src="../imgs/p3.jpg" alt="Pani Puri">
+      <div class="dish-info">
+        <h2>Pani Puri</h2>
+        <p>India’s favorite street snack — crisp puris filled with spicy, tangy water and mashed potato mix.</p>
+        <div class="rating">★★★★☆ (4.8)</div>
+      </div>
+    </div>
+
+    <div class="dish-card">
+      <img src="../imgs/p4.jpg" alt="Biryani">
+      <div class="dish-info">
+        <h2>Hyderabadi Biryani</h2>
+        <p>Fragrant rice layered with marinated meat, saffron, and spices — an all-time favorite Indian delicacy.</p>
+        <div class="rating">★★★★★ (4.9)</div>
+      </div>
+    </div>
+
+    <div class="dish-card">
+      <img src="../imgs/p5.jpg" alt="Chole Bhature">
+      <div class="dish-info">
+        <h2>Chole Bhature</h2>
+        <p>Delicious combination of spicy chickpea curry and fluffy deep-fried bread, popular in North India.</p>
+        <div class="rating">★★★★☆ (4.7)</div>
+      </div>
+    </div>
+
+    <div class="dish-card">
+      <img src="../imgs/p6.jpg" alt="Gulab Jamun">
+      <div class="dish-info">
+        <h2>Gulab Jamun</h2>
+        <p>Soft, round sweet dumplings soaked in sugar syrup — the heart of every Indian dessert table.</p>
+        <div class="rating">★★★★★ (5.0)</div>
+      </div>
+    </div>
+  </main>
+
+  <footer>
+    © 2025 Foodie. All rights reserved.
+  </footer>
+
+  <script>
+    const toggleBtn = document.getElementById('themeToggle');
+    // Initial theme setting is now handled by the inline script in the head.
+    // This script only updates the button text based on the current theme.
+    const currentTheme = document.documentElement.getAttribute('data-theme');
+    toggleBtn.textContent = currentTheme === 'dark' ? '☀️' : '🌙';
+
+    toggleBtn.addEventListener('click', () => {
+      const current = document.documentElement.getAttribute('data-theme');
+      const newTheme = current === 'light' ? 'dark' : 'light';
+      document.documentElement.setAttribute('data-theme', newTheme);
+      localStorage.setItem('theme', newTheme);
+      toggleBtn.textContent = newTheme === 'dark' ? '☀️' : '🌙';
+    });
+  </script>
+</body>
+</html>

@@ -59,7 +59,7 @@ const updateThemeIcons = theme => {
         if (theme === 'dark') {
             icon.classList.replace('fa-moon', 'fa-sun');
             toggle.classList.add('dark');
-            if (label) label.textContent = 'Light Mode ☀️';
+            if (label) label.textContent = 'Light Mode ☀';
         } else {
             icon.classList.replace('fa-sun', 'fa-moon');
             toggle.classList.remove('dark');
@@ -81,12 +81,15 @@ const toggleTheme = () => {
 
 themeToggles.forEach(toggle => toggle.addEventListener('click', toggleTheme));
 
-const initTheme = () => {
-    const savedTheme = localStorage.getItem('theme') || 'light';
-    document.documentElement.setAttribute('data-theme', savedTheme);
-    updateThemeIcons(savedTheme);
-};
-initTheme();
+// Initial theme setup is now handled by an inline script in the <head> of each HTML file.
+// This ensures the theme is applied before content renders, preventing FOUC.
+// The following line is removed as it's no longer needed here:
+// initTheme(); 
+// Instead, we just call updateThemeIcons once to ensure the icons are correct on load.
+document.addEventListener('DOMContentLoaded', () => {
+    updateThemeIcons(document.documentElement.getAttribute('data-theme'));
+});
+
 
 // ===== PRODUCTS & CART =====
 let productList = [];
@@ -390,7 +393,7 @@ checkoutBtn?.addEventListener('click', e => {
     }));
 
     sessionStorage.setItem('checkoutCart', JSON.stringify(checkoutData));
-    window.location.href = '../HTML/checkout.html';
+    window.location.href = '/html/checkout.html';
 });
 
 // ===== RENDER PRODUCT CARDS =====
@@ -458,6 +461,8 @@ const priceSelector = document.getElementById('priceSelector');
 const selected = priceSelector?.querySelector('.selected');
 const options = priceSelector?.querySelectorAll('.options li');
 let currentPriceFilter = 'all';
+let currentCuisineFilter = 'all';
+let currentRatingFilter = 'all';
 let favoritesOnly = false;
 
 selected?.addEventListener('click', () => priceSelector.classList.toggle('open'));
@@ -471,6 +476,42 @@ options?.forEach(opt => {
 });
 document.addEventListener('click', e => {
     if (!priceSelector.contains(e.target)) priceSelector.classList.remove('open');
+});
+
+// ===== CUISINE FILTER =====
+const cuisineSelector = document.getElementById('cuisineSelector');
+const cuisineSelected = cuisineSelector?.querySelector('.selected');
+const cuisineOptions = cuisineSelector?.querySelectorAll('.options li');
+
+cuisineSelected?.addEventListener('click', () => cuisineSelector.classList.toggle('open'));
+cuisineOptions?.forEach(opt => {
+    opt.addEventListener('click', e => {
+        currentCuisineFilter = e.target.dataset.value;
+        cuisineSelected.textContent = e.target.textContent + ' ▾';
+        cuisineSelector.classList.remove('open');
+        applyFilters();
+    });
+});
+document.addEventListener('click', e => {
+    if (!cuisineSelector.contains(e.target)) cuisineSelector.classList.remove('open');
+});
+
+// ===== RATING FILTER =====
+const ratingSelector = document.getElementById('ratingSelector');
+const ratingSelected = ratingSelector?.querySelector('.selected');
+const ratingOptions = ratingSelector?.querySelectorAll('.options li');
+
+ratingSelected?.addEventListener('click', () => ratingSelector.classList.toggle('open'));
+ratingOptions?.forEach(opt => {
+    opt.addEventListener('click', e => {
+        currentRatingFilter = e.target.dataset.value;
+        ratingSelected.textContent = e.target.textContent + ' ▾';
+        ratingSelector.classList.remove('open');
+        applyFilters();
+    });
+});
+document.addEventListener('click', e => {
+    if (!ratingSelector.contains(e.target)) ratingSelector.classList.remove('open');
 });
 
 const searchInput = document.getElementById('search');
@@ -503,7 +544,15 @@ function applyFilters() {
         if (currentTypeFilter === 'veg') matchesType = (p.type === 'veg');
         else if (currentTypeFilter === 'non-veg') matchesType = (p.type === 'non-veg');
 
-        return matchesSearch && matchesPrice && matchesFavorite && matchesType;
+        let matchesCuisine = true;
+        if (currentCuisineFilter !== 'all') matchesCuisine = (p.cuisine === currentCuisineFilter);
+
+        let matchesRating = true;
+        if (currentRatingFilter === 'above4') matchesRating = (p.rating >= 4.0);
+        else if (currentRatingFilter === 'above3') matchesRating = (p.rating >= 3.0);
+        else if (currentRatingFilter === 'below3') matchesRating = (p.rating < 3.0);
+
+        return matchesSearch && matchesPrice && matchesFavorite && matchesType && matchesCuisine && matchesRating;
     });
     showCards(filtered);
 }
@@ -516,7 +565,7 @@ const modalPrice = document.getElementById('modalPrice');
 const modalDescription = document.getElementById('modalDescription');
 const modalAddBtn = document.getElementById('addToCartBtn');
 const modalViewBtn = document.getElementById('viewCartBtn');
-const modalClose = document.querySelector('#foodModal .close');
+const modalClose = document.querySelector('#foodModal .modal-close'); // Corrected selector
 
 function openFoodModal(product) {
     modalImage.src = product.image;
@@ -588,27 +637,187 @@ const showSkeletonCartItems = (count = 3) => {
 };
 
 // ===== INIT APP =====
+const showLoadError = (message, retryCallback = null, status = '') => {
+    if (!cardList) return;
+    const errorDiv = document.createElement('div');
+    errorDiv.className = 'error-container';
+    errorDiv.innerHTML = `
+        <div class="error-icon">
+            <i class="fa-solid fa-exclamation-circle"></i>
+        </div>
+        <h3 class="error-title">Oops! Something went wrong</h3>
+        <p class="error-message">${message}</p>
+        ${status ? `<div class="error-status">${status}</div>` : ''}
+        ${retryCallback ? `
+            <button class="retry-button">
+                <i class="fa-solid fa-sync"></i> Try Again
+            </button>
+            <div class="retry-countdown"></div>
+        ` : ''}
+    `;
+    
+    if (retryCallback) {
+        const retryBtn = errorDiv.querySelector('.retry-button');
+        retryBtn.onclick = () => {
+            retryBtn.disabled = true;
+            retryBtn.innerHTML = `
+                <div class="loading-spinner"></div> Retrying...
+            `;
+            retryCallback();
+        };
+    }
+    
+    cardList.innerHTML = '';
+    cardList.appendChild(errorDiv);
+};
+
 const loadProducts = async (retryCount = 0) => {
+    const MAX_RETRIES = 3;
+    const RETRY_DELAY = 1000;
+
+    if (!navigator.onLine) {
+        showLoadError(
+            'No internet connection. Please check your connection and try again.',
+            () => loadProducts(retryCount)
+        );
+        return;
+    }
+
     try {
         // Show skeleton loading state
         showSkeletonCards();
 
-        const res = await fetch('../products.json');
-        if (!res.ok) throw new Error(`HTTP ${res.status}: ${res.statusText}`);
+        const pathname = window.location.pathname;
+        let productsPath;
+        const isUsingServer = pathname.startsWith('/') || window.location.protocol === 'http:' || window.location.protocol === 'https:';
+        
+        if (isUsingServer) {
+            productsPath = '/products.json';
+        } else if (pathname.includes('/html/')) {
+            productsPath = '../products.json';
+        } else {
+            productsPath = '../products.json';
+        }
+        
+        // Try the primary path first
+        let res;
+        try {
+            res = await fetch(productsPath);
+        } catch (err) {
+            res = null;
+        }
+        
+        // If that fails, try alternate paths
+        if (!res || !res.ok) {
+            const alternatePaths = isUsingServer 
+                ? ['/products.json', '../products.json', './products.json']
+                : ['../products.json', '/products.json', './products.json'];
+            
+            let found = false;
+            let lastError = null;
+            
+            for (const altPath of alternatePaths) {
+                if (altPath === productsPath && res) continue; // Skip the one we already tried
+                try {
+                    const altRes = await fetch(altPath);
+                    if (altRes.ok) {
+                        res = altRes;
+                        productsPath = altPath;
+                        found = true;
+                        break;
+                    }
+                } catch (err) {
+                    lastError = err;
+                    continue;
+                }
+            }
+            
+            if (!found || !res || !res.ok) {
+                const errorDetails = lastError ? lastError.message : (res ? `HTTP ${res.status}: ${res.statusText}` : 'Network error');
+                throw new Error(`Failed to load products.json. ${errorDetails}. Current URL: ${window.location.href}. Make sure you're accessing via http://localhost:8000/html/menu.html (not file://)`);
+            }
+        }
+        
         const data = await res.json();
         productList = data;
         showCards(productList);
         restoreCartFromStorage();
+        
+        // Check for search query in URL and auto-populate search input
+        // Wait for DOM to be fully ready before accessing searchInput
+        setTimeout(() => {
+            const urlParams = new URLSearchParams(window.location.search);
+            const searchQuery = urlParams.get('search');
+            if (searchQuery) {
+                const searchInput = document.getElementById('search');
+                if (searchInput) {
+                    searchInput.value = decodeURIComponent(searchQuery);
+                    applyFilters();
+                }
+            }
+        }, 100);
     } catch (error) {
         console.error('Failed to load products:', error);
-        if (cardList) {
-            cardList.innerHTML = '<div class="error">Unable to load products. Please check your connection and try again.</div>';
-            // Add retry button
-            const retryBtn = document.createElement('button');
-            retryBtn.textContent = 'Retry';
-            retryBtn.className = 'retry-btn';
-            retryBtn.onclick = () => loadProducts(retryCount + 1);
-            cardList.appendChild(retryBtn);
+        
+        let errorMessage = '';
+        let statusMessage = '';
+        let icon = 'exclamation-circle';
+
+        if (!navigator.onLine) {
+            errorMessage = 'You appear to be offline. Please check your internet connection and try again.';
+            icon = 'wifi-slash';
+            statusMessage = 'Network Status: Offline';
+        } else if (error.message.includes('timeout')) {
+            errorMessage = 'The server is taking too long to respond. This might be a temporary issue.';
+            icon = 'clock';
+            statusMessage = 'Request Timeout';
+        } else if (error.message.includes('404')) {
+            errorMessage = 'We couldn\'t find the menu data. Our team has been notified.';
+            icon = 'file-alt';
+            statusMessage = 'Error 404: File Not Found';
+        } else if (error.message.includes('parse')) {
+            errorMessage = 'There was a problem reading the menu data. Our team has been notified.';
+            icon = 'file-code';
+            statusMessage = 'Invalid Data Format';
+        } else {
+            errorMessage = 'We\'re having trouble loading the menu right now.';
+            statusMessage = 'Unexpected Error';
+        }
+        
+        if (retryCount < MAX_RETRIES) {
+            const retryDelay = RETRY_DELAY * Math.pow(2, retryCount);
+            const nextRetry = retryCount + 1;
+            
+            showLoadError(
+                errorMessage,
+                () => loadProducts(nextRetry),
+                `${statusMessage}<br>Attempt ${nextRetry} of ${MAX_RETRIES}`
+            );
+            
+            // Update countdown timer
+            const countdownDiv = document.querySelector('.retry-countdown');
+            if (countdownDiv) {
+                let timeLeft = retryDelay / 1000;
+                const countdownInterval = setInterval(() => {
+                    timeLeft--;
+                    if (timeLeft > 0) {
+                        countdownDiv.textContent = `Auto-retrying in ${timeLeft} seconds...`;
+                    } else {
+                        clearInterval(countdownInterval);
+                    }
+                }, 1000);
+            }
+            
+            // Auto-retry with exponential backoff
+            setTimeout(() => {
+                loadProducts(nextRetry);
+            }, retryDelay);
+        } else {
+            showLoadError(
+                `${errorMessage}<br>We've tried several times but couldn't load the menu.`,
+                () => loadProducts(0),
+                'Maximum Retry Attempts Reached'
+            );
         }
     }
 };
@@ -625,17 +834,48 @@ const loadCart = () => {
 };
 const saveCart = () => {
     try {
-        const arr = addProduct.map(p => ({ id: p.id, quantity: p.quantity }));
+        // Persist full product objects (id, name, price, image, quantity)
+        const arr = addProduct.map(p => ({
+            id: p.id,
+            name: p.name,
+            price: p.price,
+            image: p.image,
+            quantity: p.quantity || 1
+        }));
         localStorage.setItem(CART_STORAGE_KEY, JSON.stringify(arr));
+        // Keep sessionStorage.checkoutCart in sync so direct navigation to checkout
+        // (which prefers sessionStorage) reflects the current cart state.
+        if (arr.length > 0) {
+            try { sessionStorage.setItem('checkoutCart', JSON.stringify(arr)); } catch (_) {}
+        } else {
+            try { sessionStorage.removeItem('checkoutCart'); } catch (_) {}
+        }
     } catch (_) {}
 };
 const restoreCartFromStorage = () => {
     const saved = loadCart();
     if (!saved || saved.length === 0) { updateTotalPrice(); return; }
+
+    // Support both legacy {id,quantity} and new full-product objects
     saved.forEach(s => {
-        const base = productList.find(p => p.id === s.id);
-        if (!base) return;
-        const product = { ...base, quantity: s.quantity && s.quantity > 0 ? s.quantity : 1 };
+        let product = null;
+
+        if (s && s.name && s.price && s.image) {
+            // New format: full product object persisted
+            product = {
+                id: s.id,
+                name: s.name,
+                price: s.price,
+                image: s.image,
+                quantity: s.quantity && s.quantity > 0 ? s.quantity : 1
+            };
+        } else {
+            // Legacy format: find from productList
+            const base = productList.find(p => p.id === s.id);
+            if (!base) return; // can't restore this item
+            product = { ...base, quantity: s.quantity && s.quantity > 0 ? s.quantity : 1 };
+        }
+
         addProduct.push(product);
         if (cartList) {
             const price = parseFloat(product.price.replace(/[₹$]/g, ''));

@@ -1,36 +1,35 @@
-
-
 .partner-form-section {
-  background-color: var(--bg-color, #fff8f2);
-  padding: 4rem 0;
+  background-color: #fffaf5;
+  padding: 3rem 0 2.5rem 0;
   text-align: center;
 }
 
 .partner-form-section h2 {
-  font-size: 2rem;
+  font-size: 1.5rem;
   color: var(--primary-color, #F2BD12);
-  margin-bottom: 0.5rem;
+  margin-bottom: 0.3rem;
+  font-weight: 700;
 }
 
 .partner-form-section p {
   color: #555;
-  margin-bottom: 2rem;
-  font-size: 1.1rem;
+  margin-bottom: 1.2rem;
+  font-size: 1rem;
 }
 
 .partner-form {
-  background: #ffffff;
+  background: #fff;
   border-radius: 1rem;
-  padding: 2.5rem;
-  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
-  max-width: 800px;
+  padding: 1.5rem 1.2rem 1.2rem 1.2rem;
+  box-shadow: 0 4px 18px rgba(0, 0, 0, 0.07);
+  max-width: 600px;
   margin: 0 auto;
 }
 
 .two-column-form .form-row {
   display: flex;
-  gap: 1.5rem;
-  margin-bottom: 1.5rem;
+  gap: 1.1rem;
+  margin-bottom: 1.1rem;
 }
 
 .two-column-form .form-group {
@@ -43,64 +42,255 @@
 .form-group label {
   font-weight: 600;
   color: #333;
-  margin-bottom: 0.5rem;
-  font-size: 0.95rem;
+  margin-bottom: 0.3rem;
+  font-size: 0.93rem;
 }
 
 .form-group input,
 .form-group textarea {
   width: 100%;
-  padding: 0.75rem 1rem;
-  border: 1.5px solid #ddd;
+  padding: 0.6rem 0.9rem;
+  border: 1.5px solid #eee;
   border-radius: 0.6rem;
-  font-size: 0.95rem;
+  font-size: 0.93rem;
   outline: none;
-  transition: 0.3s ease;
+  transition: 0.3s;
   background-color: #fffaf5;
 }
 
 .form-group input:focus,
 .form-group textarea:focus {
   border-color: var(--primary-color, #F2BD12);
-  box-shadow: 0 0 6px rgba(255, 123, 0, 0.3);
+  box-shadow: 0 0 6px #ffe08260;
   background-color: #fff;
 }
 
 textarea {
   resize: none;
-  min-height: 120px;
+  min-height: 90px;
 }
 
 .full-width {
   width: 100%;
-  margin-bottom: 1.5rem;
+  margin-bottom: 1.1rem;
 }
 
 /* CTA Button (matches other pages) */
 .cta-btn.primary {
   background-color: var(--primary-color, #F2BD12);
   color: #fff;
-  padding: 0.9rem 2rem;
+  padding: 0.7rem 1.5rem;
   border: none;
   border-radius: 2rem;
-  font-size: 1rem;
+  font-size: 0.98rem;
   font-weight: 600;
   cursor: pointer;
-  transition: background 0.3s ease, transform 0.2s ease;
+  transition: background 0.3s, transform 0.2s;
+  box-shadow: 0 2px 8px #ffe08240;
 }
 
 .cta-btn.primary:hover {
-  background-color: #F2BD12;
-  transform: translateY(-2px);
+  background-color: #ffb300;
+  transform: translateY(-2px) scale(1.04);
 }
 
-/* Responsive */
-@media (max-width: 768px) {
+/* Benefits Section */
+.benefits-section {
+  background: linear-gradient(135deg, #fff8f2 60%, #fffbe6 100%);
+  padding: 3.5rem 0 2.5rem 0;
+  text-align: center;
+}
+
+.benefits-section h2 {
+  font-size: 2.1rem;
+  color: var(--primary-color, #F2BD12);
+  margin-bottom: 2.2rem;
+  font-weight: 700;
+  letter-spacing: 0.01em;
+}
+
+.features-grid {
+  display: flex;
+  flex-wrap: nowrap;
+  justify-content: center;
+  gap: 2.5rem;
+  margin: 0 auto;
+  max-width: 1400px;
+}
+
+.feature-card {
+  background: #fff;
+  border-radius: 1.5rem;
+  box-shadow: 0 6px 24px rgba(0,0,0,0.10);
+  padding: 2.2rem 1.7rem 2rem 1.7rem;
+  min-width: 270px;
+  max-width: 320px;
+  flex: 1 1 270px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  transition: transform 0.28s cubic-bezier(.68,-0.55,.27,1.55), box-shadow 0.28s, border 0.2s;
+  border: 2.5px solid #fffbe6;
+  position: relative;
+  animation: floatCard 3.5s ease-in-out infinite alternate;
+  margin-bottom: 0.5rem;
+}
+
+@keyframes floatCard {
+  0% { transform: translateY(0); }
+  100% { transform: translateY(-8px); }
+}
+
+/* Remove blur effect */
+.feature-card:not(:hover):not(:focus) {
+  filter: none;
+}
+
+.feature-card:hover ~ .feature-card,
+.feature-card:focus ~ .feature-card {
+  filter: none;
+  opacity: 1;
+}
+
+.feature-card .ribbon {
+  position: absolute;
+  top: 18px;
+  left: 50%;
+  transform: translateX(-50%) rotate(-2deg);
+  background: linear-gradient(90deg, #FFD700 60%, #F2BD12 100%);
+  color: #fff;
+  font-size: 1.02rem;
+  font-weight: 700;
+  padding: 0.38rem 1.5rem;
+  border-radius: 1.2rem 1rem 1.2rem 1rem;
+  box-shadow: 0 2px 8px #ffe08260;
+  letter-spacing: 0.04em;
+  z-index: 3;
+  text-shadow: 0 1px 2px #bfa10060;
+  animation: popIn 0.7s cubic-bezier(.68,-0.55,.27,1.55);
+}
+
+@keyframes popIn {
+  0% { transform: scale(0.7) rotate(-8deg); opacity: 0; }
+  100% { transform: scale(1) rotate(-2deg); opacity: 1; }
+}
+
+.feature-icon {
+  font-size: 2.5rem;
+  margin-bottom: 1.1rem;
+  color: var(--primary-color, #F2BD12);
+  filter: drop-shadow(0 2px 6px #ffe08260);
+  transition: transform 0.3s, color 0.2s;
+}
+
+.feature-card h3 {
+  font-size: 1.25rem;
+  font-weight: 700;
+  margin-bottom: 0.7rem;
+  color: #222;
+  letter-spacing: 0.01em;
+}
+
+.feature-card p {
+  font-size: 1.08rem;
+  color: #555;
+  margin: 0 0 0.7rem 0;
+  line-height: 1.6;
+}
+
+/* Unique: Add a fun bottom accent bar */
+.feature-card::after {
+  content: '';
+  display: block;
+  width: 60px;
+  height: 5px;
+  border-radius: 3px;
+  margin: 1.2rem auto 0 auto;
+  background: linear-gradient(90deg, #FFD700 60%, #F2BD12 100%);
+  opacity: 0.7;
+}
+
+/* Success Toast for form */
+.partner-success-toast {
+  position: fixed;
+  top: 2.5rem;
+  right: -350px;
+  background: linear-gradient(90deg, #FFD700 60%, #F2BD12 100%);
+  color: #222;
+  border-radius: 1.2rem;
+  box-shadow: 0 4px 24px #ffe08260;
+  padding: 1.1rem 2.2rem 1.1rem 1.6rem;
+  font-size: 1.15rem;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  gap: 0.8rem;
+  z-index: 2000;
+  opacity: 0;
+  pointer-events: none;
+  transition: right 0.6s cubic-bezier(.68,-0.55,.27,1.55), opacity 0.4s;
+  overflow: visible;
+  max-width: 90vw;
+}
+
+.partner-success-toast.show {
+  right: 2.5rem;
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.partner-toast-icon {
+  font-size: 1.5rem;
+  margin-right: 0.3rem;
+}
+
+.partner-toast-msg {
+  font-size: 1.08rem;
+}
+
+@media (max-width: 1200px) {
+  .features-grid {
+    flex-wrap: wrap;
+    gap: 1.2rem;
+    max-width: 100%;
+  }
+  .feature-card {
+    min-width: 160px;
+    max-width: 100%;
+    padding: 1.1rem 0.7rem;
+  }
+}
+
+@media (max-width: 900px) {
+  .features-grid {
+    flex-wrap: wrap;
+    gap: 1.2rem;
+    max-width: 100%;
+  }
+  .feature-card {
+    min-width: 160px;
+    max-width: 100%;
+    padding: 1.1rem 0.7rem;
+  }
+}
+
+@media (max-width: 700px) {
+  .features-grid {
+    flex-direction: column;
+    align-items: center;
+    gap: 1.1rem;
+    flex-wrap: wrap;
+  }
+  .feature-card {
+    width: 100%;
+    min-width: unset;
+    max-width: 400px;
+  }
+  .partner-form {
+    padding: 1rem 0.5rem 1rem 0.5rem;
+  }
   .two-column-form .form-row {
     flex-direction: column;
-  }
-
-  .partner-form {
-    padding: 1.5rem;
+    gap: 0.7rem;
   }
 }

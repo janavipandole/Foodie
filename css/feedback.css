@@ -7,6 +7,7 @@ body {
     font-family: "Roboto Condensed", sans-serif;
     margin: 0;
     padding-top: 12vh; /* adjust for navbar space */
+    padding-bottom: 5.5rem; /* space for fixed footer */
 }
 
 /* ====== Hero Section ====== */
@@ -55,7 +56,12 @@ body {
     border-radius: 1.5rem;
     padding: 2rem 1.5rem;
     text-align: center;
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    transition: transform 0.35s cubic-bezier(.68,-0.55,.27,1.55), box-shadow 0.3s, background 0.3s, border-color 0.3s;
+    cursor: pointer;
+    position: relative;
+    outline: none;
+    will-change: transform, box-shadow;
+    box-shadow: 0 2px 8px var(--shadow);
 }
 
 .feedback-card h2 {
@@ -69,21 +75,234 @@ body {
     font-size: 1rem;
 }
 
-/* ====== Hover Effects ====== */
-.feedback-card:hover {
-    transform: translateY(-8px);
-    box-shadow: 0 8px 16px var(--shadow);
-    background-color: var(--bg-hover, rgba(255,255,255,0.03));
-    border-color: var(--lead);
+.card-tagline {
+    margin-top: 0.7rem;
+    font-size: 1.04rem;
+    color: var(--lead, #FFC107);
+    font-weight: 600;
+    letter-spacing: 0.01em;
+    text-align: center;
+    opacity: 0.92;
 }
 
-/* ====== Footer ====== */
-footer {
-    text-align: center;
-    padding: 2rem;
+/* ====== Hover Effects ====== */
+.feedback-card:hover, .feedback-card:focus {
+    transform: translateY(-12px) scale(1.035) rotate(-1deg);
+    box-shadow: 0 12px 32px var(--shadow);
+    background-color: var(--bg-hover, rgba(255,255,255,0.06));
+
+}
+
+.feedback-card:focus {
+    box-shadow: 0 0 0 3px var(--lead), 0 8px 16px var(--shadow);
+    z-index: 2;
+}
+
+.card-icon {
+    font-size: 2.5rem;
+    margin-bottom: 0.5rem;
+    transition: transform 0.3s cubic-bezier(.68,-0.55,.27,1.55);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    user-select: none;
+}
+
+.feedback-card:hover .card-icon,
+.feedback-card:focus .card-icon {
+    transform: scale(1.22) rotate(-10deg);
+    filter: drop-shadow(0 2px 6px var(--lead));
+}
+
+/* ====== Modal Styles ====== */
+.modal-overlay {
+    position: fixed;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background: rgba(0,0,0,0.18);
+    z-index: 1000;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.3s;
+}
+
+.modal-overlay.open {
+    opacity: 1;
+    pointer-events: auto;
+}
+
+.feedback-modal {
+    position: fixed;
+    top: 50%; left: 50%;
+    transform: translate(-50%, -50%) scale(0.95);
+    background: var(--bg-secondary);
+    border-radius: 1.5rem;
+    box-shadow: 0 12px 32px var(--shadow);
+    padding: 2.5rem 2rem 2rem 2rem;
+    z-index: 1100;
+    min-width: 320px;
+    max-width: 95vw;
+    width: 400px;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.3s, transform 0.3s;
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+}
+
+.feedback-modal.open {
+    opacity: 1;
+    pointer-events: auto;
+    transform: translate(-50%, -50%) scale(1);
+}
+
+.close-modal {
+    position: absolute;
+    top: 1rem;
+    right: 1.2rem;
+    background: none;
+    border: none;
+    font-size: 2rem;
     color: var(--text-secondary);
-    background-color: var(--bg-secondary);
-    margin-top: 3rem;
+    cursor: pointer;
+    transition: color 0.2s;
+    z-index: 2;
+}
+
+.close-modal:hover,
+.close-modal:focus {
+    color: var(--lead);
+}
+
+#feedback-form {
+    display: flex;
+    flex-direction: column;
+    gap: 1.2rem;
+    margin-top: 1.5rem;
+}
+
+#feedback-form textarea {
+    resize: vertical;
+    min-height: 90px;
+    border-radius: 0.7rem;
+    border: 1.5px solid var(--border-color);
+    padding: 1rem;
+    font-size: 1.1rem;
+    background: var(--bg-primary);
+    color: var(--text-primary);
+    transition: border-color 0.2s;
+}
+
+#feedback-form textarea:focus {
+    border-color: var(--lead);
+    outline: none;
+}
+
+.submit-btn {
+    background: var(--gold-finger);
+    color: #fff;
+    border: none;
+    border-radius: 0.7rem;
+    padding: 0.8rem 1.5rem;
+    font-size: 1.1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background 0.2s, transform 0.2s;
+    box-shadow: 0 2px 8px var(--shadow);
+}
+
+.submit-btn:hover,
+.submit-btn:focus {
+    background: var(--lead);
+    transform: translateY(-2px) scale(1.04);
+}
+
+.visually-hidden {
+    position: absolute !important;
+    height: 1px; width: 1px;
+    overflow: hidden;
+    clip: rect(1px, 1px, 1px, 1px);
+    white-space: nowrap;
+    border: 0;
+    padding: 0;
+    margin: -1px;
+}
+
+/* ====== Fixed Footer ====== */
+footer {
+    position: fixed;
+    left: 0; right: 0; bottom: 0;
+    margin: 0;
     border-top: 1px solid var(--border-color);
+    background-color: var(--bg-secondary);
+    text-align: center;
+    padding: 1.2rem 0;
+    color: var(--text-secondary);
+    z-index: 900;
+    font-size: 1rem;
+    box-shadow: 0 -2px 12px var(--shadow);
+}
+
+.card-list {
+    list-style: none;
+    padding: 0;
+    margin: 1rem 0 0 0;
+    display: flex;
+    flex-direction: column;
+    gap: 0.3rem;
+    font-size: 0.98rem;
+    color: var(--text-secondary);
+    opacity: 0.85;
+    text-align: left;
+}
+
+/* ====== Success Toast Animation ====== */
+.success-toast {
+    position: fixed;
+    top: 2.5rem;
+    right: -350px;
+    background: var(--gold-finger, #FFD700);
+    color: var(--text-primary, #222);
+    border-radius: 1.2rem;
+    box-shadow: 0 4px 24px rgba(255, 215, 0, 0.18);
+    padding: 1.1rem 2.2rem 1.1rem 1.6rem;
+    font-size: 1.15rem;
+    font-weight: 600;
+    display: flex;
+    align-items: center;
+    gap: 0.8rem;
+    z-index: 2000;
+    opacity: 0;
+    pointer-events: none;
+    transition: right 0.6s cubic-bezier(.68,-0.55,.27,1.55), opacity 0.4s;
+    overflow: visible;
+    max-width: 90vw;
+}
+.success-toast.show {
+    right: 2.5rem;
+    opacity: 1;
+    pointer-events: auto;
+}
+.toast-icon {
+    font-size: 1.5rem;
+    margin-right: 0.3rem;
+}
+.toast-msg {
+    font-size: 1.08rem;
+}
+
+@media (max-width: 700px) {
+    .feedback-modal {
+        width: 95vw;
+        min-width: unset;
+        padding: 1.2rem 0.5rem 1.2rem 0.5rem;
+    }
+    .feedback-container {
+        gap: 1rem;
+        padding: 2rem 0.5rem;
+    }
+    .feedback-card {
+        padding: 1.2rem 0.7rem;
+    }
 }
 

@@ -6,6 +6,16 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Foodie - About Us</title>
 
+    <script>
+        // Immediately apply saved theme to prevent FOUC
+        (function() {
+            const savedTheme = localStorage.getItem('theme');
+            if (savedTheme === 'dark') {
+                document.documentElement.setAttribute('data-theme', 'dark');
+            }
+        })();
+    </script>
+
     <link rel="icon" href="../imgs/favicon.png" type="image/png" />
 
     <!-- Font (valid CDN) -->
@@ -17,21 +27,31 @@
 </head>
 
 <body>
-
-     <header>
+    <header>
         <nav class="navbar flex between wrapper">
             <div class="logo">Foodie.</div>
 
             <!-- DESKTOP MENU -->
             <ul class="navList flex gap-3 between">
-                <li><a class="active" href="./index.html#home">Home</a></li>
-                <li><a href="./index.html#services">Services</a></li>
-                <li><a href="./menu.html">Menu</a></li>
-                <li><a href="./aboutUs.html">About Us</a></li>
-                <li><a href="./contactUs.html">Contact Us</a></li>
-                <li><a href="nearbyres.html">Nearby Restaurants</a></li>
+                <li><a class="active" href="./index.html#home" data-i18n="nav.home">Home</a></li>
+                <li><a href="./menu.html" data-i18n="nav.menu">Menu</a></li>
+                <li><a href="./aboutUs.html" data-i18n="nav.about">About Us</a></li>
+                <li><a href="./contactUs.html" data-i18n="nav.contact">Contact Us</a></li>
+                <li><a href="nearbyres.html" data-i18n="nav.nearby">Nearby Restaurants</a></li>
             </ul>
             <div class="desktop-action flex gap-2">
+                <!-- Language Selector -->
+                <div class="custom-select" id="language-custom-select">
+                    <div class="selected" tabindex="0" aria-haspopup="listbox" aria-expanded="false"
+                        aria-labelledby="language-custom-select">
+                        English
+                    </div>
+                    <ul class="options" role="listbox" tabindex="-1">
+                        <li data-value="en" role="option" aria-selected="true">English</li>
+                        <li data-value="hi" role="option">हिंदी</li>
+                    </ul>
+                </div>
+
                 <!-- Search Input -->
                 <form class="navbar-search" action="#" method="get">
                     <input type="text" name="search" id="navbar-search" placeholder="Search your food ..."
@@ -64,13 +84,12 @@
 
             <!-- MOBILE MENU -->
             <ul class="mobile-menu">
-                <li><a class="active" href="./index.html#home">Home</a></li>
-                <li><a href="./index.html#services">Services</a></li>
-                <li><a href="./menu.html">Menu</a></li>
-                <li><a href="./aboutUs.html">About Us</a></li>
-                <li><a href="./contactUs.html">Contact Us</a></li>
-                <li><a href="nearbyres.html">Nearby Restaurants</a></li>
-                 <!-- Search Input -->
+                <li><a class="active" href="./index.html#home" data-i18n="nav.home">Home</a></li>
+                <li><a href="./menu.html" data-i18n="nav.menu">Menu</a></li>
+                <li><a href="./aboutUs.html" data-i18n="nav.about">About Us</a></li>
+                <li><a href="./contactUs.html" data-i18n="nav.contact">Contact Us</a></li>
+                <li><a href="nearbyres.html" data-i18n="nav.nearby">Nearby Restaurants</a></li>
+                <!-- Search Input -->
                 <form class="navbar-search" action="#" method="get">
                     <input type="text" name="search" id="navbar-search" placeholder="Search your food ..."
                         aria-label="Search menu items">
@@ -92,69 +111,77 @@
         </nav>
     </header>
 
-
     <!-- Hero Section -->
     <section class="hero">
-        <h1>About <span>Foodie</span></h1>
-        <p>Your trusted partner in delivering delicious food with lightning-fast service</p>
+        <h1 data-i18n="aboutUs.hero.title">About <span data-i18n="aboutUs.hero.highlight">Foodie</span></h1>
+        <p data-i18n="aboutUs.hero.subtitle">Your trusted partner in delivering delicious food with lightning-fast
+            service</p>
     </section>
 
     <!-- Our Story Section -->
     <section class="story-section">
         <div class="story-container">
             <div class="story-content">
-                <h2>Our Story</h2>
-                <p>Founded in 2022, Foodie began with a simple mission: to connect food lovers with their favorite
+                <h2 data-i18n="aboutUs.story.title">Our Story</h2>
+                <p data-i18n="aboutUs.story.para1">Founded in 2022, Foodie began with a simple mission: to connect food
+                    lovers with their favorite
                     restaurants through fast, reliable delivery. What started as a small startup has grown into a
                     trusted platform serving thousands of customers daily.</p>
-                <p>We believe that great food should be accessible to everyone, anytime. Our team works tirelessly to
+                <p data-i18n="aboutUs.story.para2">We believe that great food should be accessible to everyone, anytime.
+                    Our team works tirelessly to
                     ensure that every meal arrives hot, fresh, and on time.</p>
-                <p>Finally...at Foodie we don't just deliver meals, we deliver happiness at a time 🍽️💛</p>    
+                <p data-i18n="aboutUs.story.para3">Finally...at Foodie we don't just deliver meals, we deliver happiness
+                    at a time 🍽️💛</p>
             </div>
         </div>
     </section>
 
-   <section class="mission-section">
-  <div class="mission-container">
-    
-    <div class="mission-card">
-      <div class="mission-inner">
-        <div class="mission-front">
-          <div class="mission-icon">🎯</div>
-          <h3>Our Mission</h3>
-        </div>
-        <div class="mission-back">
-          <p>To revolutionize food delivery by supporting local restaurants, and creating memorable dining experiences for customers.</p>
-        </div>
-      </div>
-    </div>
+    <section class="mission-section">
+        <div class="mission-container">
 
-    <div class="mission-card">
-      <div class="mission-inner">
-        <div class="mission-front">
-          <div class="mission-icon">👁️</div>
-          <h3>Our Vision</h3>
-        </div>
-        <div class="mission-back">
-          <p>To become the most trusted and loved food delivery platform globally, setting new standards for quality, speed, and customer satisfaction.</p>
-        </div>
-      </div>
-    </div>
+            <div class="mission-card">
+                <div class="mission-inner">
+                    <div class="mission-front">
+                        <div class="mission-icon">🎯</div>
+                        <h3 data-i18n="aboutUs.mission.mission.title">Our Mission</h3>
+                    </div>
+                    <div class="mission-back">
+                        <p data-i18n="aboutUs.mission.mission.description">To revolutionize food delivery by supporting
+                            local restaurants, and creating memorable dining experiences for customers.</p>
+                    </div>
+                </div>
+            </div>
 
-    <div class="mission-card">
-      <div class="mission-inner">
-        <div class="mission-front">
-          <div class="mission-icon">💡</div>
-          <h3>Our Values</h3>
-        </div>
-        <div class="mission-back">
-          <p>Quality, reliability, innovation, and customer-first approach guide everything we do. We're committed to excellence in every delivery.</p>
-        </div>
-      </div>
-    </div>
+            <div class="mission-card">
+                <div class="mission-inner">
+                    <div class="mission-front">
+                        <div class="mission-icon">👁️</div>
+                        <h3 data-i18n="aboutUs.mission.vision.title">Our Vision</h3>
+                    </div>
+                    <div class="mission-back">
+                        <p data-i18n="aboutUs.mission.vision.description">To become the most trusted and loved food
+                            delivery platform globally, setting new standards for quality, speed, and customer
+                            satisfaction.</p>
+                    </div>
+                </div>
+            </div>
 
-  </div>
-</section>
+            <div class="mission-card">
+                <div class="mission-inner">
+                    <div class="mission-front">
+                        <div class="mission-icon">💡</div>
+                        <h3 data-i18n="aboutUs.mission.values.title">Our Values</h3>
+                    </div>
+                    <div class="mission-back">
+                        <p data-i18n="aboutUs.mission.values.description">Quality, reliability, innovation, and
+                            customer-first approach guide everything we do. We're committed to excellence in every
+                            delivery.</p>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </section>
 
 
     <!-- Stats Section -->
@@ -162,19 +189,19 @@
         <div class="stats-container">
             <div class="stat-card">
                 <div class="stat-number">25K+</div>
-                <div class="stat-label">Happy Customers</div>
+                <div class="stat-label" data-i18n="aboutUs.stats.customers">Happy Customers</div>
             </div>
             <div class="stat-card">
                 <div class="stat-number">100+</div>
-                <div class="stat-label">Restaurant Partners</div>
+                <div class="stat-label" data-i18n="aboutUs.stats.partners">Restaurant Partners</div>
             </div>
             <div class="stat-card">
                 <div class="stat-number">500K+</div>
-                <div class="stat-label">Orders Delivered</div>
+                <div class="stat-label" data-i18n="aboutUs.stats.orders">Orders Delivered</div>
             </div>
             <div class="stat-card">
                 <div class="stat-number">15 Min</div>
-                <div class="stat-label">Avg. Delivery Time</div>
+                <div class="stat-label" data-i18n="aboutUs.stats.time">Avg. Delivery Time</div>
             </div>
         </div>
     </section>
@@ -182,39 +209,45 @@
     <!-- Why Choose Us Section -->
     <section class="why-choose-section">
         <div class="why-choose-header">
-            <h2>Why Choose Foodie?</h2>
-            <p>We're not just another food delivery service</p>
+            <h2 data-i18n="aboutUs.whyChoose.title">Why Choose Foodie?</h2>
+            <p data-i18n="aboutUs.whyChoose.subtitle">We're not just another food delivery service</p>
         </div>
         <div class="features-grid">
             <div class="feature-card">
                 <div class="feature-icon">⚡</div>
-                <h3>Lightning Fast</h3>
-                <p>Average delivery time of just 30 minutes. Hot food, guaranteed.</p>
+                <h3 data-i18n="aboutUs.whyChoose.features.fast.title">Lightning Fast</h3>
+                <p data-i18n="aboutUs.whyChoose.features.fast.description">Average delivery time of just 30 minutes. Hot
+                    food, guaranteed.</p>
             </div>
             <div class="feature-card">
                 <div class="feature-icon">🏆</div>
-                <h3>Premium Quality</h3>
-                <p>Partner with only the best restaurants to ensure top-notch quality.</p>
+                <h3 data-i18n="aboutUs.whyChoose.features.quality.title">Premium Quality</h3>
+                <p data-i18n="aboutUs.whyChoose.features.quality.description">Partner with only the best restaurants to
+                    ensure top-notch quality.</p>
             </div>
             <div class="feature-card">
                 <div class="feature-icon">📱</div>
-                <h3>Easy Ordering</h3>
-                <p>Simple, intuitive app and website for hassle-free ordering.</p>
+                <h3 data-i18n="aboutUs.whyChoose.features.easy.title">Easy Ordering</h3>
+                <p data-i18n="aboutUs.whyChoose.features.easy.description">Simple, intuitive app and website for
+                    hassle-free ordering.</p>
             </div>
             <div class="feature-card">
                 <div class="feature-icon">🔒</div>
-                <h3>Safe & Secure</h3>
-                <p>Contactless delivery and secure payment options for your safety.</p>
+                <h3 data-i18n="aboutUs.whyChoose.features.secure.title">Safe & Secure</h3>
+                <p data-i18n="aboutUs.whyChoose.features.secure.description">Contactless delivery and secure payment
+                    options for your safety.</p>
             </div>
             <div class="feature-card">
                 <div class="feature-icon">💰</div>
-                <h3>Best Prices</h3>
-                <p>Competitive pricing with exclusive deals and discounts.</p>
+                <h3 data-i18n="aboutUs.whyChoose.features.prices.title">Best Prices</h3>
+                <p data-i18n="aboutUs.whyChoose.features.prices.description">Competitive pricing with exclusive deals
+                    and discounts.</p>
             </div>
             <div class="feature-card">
                 <div class="feature-icon">🎧</div>
-                <h3>24/7 Support</h3>
-                <p>Round-the-clock customer support for any queries or issues.</p>
+                <h3 data-i18n="aboutUs.whyChoose.features.support.title">24/7 Support</h3>
+                <p data-i18n="aboutUs.whyChoose.features.support.description">Round-the-clock customer support for any
+                    queries or issues.</p>
             </div>
         </div>
     </section>
@@ -222,33 +255,37 @@
     <!-- Team Section -->
     <section class="team-section">
         <div class="team-header">
-            <h2>Meet Our Team</h2>
-            <p>The passionate people behind Foodie</p>
+            <h2 data-i18n="aboutUs.team.title">Meet Our Team</h2>
+            <p data-i18n="aboutUs.team.subtitle">The passionate people behind Foodie</p>
         </div>
         <div class="team-grid">
             <div class="team-card">
                 <div class="team-photo">👩‍💼</div>
-                <h3>Janavi Pandole</h3>
-                <p class="team-role">CEO & Founder</p>
-                <p class="team-bio">Visionary leader with 10+ years in tech and food industry.</p>
+                <h3 data-i18n="aboutUs.team.members.janavi.name">Janavi Pandole</h3>
+                <p class="team-role" data-i18n="aboutUs.team.members.janavi.role">CEO & Founder</p>
+                <p class="team-bio" data-i18n="aboutUs.team.members.janavi.bio">Visionary leader with 10+ years in tech
+                    and food industry.</p>
             </div>
             <div class="team-card">
                 <div class="team-photo">👨‍💼</div>
-                <h3>Rahul Pandole</h3>
-                <p class="team-role">Head of Operations</p>
-                <p class="team-bio">Expert in logistics and supply chain management.</p>
+                <h3 data-i18n="aboutUs.team.members.rahul.name">Rahul Pandole</h3>
+                <p class="team-role" data-i18n="aboutUs.team.members.rahul.role">Head of Operations</p>
+                <p class="team-bio" data-i18n="aboutUs.team.members.rahul.bio">Expert in logistics and supply chain
+                    management.</p>
             </div>
             <div class="team-card">
                 <div class="team-photo">👨‍🍳</div>
-                <h3>Manoj Pandole</h3>
-                <p class="team-role">Culinary Director</p>
-                <p class="team-bio">Award-winning chef ensuring quality standards.</p>
+                <h3 data-i18n="aboutUs.team.members.manoj.name">Manoj Pandole</h3>
+                <p class="team-role" data-i18n="aboutUs.team.members.manoj.role">Culinary Director</p>
+                <p class="team-bio" data-i18n="aboutUs.team.members.manoj.bio">Award-winning chef ensuring quality
+                    standards.</p>
             </div>
             <div class="team-card">
                 <div class="team-photo">👩‍💻</div>
-                <h3>Janavi Pandole</h3>
-                <p class="team-role">Tech Lead</p>
-                <p class="team-bio">Building innovative solutions for seamless experience.</p>
+                <h3 data-i18n="aboutUs.team.members.janaviTech.name">Janavi Pandole</h3>
+                <p class="team-role" data-i18n="aboutUs.team.members.janaviTech.role">Tech Lead</p>
+                <p class="team-bio" data-i18n="aboutUs.team.members.janaviTech.bio">Building innovative solutions for
+                    seamless experience.</p>
             </div>
         </div>
     </section>
@@ -256,35 +293,38 @@
     <!-- Testimonials Section -->
     <section class="testimonials-section">
         <div class="testimonials-header">
-            <h2>What Our Customers Say</h2>
-            <p>Real feedback from real customers</p>
+            <h2 data-i18n="aboutUs.testimonials.title">What Our Customers Say</h2>
+            <p data-i18n="aboutUs.testimonials.subtitle">Real feedback from real customers</p>
         </div>
         <div class="testimonials-grid">
             <div class="testimonial-card">
                 <div class="stars">⭐⭐⭐⭐⭐</div>
-                <p class="testimonial-text">"Best food delivery service I've ever used! Fast, reliable, and the food
+                <p class="testimonial-text" data-i18n="aboutUs.testimonials.reviews.alex.text">"Best food delivery
+                    service I've ever used! Fast, reliable, and the food
                     always arrives hot. Highly recommend!"</p>
                 <div class="testimonial-author">
-                    <strong>Alex Kumar</strong>
-                    <span>Regular Customer</span>
+                    <strong data-i18n="aboutUs.testimonials.reviews.alex.author">Alex Kumar</strong>
+                    <span data-i18n="aboutUs.testimonials.reviews.alex.role">Regular Customer</span>
                 </div>
             </div>
             <div class="testimonial-card">
                 <div class="stars">⭐⭐⭐⭐⭐</div>
-                <p class="testimonial-text">"The customer service is exceptional. They went above and beyond to ensure
+                <p class="testimonial-text" data-i18n="aboutUs.testimonials.reviews.priya.text">"The customer service is
+                    exceptional. They went above and beyond to ensure
                     my order was perfect. 5 stars!"</p>
                 <div class="testimonial-author">
-                    <strong>Priya Sharma</strong>
-                    <span>Food Enthusiast</span>
+                    <strong data-i18n="aboutUs.testimonials.reviews.priya.author">Priya Sharma</strong>
+                    <span data-i18n="aboutUs.testimonials.reviews.priya.role">Food Enthusiast</span>
                 </div>
             </div>
             <div class="testimonial-card">
                 <div class="stars">⭐⭐⭐⭐</div>
-                <p class="testimonial-text">"Amazing variety of restaurants and cuisines. The app is super easy to use.
+                <p class="testimonial-text" data-i18n="aboutUs.testimonials.reviews.rahul.text">"Amazing variety of
+                    restaurants and cuisines. The app is super easy to use.
                     My go-to for all food cravings!"</p>
                 <div class="testimonial-author">
-                    <strong>Rahul Patel</strong>
-                    <span>Tech Professional</span>
+                    <strong data-i18n="aboutUs.testimonials.reviews.rahul.author">Rahul Patel</strong>
+                    <span data-i18n="aboutUs.testimonials.reviews.rahul.role">Tech Professional</span>
                 </div>
             </div>
         </div>
@@ -293,11 +333,12 @@
     <!-- CTA Section -->
     <section class="cta-section">
         <div class="cta-content">
-            <h2>Ready to Experience Foodie?</h2>
-            <p>Join thousands of satisfied customers and enjoy delicious food delivered to your doorstep</p>
+            <h2 data-i18n="aboutUs.cta.title">Ready to Experience Foodie?</h2>
+            <p data-i18n="aboutUs.cta.subtitle">Join thousands of satisfied customers and enjoy delicious food delivered
+                to your doorstep</p>
             <div class="cta-buttons">
-                <a href="../HTML/signup.html" class="cta-btn primary">Sign Up Now</a>
-                <a href="../html/menu.html" class="cta-btn primary">Browse Menu</a>
+                <a href="../html/signup.html" class="cta-btn primary" data-i18n="aboutUs.cta.signUp">Sign Up Now</a>
+                <a href="../html/menu.html" class="cta-btn primary" data-i18n="aboutUs.cta.browseMenu">Browse Menu</a>
             </div>
         </div>
     </section>
@@ -308,7 +349,8 @@
             <div class="flex wrapper gap-4">
                 <div class="footer-wrapper">
                     <a href="#" class="logo">Foodie.</a>
-                    <p class="mt-one">We will fill your tummy with delicious <br>food with fast delivery</p>
+                    <p class="mt-one" data-i18n="footer.description">We will fill your tummy with delicious <br>food
+                        with fast delivery</p>
                     <div class="media flex gap-2 mt-one">
                         <a href="https://github.com/janavipandole" class="social-media">
                             <img src="../imgs/GitHub.png" alt="GitHub social icon in footer">
@@ -327,36 +369,51 @@
 
                 <ul class="footer-wrapper">
                     <li>
-                        <h4>Our Menu</h4>
+                        <h4 data-i18n="footer.ourMenu">Our Menu</h4>
                     </li>
-                    <li class="mt-one"><a href="../HTML/index.html" class="footer-link">Special</a></li>
-                    <li class="mt-one"><a href="../HTML/index.html" class="footer-link">Popular</a></li>
-                    <li class="mt-one"><a href="../HTML/index.html" class="footer-link">Category</a></li>
+                    <li class="mt-one"><a href="../html/index.html" class="footer-link"
+                            data-i18n="footer.special">Special</a></li>
+                    <li class="mt-one"><a href="../html/index.html" class="footer-link"
+                            data-i18n="footer.popular">Popular</a></li>
+                    <li class="mt-one"><a href="../html/index.html" class="footer-link"
+                            data-i18n="footer.category">Category</a></li>
                 </ul>
 
                 <ul class="footer-wrapper">
                     <li>
-                        <h4>Company</h4>
+                        <h4 data-i18n="footer.company">Company</h4>
                     </li>
-                    <li class="mt-one"><a href="#" class="footer-link"> Why Foodie</a></li>
-                    <li class="mt-one"><a href="../HTML/PartnerWithUs.html" class="footer-link"> Partner with us</a></li>
-                    <li class="mt-one"><a href="../HTML/aboutUs.html" class="footer-link"> About us </a></li>
-                    <li class="mt-one"><a href="../HTML/contactUs.html" class="footer-link"> FAQ's</a></li>
+                    <li class="mt-one"><a href="#" class="footer-link" data-i18n="footer.whyFoodie"> Why Foodie</a></li>
+                    <li class="mt-one"><a href="../html/PartnerWithUs.html" class="footer-link"
+                            data-i18n="footer.partnerWithUs"> Partner with us</a></li>
+                    <li class="mt-one"><a href="../html/aboutUs.html" class="footer-link" data-i18n="footer.aboutUs">
+                            About us </a></li>
+                    <li class="mt-one"><a href="../html/contactUs.html" class="footer-link" data-i18n="footer.faq">
+                            FAQ's</a></li>
                 </ul>
 
                 <ul class="footer-wrapper">
                     <li>
-                        <h4>Support</h4>
+                        <h4 data-i18n="footer.support">Support</h4>
                     </li>
-                    <li class="mt-one"><a href="../HTML/signup.html" class="footer-link">Account</a></li>
-                    <li class="mt-one"><a href="../HTML/supportCenter.html" class="footer-link"> Support center </a>
+                    <li class="mt-one"><a href="../html/signup.html" class="footer-link"
+                            data-i18n="footer.account">Account</a></li>
+                    <li class="mt-one"><a href="../html/supportCenter.html" class="footer-link"
+                            data-i18n="footer.supportCenter"> Support center </a>
                     </li>
-                    <li class="mt-one"><a href="../HTML/feedback.html" class="footer-link"> Feedback</a></li>
-                    <li class="mt-one"><a href="../HTML/contactUs.html" class="footer-link">Contact Us </a></li>
+                    <li class="mt-one"><a href="../html/feedback.html" class="footer-link" data-i18n="footer.feedback">
+                            Feedback</a></li>
+                    <li class="mt-one"><a href="../html/contactUs.html" class="footer-link"
+                            data-i18n="footer.contactUs">Contact Us </a></li>
                 </ul>
             </div>
         </div>
     </footer>
+
+    <a href="https://wa.me/911234567890" class="whatsapp-fab" target="_blank" rel="noopener noreferrer"
+        aria-label="Chat on WhatsApp" title="Chat on WhatsApp">
+        <i class="fa-brands fa-whatsapp"></i>
+    </a>
 
     <a href="#home" class="back-to-top" aria-label="Back to top">
         <i class="fa-solid fa-arrow-up"></i>
@@ -365,44 +422,47 @@
     <script>
         // Theme Toggle with smooth icon transition
         (function () {
-            const themeToggle = document.querySelector('.theme-toggle');
+            const themeToggles = document.querySelectorAll('.theme-toggle');
             const html = document.documentElement;
 
-            // Load saved theme
-            const savedTheme = localStorage.getItem('theme') || 'light';
-            html.setAttribute('data-theme', savedTheme);
+            // Initial theme setting is now handled by the inline script in the head.
+            // This script only updates the icon and sets up event listeners.
 
             // Update icon based on theme (guarded)
             function updateThemeIcon() {
-                if (!themeToggle) return;
-                const icon = themeToggle.querySelector('i');
-                if (!icon) return;
-                if (html.getAttribute('data-theme') === 'dark') {
-                    icon.style.transform = 'rotate(360deg) scale(0)';
-                    setTimeout(() => {
-                        icon.className = 'fa-solid fa-sun';
-                        icon.style.transform = 'rotate(0deg) scale(1)';
-                    }, 250);
-                } else {
-                    icon.style.transform = 'rotate(-360deg) scale(0)';
-                    setTimeout(() => {
-                        icon.className = 'fa-solid fa-moon';
-                        icon.style.transform = 'rotate(0deg) scale(1)';
-                    }, 250);
-                }
-            }
-
-            updateThemeIcon();
-
-            if (themeToggle) {
-                themeToggle.addEventListener('click', () => {
-                    const currentTheme = html.getAttribute('data-theme');
-                    const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
-                    html.setAttribute('data-theme', newTheme);
-                    localStorage.setItem('theme', newTheme);
-                    updateThemeIcon();
+                themeToggles.forEach(toggle => {
+                    if (!toggle) return;
+                    const icon = toggle.querySelector('i');
+                    if (!icon) return;
+                    if (html.getAttribute('data-theme') === 'dark') {
+                        icon.style.transform = 'rotate(360deg) scale(0)';
+                        setTimeout(() => {
+                            icon.className = 'fa-solid fa-sun';
+                            icon.style.transform = 'rotate(0deg) scale(1)';
+                        }, 250);
+                    } else {
+                        icon.style.transform = 'rotate(-360deg) scale(0)';
+                        setTimeout(() => {
+                            icon.className = 'fa-solid fa-moon';
+                            icon.style.transform = 'rotate(0deg) scale(1)';
+                        }, 250);
+                    }
                 });
             }
+
+            updateThemeIcon(); // Call once on load to set initial icon
+
+            themeToggles.forEach(toggle => {
+                if (toggle) {
+                    toggle.addEventListener('click', () => {
+                        const currentTheme = html.getAttribute('data-theme');
+                        const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
+                        html.setAttribute('data-theme', newTheme);
+                        localStorage.setItem('theme', newTheme);
+                        updateThemeIcon();
+                    });
+                }
+            });
         })();
 
         // Mobile Menu Toggle (guarded)
@@ -432,6 +492,7 @@
         })();
     </script>
 
+    <script src="../js/i18n.js"></script>
     <script src="../js/cursor.js"></script>
     <script src="../js/app.js"></script>
 </body>

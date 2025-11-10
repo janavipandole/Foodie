@@ -6,7 +6,8 @@
     "price": "99",
     "image": "../imgs/burger.png",
     "description": "A juicy double patty loaded with melted cheddar, crisp lettuce, and tangy sauce for the ultimate burger experience.",
-    "rating": 4.7
+    "rating": 4.7,
+    "cuisine": "American"
   },
   {
     "id": 2,
@@ -15,7 +16,8 @@
     "price": "100",
     "image": "../imgs/chicken-roll.png",
     "description": "Spicy grilled chicken wrapped with fresh veggies and creamy dressing in a warm tortilla.",
-    "rating": 4.5
+    "rating": 4.5,
+    "cuisine": "American"
   },
   {
     "id": 3,
@@ -24,7 +26,8 @@
     "price": "99",
     "image": "../imgs/fried-chicken.png",
     "description": "Golden-fried chicken pieces seasoned with southern spices for that perfect crunch and juiciness.",
-    "rating": 4.6
+    "rating": 4.6,
+    "cuisine": "American"
   },
   {
     "id": 4,
@@ -33,7 +36,8 @@
     "price": "299",
     "image": "../imgs/pizza.png",
     "description": "Classic Italian pizza baked to perfection with wood-fired crust, rich tomato sauce, and gooey mozzarella.",
-    "rating": 4.9
+    "rating": 4.9,
+    "cuisine": "Italian"
   },
   {
     "id": 5,
@@ -42,7 +46,8 @@
     "price": "299",
     "image": "../imgs/lasagna.png",
     "description": "A fiery twist on classic lasagna, layered with spicy tomato sauce, creamy béchamel, and melted cheese.",
-    "rating": 4.4
+    "rating": 4.4,
+    "cuisine": "Italian"
   },
   {
     "id": 6,
@@ -51,7 +56,8 @@
     "price": "169",
     "image": "../imgs/sandwich.png",
     "description": "A hearty sandwich packed with smoked meats, crisp veggies, and zesty Italian dressing.",
-    "rating": 4.3
+    "rating": 4.3,
+    "cuisine": "Italian"
   },
   {
     "id": 7,
@@ -60,7 +66,8 @@
     "price": "200",
     "image": "../imgs/spaghetti.png",
     "description": "Al dente spaghetti tossed in aromatic garlic butter sauce with a hint of herbs and spice.",
-    "rating": 4.8
+    "rating": 4.8,
+    "cuisine": "Italian"
   },
   {
     "id": 8,
@@ -69,7 +76,8 @@
     "price": "50",
     "image": "../imgs/spring-roll.png",
     "description": "Crispy rolls filled with seasoned vegetables, served with a tangy dipping sauce.",
-    "rating": 4.2
+    "rating": 4.2,
+    "cuisine": "Chinese"
   },
   {
     "id": 9,
@@ -78,7 +86,8 @@
     "price": "170",
     "image": "../imgs/panner-tikka.png",
     "description": "Char-grilled paneer cubes marinated in spiced yogurt, served with mint chutney.",
-    "rating": 4.7
+    "rating": 4.7,
+    "cuisine": "Indian"
   },
   {
     "id": 10,
@@ -87,7 +96,8 @@
     "price": "200",
     "image": "../imgs/thai-basil-noodles.png",
     "description": "Stir-fried noodles infused with Thai basil, crunchy vegetables, and a savory soy-chili glaze.",
-    "rating": 4.6
+    "rating": 4.6,
+    "cuisine": "Thai"
   },
   {
     "id": 11,
@@ -96,7 +106,8 @@
     "price": "80",
     "image": "../imgs/chocolate-lava-cake.png",
     "description": "A warm, gooey-centered chocolate cake that melts in your mouth with every bite.",
-    "rating": 4.9
+    "rating": 4.9,
+    "cuisine": "American"
   },
   {
     "id": 12,
@@ -105,7 +116,8 @@
     "price": "40",
     "image": "../imgs/mango-smoothie.png",
     "description": "A creamy and refreshing blend of ripe mangoes and yogurt, perfect for a tropical treat.",
-    "rating": 4.5
+    "rating": 4.5,
+    "cuisine": "American"
   },
   {
     "id": 13,
@@ -114,7 +126,8 @@
     "price": "450",
     "image": "../imgs/sushi.png",
     "description": "Fresh tuna, spicy mayo, and crisp cucumber wrapped in seasoned rice.",
-    "rating": 4.8
+    "rating": 4.8,
+    "cuisine": "Japanese"
   },
   {
     "id": 14,
@@ -123,7 +136,8 @@
     "price": "190",
     "image": "../imgs/tacos.png",
     "description": "Soft tortillas filled with juicy spiced beef, lettuce, and cheese.",
-    "rating": 4.4
+    "rating": 4.4,
+    "cuisine": "Mexican"
   },
   {
     "id": 16,
@@ -132,7 +146,8 @@
     "price": "299",
     "image": "../imgs/biryani.png",
     "description": "Aromatic basmati rice layered with flavorful chicken and saffron spices.",
-    "rating": 4.9
+    "rating": 4.9,
+    "cuisine": "Indian"
   },
   {
     "id": 17,
@@ -141,7 +156,8 @@
     "price": "220",
     "image": "../imgs/dim-sum.png",
     "description": "Soft dumplings stuffed with juicy pork and steamed to delicate perfection.",
-    "rating": 4.6
+    "rating": 4.6,
+    "cuisine": "Chinese"
   },
   {
     "id": 18,
@@ -150,7 +166,8 @@
     "price": "170",
     "image": "../imgs/greek-salad.png",
     "description": "Crisp lettuce, olives, feta cheese, and cucumber tossed in tangy dressing.",
-    "rating": 4.3
+    "rating": 4.3,
+    "cuisine": "Greek"
   },
   {
     "id": 19,
@@ -159,7 +176,8 @@
     "price": "270",
     "image": "../imgs/salmon.png",
     "description": "Tender salmon fillet grilled with zesty lemon and aromatic herbs.",
-    "rating": 4.8
+    "rating": 4.8,
+    "cuisine": "American"
   },
   {
     "id": 20,
@@ -168,7 +186,8 @@
     "price": "150",
     "image": "../imgs/pancakes.png",
     "description": "Golden, airy pancakes served with butter and maple syrup.",
-    "rating": 4.7
+    "rating": 4.7,
+    "cuisine": "American"
   },
   {
     "id": 21,
@@ -177,6 +196,7 @@
     "price": "170",
     "image": "../imgs/pho.png",
     "description": "Fragrant broth with rice noodles, tender beef slices, and fresh herbs.",
-    "rating": 4.5
+    "rating": 4.5,
+    "cuisine": "Vietnamese"
   }
 ]
