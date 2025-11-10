@@ -18,6 +18,82 @@
 
     <link rel="stylesheet" href="../css/supportCenter.css">
     <link rel="stylesheet" href="../css/cursor.css">
+
+    <style>
+        /* Support Form Styles */
+        .support-form-section {
+            background-color: #f8fafc;
+            padding: 60px 20px;
+            text-align: center;
+        }
+
+        .support-form-section h2 {
+            font-size: 2rem;
+            color: #333;
+            margin-bottom: 10px;
+        }
+
+        .support-form-section p {
+            color: #555;
+            margin-bottom: 30px;
+        }
+
+        form.support-form {
+            max-width: 600px;
+            margin: 0 auto;
+            background: #fff;
+            padding: 30px 40px;
+            border-radius: 16px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+            display: flex;
+            flex-direction: column;
+            gap: 18px;
+        }
+
+        form.support-form input,
+        form.support-form select,
+        form.support-form textarea {
+            width: 100%;
+            padding: 12px 14px;
+            border: 1px solid #ccc;
+            border-radius: 8px;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+        }
+
+        form.support-form input:focus,
+        form.support-form select:focus,
+        form.support-form textarea:focus {
+            border-color:  #F2BD12;
+            box-shadow: 0 0 0 3px  #a3800f;
+            outline: none;
+        }
+
+        form.support-form textarea {
+            resize: none;
+            height: 120px;
+        }
+
+        .support-form button {
+            background-color: #c3a74e;
+            color: #fff;
+            border: none;
+            padding: 12px;
+            font-size: 1rem;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: background 0.3s ease, transform 0.2s;
+        }
+
+        .support-form button:hover {
+            background-color: #F2BD12;
+            transform: translateY(-2px);
+        }
+
+        .support-form button:active {
+            transform: scale(0.98);
+        }
+    </style>
 </head>
 
 <body>
@@ -69,9 +145,28 @@
         </section>
     </main>
 
-    <!-- Footer (reuse from main footer) -->
-    <footer role="contentinfo">
-        <p>&copy;2025 Foodie. All Rights Reserved.</p>
+    <!-- Support Query Form -->
+    <section class="support-form-section">
+        <h2>Raise a Support Query</h2>
+        <p>Describe your issue and our support team will get back to you soon.</p>
+
+        <form class="support-form" action="#" method="post">
+            <input type="text" name="name" placeholder="Your Full Name" required>
+            <input type="email" name="email" placeholder="Your Email Address" required>
+            <select name="category" required>
+                <option value="">Select Issue Category</option>
+                <option value="account">Account Issues</option>
+                <option value="order">Order Problems</option>
+                <option value="general">General Help</option>
+            </select>
+            <textarea name="message" placeholder="Describe your issue in detail..." required></textarea>
+            <button type="submit">Submit Query</button>
+        </form>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <p>&copy; 2025 Foodie. All Rights Reserved.</p>
     </footer>
 
     <script src="../js/cursor.js"></script>
