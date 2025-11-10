@@ -6,46 +6,81 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Foodie</title>
 
-    <!-- Description -->
     <meta name="description"
         content="Experience fast, reliable food delivery with a personalized touch. Our app combines advanced algorithms with vibrant design to bring delicious meals right to your door.">
 
-    <!-- Favicon -->
+    <script>
+        // Immediately apply saved theme to prevent FOUC
+        (function() {
+            const savedTheme = localStorage.getItem('theme');
+            if (savedTheme === 'dark') {
+                document.documentElement.setAttribute('data-theme', 'dark');
+            }
+        })();
+    </script>
+
     <link rel="icon" href="../imgs/favicon.png" type="image/png" />
 
-    <!-- CSS link -->
     <link rel="stylesheet" href="../css/style.css" />
     <link rel="stylesheet" href="../css/cursor.css">
 
-    <!-- Font Awesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.0/css/all.min.css"
         integrity="sha512-DxV+EoADOkOygM4IR9yXP8Sb2qwgidEmeqAEmDKIOfPRQZOWbXCzLC6vjbZyy0vPisbH2SyW27+ddLVCN+OMzQ=="
         crossorigin="anonymous" referrerpolicy="no-referrer" />
 
-    <!-- Swiper.js CDN -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
 
-    <!-- AOS for animations -->
     <link href="https://unpkg.com/aos@2.3.4/dist/aos.css" rel="stylesheet">
 
 </head>
 
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        const hamburger = document.querySelector('.hamberger');
+        const nav = document.querySelector('nav.navbar');
+        const mobileMenu = document.querySelector('.mobile-menu');
+
+        if (hamburger && nav && mobileMenu) {
+            hamburger.addEventListener('click', function (e) {
+                e.preventDefault();
+
+                // Toggle mobile menu visibility
+                mobileMenu.classList.toggle('active');
+
+                // Toggle the "menu-open" class on <nav> to control the search visibility
+                nav.classList.toggle('menu-open');
+            });
+        }
+    });
+</script>
+
+
 <body>
-    <!-- UNIVERSAL NAVBAR -->
     <header>
         <nav class="navbar flex between wrapper">
             <div class="logo">Foodie.</div>
 
             <!-- DESKTOP MENU -->
             <ul class="navList flex gap-3 between">
-                <li><a class="active" href="./index.html#home">Home</a></li>
-                <li><a href="./index.html#services">Services</a></li>
-                <li><a href="./menu.html">Menu</a></li>
-                <li><a href="./aboutUs.html">About Us</a></li>
-                <li><a href="./contactUs.html">Contact Us</a></li>
-                <li><a href="nearbyres.html">Nearby Restaurants</a></li>
+                <li><a class="active" href="./index.html#home" data-i18n="nav.home">Home</a></li>
+                <li><a href="./menu.html" data-i18n="nav.menu">Menu</a></li>
+                <li><a href="./aboutUs.html" data-i18n="nav.about">About Us</a></li>
+                <li><a href="./contactUs.html" data-i18n="nav.contact">Contact Us</a></li>
+                <li><a href="nearbyres.html" data-i18n="nav.nearby">Nearby Restaurants</a></li>
             </ul>
             <div class="desktop-action flex gap-2">
+                <!-- Language Selector -->
+                <div class="custom-select" id="language-custom-select">
+                    <div class="selected" tabindex="0" aria-haspopup="listbox" aria-expanded="false"
+                        aria-labelledby="language-custom-select">
+                        English
+                    </div>
+                    <ul class="options" role="listbox" tabindex="-1">
+                        <li data-value="en" role="option" aria-selected="true">English</li>
+                        <li data-value="hi" role="option">हिंदी</li>
+                    </ul>
+                </div>
+
                 <!-- Search Input -->
                 <form class="navbar-search" action="#" method="get">
                     <input type="text" name="search" id="navbar-search" placeholder="Search your food ..."
@@ -78,13 +113,12 @@
 
             <!-- MOBILE MENU -->
             <ul class="mobile-menu">
-                <li><a class="active" href="./index.html#home">Home</a></li>
-                <li><a href="./index.html#services">Services</a></li>
-                <li><a href="./menu.html">Menu</a></li>
-                <li><a href="./aboutUs.html">About Us</a></li>
-                <li><a href="./contactUs.html">Contact Us</a></li>
-                <li><a href="nearbyres.html">Nearby Restaurants</a></li>
-                 <!-- Search Input -->
+                <li><a class="active" href="./index.html#home" data-i18n="nav.home">Home</a></li>
+                <li><a href="./menu.html" data-i18n="nav.menu">Menu</a></li>
+                <li><a href="./aboutUs.html" data-i18n="nav.about">About Us</a></li>
+                <li><a href="./contactUs.html" data-i18n="nav.contact">Contact Us</a></li>
+                <li><a href="nearbyres.html" data-i18n="nav.nearby">Nearby Restaurants</a></li>
+                <!-- Search Input -->
                 <form class="navbar-search" action="#" method="get">
                     <input type="text" name="search" id="navbar-search" placeholder="Search your food ..."
                         aria-label="Search menu items">
@@ -106,16 +140,31 @@
         </nav>
     </header>
 
-    <!-- MAIN SECTION -->
+    <div id="offlineMessage"
+        style="display: none; max-width: 500px; margin: 40px auto; padding: 20px; text-align: center; background: #fff; border-radius: 8px; box-shadow: 0 2px 10px rgba(0,0,0,0.1); position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%); z-index: 1000;">
+        <div style="font-size: 48px; color: #ff4444; margin-bottom: 15px;">
+            <i class="fa-solid fa-wifi-slash"></i>
+        </div>
+        <h3 style="font-size: 24px; color: #333; margin-bottom: 10px;">No Internet Connection</h3>
+        <p style="color: #666; margin-bottom: 20px; line-height: 1.5;">
+            We can't load the content right now. Please check your connection.
+        </p>
+        <button id="retryButton" style="background: #ff6b6b; color: white; border: none; padding: 12px 24px; 
+                       border-radius: 6px; cursor: pointer; font-size: 16px; transition: all 0.3s;">
+            <i class="fa-solid fa-sync"></i> Try Again
+        </button>
+        <div id="retryStatus" style="margin-top: 15px; color: #666; font-size: 14px;"></div>
+    </div>
+
     <main>
-        <!-- HERO SECTION -->
         <section id="home">
             <div class="hero-section flex wrapper">
                 <div class="content" data-aos="fade-right">
-                    <h1>Enjoy Your Delicious <span>Food</span></h1>
-                    <p class="para">We will fill your tummy with delicious food with fast delivery</p>
+                    <h1 data-i18n="hero.title">Enjoy Your Delicious <span data-i18n="hero.highlight">Food</span></h1>
+                    <p class="para" data-i18n="hero.subtitle">We will fill your tummy with delicious food with fast
+                        delivery</p>
                     <div class="flex gap-2">
-                        <a href="./menu.html" class="place-order-btn btn">Order now</a>
+                        <a href="./menu.html" class="place-order-btn btn" data-i18n="hero.orderNow">Order now</a>
                     </div>
                 </div>
                 <div class="image-container" data-aos="fade-left">
@@ -124,50 +173,49 @@
             </div>
         </section>
 
-        <!-- SERVICES SECTION -->
         <section id="services">
             <div class="wrapper p-top" data-aos="fade-up">
                 <div class="text-center">
-                    <h5>Our Services</h5>
-                    <h2>How does it work?</h2>
+                    <h5 data-i18n="services.sectionTitle">Our Services</h5>
+                    <h2 data-i18n="services.mainTitle">How does it work?</h2>
                 </div>
                 <div class="flex text-center gap-4 mt-4">
                     <div class="srevice-card" data-aos="zoom-in" data-aos-delay="100">
                         <div>
                             <img src="../imgs/easy-to-order.png" alt="Easy food ordering">
                         </div>
-                        <h3>Easy to Order</h3>
-                        <p>You only need a few steps in ordering food.</p>
+                        <h3 data-i18n="services.easyOrder.title">Easy to Order</h3>
+                        <p data-i18n="services.easyOrder.description">You only need a few steps in ordering food.</p>
                     </div>
 
                     <div class="srevice-card" data-aos="zoom-in" data-aos-delay="200">
                         <div>
                             <img src="../imgs/fast-delivery.png" alt="Fast food delivery">
                         </div>
-                        <h3>Fast delivery</h3>
-                        <p>Delivery that is always on time, even faster.</p>
+                        <h3 data-i18n="services.fastDelivery.title">Fast delivery</h3>
+                        <p data-i18n="services.fastDelivery.description">Delivery that is always on time, even faster.
+                        </p>
                     </div>
 
                     <div class="srevice-card" data-aos="zoom-in" data-aos-delay="300">
                         <div>
                             <img src="../imgs/best-quality.png" alt="High-quality food service">
                         </div>
-                        <h3>Best quality</h3>
-                        <p>Not only fast, for us quality is number one.</p>
+                        <h3 data-i18n="services.bestQuality.title">Best quality</h3>
+                        <p data-i18n="services.bestQuality.description">Not only fast, for us quality is number one.</p>
                     </div>
                 </div>
             </div>
         </section>
 
-        <!-- review section -->
         <section>
             <div class="wrapper p-top flex gap-3" data-aos="fade-up">
                 <div class="image-container" data-aos="fade-right">
                     <img src="../imgs/delivery-boy-with-phone.png" alt="Delivery boy checking orders on a smartphone">
                 </div>
                 <div class="review-container" data-aos="fade-left">
-                    <h5>Our reviews</h5>
-                    <h2>what they say</h2>
+                    <h5 data-i18n="reviews.sectionTitle">Our reviews</h5>
+                    <h2 data-i18n="reviews.mainTitle">what they say</h2>
                     <div class="swiper mySwiper">
                         <div class="swiper-wrapper">
                             <div class="swiper-slide">
@@ -244,7 +292,6 @@
             </div>
         </section>
 
-        <!-- SECTION 04 -->
         <section id="about">
             <div class="wrapper p-top " data-aos="fade-up">
                 <div class="app-container flex gap-3">
@@ -252,28 +299,29 @@
                         <img src="../imgs/mobile-app.png" alt="Food delivery mobile app interface">
                     </div>
                     <div class="content" data-aos="fade-left">
-                        <h5>Our Application</h5>
-                        <h2>Simple way to <br> order your food</h2>
-                        <p class="para">Crave it. Find it. Get it fast wherever, whenever.</p>
-                        <a href="#" class="btn">Install the app</a>
+                        <h5 data-i18n="app.sectionTitle">Our Application</h5>
+                        <h2 data-i18n="app.mainTitle">Simple way to <br> order your food</h2>
+                        <p class="para" data-i18n="app.description">Crave it. Find it. Get it fast wherever, whenever.
+                        </p>
+                        <a href="#" class="btn" data-i18n="app.installButton">Install the app</a>
                     </div>
                 </div>
             </div>
         </section>
 
-        <!-- SECTION 05 -->
         <section>
             <div class="wrapper p-top" data-aos="zoom-in">
                 <div class="text-center">
-                    <h5>Our Subscribe</h5>
-                    <h2>Subscribe to Our newsletter</h2>
-                    <p class="para m-auto">We recommend you to Subscribe our newsletter,
+                    <h5 data-i18n="newsletter.sectionTitle">Our Subscribe</h5>
+                    <h2 data-i18n="newsletter.mainTitle">Subscribe to Our newsletter</h2>
+                    <p class="para m-auto" data-i18n="newsletter.description">We recommend you to Subscribe our
+                        newsletter,
                         drop you email below to get daily update about us.</p>
 
                     <form id="newsletterForm" class="input-container flex" data-aos="fade-up" data-aos-delay="200">
                         <input type="email" name="email" id="email" placeholder="Enter your email address"
                             autocomplete="off" required>
-                        <button type="submit" class="btn">Subscribe</button>
+                        <button type="submit" class="btn" data-i18n="newsletter.subscribeButton">Subscribe</button>
                     </form>
                     <span class="error-message" id="emailError"></span>
                 </div>
@@ -281,13 +329,13 @@
         </section>
     </main>
 
-    <!-- FOOTER -->
     <footer id="contacts" data-aos="fade-up">
         <div class="footer-container">
             <div class="flex wrapper gap-4">
                 <div class="footer-wrapper">
                     <a href="#" class="logo">Foodie.</a>
-                    <p class="mt-one">We will fill your tummy with delicious <br>food with fast delivery</p>
+                    <p class="mt-one" data-i18n="footer.description">We will fill your tummy with delicious <br>food
+                        with fast delivery</p>
                     <div class="media flex gap-2 mt-one">
                         <a href="https://github.com/janavipandole" class="social-media">
                             <img src="../imgs/GitHub.png" alt="GitHub social icon in footer">
@@ -306,47 +354,162 @@
 
                 <ul class="footer-wrapper">
                     <li>
-                        <h4>Our Menu</h4>
+                        <h4 data-i18n="footer.ourMenu">Our Menu</h4>
                     </li>
-                    <li class="mt-one"><a href="../HTML/index.html" class="footer-link">Special</a></li>
-                    <li class="mt-one"><a href="../HTML/index.html" class="footer-link">Popular</a></li>
-                    <li class="mt-one"><a href="../HTML/index.html" class="footer-link">Category</a></li>
+                    <li class="mt-one"><a href="Special-dishes·.html" class="footer-link"
+                            data-i18n="footer.special">Special</a></li>
+                    <li class="mt-one"><a href="popular.html" class="footer-link" data-i18n="footer.popular">Popular</a>
+                    </li>
+                    <li class="mt-one"><a href="../html/index.html" class="footer-link"
+                            data-i18n="footer.category">Category</a></li>
                 </ul>
 
                 <ul class="footer-wrapper">
                     <li>
-                        <h4>Company</h4>
+                        <h4 data-i18n="footer.company">Company</h4>
                     </li>
-                    <li class="mt-one"><a href="#" class="footer-link"> Why Foodie</a></li>
-                    <li class="mt-one"><a href="../HTML/PartnerWithUs.html" class="footer-link"> Partner with us</a>
+                    <li class="mt-one"><a href="#" class="footer-link" data-i18n="footer.whyFoodie"> Why Foodie</a></li>
+                    <li class="mt-one"><a href="../html/PartnerWithUs.html" class="footer-link"
+                            data-i18n="footer.partnerWithUs"> Partner with us</a>
                     </li>
-                    <li class="mt-one"><a href="../HTML/aboutUs.html" class="footer-link"> About us </a></li>
-                    <li class="mt-one"><a href="../HTML/contactUs.html" class="footer-link"> FAQ's</a></li>
+                    <li class="mt-one"><a href="../html/aboutUs.html" class="footer-link" data-i18n="footer.aboutUs">
+                            About us </a></li>
+                    <li class="mt-one"><a href="faq-page.html" class="footer-link" data-i18n="footer.faq"> FAQ's</a>
+                    </li>
                 </ul>
 
                 <ul class="footer-wrapper">
                     <li>
-                        <h4>Support</h4>
+                        <h4 data-i18n="footer.support">Support</h4>
                     </li>
-                    <li class="mt-one"><a href="../HTML/signup.html" class="footer-link">Account</a></li>
-                    <li class="mt-one"><a href="../HTML/supportCenter.html" class="footer-link"> Support center </a>
+                    <li class="mt-one"><a href="../html/signup.html" class="footer-link"
+                            data-i18n="footer.account">Account</a></li>
+                    <li class="mt-one"><a href="../html/supportCenter.html" class="footer-link"
+                            data-i18n="footer.supportCenter"> Support center </a>
                     </li>
-                    <li class="mt-one"><a href="../HTML/feedback.html" class="footer-link"> Feedback</a></li>
-                    <li class="mt-one"><a href="../HTML/contactUs.html" class="footer-link">Contact Us</a></li>
+                    <li class="mt-one"><a href="../html/feedback.html" class="footer-link" data-i18n="footer.feedback">
+                            Feedback</a></li>
+                    <li class="mt-one"><a href="../html/contactUs.html" class="footer-link"
+                            data-i18n="footer.contactUs">Contact Us</a></li>
                 </ul>
             </div>
         </div>
     </footer>
 
+    <a href="https://wa.me/911234567890" class="whatsapp-fab" target="_blank" rel="noopener noreferrer"
+        aria-label="Chat on WhatsApp" title="Chat on WhatsApp">
+        <i class="fa-brands fa-whatsapp"></i>
+    </a>
+
     <a href="#home" class="back-to-top" aria-label="Back to top">
         <i class="fa-solid fa-arrow-up"></i>
     </a>
 
-    <!-- JS -->
     <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+    <script src="../js/i18n.js"></script>
     <script src="../js/app.js"></script>
     <script src="../js/cursor.js"></script>
     <script>
+        // Prevent navigation when offline
+        document.addEventListener('click', function (e) {
+            if (!navigator.onLine) {
+                const link = e.target.closest('a');
+                if (link) {
+                    e.preventDefault();
+                    const retryStatus = document.getElementById('retryStatus');
+                    if (retryStatus) {
+                        retryStatus.textContent = 'Cannot navigate while offline. Please check your connection.';
+                        retryStatus.style.animation = 'shake 0.5s ease-in-out';
+                        setTimeout(() => {
+                            retryStatus.style.animation = '';
+                        }, 500);
+                    }
+                }
+            }
+        });
+
+        // Offline handling
+        function checkConnection() {
+            const offlineMessage = document.getElementById('offlineMessage');
+            const mainContent = document.querySelector('main');
+
+            if (!navigator.onLine) {
+                if (offlineMessage) offlineMessage.style.display = 'block';
+                if (mainContent) mainContent.style.filter = 'blur(3px)';
+            } else {
+                if (offlineMessage) offlineMessage.style.display = 'none';
+                if (mainContent) mainContent.style.filter = 'none';
+            }
+        }
+
+        // Handle retry attempt
+        async function handleRetry(event) {
+            event.preventDefault();
+            const retryButton = document.getElementById('retryButton');
+            const retryStatus = document.getElementById('retryStatus');
+            const rotationAnimation = [
+                { transform: 'rotate(0deg)' },
+                { transform: 'rotate(360deg)' }
+            ];
+            const rotationTiming = {
+                duration: 1000,
+                iterations: 1
+            };
+
+            if (!navigator.onLine) {
+                retryButton.disabled = true;
+                const icon = retryButton.querySelector('i');
+                icon.classList.remove('fa-sync');
+                icon.classList.add('fa-spinner');
+                icon.animate(rotationAnimation, rotationTiming);
+                retryStatus.textContent = 'Checking connection...';
+
+                try {
+                    const testUrls = [
+                        'https://www.google.com/favicon.ico',
+                        'https://www.cloudflare.com/favicon.ico'
+                    ];
+
+                    const timeoutPromise = new Promise((_, reject) =>
+                        setTimeout(() => reject(new Error('timeout')), 3000)
+                    );
+
+                    for (const url of testUrls) {
+                        try {
+                            const fetchPromise = fetch(url, {
+                                mode: 'no-cors',
+                                cache: 'no-store'
+                            });
+                            await Promise.race([fetchPromise, timeoutPromise]);
+                            // If we get here, we're online
+                            checkConnection();
+                            return;
+                        } catch (e) {
+                            continue;
+                        }
+                    }
+                    throw new Error('offline');
+                } catch (error) {
+                    const icon = retryButton.querySelector('i');
+                    icon.classList.remove('fa-spinner');
+                    icon.classList.add('fa-sync');
+                    retryButton.disabled = false;
+                    retryStatus.textContent = 'Still offline. Please check your connection.';
+                    retryStatus.style.animation = 'shake 0.5s ease-in-out';
+                    setTimeout(() => {
+                        retryStatus.style.animation = '';
+                    }, 500);
+                }
+            }
+        }
+
+        // Initialize offline handling
+        checkConnection();
+        window.addEventListener('online', checkConnection);
+        window.addEventListener('offline', checkConnection);
+        document.getElementById('retryButton').addEventListener('click', handleRetry);
+
+        // Back to top functionality
         (function () {
             const backToTop = document.querySelector('.back-to-top');
             if (!backToTop) return;
@@ -361,7 +524,6 @@
         })();
     </script>
 
-    <!-- AOS for Animations -->
     <script src="https://unpkg.com/aos@2.3.4/dist/aos.js"></script>
     <script>
         AOS.init({
@@ -374,6 +536,27 @@
 
     <script src="../js/newsletter.js"></script>
 
+    <script>
+        (function () {
+            // Handle search form submission - redirect to menu.html with search query
+            const searchForms = document.querySelectorAll('.navbar-search');
+
+            searchForms.forEach(form => {
+                form.addEventListener('submit', function (e) {
+                    e.preventDefault();
+                    const searchInput = form.querySelector('input[name="search"]');
+                    const query = searchInput.value.trim();
+
+                    if (query) {
+                        window.location.href = `./menu.html?search=${encodeURIComponent(query)}`;
+                    } else {
+                        window.location.href = './menu.html';
+                    }
+                });
+            });
+        })();
+    </script>
+    <script src="../js/language-dropdown.js"></script>
 </body>
 
 </html>

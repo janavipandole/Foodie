@@ -5,6 +5,15 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Support Center</title>
+    <script>
+        // Immediately apply saved theme to prevent FOUC
+        (function() {
+            const savedTheme = localStorage.getItem('theme');
+            if (savedTheme === 'dark') {
+                document.documentElement.setAttribute('data-theme', 'dark');
+            }
+        })();
+    </script>
     <link rel="icon" href="../imgs/favicon.png" type="image/png" />
 
     <link rel="stylesheet" href="../css/supportCenter.css">
@@ -89,27 +98,52 @@
 
 <body>
 
+    <noscript>
+        <p style="text-align:center; background:#ffdddd; padding:10px;">
+            JavaScript is disabled in your browser. Some features may not work properly.
+        </p>
+    </noscript>
+
     <!-- Hero Section -->
-    <section class="hero">
+
+    <header class="hero" role="banner">
         <h1>Welcome to <span class="highlight">Support Center</span></h1>
         <p>Find answers to your questions and get help with our services.</p>
-    </section>
+    </header>
 
-    <!-- Support Content -->
-    <section class="support-container">
-        <div class="support-card">
-            <h2>Account Issues</h2>
-            <p>Manage your account, reset password, and update your info.</p>
-        </div>
-        <div class="support-card">
-            <h2>Order Problems</h2>
-            <p>Report missing items, late delivery, or other order issues.</p>
-        </div>
-        <div class="support-card">
-            <h2>General Help</h2>
-            <p>Get assistance with general questions about our app and services.</p>
-        </div>
-    </section>
+    <!-- Main Content -->
+    <main class="support-container" role="main" aria-label="Support Categories">
+        <section class="support-card" tabindex="0" aria-labelledby="account-issues-heading"
+            aria-describedby="account-issues-desc">
+            <h2 id="account-issues-heading">Account Issues</h2>
+            <p id="account-issues-desc">Manage your account, reset your password, and update your personal information.
+            </p>
+            <ul class="support-contact">
+                <li>Email: <a href="mailto:support@foodie.com">support@foodie.com</a></li>
+                <li>Phone: <a href="tel:+18001234567">+1 800 123 4567</a></li>
+            </ul>
+        </section>
+        <section class="support-card" tabindex="0" aria-labelledby="order-problems-heading"
+            aria-describedby="order-problems-desc">
+            <h2 id="order-problems-heading">Order Problems</h2>
+            <p id="order-problems-desc">Report missing items, late delivery, payment issues, or other order-related
+                problems.</p>
+            <ul class="support-contact">
+                <li>Email: <a href="mailto:orders@foodie.com">orders@foodie.com</a></li>
+                <li>Phone: <a href="tel:+18007654321">+1 800 765 4321</a></li>
+            </ul>
+        </section>
+        <section class="support-card" tabindex="0" aria-labelledby="general-help-heading"
+            aria-describedby="general-help-desc">
+            <h2 id="general-help-heading">General Help</h2>
+            <p id="general-help-desc">Get assistance with app features, feedback, or general questions about our
+                services.</p>
+            <ul class="support-contact">
+                <li>Email: <a href="mailto:help@foodie.com">help@foodie.com</a></li>
+                <li>Phone: <a href="tel:+18009876543">+1 800 987 6543</a></li>
+            </ul>
+        </section>
+    </main>
 
     <!-- Support Query Form -->
     <section class="support-form-section">

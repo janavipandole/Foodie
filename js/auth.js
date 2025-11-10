@@ -23,10 +23,11 @@ window.switchForm = switchForm;
 // ===== Theme Toggle =====
 (() => {
   const themeToggleBtn = document.getElementById('themeToggle');
+  const html = document.documentElement; // Get the html element
 
   const applySmoothTransition = () => {
-    document.documentElement.classList.add('theme-transition');
-    setTimeout(() => document.documentElement.classList.remove('theme-transition'), 600);
+    html.classList.add('theme-transition');
+    setTimeout(() => html.classList.remove('theme-transition'), 600);
   };
 
   const updateThemeIcon = (theme) => {
@@ -45,22 +46,22 @@ window.switchForm = switchForm;
   };
 
   const toggleTheme = () => {
-    const current = document.documentElement.getAttribute('data-theme') || 'light';
+    const current = html.getAttribute('data-theme') || 'light';
     const next = current === 'dark' ? 'light' : 'dark';
     applySmoothTransition();
-    document.documentElement.setAttribute('data-theme', next);
+    html.setAttribute('data-theme', next);
     localStorage.setItem('theme', next);
     updateThemeIcon(next);
   };
 
-  const initTheme = () => {
-    const saved = localStorage.getItem('theme') || 'light';
-    document.documentElement.setAttribute('data-theme', saved);
-    updateThemeIcon(saved);
-  };
+  // Initial theme setup is now handled by an inline script in the <head> of each HTML file.
+  // This ensures the theme is applied before content renders, preventing FOUC.
+  // We only need to update the icon based on the theme already set.
+  document.addEventListener('DOMContentLoaded', () => {
+    updateThemeIcon(html.getAttribute('data-theme'));
+  });
 
   if (themeToggleBtn) themeToggleBtn.addEventListener('click', toggleTheme);
-  initTheme();
 })();
 
 // ===== Dummy Handlers =====
