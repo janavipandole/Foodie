@@ -14,7 +14,7 @@
       }
     })();
   </script>
-  <link rel="icon" href="../imgs/favicon.png" type="image/png" />
+  <link rel="icon" href="../imgs/favicon.webp" type="image/webp" />
 
   <!-- Synchronous theme initialization to prevent FOUC -->
   <script>
@@ -269,16 +269,16 @@
           <p class="mt-one">We will fill your tummy with delicious <br>food with fast delivery</p>
           <div class="media flex gap-2 mt-one">
             <a href="https://github.com/janavipandole" class="social-media">
-              <img src="../imgs/GitHub.png" alt="GitHub social icon in footer">
+              <img src="../imgs/GitHub.webp" alt="GitHub social icon in footer">
             </a>
             <a href="https://www.linkedin.com/in/janavi-pandole-80a7b2290" class="social-media linkdin">
-              <img src="../imgs/linkdin.png" alt="LinkedIn social icon in footer">
+              <img src="../imgs/linkdin.webp" alt="LinkedIn social icon in footer">
             </a>
             <a href="https://www.youtube.com/@JanaviPandole" class="social-media">
-              <img src="../imgs/youtube.png" alt="YouTube social icon in footer">
+              <img src="../imgs/youtube.webp" alt="YouTube social icon in footer">
             </a>
             <a href="https://x.com/JanaviPandole" class="social-media">
-              <img src="../imgs/twitter.png" alt="Twitter social icon in footer">
+               <img src="../imgs/twitter.webp" alt="Twitter social icon in footer">
             </a>
           </div>
         </div>
@@ -298,8 +298,9 @@
           </li>
           <li class="mt-one"><a href="#" class="footer-link"> Why Foodie</a></li>
           <li class="mt-one"><a href="./PartnerWithUs.html" class="footer-link"> Partner with us</a></li>
+          <li class="mt-one"><a href="./rideWithUs.html" class="footer-link" data-i18n="footer.rideWithUs"> Ride With Us</a></li>
           <li class="mt-one"><a href="./aboutUs.html" class="footer-link"> About us </a></li>
-          <li class="mt-one"><a href="./faq.html" class="footer-link"> FAQ's</a></li>
+          <li class="mt-one"><a href="./faq-page.html" class="footer-link"> FAQ's</a></li>
         </ul>
 
         <ul class="footer-wrapper">
@@ -410,6 +411,9 @@
       // Init enhanced checkout features
       if (window.initCityAutocomplete) window.initCityAutocomplete();
       if (window.initPincodeValidation) window.initPincodeValidation();
+
+      // Check for existing active orders
+      checkExistingOrders();
     });
 
     function displayOrderItems() {
@@ -420,7 +424,7 @@
           const qty = item && item.quantity ? item.quantity : 1;
           const priceRaw = item && item.price ? item.price.toString() : '0';
           const priceNum = parseFloat(priceRaw.replace ? priceRaw.replace(/[₹$]/g, "") : priceRaw) || 0;
-          const img = item && item.image ? item.image : '../imgs/placeholder.png';
+           const img = item && item.image ? item.image.replace('.png', '.webp') : '../imgs/placeholder.webp';
           return `
                   <div class="order-item">
                       <img src="${img}" alt="${name}">
@@ -528,6 +532,8 @@
       return isValid;
     }
 
+
+
     function placeOrderRazorpay() {
       const totalAmount =
         parseFloat(
@@ -572,6 +578,18 @@
 
           document.getElementById("successModal").classList.add("active");
           sessionStorage.removeItem("checkoutCart");
+
+          // Request notification permission and start order tracking
+          requestNotificationPermission().then(permission => {
+            if (permission === 'granted') {
+              console.log('Notification permission granted');
+              startOrderTracking(orderId);
+            } else {
+              console.log('Notification permission denied');
+              // Still start tracking but without notifications
+              startOrderTracking(orderId);
+            }
+          });
         },
         prefill: {
           name: document.getElementById("fullName").value,
@@ -591,4 +609,4 @@
   <script src="../js/checkout.js"></script>
 </body>
 
-</html>
+</html><script src="../js/notifications.js"></script>

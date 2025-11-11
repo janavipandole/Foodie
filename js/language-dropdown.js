@@ -40,6 +40,11 @@
       option.setAttribute('aria-selected', 'true');
       customSelect.classList.remove('open');
       selected.setAttribute('aria-expanded', 'false');
+      // Switch language using i18n
+      const lang = option.getAttribute('data-value');
+      if (window.i18n) {
+        window.i18n.changeLanguage(lang);
+      }
     });
   });
 })();

@@ -6,6 +6,7 @@
     "about": "About Us",
     "contact": "Contact Us",
     "nearby": "Nearby Restaurants",
+    "rideWithUs": "Ride With Us",
     "searchPlaceholder": "Search your food ...",
     "darkMode": "Dark Mode",
     "lightMode": "Light Mode",
@@ -66,7 +67,8 @@
     "supportCenter": "Support center",
     "feedback": "Feedback",
     "contactUs": "Contact Us",
-    "description": "We will fill your tummy with delicious food with fast delivery"
+    "description": "We will fill your tummy with delicious food with fast delivery",
+    "rideWithUs": "Ride With Us"
   },
   "cart": {
     "yourCart": "Your Cart",

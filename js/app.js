@@ -21,6 +21,14 @@ const bars = document.querySelector('.fa-bars');
 const backToTop = document.querySelector('.back-to-top');
 const themeToggles = document.querySelectorAll('.theme-toggle');
 
+// QR Code Modal elements
+const qrCodeWrapper = document.getElementById('qrCodeWrapper');
+const qrCodeModal = document.getElementById('qrCodeModal');
+const qrModalCloseBtn = document.querySelector('.qr-modal-close');
+const qrModalImgLarge = document.getElementById('qrModalImgLarge');
+const qrCodeImg = document.querySelector('.qr-code-img');
+
+
 // ===== CART OPEN/CLOSE =====
 cartIcon?.addEventListener('click', () => {
     cartTab.classList.add("cart-tab-active");
@@ -81,14 +89,42 @@ const toggleTheme = () => {
 
 themeToggles.forEach(toggle => toggle.addEventListener('click', toggleTheme));
 
-// Initial theme setup is now handled by an inline script in the <head> of each HTML file.
-// This ensures the theme is applied before content renders, preventing FOUC.
-// The following line is removed as it's no longer needed here:
-// initTheme(); 
-// Instead, we just call updateThemeIcons once to ensure the icons are correct on load.
-document.addEventListener('DOMContentLoaded', () => {
-    updateThemeIcons(document.documentElement.getAttribute('data-theme'));
-});
+const initTheme = () => {
+    const savedTheme = localStorage.getItem('theme') || 'light';
+    document.documentElement.setAttribute('data-theme', savedTheme);
+    updateThemeIcons(savedTheme);
+};
+initTheme();
+
+// ===== QR CODE MODAL LOGIC =====
+if (qrCodeWrapper && qrCodeModal && qrModalCloseBtn && qrModalImgLarge && qrCodeImg) {
+    qrCodeWrapper.addEventListener('click', () => {
+        qrModalImgLarge.src = qrCodeImg.src; // Set the large image source
+        qrCodeModal.style.display = 'flex'; // Show the modal
+        document.body.style.overflow = 'hidden'; // Prevent scrolling background
+    });
+
+    qrModalCloseBtn.addEventListener('click', () => {
+        qrCodeModal.style.display = 'none'; // Hide the modal
+        document.body.style.overflow = ''; // Restore scrolling
+    });
+
+    // Close modal if clicked outside content
+    qrCodeModal.addEventListener('click', (e) => {
+        if (e.target === qrCodeModal) {
+            qrCodeModal.style.display = 'none';
+            document.body.style.overflow = '';
+        }
+    });
+
+    // Close modal on Escape key
+    document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape' && qrCodeModal.style.display === 'flex') {
+            qrCodeModal.style.display = 'none';
+            document.body.style.overflow = '';
+        }
+    });
+}
 
 
 // ===== PRODUCTS & CART =====

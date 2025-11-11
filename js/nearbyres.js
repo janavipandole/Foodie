@@ -98,13 +98,13 @@ window.addEventListener('scroll', () => {
 
 // ===== RESTAURANT DATA & RENDERING =====
 const restaurants = [
-  { name: "Spice Affair", type: "Authentic Indian Cuisine", rating: 4.7, distance: "1.2 km", image: "../imgs/rest1.png" },
-  { name: "Urban Eatery", type: "Modern Café & Grill", rating: 4.6, distance: "0.8 km", image: "../imgs/rest2.png" },
-  { name: "Sushi Haven", type: "Fresh Japanese Rolls", rating: 4.8, distance: "1.5 km", image: "../imgs/rest3.png" },
-  { name: "The Green Bowl", type: "Healthy Salads & Smoothies", rating: 4.5, distance: "2.1 km", image: "../imgs/rest4.png" },
-  { name: "Delici", type: "Italian Delights", rating: 4.9, distance: "1.8 km", image: "../imgs/rest5.png" },
-  { name: "Kovason", type: "Korean BBQ", rating: 4.7, distance: "2.5 km", image: "../imgs/rest6.png" },
-  { name: "Mezban", type: "Traditional Biryani House", rating: 4.8, distance: "1.3 km", image: "../imgs/rest7.png" }
+  { name: "Spice Affair", type: "Authentic Indian Cuisine", rating: 4.7, distance: "1.2 km", image: "../imgs/rest1.webp" },
+  { name: "Urban Eatery", type: "Modern Café & Grill", rating: 4.6, distance: "0.8 km", image: "../imgs/rest2.webp" },
+  { name: "Sushi Haven", type: "Fresh Japanese Rolls", rating: 4.8, distance: "1.5 km", image: "../imgs/rest3.webp" },
+  { name: "The Green Bowl", type: "Healthy Salads & Smoothies", rating: 4.5, distance: "2.1 km", image: "../imgs/rest4.webp" },
+  { name: "Delici", type: "Italian Delights", rating: 4.9, distance: "1.8 km", image: "../imgs/rest5.webp" },
+  { name: "Kovason", type: "Korean BBQ", rating: 4.7, distance: "2.5 km", image: "../imgs/rest6.webp" },
+  { name: "Mezban", type: "Traditional Biryani House", rating: 4.8, distance: "1.3 km", image: "../imgs/rest7.webp" }
 ];
 
 const container = document.querySelector(".restaurant-grid");
