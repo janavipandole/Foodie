@@ -960,9 +960,16 @@
         .desktop-action .btn {
             display: none;
         }
-
         .desktop-action .hamberger {
             display: block;
+        }
+        /* remove search Input from navbar */
+        .desktop-action .navbar-search{
+            display: none;
+        }
+        /* remove theme toggle btn */
+        .desktop-action .theme-toggle{
+            display: none;
         }
 
         .mobile-menu {
@@ -973,8 +980,8 @@
             gap: 2rem;
             position: absolute;
             top: 90%;
-            left: -100%;
-            transform: translateX(-50%);
+            right: 20%;
+            transform: translateX(150%);
             width: 20rem;
             padding: 2rem;
             background: var(--bg-secondary);
@@ -984,11 +991,15 @@
                 var(--shadow-strong) 8px 8px 8px,
                 var(--shadow-strong) 8px 8px 8px inset;
             transition: all 0.5s ease-in-out;
+            opacity: 0;
+            pointer-events: none;
         }
 
         .mobile-menu-active {
-            left: 50%;
-            transform: translateX(-50%);
+            /* right: 20%; */
+            transform: translateX(50%);
+            opacity: 1;
+            pointer-events: auto;
         }
 
         /* SECTION STYLING */
