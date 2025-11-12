@@ -19,13 +19,13 @@
     btn.addEventListener('click', () => {
       const currentTheme = document.documentElement.getAttribute('data-theme');
       const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
-      
+
       if (newTheme === 'dark') {
         document.documentElement.setAttribute('data-theme', 'dark');
       } else {
         document.documentElement.removeAttribute('data-theme');
       }
-      
+
       localStorage.setItem('theme', newTheme);
       updateThemeIcon(newTheme);
     });
@@ -87,7 +87,7 @@
           selected.textContent = option.textContent;
           customSelect.classList.remove('open');
           selected.setAttribute('aria-expanded', 'false');
-          
+
           // Update all options' aria-selected
           options.forEach(opt => opt.setAttribute('aria-selected', 'false'));
           option.setAttribute('aria-selected', 'true');
@@ -140,7 +140,7 @@
     const R = 6371;
     const dLat = toRad(lat2 - lat1);
     const dLon = toRad(lon2 - lon1);
-    const a = Math.sin(dLat/2)**2 + Math.cos(toRad(lat1)) * Math.cos(toRad(lat2)) * Math.sin(dLon/2)**2;
+    const a = Math.sin(dLat / 2) ** 2 + Math.cos(toRad(lat1)) * Math.cos(toRad(lat2)) * Math.sin(dLon / 2) ** 2;
     const c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
     return R * c;
   }
@@ -345,6 +345,32 @@
   const deliveryFee = 29.0;
   const taxRate = 0.1;
   let selectedPayment = "card";
+
+  // ===== SKELETON FOR ORDER ITEMS =====
+  const createSkeletonOrderItem = () => {
+    const div = document.createElement('div');
+    div.className = 'skeleton-cart-item';
+    div.innerHTML = `
+      <div class="skeleton skeleton-cart-image"></div>
+      <div class="skeleton-cart-detail">
+        <div class="skeleton skeleton-cart-text"></div>
+        <div class="skeleton skeleton-cart-total"></div>
+      </div>
+      <div class="skeleton-cart-quantity">
+        <div class="skeleton skeleton-cart-btn"></div>
+        <div class="skeleton skeleton-cart-value"></div>
+        <div class="skeleton skeleton-cart-btn"></div>
+      </div>
+    `;
+    return div;
+  };
+
+  const showSkeletonOrderItems = (count = 3) => {
+    const container = document.getElementById('orderItems');
+    if (!container) return;
+    container.innerHTML = '';
+    for (let i = 0; i < count; i++) container.appendChild(createSkeletonOrderItem());
+  };
 
   function loadCartData() {
     let loadedData = null;
@@ -567,7 +593,7 @@
   function placeOrderRazorpay() {
     const finalTotalEl = document.getElementById("finalTotal");
     const orderIdEl = document.getElementById("orderId");
-    
+
     if (!finalTotalEl || !orderIdEl) return;
 
     const totalAmount = parseFloat(finalTotalEl.textContent.replace(/[₹$]/g, "")) * 100;
@@ -607,7 +633,7 @@
 
         const successModal = document.getElementById("successModal");
         if (successModal) successModal.classList.add("active");
-        
+
         sessionStorage.removeItem("checkoutCart");
         cartData = [];
         saveCartData();
@@ -631,19 +657,26 @@
 
   // ===== INITIALIZATION =====
   document.addEventListener("DOMContentLoaded", () => {
+    // Show skeletons right away for perceived performance while we read storage
+    showSkeletonOrderItems(3);
+
+    // Load cart data (sync) then render after a short delay so skeleton is visible
     loadCartData();
-    
+
     const emptyCartMessage = document.getElementById("emptyCartMessage");
     const checkoutContent = document.getElementById("checkoutContent");
-    
-    if (cartData.length === 0) {
-      if (emptyCartMessage) emptyCartMessage.style.display = "block";
-      if (checkoutContent) checkoutContent.style.display = "none";
-    } else {
-      displayOrderItems();
-      calculateTotals();
-    }
-    
+
+    // Small artificial delay (150-300ms) to let skeleton animation be perceived
+    setTimeout(() => {
+      if (cartData.length === 0) {
+        if (emptyCartMessage) emptyCartMessage.style.display = "block";
+        if (checkoutContent) checkoutContent.style.display = "none";
+      } else {
+        displayOrderItems();
+        calculateTotals();
+      }
+    }, 220);
+
     setupEventListeners();
     initCityAutocomplete();
     initPincodeValidation();
