@@ -350,6 +350,9 @@
   const createSkeletonOrderItem = () => {
     const div = document.createElement('div');
     div.className = 'skeleton-cart-item';
+    div.setAttribute('role', 'status');
+    div.setAttribute('aria-label', 'Loading order item');
+    div.setAttribute('aria-busy', 'true');
     div.innerHTML = `
       <div class="skeleton skeleton-cart-image"></div>
       <div class="skeleton-cart-detail">
@@ -371,6 +374,11 @@
     container.innerHTML = '';
     for (let i = 0; i < count; i++) container.appendChild(createSkeletonOrderItem());
   };
+
+  // Expose helpers for testing and debugging
+  window._skeletonDebug = window._skeletonDebug || {};
+  window._skeletonDebug.showSkeletonOrderItems = showSkeletonOrderItems;
+  window._skeletonDebug.createSkeletonOrderItem = createSkeletonOrderItem;
 
   function loadCartData() {
     let loadedData = null;
