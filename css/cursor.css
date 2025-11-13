@@ -1,84 +1,83 @@
-/* Hide default cursor on desktop */
-@media (hover: hover) and (pointer: fine) {
-    body, a, button, input, textarea, select, [role="button"], .clickable {
-        cursor: none !important;
-    }
-}
-
-/* Custom Cursor Container */
+/* Custom Cursor */
 .custom-cursor {
-    position: fixed;
-    top: 0;
-    left: 0;
-    pointer-events: none;
-    z-index: 9999;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 20px;
+  height: 20px;
+  pointer-events: none;
+  z-index: 9999;
+  mix-blend-mode: difference; /* Inverts colors for contrast */
+  transition: opacity 0.2s ease;
 }
 
-/* Main Cursor Dot */
 .cursor-dot {
-    width: 10px;
-    height: 10px;
-    background: #ff6b81; /* bright pink */
-    border-radius: 50%;
-    position: absolute;
-    transform: translate(-50%, -50%);
-    transition: width 0.2s ease, height 0.2s ease, background 0.2s ease, border-radius 0.3s ease;
-    box-shadow: 0 0 8px #ff6b81, 0 0 20px #ff6b81;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 6px;
+  height: 6px;
+  background: #ff6347;
+  border-radius: 50%;
+  transform: translate(-50%, -50%);
+  transition: 
+    width 0.2s ease,
+    height 0.2s ease,
+    background 0.2s ease;
 }
 
-/* Outer Morphing Shape */
-.cursor-shape {
-    width: 40px;
-    height: 40px;
-    border: 2px solid #ff6b81;
-    border-radius: 50%; /* changes to hexagon-like on hover */
-    position: absolute;
-    transform: translate(-50%, -50%);
-    transition: width 0.3s ease, height 0.3s ease, border-radius 0.3s ease, transform 0.2s ease;
+.cursor-ring {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 20px;
+  height: 20px;
+  border: 1px solid #ff6347;
+  border-radius: 50%;
+  transform: translate(-50%, -50%);
+  transition: 
+    width 0.3s ease,
+    height 0.3s ease,
+    border-color 0.3s ease;
 }
 
-/* Hover State on Interactive Elements */
-.custom-cursor.hover .cursor-shape {
-    border-radius: 20%; /* hexagon-ish shape */
-    transform: translate(-50%, -50%) rotate(20deg);
-    border-color: #ff4757;
-}
-
+/* Hover State */
 .custom-cursor.hover .cursor-dot {
-    width: 16px;
-    height: 16px;
+  width: 8px;
+  height: 8px;
+  background: #fff;
+}
+
+.custom-cursor.hover .cursor-ring {
+  width: 30px;
+  height: 30px;
+  border-color: #fff;
 }
 
 /* Click State */
-.custom-cursor.click .cursor-dot {
-    width: 6px;
-    height: 6px;
+.custom-cursor.click .cursor-ring {
+  transform: translate(-50%, -50%) scale(0.8);
+  opacity: 0.7;
 }
 
-.custom-cursor.click .cursor-shape {
-    width: 30px;
-    height: 30px;
+/* Text State */
+.custom-cursor.text .cursor-dot {
+  background: #fff;
+  width: 2px;
+  height: 12px;
+  border-radius: 1px;
 }
 
-/* Trail Effect */
-.cursor-trail {
-    position: fixed;
-    width: 6px;
-    height: 6px;
-    border-radius: 50%;
-    background: #ffa502; /* yellow/orange trail */
-    pointer-events: none;
-    opacity: 0.6;
-    transform: translate(-50%, -50%);
-    transition: transform 0.1s linear, opacity 0.2s ease;
+.custom-cursor.text .cursor-ring {
+  display: none;
 }
 
-/* Respect Reduced Motion Preferences */
-@media (prefers-reduced-motion: reduce) {
-    .cursor-dot,
-    .cursor-shape,
-    .cursor-trail {
-        transition: none !important;
-        animation: none !important;
-    }
+/* Hidden State */
+.custom-cursor.hidden {
+  opacity: 0;
+}
+
+/* Optional: Disable system cursor */
+* {
+  cursor: none !important;
 }
