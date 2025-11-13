@@ -219,7 +219,8 @@
             </div>
         </section>
 
-        <section>
+        <!-- review section -->
+        <section id="reviews">
             <div class="wrapper p-top flex gap-3" data-aos="fade-up">
                 <div class="image-container" data-aos="fade-right">
                     <img src="../imgs/delivery-boy-with-phone.webp" alt="Delivery boy checking orders on a smartphone">
@@ -228,71 +229,8 @@
                     <h5 data-i18n="reviews.sectionTitle">Our reviews</h5>
                     <h2 data-i18n="reviews.mainTitle">what they say</h2>
                     <div class="swiper mySwiper">
-                        <div class="swiper-wrapper">
-                            <div class="swiper-slide">
-                                <div class="flex gap-3 mt-4">
-                                    <div class="profile">                                 
-                                        <img src="../imgs/profile1.webp" alt="Deepak Kumar">
-                                    </div>
-                                    <div class="">
-                                        <h4>Deepak Kumar</h4>
-                                        <div class="star mt-half">
-                                            <i class="fa-solid fa-star highlighted-star"></i>
-                                            <i class="fa-solid fa-star highlighted-star"></i>
-                                            <i class="fa-solid fa-star highlighted-star"></i>
-                                            <i class="fa-solid fa-star highlighted-star"></i>
-                                        </div>
-                                    </div>
-                                </div>
-                                <p class="para">Foodie is the best! Besides the many delicious meals, the service is
-                                    excellent—especially the fast delivery. I highly recommend Foodie to you.
-                                </p>
-                            </div>
-
-                            <div class="swiper-slide">
-                                <div class="flex gap-3 mt-4">
-                                    <div class="profile">
-                                        <img src="../imgs/profile2.webp" alt="Priya Roy">
-                                    </div>
-                                    <div class="">
-                                        <h4>Priya Roy</h4>
-                                        <div class="star mt-half">
-                                            <i class="fa-solid fa-star highlighted-star"></i>
-                                            <i class="fa-solid fa-star highlighted-star"></i>
-                                            <i class="fa-solid fa-star highlighted-star"></i>
-                                            <i class="fa-solid fa-star highlighted-star"></i>
-                                            <i class="fa-solid fa-star highlighted-star"></i>
-                                        </div>
-                                    </div>
-                                </div>
-                                <p class="para">Fresh ingredients, a creative menu, and warm service
-                                    make this spot a hidden gem. Perfect from casual dinners or special nights out.
-                                    Truly a foodie's paradise!
-                                </p>
-                            </div>
-
-                            <div class="swiper-slide">
-                                <div class="flex gap-3 mt-4">
-                                    <div class="profile">
-                                        <img src="../imgs/profile3.webp" alt="Anjali Joshi">
-                                    </div>
-                                    <div class="">
-                                        <h4>Anjali Joshi</h4>
-                                        <div class="star mt-half">
-                                            <i class="fa-solid fa-star highlighted-star"></i>
-                                            <i class="fa-solid fa-star highlighted-star"></i>
-                                            <i class="fa-solid fa-star highlighted-star"></i>
-                                            <i class="fa-solid fa-star highlighted-star"></i>
-                                            <i class="fa-solid fa-star highlighted-star"></i>
-                                        </div>
-                                    </div>
-                                </div>
-                                <p class="para">Had an amazing time here!
-                                    The food was bursting with flavor, the ambiance was warm and inviting,
-                                    and the staff made us feel truly welcome.
-                                    Every dish was a delight—definitely a spot I’ll be coming back to.
-                                </p>
-                            </div>
+                        <div class="swiper-wrapper" id="dynamic-reviews">
+                            <!-- Dynamic reviews will be loaded here -->
                         </div>
                         <div class="flex between mt-4">
                             <a href="#" class="arrow"><i class="fa-solid fa-arrow-left"></i></a>
@@ -623,6 +561,7 @@
     </script>
 
     <script src="../js/newsletter.js"></script>
+    <script src="../js/reviews.js"></script>
 
     <script>
         (function () {
