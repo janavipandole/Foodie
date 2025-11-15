@@ -144,7 +144,7 @@ const loadFavorites = () => {
 };
 
 const saveFavorites = () => {
-    try { localStorage.setItem(FAVORITES_STORAGE_KEY, JSON.stringify([...favoriteIds])); } catch (_) {}
+    try { localStorage.setItem(FAVORITES_STORAGE_KEY, JSON.stringify([...favoriteIds])); } catch (_) { }
 };
 
 const isFavorite = id => favoriteIds.has(id);
@@ -162,14 +162,14 @@ const showToast = (message) => {
         <i class="fa-solid fa-circle-check"></i>
         ${message}
     `;
-    
+
     const container = document.querySelector('.toast-container');
     container.appendChild(toast);
-    
+
     // Trigger reflow for animation
     toast.offsetHeight;
     toast.classList.add('show');
-    
+
     // Remove toast after 3 seconds
     setTimeout(() => {
         toast.classList.remove('show');
@@ -209,30 +209,30 @@ const filterNonVeg = document.getElementById('filterNonVeg');
 const filterAll = document.getElementById('filterAll');
 
 [filterVeg, filterNonVeg, filterAll].forEach(btn => {
-  if (btn) btn.classList.remove('active'); // Set all inactive by default
+    if (btn) btn.classList.remove('active'); // Set all inactive by default
 });
 if (filterAll) filterAll.classList.add('active');
 
 filterVeg?.addEventListener('click', () => {
-  currentTypeFilter = 'veg';
-  setTypeActive('veg');
-  applyFilters();
+    currentTypeFilter = 'veg';
+    setTypeActive('veg');
+    applyFilters();
 });
 filterNonVeg?.addEventListener('click', () => {
-  currentTypeFilter = 'non-veg';
-  setTypeActive('non-veg');
-  applyFilters();
+    currentTypeFilter = 'non-veg';
+    setTypeActive('non-veg');
+    applyFilters();
 });
 filterAll?.addEventListener('click', () => {
-  currentTypeFilter = 'all';
-  setTypeActive('all');
-  applyFilters();
+    currentTypeFilter = 'all';
+    setTypeActive('all');
+    applyFilters();
 });
 
 function setTypeActive(type) {
-  filterVeg.classList.toggle('active', type === 'veg');
-  filterNonVeg.classList.toggle('active', type === 'non-veg');
-  filterAll.classList.toggle('active', type === 'all');
+    filterVeg.classList.toggle('active', type === 'veg');
+    filterNonVeg.classList.toggle('active', type === 'non-veg');
+    filterAll.classList.toggle('active', type === 'all');
 }
 
 
@@ -241,7 +241,7 @@ function setTypeActive(type) {
 const updateCardButton = (card, product) => {
     const existProduct = addProduct.find(item => item.id === product.id);
     const buttonContainer = card.querySelector('.card-btn-container');
-    
+
     if (existProduct && existProduct.quantity > 0) {
         // Show quantity selector
         buttonContainer.innerHTML = `
@@ -255,17 +255,17 @@ const updateCardButton = (card, product) => {
                 </button>
             </div>
         `;
-        
+
         // Add event listeners to quantity buttons
         const minusBtn = buttonContainer.querySelector('.minus-btn');
         const plusBtn = buttonContainer.querySelector('.plus-btn');
-        
+
         minusBtn.addEventListener('click', e => {
             e.preventDefault();
             e.stopPropagation();
             decreaseQuantity(product, card);
         });
-        
+
         plusBtn.addEventListener('click', e => {
             e.preventDefault();
             e.stopPropagation();
@@ -276,7 +276,7 @@ const updateCardButton = (card, product) => {
         buttonContainer.innerHTML = `
             <a href="#" class="btn card-btn">Add to Cart</a>
         `;
-        
+
         buttonContainer.querySelector('.card-btn').addEventListener('click', e => {
             e.preventDefault();
             e.stopPropagation();
@@ -289,10 +289,10 @@ const updateCardButton = (card, product) => {
 const increaseQuantity = (product, card) => {
     const price = parseFloat(product.price.replace(/[₹$]/g, ''));
     let existProduct = addProduct.find(item => item.id === product.id);
-    
+
     if (existProduct) {
         existProduct.quantity++;
-        
+
         // Update cart item
         const cartItem = [...cartList.querySelectorAll('.item')]
             .find(item => item.querySelector('.detail h4').textContent === product.name);
@@ -302,7 +302,7 @@ const increaseQuantity = (product, card) => {
             quantityValue.textContent = existProduct.quantity;
             itemTotal.textContent = `₹${(existProduct.quantity * price).toFixed(2)}`;
         }
-        
+
         // Update card button
         updateCardButton(card, product);
         updateTotalPrice();
@@ -314,14 +314,14 @@ const increaseQuantity = (product, card) => {
 const decreaseQuantity = (product, card) => {
     const price = parseFloat(product.price.replace(/[₹$]/g, ''));
     let existProduct = addProduct.find(item => item.id === product.id);
-    
+
     if (existProduct) {
         existProduct.quantity--;
-        
+
         if (existProduct.quantity === 0) {
             // Remove from cart
             addProduct = addProduct.filter(item => item.id !== product.id);
-            
+
             const cartItem = [...cartList.querySelectorAll('.item')]
                 .find(item => item.querySelector('.detail h4').textContent === product.name);
             if (cartItem) cartItem.remove();
@@ -336,7 +336,7 @@ const decreaseQuantity = (product, card) => {
                 itemTotal.textContent = `₹${(existProduct.quantity * price).toFixed(2)}`;
             }
         }
-        
+
         // Update card button
         updateCardButton(card, product);
         updateTotalPrice();
@@ -409,7 +409,7 @@ const addToCart = (product, card) => {
             saveCart();
         }
     });
-    
+
     // Update the card button to show quantity selector
     updateCardButton(card, product);
 };
@@ -448,7 +448,7 @@ const showCards = list => {
         const card = document.createElement('div');
         card.classList.add('order-card');
         const favActive = isFavorite(product.id);
-       card.innerHTML = `
+        card.innerHTML = `
     <button class="fav-btn${favActive ? ' active' : ''}" aria-label="Toggle favorite" aria-pressed="${favActive}" title="${favActive ? 'Remove from favorites' : 'Add to favorites'}">
         <i class="${favActive ? 'fa-solid' : 'fa-regular'} fa-heart"></i>
     </button>
@@ -463,10 +463,10 @@ const showCards = list => {
     <div class="card-btn-container"></div>
 `;
 
-        
+
         // Initialize button state
         updateCardButton(card, product);
-        
+
         card.addEventListener('click', e => {
             if (!e.target.closest('.card-btn-container') && !e.target.closest('.fav-btn')) {
                 openFoodModal(product);
@@ -609,13 +609,13 @@ function openFoodModal(product) {
     modalPrice.textContent = `₹${parseFloat(product.price.replace(/[₹$]/g, '')).toFixed(2)}`;
     modalDescription.textContent = product.description || "No description available.";
     modal.style.display = 'flex';
-    
-    modalAddBtn.onclick = () => { 
-        const card = [...cardList.querySelectorAll('.order-card')].find(c => 
+
+    modalAddBtn.onclick = () => {
+        const card = [...cardList.querySelectorAll('.order-card')].find(c =>
             c.querySelector('h4').textContent === product.name
         );
-        addToCart(product, card); 
-        modal.style.display = 'none'; 
+        addToCart(product, card);
+        modal.style.display = 'none';
     };
     modalViewBtn.onclick = () => { cartTab.classList.add('cart-tab-active'); modal.style.display = 'none'; };
 }
@@ -628,6 +628,9 @@ document.addEventListener('keydown', e => { if (e.key === "Escape") modal.style.
 const createSkeletonCard = () => {
     const skeleton = document.createElement('div');
     skeleton.classList.add('skeleton-card');
+    skeleton.setAttribute('role', 'status');
+    skeleton.setAttribute('aria-label', 'Loading product');
+    skeleton.setAttribute('aria-busy', 'true');
     skeleton.innerHTML = `
         <div class="skeleton skeleton-fav"></div>
         <div class="skeleton skeleton-image"></div>
@@ -641,6 +644,9 @@ const createSkeletonCard = () => {
 const createSkeletonCartItem = () => {
     const skeleton = document.createElement('div');
     skeleton.classList.add('skeleton-cart-item');
+    skeleton.setAttribute('role', 'status');
+    skeleton.setAttribute('aria-label', 'Loading cart item');
+    skeleton.setAttribute('aria-busy', 'true');
     skeleton.innerHTML = `
         <div class="skeleton skeleton-cart-image"></div>
         <div class="skeleton-cart-detail">
@@ -672,6 +678,14 @@ const showSkeletonCartItems = (count = 3) => {
     }
 };
 
+// Expose helpers for testing and debugging
+window._skeletonDebug = {
+    showSkeletonCards,
+    showSkeletonCartItems,
+    createSkeletonCard,
+    createSkeletonCartItem
+};
+
 // ===== INIT APP =====
 const showLoadError = (message, retryCallback = null, status = '') => {
     if (!cardList) return;
@@ -691,7 +705,7 @@ const showLoadError = (message, retryCallback = null, status = '') => {
             <div class="retry-countdown"></div>
         ` : ''}
     `;
-    
+
     if (retryCallback) {
         const retryBtn = errorDiv.querySelector('.retry-button');
         retryBtn.onclick = () => {
@@ -702,7 +716,7 @@ const showLoadError = (message, retryCallback = null, status = '') => {
             retryCallback();
         };
     }
-    
+
     cardList.innerHTML = '';
     cardList.appendChild(errorDiv);
 };
@@ -726,7 +740,7 @@ const loadProducts = async (retryCount = 0) => {
         const pathname = window.location.pathname;
         let productsPath;
         const isUsingServer = pathname.startsWith('/') || window.location.protocol === 'http:' || window.location.protocol === 'https:';
-        
+
         if (isUsingServer) {
             productsPath = '/products.json';
         } else if (pathname.includes('/html/')) {
@@ -734,7 +748,7 @@ const loadProducts = async (retryCount = 0) => {
         } else {
             productsPath = '../products.json';
         }
-        
+
         // Try the primary path first
         let res;
         try {
@@ -742,16 +756,16 @@ const loadProducts = async (retryCount = 0) => {
         } catch (err) {
             res = null;
         }
-        
+
         // If that fails, try alternate paths
         if (!res || !res.ok) {
-            const alternatePaths = isUsingServer 
+            const alternatePaths = isUsingServer
                 ? ['/products.json', '../products.json', './products.json']
                 : ['../products.json', '/products.json', './products.json'];
-            
+
             let found = false;
             let lastError = null;
-            
+
             for (const altPath of alternatePaths) {
                 if (altPath === productsPath && res) continue; // Skip the one we already tried
                 try {
@@ -767,18 +781,18 @@ const loadProducts = async (retryCount = 0) => {
                     continue;
                 }
             }
-            
+
             if (!found || !res || !res.ok) {
                 const errorDetails = lastError ? lastError.message : (res ? `HTTP ${res.status}: ${res.statusText}` : 'Network error');
                 throw new Error(`Failed to load products.json. ${errorDetails}. Current URL: ${window.location.href}. Make sure you're accessing via http://localhost:8000/html/menu.html (not file://)`);
             }
         }
-        
+
         const data = await res.json();
         productList = data;
         showCards(productList);
         restoreCartFromStorage();
-        
+
         // Check for search query in URL and auto-populate search input
         // Wait for DOM to be fully ready before accessing searchInput
         setTimeout(() => {
@@ -794,7 +808,7 @@ const loadProducts = async (retryCount = 0) => {
         }, 100);
     } catch (error) {
         console.error('Failed to load products:', error);
-        
+
         let errorMessage = '';
         let statusMessage = '';
         let icon = 'exclamation-circle';
@@ -819,17 +833,17 @@ const loadProducts = async (retryCount = 0) => {
             errorMessage = 'We\'re having trouble loading the menu right now.';
             statusMessage = 'Unexpected Error';
         }
-        
+
         if (retryCount < MAX_RETRIES) {
             const retryDelay = RETRY_DELAY * Math.pow(2, retryCount);
             const nextRetry = retryCount + 1;
-            
+
             showLoadError(
                 errorMessage,
                 () => loadProducts(nextRetry),
                 `${statusMessage}<br>Attempt ${nextRetry} of ${MAX_RETRIES}`
             );
-            
+
             // Update countdown timer
             const countdownDiv = document.querySelector('.retry-countdown');
             if (countdownDiv) {
@@ -843,7 +857,7 @@ const loadProducts = async (retryCount = 0) => {
                     }
                 }, 1000);
             }
-            
+
             // Auto-retry with exponential backoff
             setTimeout(() => {
                 loadProducts(nextRetry);
@@ -882,11 +896,11 @@ const saveCart = () => {
         // Keep sessionStorage.checkoutCart in sync so direct navigation to checkout
         // (which prefers sessionStorage) reflects the current cart state.
         if (arr.length > 0) {
-            try { sessionStorage.setItem('checkoutCart', JSON.stringify(arr)); } catch (_) {}
+            try { sessionStorage.setItem('checkoutCart', JSON.stringify(arr)); } catch (_) { }
         } else {
-            try { sessionStorage.removeItem('checkoutCart'); } catch (_) {}
+            try { sessionStorage.removeItem('checkoutCart'); } catch (_) { }
         }
-    } catch (_) {}
+    } catch (_) { }
 };
 const restoreCartFromStorage = () => {
     const saved = loadCart();

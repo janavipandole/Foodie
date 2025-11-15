@@ -5,7 +5,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Checkout - Foodie</title>
-  
+
   <!-- Single synchronous theme initialization to prevent FOUC -->
   <script>
     (function () {
@@ -15,7 +15,7 @@
       }
     })();
   </script>
-  
+
   <link rel="icon" href="../imgs/favicon.webp" type="image/webp" />
 
   <!-- CSS links -->
@@ -31,9 +31,63 @@
 
   <!-- Razorpay -->
   <script src="https://checkout.razorpay.com/v1/checkout.js"></script>
+
+  <!-- Page Transition Loading Overlay -->
+  <style>
+    #page-loading-overlay {
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: var(--bg-primary, #fff);
+      z-index: 9999;
+      opacity: 0.95;
+      transition: opacity 0.3s ease;
+    }
+
+    #page-loading-overlay.active {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 2rem;
+    }
+
+    .page-loader-spinner {
+      width: 60px;
+      height: 60px;
+      border: 4px solid var(--bg-accent, #f0f0f0);
+      border-top: 4px solid var(--gold-finger, #ffd700);
+      border-radius: 50%;
+      animation: spin 1s linear infinite;
+    }
+
+    @keyframes spin {
+      0% {
+        transform: rotate(0deg);
+      }
+
+      100% {
+        transform: rotate(360deg);
+      }
+    }
+
+    .page-loader-text {
+      color: var(--text-primary, #333);
+      font-size: 1.1rem;
+      font-weight: 500;
+    }
+  </style>
 </head>
 
 <body>
+  <!-- Page Transition Loading Overlay -->
+  <div id="page-loading-overlay">
+    <div class="page-loader-spinner"></div>
+    <div class="page-loader-text">Loading...</div>
+  </div>
   <header>
     <nav class="navbar flex between wrapper">
       <div class="logo">Foodie.</div>
@@ -270,7 +324,7 @@
               <img src="../imgs/youtube.webp" alt="YouTube social icon in footer">
             </a>
             <a href="https://x.com/JanaviPandole" class="social-media">
-               <img src="../imgs/twitter.webp" alt="Twitter social icon in footer">
+              <img src="../imgs/twitter.webp" alt="Twitter social icon in footer">
             </a>
           </div>
         </div>
@@ -290,7 +344,8 @@
           </li>
           <li class="mt-one"><a href="#" class="footer-link"> Why Foodie</a></li>
           <li class="mt-one"><a href="./PartnerWithUs.html" class="footer-link"> Partner with us</a></li>
-          <li class="mt-one"><a href="./rideWithUs.html" class="footer-link" data-i18n="footer.rideWithUs"> Ride With Us</a></li>
+          <li class="mt-one"><a href="./rideWithUs.html" class="footer-link" data-i18n="footer.rideWithUs"> Ride With
+              Us</a></li>
           <li class="mt-one"><a href="./aboutUs.html" class="footer-link"> About us </a></li>
           <li class="mt-one"><a href="./faq-page.html" class="footer-link"> FAQ's</a></li>
         </ul>
@@ -330,6 +385,46 @@
   </div>
 
   <!-- All cart and theme logic is now handled by app.js -->
+
+  <!-- Page Transition Loading -->
+  <script>
+    (function () {
+      const overlay = document.getElementById('page-loading-overlay');
+      if (!overlay) return;
+
+      // Show loader on internal link clicks
+      document.addEventListener('click', (e) => {
+        const link = e.target.closest('a');
+        if (!link) return;
+
+        const href = link.getAttribute('href');
+        // Only show loader for internal navigation (not external links, anchors, or mailto)
+        if (href &&
+          !href.startsWith('#') &&
+          !href.startsWith('mailto:') &&
+          !href.startsWith('tel:') &&
+          !href.startsWith('http') &&
+          !href.startsWith('javascript:') &&
+          !link.target &&
+          link.rel !== 'noopener noreferrer') {
+
+          overlay.classList.add('active');
+        }
+      });
+
+      // Hide loader when page is ready
+      window.addEventListener('load', () => {
+        setTimeout(() => {
+          overlay.classList.remove('active');
+        }, 300);
+      });
+
+      // Also hide if user clicks back button
+      window.addEventListener('pageshow', () => {
+        overlay.classList.remove('active');
+      });
+    })();
+  </script>
 
   <script src="../js/app.js"></script>
   <script src="../js/cursor.js"></script>
