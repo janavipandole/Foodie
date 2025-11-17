@@ -6,7 +6,17 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Foodie - Contact Us</title>
-    <link rel="icon" href="../imgs/favicon.png" type="image/png" />
+    <script>
+        // Immediately apply saved theme to prevent FOUC
+        (function () {
+            const savedTheme = localStorage.getItem('theme');
+            if (savedTheme === 'dark') {
+                document.documentElement.setAttribute('data-theme', 'dark');
+            }
+        })();
+    </script>
+    
+    <link rel="icon" href="../imgs/favicon.webp" type="image/webp" />
     <link rel="stylesheet" href="../css/style.css">
     <link rel="stylesheet" href="../css/contactUs.css">
     <link rel="stylesheet" href="../css/cursor.css">
@@ -16,7 +26,6 @@
 </head>
 
 <body>
-    <!-- UNIVERSAL NAVBAR -->
     <header>
         <nav class="navbar flex between wrapper">
             <div class="logo">Foodie.</div>
@@ -26,16 +35,20 @@
                 <li><a class="active" href="./index.html#home" data-i18n="nav.home">Home</a></li>
                 <li><a href="./menu.html" data-i18n="nav.menu">Menu</a></li>
                 <li><a href="./aboutUs.html" data-i18n="nav.about">About Us</a></li>
-                <li><a href="./contactUs.html" data-i18n="nav.contact">Contact Us</a></li>
+                <li><a class="active" href="./contactUs.html" data-i18n="nav.contact">Contact Us</a></li>
                 <li><a href="nearbyres.html" data-i18n="nav.nearby">Nearby Restaurants</a></li>
             </ul>
             <div class="desktop-action flex gap-2">
                 <!-- Language Selector -->
-                <div class="language-selector">
-                    <select id="language-select">
-                        <option value="en">English</option>
-                        <option value="hi">हिंदी</option>
-                    </select>
+                <div class="custom-select" id="language-custom-select">
+                    <div class="selected" tabindex="0" aria-haspopup="listbox" aria-expanded="false"
+                        aria-labelledby="language-custom-select">
+                        English
+                    </div>
+                    <ul class="options" role="listbox" tabindex="-1">
+                        <li data-value="en" role="option" aria-selected="true">English</li>
+                        <li data-value="hi" role="option">हिंदी</li>
+                    </ul>
                 </div>
 
                 <!-- Search Input -->
@@ -96,8 +109,6 @@
             </ul>
         </nav>
     </header>
-
-
 
     <section class="hero">
         <h1>Get in <span class="highlight">Touch</span></h1>
@@ -248,16 +259,16 @@
                     <p class="mt-one">We will fill your tummy with delicious <br>food with fast delivery</p>
                     <div class="media flex gap-2 mt-one">
                         <a href="https://github.com/janavipandole" class="social-media">
-                            <img src="../imgs/GitHub.png" alt="GitHub social icon in footer">
+                            <img src="../imgs/GitHub.webp" alt="GitHub social icon in footer">
                         </a>
                         <a href="https://www.linkedin.com/in/janavi-pandole-80a7b2290" class="social-media linkdin">
-                            <img src="../imgs/linkdin.png" alt="LinkedIn social icon in footer">
+                            <img src="../imgs/linkdin.webp" alt="LinkedIn social icon in footer">
                         </a>
                         <a href="https://www.youtube.com/@JanaviPandole" class="social-media">
-                            <img src="../imgs/youtube.png" alt="YouTube social icon in footer">
+                            <img src="../imgs/youtube.webp" alt="YouTube social icon in footer">
                         </a>
                         <a href="https://x.com/JanaviPandole" class="social-media">
-                            <img src="../imgs/twitter.png" alt="Twitter social icon in footer">
+                            <img src="../imgs/twitter.webp" alt="Twitter social icon in footer">
                         </a>
                     </div>
                 </div>
@@ -277,8 +288,9 @@
                     </li>
                     <li class="mt-one"><a href="#" class="footer-link"> Why Foodie</a></li>
                     <li class="mt-one"><a href="./PartnerWithUs.html" class="footer-link"> Partner with us</a></li>
+                    <li class="mt-one"><a href="./rideWithUs.html" class="footer-link" data-i18n="footer.rideWithUs"> Ride With Us</a></li>
                     <li class="mt-one"><a href="./aboutUs.html" class="footer-link"> About us </a></li>
-                    <li class="mt-one"><a href="./faq.html" class="footer-link"> FAQ's</a></li>
+                    <li class="mt-one"><a href="./faq-page.html" class="footer-link"> FAQ's</a></li>
                 </ul>
 
                 <ul class="footer-wrapper">
@@ -315,9 +327,8 @@
             const mobileMenuBtn = document.querySelector(".hamberger");
             const mobileMenu = document.querySelector(".mobile-menu");
 
-            // Load saved theme
-            const savedTheme = localStorage.getItem('theme') || 'light';
-            html.setAttribute('data-theme', savedTheme);
+            // Initial theme setting is now handled by the inline script in the head.
+            // This script only updates the icon and sets up event listeners.
 
             // Update ALL theme toggle icons
             function updateThemeIcon() {
@@ -339,7 +350,7 @@
                 });
             }
 
-            updateThemeIcon();
+            updateThemeIcon(); // Call once on load to set initial icon
 
             // Add event listener to ALL theme toggles
             themeToggles.forEach(toggle => {

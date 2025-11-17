@@ -5,7 +5,18 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Checkout - Foodie</title>
-  <link rel="icon" href="../imgs/favicon.png" type="image/png" />
+  
+  <!-- Single synchronous theme initialization to prevent FOUC -->
+  <script>
+    (function () {
+      const savedTheme = localStorage.getItem('theme');
+      if (savedTheme === 'dark') {
+        document.documentElement.setAttribute('data-theme', 'dark');
+      }
+    })();
+  </script>
+  
+  <link rel="icon" href="../imgs/favicon.webp" type="image/webp" />
 
   <!-- CSS links -->
   <link rel="stylesheet" href="../css/style.css" />
@@ -23,7 +34,6 @@
 </head>
 
 <body>
-  <!-- UNIVERSAL NAVBAR -->
   <header>
     <nav class="navbar flex between wrapper">
       <div class="logo">Foodie.</div>
@@ -38,11 +48,15 @@
       </ul>
       <div class="desktop-action flex gap-2">
         <!-- Language Selector -->
-        <div class="language-selector">
-          <select id="language-select">
-            <option value="en">English</option>
-            <option value="hi">हिंदी</option>
-          </select>
+        <div class="custom-select" id="language-custom-select">
+          <div class="selected" tabindex="0" aria-haspopup="listbox" aria-expanded="false"
+            aria-labelledby="language-custom-select">
+            English
+          </div>
+          <ul class="options" role="listbox" tabindex="-1">
+            <li data-value="en" role="option" aria-selected="true">English</li>
+            <li data-value="hi" role="option">हिंदी</li>
+          </ul>
         </div>
 
         <!-- Search Input -->
@@ -60,7 +74,7 @@
         </button>
 
         <!-- Cart Icon -->
-        <a href="./checkout.html" class="cart-icon">
+        <a href="./checkout.html" class="cart-icon active">
           <i class="fa-solid fa-bag-shopping"></i>
           <span class="cart-value">0</span>
         </a>
@@ -104,11 +118,9 @@
     </nav>
   </header>
 
-
-
   <main class="checkout-container">
     <h5 class="text-center">Checkout</h5>
-    <h1>Let’s Wrap Up Your <span>Cravings</span></h1>
+    <h1>Let's Wrap Up Your <span>Cravings</span></h1>
 
     <!-- EMPTY CART MESSAGE -->
     <div id="emptyCartMessage" class="empty-cart" style="display: none">
@@ -249,16 +261,16 @@
           <p class="mt-one">We will fill your tummy with delicious <br>food with fast delivery</p>
           <div class="media flex gap-2 mt-one">
             <a href="https://github.com/janavipandole" class="social-media">
-              <img src="../imgs/GitHub.png" alt="GitHub social icon in footer">
+              <img src="../imgs/GitHub.webp" alt="GitHub social icon in footer">
             </a>
             <a href="https://www.linkedin.com/in/janavi-pandole-80a7b2290" class="social-media linkdin">
-              <img src="../imgs/linkdin.png" alt="LinkedIn social icon in footer">
+              <img src="../imgs/linkdin.webp" alt="LinkedIn social icon in footer">
             </a>
             <a href="https://www.youtube.com/@JanaviPandole" class="social-media">
-              <img src="../imgs/youtube.png" alt="YouTube social icon in footer">
+              <img src="../imgs/youtube.webp" alt="YouTube social icon in footer">
             </a>
             <a href="https://x.com/JanaviPandole" class="social-media">
-              <img src="../imgs/twitter.png" alt="Twitter social icon in footer">
+               <img src="../imgs/twitter.webp" alt="Twitter social icon in footer">
             </a>
           </div>
         </div>
@@ -278,8 +290,9 @@
           </li>
           <li class="mt-one"><a href="#" class="footer-link"> Why Foodie</a></li>
           <li class="mt-one"><a href="./PartnerWithUs.html" class="footer-link"> Partner with us</a></li>
+          <li class="mt-one"><a href="./rideWithUs.html" class="footer-link" data-i18n="footer.rideWithUs"> Ride With Us</a></li>
           <li class="mt-one"><a href="./aboutUs.html" class="footer-link"> About us </a></li>
-          <li class="mt-one"><a href="./faq.html" class="footer-link"> FAQ's</a></li>
+          <li class="mt-one"><a href="./faq-page.html" class="footer-link"> FAQ's</a></li>
         </ul>
 
         <ul class="footer-wrapper">
@@ -316,261 +329,13 @@
     </div>
   </div>
 
-  <script>
-    // Get cart data from sessionStorage, fallback to canonical localStorage ('foodie:cart')
-    let cartData = null;
-    try {
-      cartData = JSON.parse(sessionStorage.getItem("checkoutCart") || "null");
-    } catch (_) { cartData = null; }
-    if (!Array.isArray(cartData) || cartData.length === 0) {
-      try {
-        cartData = JSON.parse(localStorage.getItem('foodie:cart') || '[]');
-      } catch (_) { cartData = []; }
-    }
-    if (!Array.isArray(cartData)) cartData = [];
-    const deliveryFee = 29.0;
-    const taxRate = 0.1;
-    let selectedPayment = "card";
-
-    const themeToggle = document.querySelector(".theme-toggle");
-    const html = document.documentElement;
-
-    // Load saved theme
-    const savedTheme = localStorage.getItem("theme") || "light";
-    html.setAttribute("data-theme", savedTheme);
-
-    // Update icon based on theme
-    function updateThemeIcon() {
-      const icon = themeToggle.querySelector("i");
-      if (html.getAttribute("data-theme") === "dark") {
-        // Animate icon change
-        icon.style.transform = "rotate(360deg) scale(0)";
-        setTimeout(() => {
-          icon.className = "fa-solid fa-sun";
-          icon.style.transform = "rotate(0deg) scale(1)";
-        }, 250);
-      } else {
-        // Animate icon change
-        icon.style.transform = "rotate(-360deg) scale(0)";
-        setTimeout(() => {
-          icon.className = "fa-solid fa-moon";
-          icon.style.transform = "rotate(0deg) scale(1)";
-        }, 250);
-      }
-    }
-
-    updateThemeIcon();
-
-    themeToggle.addEventListener("click", () => {
-      const currentTheme = html.getAttribute("data-theme");
-      const newTheme = currentTheme === "dark" ? "light" : "dark";
-
-      html.setAttribute("data-theme", newTheme);
-      localStorage.setItem("theme", newTheme);
-      updateThemeIcon();
-    });
-
-    // Mobile Menu Toggle
-    const hamburger = document.querySelector(".hamberger");
-    const mobileMenu = document.querySelector(".mobile-menu");
-
-    hamburger.addEventListener("click", (e) => {
-      e.preventDefault();
-      mobileMenu.classList.toggle("mobile-menu-active");
-    });
-
-    document.addEventListener("DOMContentLoaded", () => {
-      if (cartData.length === 0) {
-        document.getElementById("emptyCartMessage").style.display = "block";
-        document.getElementById("checkoutContent").style.display = "none";
-      } else {
-        displayOrderItems();
-        calculateTotals();
-      }
-      setupEventListeners();
-      // Init enhanced checkout features
-      if (window.initCityAutocomplete) window.initCityAutocomplete();
-      if (window.initPincodeValidation) window.initPincodeValidation();
-    });
-
-    function displayOrderItems() {
-      const container = document.getElementById("orderItems");
-      container.innerHTML = cartData
-        .map((item) => {
-          const name = item && item.name ? item.name : 'Item';
-          const qty = item && item.quantity ? item.quantity : 1;
-          const priceRaw = item && item.price ? item.price.toString() : '0';
-          const priceNum = parseFloat(priceRaw.replace ? priceRaw.replace(/[₹$]/g, "") : priceRaw) || 0;
-          const img = item && item.image ? item.image : '../imgs/placeholder.png';
-          return `
-                  <div class="order-item">
-                      <img src="${img}" alt="${name}">
-                      <div class="order-item-details">
-                          <div class="order-item-name">${name}</div>
-                          <div class="order-item-quantity">Qty: ${qty}</div>
-                      </div>
-                      <div class="order-item-price">₹${(qty * priceNum).toFixed(2)}</div>
-                  </div>
-              `;
-        })
-        .join("");
-    }
-
-    function calculateTotals() {
-      const subtotal = cartData.reduce((sum, item) => {
-        const qty = item && item.quantity ? item.quantity : 1;
-        const priceRaw = item && item.price ? item.price.toString() : '0';
-        const priceNum = parseFloat(priceRaw.replace ? priceRaw.replace(/[₹$]/g, "") : priceRaw) || 0;
-        return sum + qty * priceNum;
-      }, 0);
-      const tax = subtotal * taxRate;
-      const total = subtotal + deliveryFee + tax;
-
-      document.getElementById("subtotal").textContent = `₹${subtotal.toFixed(
-        2
-      )}`;
-      document.getElementById("tax").textContent = `₹${tax.toFixed(2)}`;
-      document.getElementById("finalTotal").textContent = `₹${total.toFixed(
-        2
-      )}`;
-    }
-
-    function setupEventListeners() {
-      // Payment method selection
-      document.querySelectorAll(".payment-method").forEach((method) => {
-        method.addEventListener("click", () => {
-          document
-            .querySelectorAll(".payment-method")
-            .forEach((m) => m.classList.remove("active"));
-          method.classList.add("active");
-          selectedPayment = method.dataset.method;
-        });
-      });
-
-      // Place order button
-      document
-        .getElementById("placeOrderBtn")
-        .addEventListener("click", (e) => {
-          e.preventDefault();
-          if (validateForm()) {
-            if (selectedPayment !== "card") {
-              alert("Currently only Card payment is integrated.");
-              return;
-            }
-            placeOrderRazorpay();
-          }
-        });
-    }
-
-    function validateForm() {
-      const form = document.getElementById("checkoutForm");
-      const inputs = form.querySelectorAll(
-        "input[required], textarea[required]"
-      );
-      let isValid = true;
-
-      inputs.forEach((input) => {
-        const formGroup = input.closest(".form-group");
-        if (!input.value.trim()) {
-          formGroup.classList.add("error");
-          isValid = false;
-        } else {
-          formGroup.classList.remove("error");
-        }
-      });
-
-      // Email validation
-      const email = document.getElementById("email");
-      const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-      if (email.value && !emailRegex.test(email.value)) {
-        email.closest(".form-group").classList.add("error");
-        isValid = false;
-      }
-
-      // Phone number validation
-      const phone = document.getElementById("phone");
-      let phoneValue = phone.value.trim();
-      if (/^[0-9]{10}$/.test(phoneValue)) {
-        phoneValue = "+91 " + phoneValue;
-        phone.value = phoneValue;
-      }
-      const phoneRegex = /^\+91\s?[0-9]{10}$/;
-
-      if (!phoneRegex.test(phone.value)) {
-        phone.closest(".form-group").classList.add("error");
-        phone.nextElementSibling.textContent = "Enter valid Indian number";
-        isValid = false;
-      } else {
-        phone.closest(".form-group").classList.remove("error");
-        phone.nextElementSibling.textContent =
-          "Please enter a valid phone number";
-      }
-
-      return isValid;
-    }
-
-    function placeOrderRazorpay() {
-      const totalAmount =
-        parseFloat(
-          document
-            .getElementById("finalTotal")
-            .textContent.replace(/[₹$]/g, "")
-        ) * 100; // in paise
-      const orderId = "FD" + Date.now().toString().slice(-8);
-      document.getElementById("orderId").textContent = orderId;
-
-      const options = {
-        key: "rzp_test_RS6EdXdKAxfVLe", // Replace with your Razorpay test key
-        amount: totalAmount,
-        currency: "INR",
-        name: "Foodie",
-        description: "Order Payment",
-        handler: function (response) {
-          console.log("Payment Success:", response);
-
-          // Save order to localStorage
-          const orderId = "FD" + Date.now().toString().slice(-8);
-          const order = {
-            id: orderId,
-            items: cartData,
-            total: parseFloat(document.getElementById("finalTotal").textContent.replace(/[₹$]/g, "")),
-            timestamp: new Date().toISOString(),
-            status: "Pending",
-            deliveryInfo: {
-              fullName: document.getElementById("fullName").value,
-              email: document.getElementById("email").value,
-              phone: document.getElementById("phone").value,
-              address: document.getElementById("address").value,
-              city: document.getElementById("city").value,
-              zipCode: document.getElementById("zipCode").value,
-              notes: document.getElementById("notes").value
-            }
-          };
-
-          const existingOrders = JSON.parse(localStorage.getItem("foodie:orders") || "[]");
-          existingOrders.push(order);
-          localStorage.setItem("foodie:orders", JSON.stringify(existingOrders));
-
-          document.getElementById("successModal").classList.add("active");
-          sessionStorage.removeItem("checkoutCart");
-        },
-        prefill: {
-          name: document.getElementById("fullName").value,
-          email: document.getElementById("email").value,
-          contact: document.getElementById("phone").value,
-        },
-        theme: { color: "#F2BD12" },
-      };
-
-      const rzp = new Razorpay(options);
-      rzp.open();
-    }
-  </script>
+  <!-- All cart and theme logic is now handled by app.js -->
 
   <script src="../js/app.js"></script>
   <script src="../js/cursor.js"></script>
   <script src="../js/fetch-utils.js"></script>
   <script src="../js/checkout.js"></script>
+  <script src="../js/notifications.js"></script>
 </body>
 
 </html>

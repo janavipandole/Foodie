@@ -1,4 +1,3 @@
-/* Signup Page Specific Variables */
 .signup-page {
   /* Light theme */
   --lead: #1a1a2e;
@@ -19,8 +18,8 @@
   --error: #e74c3c;
 }
 
-/* Dark Theme for Signup Page */
-.signup-page[data-theme="dark"] {
+/* ✅ Fixed Dark Theme Selector */
+[data-theme="dark"] .signup-page {
   --lead: #ecf0f1;
   --gold-finger: #f39c12;
   --gold-hover: #e67e22;
@@ -37,7 +36,7 @@
   --shadow-strong: rgba(0, 0, 0, 0.6);
 }
 
-/* Base Styles */
+/* (Everything else below remains the same as your original CSS) */
 * {
   margin: 0;
   padding: 0;
@@ -54,7 +53,6 @@ body {
   padding: 20px;
   transition: background 0.3s ease;
 }
-
 /* Navigation */
 .back-home {
   position: fixed;

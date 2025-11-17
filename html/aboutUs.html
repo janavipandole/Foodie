@@ -6,7 +6,17 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Foodie - About Us</title>
 
-    <link rel="icon" href="../imgs/favicon.png" type="image/png" />
+    <script>
+        // Immediately apply saved theme to prevent FOUC
+        (function() {
+            const savedTheme = localStorage.getItem('theme');
+            if (savedTheme === 'dark') {
+                document.documentElement.setAttribute('data-theme', 'dark');
+            }
+        })();
+    </script>
+
+    <link rel="icon" href="../imgs/favicon.webp" type="image/webp" />
 
     <!-- Font (valid CDN) -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
@@ -14,10 +24,11 @@
     <link rel="stylesheet" href="../css/style.css">
     <link rel="stylesheet" href="../css/aboutUs.css" />
     <link rel="stylesheet" href="../css/cursor.css">
+    
 </head>
 
-<body>
 
+<body>
     <header>
         <nav class="navbar flex between wrapper">
             <div class="logo">Foodie.</div>
@@ -32,11 +43,15 @@
             </ul>
             <div class="desktop-action flex gap-2">
                 <!-- Language Selector -->
-                <div class="language-selector">
-                    <select id="language-select">
-                        <option value="en">English</option>
-                        <option value="hi">हिंदी</option>
-                    </select>
+                <div class="custom-select" id="language-custom-select">
+                    <div class="selected" tabindex="0" aria-haspopup="listbox" aria-expanded="false"
+                        aria-labelledby="language-custom-select">
+                        English
+                    </div>
+                    <ul class="options" role="listbox" tabindex="-1">
+                        <li data-value="en" role="option" aria-selected="true">English</li>
+                        <li data-value="hi" role="option">हिंदी</li>
+                    </ul>
                 </div>
 
                 <!-- Search Input -->
@@ -98,31 +113,39 @@
         </nav>
     </header>
 
-
     <!-- Hero Section -->
     <section class="hero">
         <h1 data-i18n="aboutUs.hero.title">About <span data-i18n="aboutUs.hero.highlight">Foodie</span></h1>
         <p data-i18n="aboutUs.hero.subtitle">Your trusted partner in delivering delicious food with lightning-fast
             service</p>
     </section>
+<!-- Our Story Section -->
+<section class="story-section">
+  <div class="story-wrapper">
+    <div class="story-image">
+      <img src="https://images.unsplash.com/photo-1504674900247-0877df9cc836" alt="Our Story - Foodie Journey">
+    </div>
 
-    <!-- Our Story Section -->
-    <section class="story-section">
-        <div class="story-container">
-            <div class="story-content">
-                <h2 data-i18n="aboutUs.story.title">Our Story</h2>
-                <p data-i18n="aboutUs.story.para1">Founded in 2022, Foodie began with a simple mission: to connect food
-                    lovers with their favorite
-                    restaurants through fast, reliable delivery. What started as a small startup has grown into a
-                    trusted platform serving thousands of customers daily.</p>
-                <p data-i18n="aboutUs.story.para2">We believe that great food should be accessible to everyone, anytime.
-                    Our team works tirelessly to
-                    ensure that every meal arrives hot, fresh, and on time.</p>
-                <p data-i18n="aboutUs.story.para3">Finally...at Foodie we don't just deliver meals, we deliver happiness
-                    at a time 🍽️💛</p>
-            </div>
-        </div>
-    </section>
+    <div class="story-text">
+      <h2 class="story-title">Our Story</h2>
+      <p class="story-intro">
+        Founded in <strong>2022</strong>, <span class="brand">Foodie</span> began with a simple dream — 
+        to bring people closer to their favorite meals, anytime and anywhere.
+      </p>
+      <p>
+        What started as a small local venture has evolved into a trusted food delivery platform 
+        serving <strong>thousands of happy customers</strong> every day. We’ve grown, but our values 
+        remain the same — quality, speed, and care.
+      </p>
+      <p class="story-highlight">
+        Because at <span class="brand">Foodie</span>, we don’t just deliver food — 
+        <span class="highlight-text">we deliver happiness 🍽️💛</span>
+      </p>
+    </div>
+  </div>
+</section>
+
+    
 
     <section class="mission-section">
         <div class="mission-container">
@@ -341,16 +364,16 @@
                         with fast delivery</p>
                     <div class="media flex gap-2 mt-one">
                         <a href="https://github.com/janavipandole" class="social-media">
-                            <img src="../imgs/GitHub.png" alt="GitHub social icon in footer">
+                            <img src="../imgs/GitHub.webp" alt="GitHub social icon in footer">
                         </a>
                         <a href="https://www.linkedin.com/in/janavi-pandole-80a7b2290" class="social-media linkdin">
-                            <img src="../imgs/linkdin.png" alt="LinkedIn social icon in footer">
+                            <img src="../imgs/linkdin.webp" alt="LinkedIn social icon in footer">
                         </a>
                         <a href="https://www.youtube.com/@JanaviPandole" class="social-media">
-                            <img src="../imgs/youtube.png" alt="YouTube social icon in footer">
+                            <img src="../imgs/youtube.webp" alt="YouTube social icon in footer">
                         </a>
                         <a href="https://x.com/JanaviPandole" class="social-media">
-                            <img src="../imgs/twitter.png" alt="Twitter social icon in footer">
+                            <img src="../imgs/twitter.webp" alt="Twitter social icon in footer">
                         </a>
                     </div>
                 </div>
@@ -374,9 +397,10 @@
                     <li class="mt-one"><a href="#" class="footer-link" data-i18n="footer.whyFoodie"> Why Foodie</a></li>
                     <li class="mt-one"><a href="../html/PartnerWithUs.html" class="footer-link"
                             data-i18n="footer.partnerWithUs"> Partner with us</a></li>
+                    <li class="mt-one"><a href="./rideWithUs.html" class="footer-link" data-i18n="footer.rideWithUs"> Ride With Us</a></li>
                     <li class="mt-one"><a href="../html/aboutUs.html" class="footer-link" data-i18n="footer.aboutUs">
                             About us </a></li>
-                    <li class="mt-one"><a href="../html/contactUs.html" class="footer-link" data-i18n="footer.faq">
+                    <li class="mt-one"><a href="../html/faq-page.html" class="footer-link" data-i18n="footer.faq">
                             FAQ's</a></li>
                 </ul>
 
@@ -410,44 +434,47 @@
     <script>
         // Theme Toggle with smooth icon transition
         (function () {
-            const themeToggle = document.querySelector('.theme-toggle');
+            const themeToggles = document.querySelectorAll('.theme-toggle');
             const html = document.documentElement;
 
-            // Load saved theme
-            const savedTheme = localStorage.getItem('theme') || 'light';
-            html.setAttribute('data-theme', savedTheme);
+            // Initial theme setting is now handled by the inline script in the head.
+            // This script only updates the icon and sets up event listeners.
 
             // Update icon based on theme (guarded)
             function updateThemeIcon() {
-                if (!themeToggle) return;
-                const icon = themeToggle.querySelector('i');
-                if (!icon) return;
-                if (html.getAttribute('data-theme') === 'dark') {
-                    icon.style.transform = 'rotate(360deg) scale(0)';
-                    setTimeout(() => {
-                        icon.className = 'fa-solid fa-sun';
-                        icon.style.transform = 'rotate(0deg) scale(1)';
-                    }, 250);
-                } else {
-                    icon.style.transform = 'rotate(-360deg) scale(0)';
-                    setTimeout(() => {
-                        icon.className = 'fa-solid fa-moon';
-                        icon.style.transform = 'rotate(0deg) scale(1)';
-                    }, 250);
-                }
-            }
-
-            updateThemeIcon();
-
-            if (themeToggle) {
-                themeToggle.addEventListener('click', () => {
-                    const currentTheme = html.getAttribute('data-theme');
-                    const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
-                    html.setAttribute('data-theme', newTheme);
-                    localStorage.setItem('theme', newTheme);
-                    updateThemeIcon();
+                themeToggles.forEach(toggle => {
+                    if (!toggle) return;
+                    const icon = toggle.querySelector('i');
+                    if (!icon) return;
+                    if (html.getAttribute('data-theme') === 'dark') {
+                        icon.style.transform = 'rotate(360deg) scale(0)';
+                        setTimeout(() => {
+                            icon.className = 'fa-solid fa-sun';
+                            icon.style.transform = 'rotate(0deg) scale(1)';
+                        }, 250);
+                    } else {
+                        icon.style.transform = 'rotate(-360deg) scale(0)';
+                        setTimeout(() => {
+                            icon.className = 'fa-solid fa-moon';
+                            icon.style.transform = 'rotate(0deg) scale(1)';
+                        }, 250);
+                    }
                 });
             }
+
+            updateThemeIcon(); // Call once on load to set initial icon
+
+            themeToggles.forEach(toggle => {
+                if (toggle) {
+                    toggle.addEventListener('click', () => {
+                        const currentTheme = html.getAttribute('data-theme');
+                        const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
+                        html.setAttribute('data-theme', newTheme);
+                        localStorage.setItem('theme', newTheme);
+                        updateThemeIcon();
+                    });
+                }
+            });
         })();
 
         // Mobile Menu Toggle (guarded)

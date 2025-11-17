@@ -5,7 +5,16 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
   <title>Near By Restaurants | Foodie</title>
-  <link rel="icon" href="../imgs/favicon.png" type="image/png" />
+  <script>
+    // Immediately apply saved theme to prevent FOUC
+    (function () {
+      const savedTheme = localStorage.getItem('theme');
+      if (savedTheme === 'dark') {
+        document.documentElement.setAttribute('data-theme', 'dark');
+      }
+    })();
+  </script>
+  <link rel="icon" href="../imgs/favicon.webp" type="image/webp" />
   <link rel="stylesheet" href="../css/style.css" />
   <link rel="stylesheet" href="../css/cursor.css" />
   <link href="https://unpkg.com/aos@2.3.4/dist/aos.css" rel="stylesheet" />
@@ -17,20 +26,31 @@
 </head>
 
 <body>
-  <!-- UNIVERSAL NAVBAR -->
   <header>
     <nav class="navbar flex between wrapper">
       <div class="logo">Foodie.</div>
 
       <!-- DESKTOP MENU -->
       <ul class="navList flex gap-3 between">
-        <li><a class="active" href="./index.html#home">Home</a></li>
-        <li><a href="./menu.html">Menu</a></li>
-        <li><a href="./aboutUs.html">About Us</a></li>
-        <li><a href="./contactUs.html">Contact Us</a></li>
-        <li><a href="nearbyres.html">Nearby Restaurants</a></li>
+        <li><a class="active" href="./index.html#home" data-i18n="nav.home">Home</a></li>
+        <li><a href="./menu.html" data-i18n="nav.menu">Menu</a></li>
+        <li><a href="./aboutUs.html" data-i18n="nav.about">About Us</a></li>
+        <li><a href="./contactUs.html" data-i18n="nav.contact">Contact Us</a></li>
+        <li><a class="active" href="nearbyres.html" data-i18n="nav.nearby">Nearby Restaurants</a></li>
       </ul>
       <div class="desktop-action flex gap-2">
+        <!-- Language Selector -->
+        <div class="custom-select" id="language-custom-select">
+          <div class="selected" tabindex="0" aria-haspopup="listbox" aria-expanded="false"
+            aria-labelledby="language-custom-select">
+            English
+          </div>
+          <ul class="options" role="listbox" tabindex="-1">
+            <li data-value="en" role="option" aria-selected="true">English</li>
+            <li data-value="hi" role="option">हिंदी</li>
+          </ul>
+        </div>
+
         <!-- Search Input -->
         <form class="navbar-search" action="#" method="get">
           <input type="text" name="search" id="navbar-search" placeholder="Search your food ..."
@@ -63,12 +83,19 @@
 
       <!-- MOBILE MENU -->
       <ul class="mobile-menu">
-        <li><a class="active" href="./index.html#home">Home</a></li>
-        <li><a href="./index.html#services">Services</a></li>
-        <li><a href="./menu.html">Menu</a></li>
-        <li><a href="./aboutUs.html">About Us</a></li>
-        <li><a href="./contactUs.html">Contact Us</a></li>
-        <li><a href="nearbyres.html">Nearby Restaurants</a></li>
+        <li><a class="active" href="./index.html#home" data-i18n="nav.home">Home</a></li>
+        <li><a href="./menu.html" data-i18n="nav.menu">Menu</a></li>
+        <li><a href="./aboutUs.html" data-i18n="nav.about">About Us</a></li>
+        <li><a href="./contactUs.html" data-i18n="nav.contact">Contact Us</a></li>
+        <li><a href="nearbyres.html" data-i18n="nav.nearby">Nearby Restaurants</a></li>
+        <!-- Search Input -->
+        <form class="navbar-search" action="#" method="get">
+          <input type="text" name="search" id="navbar-search" placeholder="Search your food ..."
+            aria-label="Search menu items">
+          <button type="submit" id="navbar-search-btn" aria-label="Search">
+            <i class="fa-solid fa-magnifying-glass"></i>
+          </button>
+        </form>
         <li>
           <button class="theme-toggle mobile-theme-toggle" aria-label="Toggle dark mode">
             <i class="fa-solid fa-moon"></i><span>Dark Mode</span>
@@ -95,7 +122,7 @@
       <div class="restaurant-grid flex wrap gap-4 mt-5">
         <!-- card 1 -->
         <div class="restaurant-card" data-aos="zoom-in" data-aos-delay="100">
-          <img src="../imgs/rest1.png" alt="Spice Affair" class="restaurant-img" />
+          <img src="../imgs/rest1.webp" alt="Spice Affair" class="restaurant-img" />
           <div class="restaurant-info">
             <h3>Spice Affair</h3>
             <p>Authentic Indian Cuisine</p>
@@ -105,7 +132,7 @@
 
         <!-- card 2 -->
         <div class="restaurant-card" data-aos="zoom-in" data-aos-delay="200">
-          <img src="../imgs/rest2.png" alt="Urban Eatery" class="restaurant-img" />
+          <img src="../imgs/rest2.webp" alt="Urban Eatery" class="restaurant-img" />
           <div class="restaurant-info">
             <h3>Urban Eatery</h3>
             <p>Modern Café & Grill</p>
@@ -115,7 +142,7 @@
 
         <!-- card 3 -->
         <div class="restaurant-card" data-aos="zoom-in" data-aos-delay="300">
-          <img src="../imgs/rest3.png " alt="Sushi Haven" class="restaurant-img" />
+          <img src="../imgs/rest3.webp" alt="Sushi Haven" class="restaurant-img" />
           <div class="restaurant-info">
             <h3>Sushi Haven</h3>
             <p>Fresh Japanese Rolls</p>
@@ -135,16 +162,16 @@
           <p class="mt-one">We will fill your tummy with delicious <br>food with fast delivery</p>
           <div class="media flex gap-2 mt-one">
             <a href="https://github.com/janavipandole" class="social-media">
-              <img src="../imgs/GitHub.png" alt="GitHub social icon in footer">
+              <img src="../imgs/GitHub.webp" alt="GitHub social icon in footer">
             </a>
             <a href="https://www.linkedin.com/in/janavi-pandole-80a7b2290" class="social-media linkdin">
-              <img src="../imgs/linkdin.png" alt="LinkedIn social icon in footer">
+              <img src="../imgs/linkdin.webp" alt="LinkedIn social icon in footer">
             </a>
             <a href="https://www.youtube.com/@JanaviPandole" class="social-media">
-              <img src="../imgs/youtube.png" alt="YouTube social icon in footer">
+              <img src="../imgs/youtube.webp" alt="YouTube social icon in footer">
             </a>
             <a href="https://x.com/JanaviPandole" class="social-media">
-              <img src="../imgs/twitter.png" alt="Twitter social icon in footer">
+              <img src="../imgs/twitter.webp" alt="Twitter social icon in footer">
             </a>
           </div>
         </div>
@@ -164,8 +191,9 @@
           </li>
           <li class="mt-one"><a href="#" class="footer-link"> Why Foodie</a></li>
           <li class="mt-one"><a href="./PartnerWithUs.html" class="footer-link"> Partner with us</a></li>
+          <li class="mt-one"><a href="./rideWithUs.html" class="footer-link" data-i18n="footer.rideWithUs"> Ride With Us</a></li>
           <li class="mt-one"><a href="./aboutUs.html" class="footer-link"> About us </a></li>
-          <li class="mt-one"><a href="./faq.html" class="footer-link"> FAQ's</a></li>
+          <li class="mt-one"><a href="./faq-page.html" class="footer-link"> FAQ's</a></li>
         </ul>
 
         <ul class="footer-wrapper">
@@ -182,9 +210,10 @@
     </div>
   </footer>
 
-  <a href="https://wa.me/911234567890" class="whatsapp-fab" target="_blank" rel="noopener noreferrer" aria-label="Chat on WhatsApp" title="Chat on WhatsApp">
+  <a href="https://wa.me/911234567890" class="whatsapp-fab" target="_blank" rel="noopener noreferrer"
+    aria-label="Chat on WhatsApp" title="Chat on WhatsApp">
     <i class="fa-brands fa-whatsapp"></i>
-    </a>
+  </a>
 
   <a href="#home" class="back-to-top" aria-label="Back to top">
     <i class="fa-solid fa-arrow-up"></i>

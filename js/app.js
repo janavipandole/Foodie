@@ -24,6 +24,14 @@ const bars = document.querySelector(".fa-bars");
 const backToTop = document.querySelector(".back-to-top");
 const themeToggles = document.querySelectorAll(".theme-toggle");
 
+// QR Code Modal elements
+const qrCodeWrapper = document.getElementById('qrCodeWrapper');
+const qrCodeModal = document.getElementById('qrCodeModal');
+const qrModalCloseBtn = document.querySelector('.qr-modal-close');
+const qrModalImgLarge = document.getElementById('qrModalImgLarge');
+const qrCodeImg = document.querySelector('.qr-code-img');
+
+
 // ===== CART OPEN/CLOSE =====
 cartIcon?.addEventListener("click", () => {
   cartTab.classList.add("cart-tab-active");
@@ -95,6 +103,37 @@ const initTheme = () => {
   updateThemeIcons(savedTheme);
 };
 initTheme();
+
+// ===== QR CODE MODAL LOGIC =====
+if (qrCodeWrapper && qrCodeModal && qrModalCloseBtn && qrModalImgLarge && qrCodeImg) {
+    qrCodeWrapper.addEventListener('click', () => {
+        qrModalImgLarge.src = qrCodeImg.src; // Set the large image source
+        qrCodeModal.style.display = 'flex'; // Show the modal
+        document.body.style.overflow = 'hidden'; // Prevent scrolling background
+    });
+
+    qrModalCloseBtn.addEventListener('click', () => {
+        qrCodeModal.style.display = 'none'; // Hide the modal
+        document.body.style.overflow = ''; // Restore scrolling
+    });
+
+    // Close modal if clicked outside content
+    qrCodeModal.addEventListener('click', (e) => {
+        if (e.target === qrCodeModal) {
+            qrCodeModal.style.display = 'none';
+            document.body.style.overflow = '';
+        }
+    });
+
+    // Close modal on Escape key
+    document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape' && qrCodeModal.style.display === 'flex') {
+            qrCodeModal.style.display = 'none';
+            document.body.style.overflow = '';
+        }
+    });
+}
+
 
 // ===== PRODUCTS & CART =====
 let productList = [];
@@ -502,36 +541,32 @@ let currentCuisineFilter = "all";
 let currentRatingFilter = "all";
 let favoritesOnly = false;
 
-selected?.addEventListener("click", () =>
-  priceSelector.classList.toggle("open")
-);
-options?.forEach((opt) => {
-  opt.addEventListener("click", (e) => {
-    currentPriceFilter = e.target.dataset.value;
-    selected.textContent = e.target.textContent + " ▾";
-    priceSelector.classList.remove("open");
-    applyFilters();
-  });
+selected?.addEventListener('click', () => priceSelector.classList.toggle('open'));
+options?.forEach(opt => {
+    opt.addEventListener('click', e => {
+        currentPriceFilter = e.target.dataset.value;
+        selected.textContent = e.target.textContent;
+        priceSelector.classList.remove('open');
+        applyFilters();
+    });
 });
 document.addEventListener("click", (e) => {
   if (!priceSelector.contains(e.target)) priceSelector.classList.remove("open");
 });
 
 // ===== CUISINE FILTER =====
-const cuisineSelector = document.getElementById("cuisineSelector");
-const cuisineSelected = cuisineSelector?.querySelector(".selected");
-const cuisineOptions = cuisineSelector?.querySelectorAll(".options li");
+const cuisineSelector = document.getElementById('cuisineSelector');
+const cuisineSelected = cuisineSelector?.querySelector('.selected');
+const cuisineOptions = cuisineSelector?.querySelectorAll('.options li');
 
-cuisineSelected?.addEventListener("click", () =>
-  cuisineSelector.classList.toggle("open")
-);
-cuisineOptions?.forEach((opt) => {
-  opt.addEventListener("click", (e) => {
-    currentCuisineFilter = e.target.dataset.value;
-    cuisineSelected.textContent = e.target.textContent + " ▾";
-    cuisineSelector.classList.remove("open");
-    applyFilters();
-  });
+cuisineSelected?.addEventListener('click', () => cuisineSelector.classList.toggle('open'));
+cuisineOptions?.forEach(opt => {
+    opt.addEventListener('click', e => {
+        currentCuisineFilter = e.target.dataset.value;
+        cuisineSelected.textContent = e.target.textContent;
+        cuisineSelector.classList.remove('open');
+        applyFilters();
+    });
 });
 document.addEventListener("click", (e) => {
   if (!cuisineSelector.contains(e.target))
@@ -539,20 +574,18 @@ document.addEventListener("click", (e) => {
 });
 
 // ===== RATING FILTER =====
-const ratingSelector = document.getElementById("ratingSelector");
-const ratingSelected = ratingSelector?.querySelector(".selected");
-const ratingOptions = ratingSelector?.querySelectorAll(".options li");
+const ratingSelector = document.getElementById('ratingSelector');
+const ratingSelected = ratingSelector?.querySelector('.selected');
+const ratingOptions = ratingSelector?.querySelectorAll('.options li');
 
-ratingSelected?.addEventListener("click", () =>
-  ratingSelector.classList.toggle("open")
-);
-ratingOptions?.forEach((opt) => {
-  opt.addEventListener("click", (e) => {
-    currentRatingFilter = e.target.dataset.value;
-    ratingSelected.textContent = e.target.textContent + " ▾";
-    ratingSelector.classList.remove("open");
-    applyFilters();
-  });
+ratingSelected?.addEventListener('click', () => ratingSelector.classList.toggle('open'));
+ratingOptions?.forEach(opt => {
+    opt.addEventListener('click', e => {
+        currentRatingFilter = e.target.dataset.value;
+        ratingSelected.textContent = e.target.textContent;
+        ratingSelector.classList.remove('open');
+        applyFilters();
+    });
 });
 document.addEventListener("click", (e) => {
   if (!ratingSelector.contains(e.target))
@@ -613,14 +646,14 @@ function applyFilters() {
 }
 
 // ===== MODAL =====
-const modal = document.getElementById("foodModal");
-const modalImage = document.getElementById("modalImage");
-const modalName = document.getElementById("modalName");
-const modalPrice = document.getElementById("modalPrice");
-const modalDescription = document.getElementById("modalDescription");
-const modalAddBtn = document.getElementById("addToCartBtn");
-const modalViewBtn = document.getElementById("viewCartBtn");
-const modalClose = document.querySelector("#foodModal .close");
+const modal = document.getElementById('foodModal');
+const modalImage = document.getElementById('modalImage');
+const modalName = document.getElementById('modalName');
+const modalPrice = document.getElementById('modalPrice');
+const modalDescription = document.getElementById('modalDescription');
+const modalAddBtn = document.getElementById('addToCartBtn');
+const modalViewBtn = document.getElementById('viewCartBtn');
+const modalClose = document.querySelector('#foodModal .modal-close'); // Corrected selector
 
 function openFoodModal(product) {
   modalImage.src = product.image;

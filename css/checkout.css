@@ -178,6 +178,47 @@
     font-size: 1rem;
 }
 
+/* Quantity controls in checkout */
+.quantity-controls {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    margin-top: 0.5rem;
+}
+
+.qty-btn {
+    background: var(--gold-finger);
+    color: var(--lead);
+    border: none;
+    width: 2rem;
+    height: 2rem;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    font-size: 0.9rem;
+}
+
+.qty-btn:hover {
+    background: var(--lead);
+    color: var(--pure-while);
+    transform: scale(1.15);
+}
+
+.qty-btn:active {
+    transform: scale(0.95);
+}
+
+.qty-display {
+    font-size: 1.2rem;
+    font-weight: 600;
+    color: var(--text-primary);
+    min-width: 1.5rem;
+    text-align: center;
+}
+
 .order-item-price {
     font-weight: 700;
     font-size: 1.3rem;
@@ -539,6 +580,17 @@
         rgba(0, 0, 0, 0.6) 12px 12px 24px inset;
 }
 
+/* Dark mode for quantity buttons */
+[data-theme="dark"] .qty-btn {
+    background: var(--gold-finger);
+    color: var(--bg-primary);
+}
+
+[data-theme="dark"] .qty-btn:hover {
+    background: var(--text-primary);
+    color: var(--bg-primary);
+}
+
 /* ===== LOADING STATE (OPTIONAL) ===== */
 .place-order-btn:disabled {
     background-color: var(--text-secondary);
@@ -554,4 +606,19 @@
 /* ===== SMOOTH TRANSITIONS ===== */
 * {
     transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease;
+}
+.order-summary {
+  animation: slideIn 0.8s ease forwards;
+  opacity: 0;
+}
+
+@keyframes slideIn {
+  from {
+    transform: translateY(20px);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
 }

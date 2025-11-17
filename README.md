@@ -87,6 +87,41 @@ Load the extension for local testing:
 
 <img src="https://github.com/Mayur-Pagote/README_Design_Kit/blob/730d340c8008758ac291ebc555f818f851feda0f/Assets/RGB%20Line%20Thick.gif" width="100%" />
 
+
+## 📊 Google Analytics Setup
+
+To enable Google Analytics tracking on your Foodie website, follow these steps 👇
+
+- 1️⃣ Get Your Measurement ID
+
+* Go to Google Analytics → Admin → Data Streams → Web
+* Copy your Measurement ID (looks like G-XXXXXXXXXX)
+
+- 2️⃣ Add Tracking Script
+
+Insert the following script inside the <head> section of your main HTML file (e.g., html/index.html):
+
+<!-- Google Analytics -->
+
+``` bash
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-XXXXXXXXXX');
+</script>
+```
+
+* NOTE:- 💡 Replace G-XXXXXXXXXX with your actual Measurement ID.
+
+- 3️⃣ Verify Tracking
+
+* Visit your website and interact with it
+* Open Google Analytics → Realtime → View Stream ID
+* You should see your visit appear within seconds 🎯
+
+
 ## 🚢 Deployment (GitHub Pages)
 
 This site’s entry file is at `html/index.html`. To use GitHub Pages:
@@ -95,6 +130,28 @@ This site’s entry file is at `html/index.html`. To use GitHub Pages:
 - Option C: Use Pages “/docs” and move `html` → `docs`.
 
 <img src="https://github.com/Mayur-Pagote/README_Design_Kit/blob/730d340c8008758ac291ebc555f818f851feda0f/Assets/RGB%20Line%20Thick.gif" width="100%" />
+
+
+## 🧪 Command for Running Tests
+
+This project uses [Jest](https://jestjs.io/) for unit testing JavaScript modules.
+
+To run all tests:
+
+```bash
+npm test
+```
+
+To see detailed output for each test (test names and results), run:
+
+```bash
+npm test -- --verbose
+```
+
+This will show the name and result of every test, making it easier to debug and understand the test coverage.
+
+Test files are located in the `tests/` directory. You can add more tests for other modules as needed.
+
 
 ## 🤝 Contributing
 
@@ -205,6 +262,3 @@ If you found this helpful:
 
 > “Good food brings people together — so does open source.” 🍕💻
 <img src="https://capsule-render.vercel.app/api?type=waving&color=gradient&height=100&section=footer" width="100%"/>
-
-
-

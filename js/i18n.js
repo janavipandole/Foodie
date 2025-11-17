@@ -3,7 +3,8 @@ class I18n {
     constructor() {
         this.currentLang = localStorage.getItem('foodie:lang') || 'en';
         this.translations = {};
-        this.init();
+        // Defer initial application of translations until DOM is ready
+        document.addEventListener('DOMContentLoaded', () => this.init());
     }
 
     async init() {
@@ -50,40 +51,43 @@ class I18n {
     }
 
     applyTranslations() {
-        // Translate elements with data-i18n attribute
-        document.querySelectorAll('[data-i18n]').forEach(element => {
-            const key = element.getAttribute('data-i18n');
-            const translation = this.t(key);
+    // Translate normal text nodes
+    document.querySelectorAll('[data-i18n]').forEach(element => {
+        const key = element.getAttribute('data-i18n');
+        const translation = this.t(key);
 
-            if (element.tagName === 'INPUT' && element.hasAttribute('placeholder')) {
-                element.placeholder = translation;
-            } else if (element.tagName === 'IMG' && element.hasAttribute('alt')) {
-                element.alt = translation;
-            } else {
-                element.textContent = translation;
-            }
-        });
+        if (element.tagName === 'IMG') {
+            element.alt = translation;
+        } else {
+            element.textContent = translation;
+        }
+    });
 
-        // Translate elements with data-i18n-title attribute
-        document.querySelectorAll('[data-i18n-title]').forEach(element => {
-            const key = element.getAttribute('data-i18n-title');
-            element.title = this.t(key);
-        });
+    // Translate placeholder text
+    document.querySelectorAll('[data-i18n-placeholder]').forEach(element => {
+        const key = element.getAttribute('data-i18n-placeholder');
+        element.placeholder = this.t(key);
+    });
 
-        // Translate elements with data-i18n-aria-label attribute
-        document.querySelectorAll('[data-i18n-aria-label]').forEach(element => {
-            const key = element.getAttribute('data-i18n-aria-label');
-            element.setAttribute('aria-label', this.t(key));
-        });
+    // Translate title attributes
+    document.querySelectorAll('[data-i18n-title]').forEach(element => {
+        const key = element.getAttribute('data-i18n-title');
+        element.title = this.t(key);
+    });
 
-        // Update document language attribute
-        document.documentElement.lang = this.currentLang;
+    // Translate aria-label
+    document.querySelectorAll('[data-i18n-aria-label]').forEach(element => {
+        const key = element.getAttribute('data-i18n-aria-label');
+        element.setAttribute('aria-label', this.t(key));
+    });
 
-        // Dispatch custom event for other scripts to react to language change
-        window.dispatchEvent(new CustomEvent('languageChanged', {
-            detail: { language: this.currentLang, translations: this.translations }
-        }));
-    }
+    // Update HTML lang attribute
+    document.documentElement.lang = this.currentLang;
+
+    window.dispatchEvent(new CustomEvent('languageChanged', {
+        detail: { language: this.currentLang, translations: this.translations }
+    }));
+}
 
     createLanguageSelector() {
         const select = document.querySelector('#language-select');
