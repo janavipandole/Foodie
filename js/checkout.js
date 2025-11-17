@@ -1,6 +1,13 @@
 (function () {
   'use strict';
 
+  /**
+   * fetchWithRetry inside checkout scope. Supports timeout and simple exponential backoff.
+   * options: { timeout (ms), signal, headers }
+   */
+  // Use shared fetchWithRetry from js/fetch-utils.js. Ensure this script is loaded before checkout.js in HTML.
+  const fetchWithRetry = window.fetchWithRetry;
+
   function debounce(fn, wait) {
     let t;
     return function (...args) {
@@ -169,8 +176,9 @@
         // Show loading state
         setError('Validating pincode...');
 
-        const res = await fetch(`https://api.postalpincode.in/pincode/${pin}`);
-        if (!res.ok) throw new Error(`HTTP ${res.status}: ${res.statusText}`);
+        // Use fetchWithRetry so transient network errors/timeouts are retried
+        const res = await fetchWithRetry(`https://api.postalpincode.in/pincode/${pin}`, {timeout: 8000}, 2, 400);
+        
         const data = await res.json();
         if (!Array.isArray(data) || !data[0] || data[0].Status !== 'Success') { setError('Pincode not found'); return; }
         const postOffices = data[0].PostOffice || [];
