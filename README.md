@@ -1,30 +1,4 @@
 ![Logo](https://raw.githubusercontent.com/janavipandole/Foodie/main/imgs/logo%20WOSC.svg)
-
-## 📑 Table of Contents
-
-- [Top](#top)
-- [Overview](#🧁-overview)
-- [Tech Stack](#🧰-tech-stack)
-- [Key Features](#✨-key-features)
-- [Getting Started](#🚀-getting-started)
-  - [Clone the Repository](#1️⃣-clone-the-repository)
-  - [Navigate into the Project Folder](#2️⃣-navigate-into-the-project-folder)
-  - [Open in Your Browser](#3️⃣-open-in-your-browser)
-- [Chrome Extension](#🧩-chrome-extension)
-- [Google Analytics Setup](#📊-google-analytics-setup)
-- [Deployment (GitHub Pages)](#🚢-deployment-github-pages)
-- [Command for Running Tests](#🧪-command-for-running-tests)
-- [Contributing](#🤝-contributing)
-  - [Steps to Contribute](#🪜-steps-to-contribute)
-- [Winter Of Code Social 2025](#❄️-winter-of-code-social-2025)
-- [Hacktoberfest 2025](#🌱-hacktoberfest-2025)
-- [License](#📜-license)
-- [Connect with the Maintainer](#💬-connect-with-the-maintainer)
-- [Contributors](#contributors)
-- [Stargazers](#stargazers)
-- [Forkers](#forkers)
-- [Support the Project](#🌟-support-the-project)
-
 # 🎃 Hacktoberfest 2025
 
 ### 🍽️ **Foodie — Responsive Food Delivery Website**
