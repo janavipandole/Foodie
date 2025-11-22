@@ -240,6 +240,15 @@
       "subtitle": "Join thousands of satisfied customers and enjoy delicious food delivered to your doorstep",
       "signUp": "Sign Up Now",
       "browseMenu": "Browse Menu"
+    },
+    "topRatedRestaurants": {
+      "title": "Top Rated Restaurants Near You",
+      "subtitle": "Discover the best dining options in your area, powered by Google Reviews",
+      "loading": "Finding nearby restaurants...",
+      "error": "Unable to get your location. Please enable geolocation.",
+      "retry": "Retry",
+      "mapView": "Map",
+      "listView": "List"
     }
   }
 }

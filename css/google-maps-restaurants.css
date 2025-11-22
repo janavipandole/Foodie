@@ -1,0 +1,352 @@
+/* Google Maps Restaurants Page Styles */
+
+.hero-section {
+  background: linear-gradient(135deg, var(--gold-finger) 0%, var(--gold-hover) 100%);
+  padding: 4rem 2rem;
+  text-align: center;
+  color: #fff;
+  margin-bottom: 3rem;
+}
+
+.hero-section h1 {
+  font-size: 2.5rem;
+  font-weight: 700;
+  margin-bottom: 1rem;
+}
+
+.hero-section p {
+  font-size: 1.1rem;
+  max-width: 600px;
+  margin: 0 auto;
+  opacity: 0.95;
+}
+
+/* Restaurants Section */
+.restaurants-section {
+  min-height: 60vh;
+  padding: 2rem 0;
+}
+
+/* Loading State */
+.loading-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 400px;
+  gap: 2rem;
+}
+
+.spinner {
+  border: 4px solid var(--border-color);
+  border-top: 4px solid var(--gold-finger);
+  border-radius: 50%;
+  width: 50px;
+  height: 50px;
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+.loading-container p {
+  font-size: 1.1rem;
+  color: var(--text-secondary);
+}
+
+/* Error State */
+.error-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 400px;
+  gap: 2rem;
+  padding: 2rem;
+  text-align: center;
+  background-color: var(--bg-secondary);
+  border-radius: 12px;
+  border: 2px solid var(--border-color);
+}
+
+.error-container i {
+  font-size: 3rem;
+  color: var(--error);
+}
+
+#errorMessage {
+  font-size: 1rem;
+  color: var(--text-secondary);
+  max-width: 400px;
+}
+
+#retryBtn {
+  padding: 0.75rem 2rem;
+  font-size: 1rem;
+}
+
+/* View Toggle */
+.view-toggle {
+  display: flex;
+  gap: 1rem;
+  margin-bottom: 2rem;
+  justify-content: center;
+}
+
+.view-btn {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.75rem 1.5rem;
+  background-color: var(--bg-secondary);
+  border: 2px solid var(--border-color);
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 1rem;
+  font-weight: 600;
+  color: var(--text-primary);
+  transition: all 0.3s ease;
+}
+
+.view-btn:hover {
+  border-color: var(--gold-finger);
+  color: var(--gold-finger);
+}
+
+.view-btn.active {
+  background-color: var(--gold-finger);
+  border-color: var(--gold-finger);
+  color: #fff;
+}
+
+/* Map Container */
+.map-container {
+  width: 100%;
+  height: 500px;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 4px 12px var(--shadow);
+  margin-bottom: 2rem;
+  display: none;
+}
+
+.map-container.active-view {
+  display: block;
+}
+
+/* Restaurants List */
+.restaurants-list {
+  display: none;
+  gap: 1.5rem;
+}
+
+.restaurants-list.active-view {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+}
+
+#restaurantsList {
+  display: inherit;
+  gap: inherit;
+  grid-template-columns: inherit;
+}
+
+/* Restaurant Card */
+.restaurant-card {
+  background-color: var(--bg-secondary);
+  border: 1px solid var(--border-color);
+  border-radius: 12px;
+  overflow: hidden;
+  transition: all 0.3s ease;
+  box-shadow: 0 2px 8px var(--shadow);
+  cursor: pointer;
+}
+
+.restaurant-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 8px 16px var(--shadow-strong);
+  border-color: var(--gold-finger);
+}
+
+.restaurant-header {
+  padding: 1.5rem;
+  border-bottom: 1px solid var(--border-color);
+}
+
+.restaurant-name {
+  font-size: 1.3rem;
+  font-weight: 700;
+  margin-bottom: 0.5rem;
+  color: var(--text-primary);
+}
+
+.restaurant-address {
+  font-size: 0.9rem;
+  color: var(--text-secondary);
+  margin-bottom: 1rem;
+}
+
+.restaurant-rating {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.rating-stars {
+  color: var(--gold-finger);
+  font-size: 1rem;
+}
+
+.rating-value {
+  font-weight: 600;
+  color: var(--text-primary);
+  font-size: 1rem;
+}
+
+.rating-count {
+  color: var(--text-secondary);
+  font-size: 0.85rem;
+}
+
+.restaurant-body {
+  padding: 1rem 1.5rem;
+}
+
+.restaurant-details {
+  display: grid;
+  gap: 0.75rem;
+}
+
+.detail-item {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  font-size: 0.95rem;
+  color: var(--text-secondary);
+}
+
+.detail-item i {
+  color: var(--gold-finger);
+  width: 16px;
+}
+
+.detail-label {
+  font-weight: 600;
+  color: var(--text-primary);
+}
+
+/* Empty State */
+.empty-state {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 400px;
+  gap: 1.5rem;
+  padding: 2rem;
+  text-align: center;
+}
+
+.empty-state i {
+  font-size: 3rem;
+  color: var(--text-secondary);
+}
+
+.empty-state p {
+  font-size: 1.1rem;
+  color: var(--text-secondary);
+  max-width: 400px;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .hero-section h1 {
+    font-size: 1.8rem;
+  }
+
+  .hero-section p {
+    font-size: 1rem;
+  }
+
+  .map-container {
+    height: 300px;
+  }
+
+  .restaurants-list.active-view {
+    grid-template-columns: 1fr;
+  }
+
+  .view-toggle {
+    flex-direction: column;
+  }
+
+  .view-btn {
+    width: 100%;
+    justify-content: center;
+  }
+
+  .restaurant-card {
+    margin-bottom: 1rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .hero-section {
+    padding: 2rem 1rem;
+  }
+
+  .hero-section h1 {
+    font-size: 1.5rem;
+  }
+
+  .hero-section p {
+    font-size: 0.95rem;
+  }
+
+  .map-container {
+    height: 250px;
+  }
+
+  .restaurant-header {
+    padding: 1rem;
+  }
+
+  .restaurant-body {
+    padding: 0.75rem 1rem;
+  }
+
+  .restaurant-name {
+    font-size: 1.1rem;
+  }
+
+  .restaurant-address {
+    font-size: 0.85rem;
+  }
+}
+
+/* Dark theme enhancements */
+[data-theme="dark"] .restaurant-card {
+  background-color: var(--bg-secondary);
+  border-color: var(--border-color);
+}
+
+[data-theme="dark"] .restaurant-card:hover {
+  border-color: var(--gold-finger);
+}
+
+[data-theme="dark"] .view-btn {
+  background-color: var(--bg-secondary);
+  border-color: var(--border-color);
+}
+
+[data-theme="dark"] .view-btn:hover {
+  border-color: var(--gold-finger);
+  color: var(--gold-finger);
+}
+
+[data-theme="dark"] .error-container {
+  background-color: var(--bg-secondary);
+  border-color: var(--border-color);
+}
