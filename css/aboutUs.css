@@ -149,41 +149,98 @@ p {
    STORY SECTION
    =========================== */
 .story-section {
-    max-width: 1400px;
-    margin: var(--space-2xl) auto;
-    padding: 0 var(--space-lg);
-    container-type: inline-size;
+   background: var(--bg-accent);
+  padding: 100px 20px;
+  display: flex;
+  justify-content: center;
 }
 
-.story-container {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(min(100%, 600px), 1fr));
-    gap: var(--space-xl);
-    align-items: center;
+.story-wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+  max-width: 1200px;
+  gap: 60px;
 }
 
-.story-content p {
-    margin-bottom: var(--space-md);
+.story-image img {
+  width: 420px;
+  border-radius: 25px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+  transition: transform 0.5s ease;
 }
 
-.story-image {
-    background: var(--bg-accent);
-    border-radius: var(--radius-md);
-    padding: var(--space-xl);
-    border: 2px solid var(--border-color);
-    box-shadow: var(--shadow-strong) 8px 8px 8px, var(--shadow-strong) 8px 8px 8px inset;
-    transition: all var(--transition-slow);
+.story-image img:hover {
+  transform: scale(1.05);
 }
 
-.story-image:hover {
-    transform: scale(1.02);
+.story-text {
+  max-width: 600px;
+  color: #333;
 }
 
-.image-placeholder {
-    font-size: 120px;
+.story-title {
+  font-size: 2.5rem;
+  font-weight: 700;
+  color: #ebb756;
+  margin-bottom: 20px;
+  position: relative;
+}
+
+.story-title::after {
+  content: "";
+  position: absolute;
+  bottom: -8px;
+  left: 0;
+  width: 60px;
+  height: 4px;
+  background: #ffa502;
+  border-radius: 2px;
+}
+
+.story-intro {
+  font-size: 1.1rem;
+  line-height: 1.8;
+  margin-bottom: 15px;
+}
+
+.story-text p {
+  font-size: 1.05rem;
+  line-height: 1.7;
+  margin-bottom: 15px;
+}
+
+.story-highlight {
+  font-weight: 600;
+  color:  #ffa502;
+  font-size: 1.1rem;
+}
+
+.brand {
+  color:  #ffa502;
+  font-weight: 700;
+}
+
+.highlight-text {
+  color: #ffa502;
+}
+
+@media (max-width: 768px) {
+  .story-wrapper {
+    flex-direction: column;
     text-align: center;
-    cursor: default;
+  }
+  .story-title::after {
+    left: 50%;
+    transform: translateX(-50%);
+  }
+  .story-image img {
+    width: 100%;
+    max-width: 360px;
+  }
 }
+
 
 /* ===========================
    MISSION SECTION

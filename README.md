@@ -41,6 +41,48 @@ Designed for performance, accessibility, and user delight — it offers an effor
 
 <img src="https://github.com/Mayur-Pagote/README_Design_Kit/blob/730d340c8008758ac291ebc555f818f851feda0f/Assets/RGB%20Line%20Thick.gif" width="100%" />
 
+## 📁 Folder Structure — 
+
+```text
+Foodie/
+├── html/                      # Main HTML files (entry points)
+│   ├── index.html
+│   └── other-pages.html
+│
+├── css/                       # Styles
+│   ├── base/
+│   ├── components/
+│   └── layouts/
+│
+├── js/                        # JavaScript code
+│   ├── components/
+│   ├── services/             # API / external data calls (if any)
+│   └── utils/
+│
+├── imgs/                      # Images / icons / assets
+│   ├── food/
+│   └── ui/
+│
+├── locales/                   # Translations / i18n (if used)
+│   └── en.json
+│
+├── docs/                      # Documentation folder
+│   └── architecture.md
+│
+├── tests/                     # Tests (if added later)
+│   ├── unit/
+│   └── integration/
+│
+├── .vscode/                   # Editor configs
+├── .gitignore
+├── README.md
+├── TODO.md
+├── products.json              # Data file (already present)
+└── LICENSE
+```
+
+<img src="https://github.com/Mayur-Pagote/README_Design_Kit/blob/730d340c8008758ac291ebc555f818f851feda0f/Assets/RGB%20Line%20Thick.gif" width="100%" />
+
 ## 🚀 Getting Started
 
 Follow these steps to run **Foodie** locally on your system 👇

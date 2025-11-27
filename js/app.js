@@ -505,7 +505,7 @@ selected?.addEventListener('click', () => priceSelector.classList.toggle('open')
 options?.forEach(opt => {
     opt.addEventListener('click', e => {
         currentPriceFilter = e.target.dataset.value;
-        selected.textContent = e.target.textContent + ' ▾';
+        selected.textContent = e.target.textContent;
         priceSelector.classList.remove('open');
         applyFilters();
     });
@@ -523,7 +523,7 @@ cuisineSelected?.addEventListener('click', () => cuisineSelector.classList.toggl
 cuisineOptions?.forEach(opt => {
     opt.addEventListener('click', e => {
         currentCuisineFilter = e.target.dataset.value;
-        cuisineSelected.textContent = e.target.textContent + ' ▾';
+        cuisineSelected.textContent = e.target.textContent;
         cuisineSelector.classList.remove('open');
         applyFilters();
     });
@@ -541,7 +541,7 @@ ratingSelected?.addEventListener('click', () => ratingSelector.classList.toggle(
 ratingOptions?.forEach(opt => {
     opt.addEventListener('click', e => {
         currentRatingFilter = e.target.dataset.value;
-        ratingSelected.textContent = e.target.textContent + ' ▾';
+        ratingSelected.textContent = e.target.textContent;
         ratingSelector.classList.remove('open');
         applyFilters();
     });

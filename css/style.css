@@ -246,7 +246,7 @@
     .navbar li a:hover,
     .navbar li a.active {
         color: var(--gold-finger);
-        border-bottom: 1px solid var(--gold-finger);
+        /* border-bottom: 1px solid var(--gold-finger); */
     }
 
     .navList a:hover::after {
@@ -265,11 +265,33 @@
     }
 
     .logo {
-        font-size: 2rem;
-        font-weight: bold;
-        color: var(--gold-finger);
-        transition: color 0.3s ease;
-        margin: 0;
+      font-weight: 800;
+      font-size: 2rem;
+      letter-spacing: 1px;
+      text-transform: capitalize;
+      text-decoration: none;
+      background: linear-gradient(90deg, #ffb703, #fb5607, #ff006e, #8338ec, #3a86ff);
+      background-size: 400% 400%;
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      animation: foodieFlow 6s ease-in-out infinite;
+      transition: transform 0.4s ease, text-shadow 0.4s ease;
+      display: inline-block;
+      cursor: pointer;
+    }
+
+    .logo:hover {
+      transform: scale(1.08) rotate(-2deg);
+      text-shadow: 0 0 12px rgba(255, 183, 3, 0.6),
+                   0 0 20px rgba(255, 0, 110, 0.5),
+                   0 0 30px rgba(58, 134, 255, 0.4);
+    }
+
+    /* Flowing gradient animation */
+    @keyframes foodieFlow {
+      0% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+      100% { background-position: 0% 50%; }
     }
 
 .btn {
@@ -871,6 +893,38 @@
         color: var(--text-primary);
     }
 
+    /* Social media wrapper */
+    .social-wrapper {
+        display: flex;
+        align-items: center;
+        gap: 18px;
+        margin-top: 18px;
+    }
+
+    .social-media {
+        width: 42px;
+        height: 42px;
+        padding: 8px;
+        border-radius: 18px;
+        background: rgba(255, 255, 255, 0.45);
+        backdrop-filter: blur(6px);
+        border: 1px solid rgba(255, 255, 255, 0.25);
+
+        display: flex;
+        justify-content: center;
+        align-items: center;
+
+        transition: transform 0.6s ease, 
+                    box-shadow 0.6s ease, 
+                    background 0.4s ease;
+    }
+
+    .social-media:hover {
+        transform: rotate(360deg) scale(1.2);
+        background: #ffffff;
+        box-shadow: 0 6px 18px rgba(0, 0, 0, 0.18);
+    }
+
     .back-to-top {
         position: fixed;
         right: 1.5rem;
@@ -965,6 +1019,15 @@
 
         .desktop-action .hamberger {
             display: block;
+        }
+
+        /* remove search Input from navbar */
+        .desktop-action .navbar-search{
+            display: none;
+        }
+        /* remove theme toggle btn */
+        .desktop-action .theme-toggle{
+            display: none;
         }
 
         .mobile-menu {

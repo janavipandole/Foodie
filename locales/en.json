@@ -37,7 +37,13 @@
   },
   "reviews": {
     "sectionTitle": "Our reviews",
-    "mainTitle": "what they say"
+    "mainTitle": "what they say",
+    "deepakName": "Deepak Kumar",
+    "deepakReview": "Foodie is the best! Besides the many delicious meals, the service is excellent—especially the fast delivery. I highly recommend Foodie to you.",
+    "priyaName": "Priya Roy",
+    "priyaReview": "Fresh ingredients, a creative menu, and warm service make this spot a hidden gem. Perfect from casual dinners or special nights out. Truly a foodie's paradise!",
+    "anjaliName": "Anjali Joshi",
+    "anjaliReview": "Had an amazing time here! The food was bursting with flavor, the ambiance was warm and inviting, and the staff made us feel truly welcome. Every dish was a delight—definitely a spot I’ll be coming back to."
   },
   "app": {
     "sectionTitle": "Our Application",
@@ -45,6 +51,19 @@
     "description": "Crave it. Find it. Get it fast wherever, whenever.",
     "installButton": "Install the app"
   },
+  "qr": {
+  "scan": "Scan to Download",
+  "quickAccess": "Quick access to our mobile app",
+  "instruction": "Point your camera at the QR code",
+  "orDownload": "Or download from:",
+  "appStoreSmall": "Download on the",
+  "appStoreLarge": "App Store",
+  "googlePlaySmall": "Get it on",
+  "googlePlayLarge": "Google Play",
+  "users": "Active Users",
+  "rating": "App Rating",
+  "downloads": "Downloads"
+},
   "newsletter": {
     "sectionTitle": "Our Subscribe",
     "mainTitle": "Subscribe to Our newsletter",

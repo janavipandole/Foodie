@@ -35,16 +35,36 @@
   // Option selection
   optionItems.forEach(function(option) {
     option.addEventListener('click', function() {
+      const lang = option.dataset.value;
+      if (window.i18n && lang) {
+        window.i18n.changeLanguage(lang);
+      }
       selected.textContent = option.textContent;
       optionItems.forEach(o => o.setAttribute('aria-selected', 'false'));
       option.setAttribute('aria-selected', 'true');
       customSelect.classList.remove('open');
       selected.setAttribute('aria-expanded', 'false');
-      // Switch language using i18n
-      const lang = option.getAttribute('data-value');
-      if (window.i18n) {
-        window.i18n.changeLanguage(lang);
-      }
     });
   });
+
+  // Update selected text on language change (from i18n.js)
+  window.addEventListener('languageChanged', (event) => {
+    const newLang = event.detail.language;
+    const currentOption = customSelect.querySelector(`li[data-value="${newLang}"]`);
+    if (currentOption) {
+      selected.textContent = currentOption.textContent;
+      optionItems.forEach(o => o.setAttribute('aria-selected', 'false'));
+      currentOption.setAttribute('aria-selected', 'true');
+    }
+  });
+
+  // Initial setup of selected text based on current language
+  if (window.i18n) {
+    const initialLang = window.i18n.currentLang;
+    const initialOption = customSelect.querySelector(`li[data-value="${initialLang}"]`);
+    if (initialOption) {
+      selected.textContent = initialOption.textContent;
+      initialOption.setAttribute('aria-selected', 'true');
+    }
+  }
 })();

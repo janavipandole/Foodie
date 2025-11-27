@@ -3,12 +3,13 @@
 
   // ===== DARK MODE FUNCTIONALITY =====
   const themeToggleBtns = document.querySelectorAll('.theme-toggle');
-  const body = document.body;
   const navbar = document.querySelector('header');
 
   // Check for saved theme preference or default to 'light'
   const currentTheme = localStorage.getItem('theme') || 'light';
-  document.documentElement.setAttribute('data-theme', currentTheme);
+  if (currentTheme === 'dark') {
+    document.documentElement.setAttribute('data-theme', 'dark');
+  }
 
   // Update icon on page load
   updateThemeIcon(currentTheme);
@@ -19,7 +20,12 @@
       const currentTheme = document.documentElement.getAttribute('data-theme');
       const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
       
-      document.documentElement.setAttribute('data-theme', newTheme);
+      if (newTheme === 'dark') {
+        document.documentElement.setAttribute('data-theme', 'dark');
+      } else {
+        document.documentElement.removeAttribute('data-theme');
+      }
+      
       localStorage.setItem('theme', newTheme);
       updateThemeIcon(newTheme);
     });
@@ -28,22 +34,26 @@
   function updateThemeIcon(theme) {
     themeToggleBtns.forEach(btn => {
       const icon = btn.querySelector('i');
-      if (theme === 'dark') {
-        icon.classList.remove('fa-moon');
-        icon.classList.add('fa-sun');
-      } else {
-        icon.classList.remove('fa-sun');
-        icon.classList.add('fa-moon');
+      if (icon) {
+        if (theme === 'dark') {
+          icon.classList.remove('fa-moon');
+          icon.classList.add('fa-sun');
+        } else {
+          icon.classList.remove('fa-sun');
+          icon.classList.add('fa-moon');
+        }
       }
     });
   }
 
   // ===== NAVBAR SCROLL EFFECT =====
   window.addEventListener('scroll', () => {
-    if (window.scrollY > 50) {
-      navbar.classList.add('scrolled');
-    } else {
-      navbar.classList.remove('scrolled');
+    if (navbar) {
+      if (window.scrollY > 50) {
+        navbar.classList.add('scrolled');
+      } else {
+        navbar.classList.remove('scrolled');
+      }
     }
   });
 
@@ -65,31 +75,33 @@
     const optionsList = customSelect.querySelector('.options');
     const options = customSelect.querySelectorAll('.options li');
 
-    selected.addEventListener('click', () => {
-      customSelect.classList.toggle('open');
-      const isOpen = customSelect.classList.contains('open');
-      selected.setAttribute('aria-expanded', isOpen);
-    });
-
-    options.forEach(option => {
-      option.addEventListener('click', () => {
-        selected.textContent = option.textContent;
-        customSelect.classList.remove('open');
-        selected.setAttribute('aria-expanded', 'false');
-        
-        // Update all options' aria-selected
-        options.forEach(opt => opt.setAttribute('aria-selected', 'false'));
-        option.setAttribute('aria-selected', 'true');
+    if (selected && options.length > 0) {
+      selected.addEventListener('click', () => {
+        customSelect.classList.toggle('open');
+        const isOpen = customSelect.classList.contains('open');
+        selected.setAttribute('aria-expanded', isOpen);
       });
-    });
 
-    // Close dropdown when clicking outside
-    document.addEventListener('click', (e) => {
-      if (!customSelect.contains(e.target)) {
-        customSelect.classList.remove('open');
-        selected.setAttribute('aria-expanded', 'false');
-      }
-    });
+      options.forEach(option => {
+        option.addEventListener('click', () => {
+          selected.textContent = option.textContent;
+          customSelect.classList.remove('open');
+          selected.setAttribute('aria-expanded', 'false');
+          
+          // Update all options' aria-selected
+          options.forEach(opt => opt.setAttribute('aria-selected', 'false'));
+          option.setAttribute('aria-selected', 'true');
+        });
+      });
+
+      // Close dropdown when clicking outside
+      document.addEventListener('click', (e) => {
+        if (!customSelect.contains(e.target)) {
+          customSelect.classList.remove('open');
+          selected.setAttribute('aria-expanded', 'false');
+        }
+      });
+    }
   }
 
   // ===== BACK TO TOP BUTTON =====
@@ -320,10 +332,12 @@
       if (pin.length === 6) lookupPin(pin);
     });
 
-    cityInput?.addEventListener('input', () => {
-      const pin = zipInput.value.trim();
-      if (pin.length === 6) lookupPin(pin);
-    });
+    if (cityInput) {
+      cityInput.addEventListener('input', () => {
+        const pin = zipInput.value.trim();
+        if (pin.length === 6) lookupPin(pin);
+      });
+    }
   }
 
   // ===== CART MANAGEMENT =====
@@ -366,13 +380,15 @@
     const emptyCartMessage = document.getElementById("emptyCartMessage");
     const checkoutContent = document.getElementById("checkoutContent");
 
+    if (!container) return;
+
     if (cartData.length === 0) {
-      emptyCartMessage.style.display = "block";
-      checkoutContent.style.display = "none";
+      if (emptyCartMessage) emptyCartMessage.style.display = "block";
+      if (checkoutContent) checkoutContent.style.display = "none";
       return;
     } else {
-      emptyCartMessage.style.display = "none";
-      checkoutContent.style.display = "grid";
+      if (emptyCartMessage) emptyCartMessage.style.display = "none";
+      if (checkoutContent) checkoutContent.style.display = "grid";
     }
 
     container.innerHTML = cartData
@@ -405,6 +421,12 @@
   }
 
   function calculateTotals() {
+    const subtotalEl = document.getElementById("subtotal");
+    const taxEl = document.getElementById("tax");
+    const finalTotalEl = document.getElementById("finalTotal");
+
+    if (!subtotalEl || !taxEl || !finalTotalEl) return;
+
     const subtotal = cartData.reduce((sum, item) => {
       const qty = item && item.quantity ? item.quantity : 1;
       const priceRaw = item && item.price ? item.price.toString() : '0';
@@ -414,9 +436,9 @@
     const tax = subtotal * taxRate;
     const total = subtotal + deliveryFee + tax;
 
-    document.getElementById("subtotal").textContent = `₹${subtotal.toFixed(2)}`;
-    document.getElementById("tax").textContent = `₹${tax.toFixed(2)}`;
-    document.getElementById("finalTotal").textContent = `₹${total.toFixed(2)}`;
+    subtotalEl.textContent = `₹${subtotal.toFixed(2)}`;
+    taxEl.textContent = `₹${tax.toFixed(2)}`;
+    finalTotalEl.textContent = `₹${total.toFixed(2)}`;
   }
 
   function updateItemUI(item) {
@@ -447,24 +469,30 @@
   }
 
   function setupEventListeners() {
-    document.querySelectorAll(".payment-method").forEach((method) => {
-      method.addEventListener("click", () => {
-        document.querySelectorAll(".payment-method").forEach((m) => m.classList.remove("active"));
-        method.classList.add("active");
-        selectedPayment = method.dataset.method;
+    const paymentMethods = document.querySelectorAll(".payment-method");
+    if (paymentMethods.length > 0) {
+      paymentMethods.forEach((method) => {
+        method.addEventListener("click", () => {
+          paymentMethods.forEach((m) => m.classList.remove("active"));
+          method.classList.add("active");
+          selectedPayment = method.dataset.method;
+        });
       });
-    });
+    }
 
-    document.getElementById("placeOrderBtn").addEventListener("click", (e) => {
-      e.preventDefault();
-      if (validateForm()) {
-        if (selectedPayment !== "card") {
-          alert("Currently only Card payment is integrated.");
-          return;
+    const placeOrderBtn = document.getElementById("placeOrderBtn");
+    if (placeOrderBtn) {
+      placeOrderBtn.addEventListener("click", (e) => {
+        e.preventDefault();
+        if (validateForm()) {
+          if (selectedPayment !== "card") {
+            alert("Currently only Card payment is integrated.");
+            return;
+          }
+          placeOrderRazorpay();
         }
-        placeOrderRazorpay();
-      }
-    });
+      });
+    }
 
     const orderItemsContainer = document.getElementById('orderItems');
     if (orderItemsContainer) {
@@ -485,50 +513,66 @@
 
   function validateForm() {
     const form = document.getElementById("checkoutForm");
+    if (!form) return true;
+
     const inputs = form.querySelectorAll("input[required], textarea[required]");
     let isValid = true;
 
     inputs.forEach((input) => {
       const formGroup = input.closest(".form-group");
       if (!input.value.trim()) {
-        formGroup.classList.add("error");
+        if (formGroup) formGroup.classList.add("error");
         isValid = false;
       } else {
-        formGroup.classList.remove("error");
+        if (formGroup) formGroup.classList.remove("error");
       }
     });
 
     const email = document.getElementById("email");
-    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-    if (email.value && !emailRegex.test(email.value)) {
-      email.closest(".form-group").classList.add("error");
-      isValid = false;
+    if (email) {
+      const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+      if (email.value && !emailRegex.test(email.value)) {
+        const formGroup = email.closest(".form-group");
+        if (formGroup) formGroup.classList.add("error");
+        isValid = false;
+      }
     }
 
     const phone = document.getElementById("phone");
-    let phoneValue = phone.value.trim();
-    if (/^[0-9]{10}$/.test(phoneValue)) {
-      phoneValue = "+91 " + phoneValue;
-      phone.value = phoneValue;
-    }
-    const phoneRegex = /^\+91\s?[0-9]{10}$/;
+    if (phone) {
+      let phoneValue = phone.value.trim();
+      if (/^[0-9]{10}$/.test(phoneValue)) {
+        phoneValue = "+91 " + phoneValue;
+        phone.value = phoneValue;
+      }
+      const phoneRegex = /^\+91\s?[0-9]{10}$/;
 
-    if (!phoneRegex.test(phone.value)) {
-      phone.closest(".form-group").classList.add("error");
-      phone.nextElementSibling.textContent = "Enter valid Indian number";
-      isValid = false;
-    } else {
-      phone.closest(".form-group").classList.remove("error");
-      phone.nextElementSibling.textContent = "Please enter a valid phone number";
+      if (!phoneRegex.test(phone.value)) {
+        const formGroup = phone.closest(".form-group");
+        if (formGroup) formGroup.classList.add("error");
+        const errorMsg = phone.nextElementSibling;
+        if (errorMsg) errorMsg.textContent = "Enter valid Indian number";
+        isValid = false;
+      } else {
+        const formGroup = phone.closest(".form-group");
+        if (formGroup) formGroup.classList.remove("error");
+        const errorMsg = phone.nextElementSibling;
+        if (errorMsg) errorMsg.textContent = "Please enter a valid phone number";
+      }
     }
 
     return isValid;
   }
 
   function placeOrderRazorpay() {
-    const totalAmount = parseFloat(document.getElementById("finalTotal").textContent.replace(/[₹$]/g, "")) * 100;
+    const finalTotalEl = document.getElementById("finalTotal");
+    const orderIdEl = document.getElementById("orderId");
+    
+    if (!finalTotalEl || !orderIdEl) return;
+
+    const totalAmount = parseFloat(finalTotalEl.textContent.replace(/[₹$]/g, "")) * 100;
     const orderId = "FD" + Date.now().toString().slice(-8);
-    document.getElementById("orderId").textContent = orderId;
+    orderIdEl.textContent = orderId;
 
     const options = {
       key: "rzp_test_RS6EdXdKAxfVLe",
@@ -543,17 +587,17 @@
         const order = {
           id: orderId,
           items: cartData,
-          total: parseFloat(document.getElementById("finalTotal").textContent.replace(/[₹$]/g, "")),
+          total: parseFloat(finalTotalEl.textContent.replace(/[₹$]/g, "")),
           timestamp: new Date().toISOString(),
           status: "Pending",
           deliveryInfo: {
-            fullName: document.getElementById("fullName").value,
-            email: document.getElementById("email").value,
-            phone: document.getElementById("phone").value,
-            address: document.getElementById("address").value,
-            city: document.getElementById("city").value,
-            zipCode: document.getElementById("zipCode").value,
-            notes: document.getElementById("notes").value
+            fullName: document.getElementById("fullName")?.value || '',
+            email: document.getElementById("email")?.value || '',
+            phone: document.getElementById("phone")?.value || '',
+            address: document.getElementById("address")?.value || '',
+            city: document.getElementById("city")?.value || '',
+            zipCode: document.getElementById("zipCode")?.value || '',
+            notes: document.getElementById("notes")?.value || ''
           }
         };
 
@@ -561,38 +605,51 @@
         existingOrders.push(order);
         localStorage.setItem("foodie:orders", JSON.stringify(existingOrders));
 
-        document.getElementById("successModal").classList.add("active");
+        const successModal = document.getElementById("successModal");
+        if (successModal) successModal.classList.add("active");
+        
         sessionStorage.removeItem("checkoutCart");
         cartData = [];
         saveCartData();
       },
       prefill: {
-        name: document.getElementById("fullName").value,
-        email: document.getElementById("email").value,
-        contact: document.getElementById("phone").value,
+        name: document.getElementById("fullName")?.value || '',
+        email: document.getElementById("email")?.value || '',
+        contact: document.getElementById("phone")?.value || '',
       },
       theme: { color: "#F2BD12" },
     };
 
-    const rzp = new Razorpay(options);
-    rzp.open();
+    if (typeof Razorpay !== 'undefined') {
+      const rzp = new Razorpay(options);
+      rzp.open();
+    } else {
+      console.error("Razorpay not loaded");
+      alert("Payment system is not available. Please refresh the page.");
+    }
   }
 
   // ===== INITIALIZATION =====
   document.addEventListener("DOMContentLoaded", () => {
     loadCartData();
+    
+    const emptyCartMessage = document.getElementById("emptyCartMessage");
+    const checkoutContent = document.getElementById("checkoutContent");
+    
     if (cartData.length === 0) {
-      document.getElementById("emptyCartMessage").style.display = "block";
-      document.getElementById("checkoutContent").style.display = "none";
+      if (emptyCartMessage) emptyCartMessage.style.display = "block";
+      if (checkoutContent) checkoutContent.style.display = "none";
     } else {
       displayOrderItems();
       calculateTotals();
     }
+    
     setupEventListeners();
     initCityAutocomplete();
     initPincodeValidation();
   });
 
+  // Export functions to window
   window.checkout = {
     loadCartData,
     saveCartData,
