@@ -305,17 +305,19 @@
       100% { background-position: 0% 50%; }
     }
 
-    .btn {
-        display: inline-block;
-        padding: 0.9rem 2rem;
-        background-color: var(--gold-finger);
-        border-radius: 1rem;
-        font-size: 1.1rem;
-        box-shadow: rgba(0, 0, 0, 0.1) 0 2px 1px;
-        color: var(--pure-while);
-        transition: 0.3s ease-in-out;
-        border: none;
-    }
+.btn {
+    display: inline-block;
+    padding: 0.9rem 2rem;
+    margin-top: 12px;
+    background-color: var(--gold-finger);
+    border: none;
+    border-radius: 1rem;
+    font-size: 1.1rem;
+    box-shadow: rgba(0, 0, 0, 0.1) 0 2px 1px;
+    color: var(--pure-while);
+    transition: 0.3s ease-in-out;
+    border: none;
+}
 
     .btn:hover {
         background-color: var(--lead);
@@ -495,10 +497,10 @@
         transition: color 0.3s ease;
     }
 
-    .para {
-        margin-block: 2rem;
-        max-width: 550px;
-    }
+.para {
+    margin-block: 2rem 3rem;
+    max-width: 550px;
+}
 
     .content,
     .srevice-card {
@@ -1965,6 +1967,17 @@
     display: flex;
     gap: 1rem;
     flex-wrap: wrap;
+    gap: 3rem;
+    justify-content: center;
+}
+
+.restaurant-card {
+    background: var(--bg-secondary, #fff);
+    border-radius: 16px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+    width: 280px;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
 .stat-card {
@@ -1987,22 +2000,20 @@
     box-shadow: 0 8px 20px rgba(242, 189, 18, 0.15);
 }
 
-.stat-card i {
-    font-size: 2rem;
-    color: var(--gold-finger);
-    margin-bottom: 0.5rem;
+.restaurant-info {
+    padding: 1.2rem;
+    text-align: center;
 }
 
-.stat-info h4 {
-    font-size: 1.8rem;
-    margin: 0.3rem 0;
-    color: var(--text-primary);
+.restaurant-info h3 {
+    margin-bottom: 2rem;
 }
 
-.stat-info p {
-    font-size: 0.85rem;
-    margin: 0;
-    color: var(--text-secondary);
+.restaurant-info p {
+    margin: 1rem 0;
+    font-size: 0.95rem;
+    color: var(--text-secondary, #666);
+    line-height: 1.8;
 }
 
 /* Dark Theme Adjustments */
