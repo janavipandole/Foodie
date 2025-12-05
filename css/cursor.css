@@ -79,5 +79,5 @@
 
 /* Optional: Disable system cursor */
 * {
-  cursor: none !important;
+  cursor: auto !important;
 }

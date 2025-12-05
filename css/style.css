@@ -2137,3 +2137,35 @@
     .navList {
         gap: 1.5rem !important;
     }
+/* Restore arrows / indicators / carets inside form fields */
+.partner-form input,
+.partner-form textarea,
+.partner-form select {
+    appearance: auto !important;
+    -webkit-appearance: auto !important;
+    -moz-appearance: auto !important;
+
+    color: #111 !important;
+    caret-color: #111 !important;
+    background: #fff !important;
+    border: 1px solid #ccc !important;
+}
+
+/* Dark mode */
+[data-theme="dark"] .partner-form input,
+[data-theme="dark"] .partner-form textarea,
+[data-theme="dark"] .partner-form select {
+    color: #fff !important;
+    caret-color: #fff !important;
+    background: #1f1f1f !important;
+    border: 1px solid #555 !important;
+}
+
+/* Make dropdown arrow visible in both themes */
+.partner-form select {
+    padding-right: 34px !important;
+}
+
+[data-theme="dark"] .partner-form select {
+    padding-right: 34px !important;
+}
