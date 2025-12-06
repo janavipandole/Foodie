@@ -30,7 +30,7 @@ function loadFooter() {
                             data-i18n="footer.special">Special</a></li>
                     <li class="mt-one"><a href="popular.html" class="footer-link" data-i18n="footer.popular">Popular</a>
                     </li>
-                    <li class="mt-one"><a href="../html/index.html" class="footer-link"
+                    <li class="mt-one"><a href="../html/category.html" class="footer-link"
                             data-i18n="footer.category">Category</a></li>
                 </ul>
 
