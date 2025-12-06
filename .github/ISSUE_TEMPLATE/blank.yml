@@ -1,0 +1,11 @@
+name: "📝 Blank Issue"
+description: "Create a blank issue"
+title: ""
+labels: []
+body:
+  - type: textarea
+    id: content
+    attributes:
+      label: "Issue Content"
+      description: "Write your issue here."
+      placeholder: "Describe your issue..."

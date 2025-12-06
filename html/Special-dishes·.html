@@ -2,255 +2,184 @@
 <html lang="en">
 
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Special & Seasonal Dishes — Foodie</title>
-  <meta name="description"
-    content="Showcase of special and seasonal dishes inspired by Foodie's warm yellow-orange theme." />
-  <script>
-    // Immediately apply saved theme to prevent FOUC
-    (function () {
-      const savedTheme = localStorage.getItem('theme');
-      if (savedTheme === 'dark') {
-        document.documentElement.setAttribute('data-theme', 'dark');
-      }
-    })();
-  </script>
-  <style>
-    :root {
-      --bg: #fffdf7;
-      --text: #1e1e1e;
-      --accent: #f4b400;
-      --accent-light: #ffe8a3;
-      --muted: #6b6b6b;
-      --card: #ffffff;
-      --header-bg: #fff6d8;
-    }
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Special & Seasonal Dishes — Foodie</title>
+    <meta name="description" content="Celebrate the flavor of every season with our chef’s unique creations." />
 
-    [data-theme="dark"] {
-      --bg: #1a1a1a;
-      --text: #f8fafc;
-      --accent: #fbbc04;
-      --accent-light: #3b3b3b;
-      --muted: #a1a1aa;
-      --card: #262626;
-      --header-bg: #333333;
-    }
+    <script>
+        // Immediately apply saved theme to prevent FOUC
+        (function () {
+            const savedTheme = localStorage.getItem('theme');
+            if (savedTheme === 'dark') {
+                document.documentElement.setAttribute('data-theme', 'dark');
+            }
+        })();
+    </script>
 
-    * {
-      box-sizing: border-box;
-    }
-
-    body {
-      margin: 0;
-      font-family: 'Poppins', sans-serif;
-      background: var(--bg);
-      color: var(--text);
-      background: 0.3s ease, color 0.3s ease;
-    }
-
-    header {
-      text-align: center;
-      padding: 60px 20px 40px;
-      background: var(--header-bg);
-      border-bottom-left-radius: 40px;
-      border-bottom-right-radius: 40px;
-      box-shadow: 0 5px 18px rgba(0, 0, 0, 0.05);
-    }
-
-    header h1 {
-      font-size: 2.4rem;
-      color: var(--accent);
-      margin-bottom: 10px;
-    }
-
-    header p {
-      color: var(--muted);
-      font-size: 1.1rem;
-      margin: 0;
-    }
-
-    main {
-      max-width: 1400px;
-      margin: 30px auto;
-      padding: 0 18px;
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-      gap: 85px;
-    }
-
-    .dish-card {
-      background: var(--card);
-      border-radius: 28px;
-      overflow: hidden;
-      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.05);
-      transition: transform 0.3s ease, box-shadow 0.3s ease;
-      cursor: pointer;
-    }
-
-    .dish-card:hover {
-      transform: translateY(-6px);
-      box-shadow: 0 12px 30px rgba(0, 0, 0, 0.1);
-    }
-
-    .dish-card img {
-      width: 100%;
-      height: 220px;
-      object-fit: cover;
-    }
-
-    .dish-info {
-      padding: 20px;
-      background: var(--accent-light);
-    }
-
-    .dish-info h2 {
-      margin: 0 0 8px;
-      font-size: 1.3rem;
-      color: var(--accent);
-    }
-
-    .dish-info p {
-      font-size: 0.95rem;
-      color: var(--text);
-      opacity: 0.8;
-      line-height: 1.5;
-    }
-
-    footer {
-      text-align: center;
-      padding: 25px 15px;
-      color: var(--muted);
-      font-size: 0.9rem;
-      border-top: 1px solid rgba(0, 0, 0, 0.05);
-      background: var(--header-bg);
-      border-top-left-radius: 30px;
-      border-top-right-radius: 30px;
-      margin-top: 100px;
-    }
-
-    [data-theme="light"] header {
-      background: #ffed96;
-      border-bottom: 1px solid #f4d03f;
-    }
-
-    [data-theme="dark"] footer {
-      background: #444444;
-      border-bottom: 1px solid #f4d03f;
-    }
-
-    @media (max-width: 600px) {
-      footer {
-        margin-top: 90px;
-      }
-    }
-
-
-    #themeToggle {
-      position: fixed;
-      top: 15px;
-      right: 15px;
-      background: var(--accent);
-      color: #fff;
-      border: none;
-      padding: 10px 15px;
-      border-radius: 30px;
-      cursor: pointer;
-      font-weight: 600;
-      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-      transition: background 0.3s ease;
-    }
-
-    #themeToggle:hover {
-      background: #f59e0b;
-    }
-  </style>
+    <link rel="icon" href="../imgs/favicon.webp" type="image/webp" />
+    
+    <link rel="stylesheet" href="../css/style.css" />
+    <link rel="stylesheet" href="../css/cursor.css" />
+    <link rel="stylesheet" href="../css/popular.css" />
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
+    <link href="https://unpkg.com/aos@2.3.4/dist/aos.css" rel="stylesheet">
 </head>
 
-<body data-theme="light">
+<body>
 
-  <button id="themeToggle">🌙</button>
-  <header>
-    <h1>Special & Seasonal Dishes</h1>
-    <p>Celebrate the flavor of every season with our chef’s unique creations.</p>
-  </header>
+    <header>
+        <nav class="navbar flex between wrapper">
+            <a href="index.html" class="logo">Foodie.</a>
 
-  <main>
-    <div class="dish-card">
-      <img src="../imgs/Truffle Mushroom Risotto.webp" alt="Truffle Mushroom Risotto">
-      <div class="dish-info">
-        <h2>Truffle Mushroom Risotto</h2>
-        <p>Arborio rice, rich, velvety, and kissed by earthy truffles, in a creamy, slow-stirred embrace.
-          Long after the bite, each spoon melts into layers of wild mushroom silk and a hint of butter.</p>
-      </div>
-    </div>
+            <ul class="navList flex gap-3 between">
+                <li><a href="./index.html#home" data-i18n="nav.home">Home</a></li>
+                <li><a href="./menu.html" data-i18n="nav.menu">Menu</a></li>
+                <li><a href="./aboutUs.html" data-i18n="nav.about">About Us</a></li>
+                <li><a href="./contactUs.html" data-i18n="nav.contact">Contact Us</a></li>
+                <li><a href="nearbyres.html" data-i18n="nav.nearby">Nearby Restaurants</a></li>
+            </ul>
 
-    <div class="dish-card">
-      <img src="../imgs/salmon.webp" alt="Citrus Basil Salmon">
-      <div class="dish-info">
-        <h2>Citrus Basil Salmon</h2>
-        <p>Soft at the centre, crisped at the edge, this tender fillet flakes like morning light.
-          Fresh basil adds a cool note at the end, and the citrus tang cuts through the buttery depth.</p>
-      </div>
-    </div>
+            <div class="desktop-action flex gap-2">
+                <div class="custom-select" id="language-custom-select">
+                    <div class="selected" tabindex="0" aria-haspopup="listbox" aria-expanded="false">English</div>
+                    <ul class="options" role="listbox">
+                        <li data-value="en" role="option" aria-selected="true">English</li>
+                        <li data-value="hi" role="option">हिंदी</li>
+                    </ul>
+                </div>
 
-    <div class="dish-card">
-      <img src="../imgs/Pumpkin Sage Ravioli.webp" alt="Pumpkin Sage Ravioli">
-      <div class="dish-info">
-        <h2>Pumpkin Sage Ravioli</h2>
-        <p>Warm sage aroma envelops pillowy pasta pockets with a soft, nutty pumpkin filling.
-          Like autumn folded into dough, each bite transitions from soft and buttery to slightly crisp.</p>
-      </div>
-    </div>
+                <form class="navbar-search" action="./menu.html" method="get">
+                    <input type="text" name="search" id="navbar-search" placeholder="Search..." aria-label="Search menu">
+                    <button type="submit" id="navbar-search-btn" aria-label="Search"><i class="fa-solid fa-magnifying-glass"></i></button>
+                </form>
 
-    <div class="dish-card">
-      <img src="../imgs/fi5.webp" alt="Berry Cheesecake Jar">
-      <div class="dish-info">
-        <h2>Berry Cheesecake Jar</h2>
-        <p>A multi-layered dream, with crumbly biscuit calm at the bottom, cloud-like vanilla cream humming in the
-          middle, and tart berry compote bursting at the top. Each texture-sweet, tangy, and creamy has a function.</p>
-      </div>
-    </div>
+                <button class="desktop-action theme-toggle" aria-label="Toggle dark mode">
+                    <i class="fa-solid fa-moon"></i>
+                </button>
+                
+                <a href="./checkout.html" class="cart-icon">
+                    <i class="fa-solid fa-bag-shopping"></i>
+                    <span class="cart-value">0</span>
+                </a>
 
-    <div class="dish-card">
-      <img src="../imgs/chocolate-lava-cake.webp" alt="Chocolate Lava Cake">
-      <div class="dish-info">
-        <h2>Chocolate Lava Cake</h2>
-        <p>A molten river of dark, smooth chocolate is revealed as the crust crackles beneath the spoon.
-          Impossibly decadent, soft, and gooey, like dessert masquerading as warmth.</p>
-      </div>
-    </div>
+                <a href="./signup.html" class="btn">Sign in&nbsp;<i class="fa-solid fa-arrow-right-from-bracket"></i></a>
+                
+                <a href="#" class="hamberger"><i class="fa-solid fa-bars"></i></a>
+            </div>
 
-    <div class="dish-card">
-      <img src="../imgs/Caramel Pudding.webp" alt="Caramel Pudding">
-      <div class="dish-info">
-        <h2>Caramel Pudding</h2>
-        <p>The custard is golden and glossy, and it trembles when touched. It is dense under the spoon but airy.  A
-          smooth sweetness that hums like nostalgia is left behind when the caramel glaze melts into a buttery echo.</p>
-      </div>
-    </div>
+            <ul class="mobile-menu">
+                <li><a href="./index.html#home" data-i18n="nav.home">Home</a></li>
+                <li><a href="./menu.html" data-i18n="nav.menu">Menu</a></li>
+                <li><a href="./aboutUs.html" data-i18n="nav.about">About Us</a></li>
+                <li><a href="./contactUs.html" data-i18n="nav.contact">Contact Us</a></li>
+                <li><a href="nearbyres.html" data-i18n="nav.nearby">Nearby Restaurants</a></li>
+                <li>
+                    <button class="theme-toggle mobile-theme-toggle">
+                        <i class="fa-solid fa-moon"></i><span>Dark Mode</span>
+                    </button>
+                </li>
+            </ul>
+        </nav>
+    </header>
 
-  </main>
+    <main>
+        <section class="popular-hero text-center p-top">
+            <div class="wrapper" data-aos="fade-down">
+                <h5>Chef's Selection</h5>
+                <h1>Special & <span class="highlight">Seasonal</span> Dishes</h1>
+                <p class="para m-auto">Celebrate the flavor of every season with our chef’s unique, limited-time creations.</p>
+            </div>
+        </section>
 
-  <footer>
-    © 2025 Foodie. All rights reserved.
-  </footer>
+        <section class="popular-grid wrapper">
+            
+            <div class="dish-card" data-aos="fade-up" data-aos-delay="100">
+                <img src="../imgs/Truffle Mushroom Risotto.webp" alt="Truffle Mushroom Risotto" loading="lazy">
+                <div class="dish-info">
+                    <h2>Truffle Mushroom Risotto</h2>
+                    <p>Arborio rice, rich, velvety, and kissed by earthy truffles, in a creamy, slow-stirred embrace. Layers of wild mushroom silk and a hint of butter.</p>
+                    <div class="rating"><i class="fa-solid fa-star"></i> 5.0 (Chef's Special)</div>
+                </div>
+            </div>
 
-  <script>
-    const toggleBtn = document.getElementById('themeToggle');
-    // Initial theme setting is now handled by the inline script in the head.
-    // This script only updates the button text based on the current theme.
-    const currentTheme = document.documentElement.getAttribute('data-theme');
-    toggleBtn.textContent = currentTheme === 'dark' ? '☀️' : '🌙';
+            <div class="dish-card" data-aos="fade-up" data-aos-delay="200">
+                <img src="../imgs/salmon.webp" alt="Citrus Basil Salmon" loading="lazy">
+                <div class="dish-info">
+                    <h2>Citrus Basil Salmon</h2>
+                    <p>Soft at the centre, crisped at the edge. Fresh basil adds a cool note at the end, and the citrus tang cuts through the buttery depth.</p>
+                    <div class="rating"><i class="fa-solid fa-star"></i> 4.9 (Seasonal)</div>
+                </div>
+            </div>
 
-    toggleBtn.addEventListener('click', () => {
-      const current = document.documentElement.getAttribute('data-theme');
-      const newTheme = current === 'light' ? 'dark' : 'light';
-      document.documentElement.setAttribute('data-theme', newTheme);
-      localStorage.setItem('theme', newTheme);
-      toggleBtn.textContent = newTheme === 'dark' ? '☀️' : '🌙';
-    });
-  </script>
+            <div class="dish-card" data-aos="fade-up" data-aos-delay="300">
+                <img src="../imgs/Pumpkin Sage Ravioli.webp" alt="Pumpkin Sage Ravioli" loading="lazy">
+                <div class="dish-info">
+                    <h2>Pumpkin Sage Ravioli</h2>
+                    <p>Warm sage aroma envelops pillowy pasta pockets with a soft, nutty pumpkin filling. Like autumn folded into dough.</p>
+                    <div class="rating"><i class="fa-solid fa-star"></i> 4.8 (Best Seller)</div>
+                </div>
+            </div>
+
+            <div class="dish-card" data-aos="fade-up" data-aos-delay="400">
+                <img src="../imgs/fi5.webp" alt="Berry Cheesecake Jar" loading="lazy">
+                <div class="dish-info">
+                    <h2>Berry Cheesecake Jar</h2>
+                    <p>A multi-layered dream with crumbly biscuit at the bottom, cloud-like vanilla cream, and tart berry compote bursting at the top.</p>
+                    <div class="rating"><i class="fa-solid fa-star"></i> 4.9 (Sweet Treat)</div>
+                </div>
+            </div>
+
+            <div class="dish-card" data-aos="fade-up" data-aos-delay="500">
+                <img src="../imgs/chocolate-lava-cake.webp" alt="Chocolate Lava Cake" loading="lazy">
+                <div class="dish-info">
+                    <h2>Chocolate Lava Cake</h2>
+                    <p>A molten river of dark, smooth chocolate revealed as the crust crackles. Impossibly decadent, soft, and gooey.</p>
+                    <div class="rating"><i class="fa-solid fa-star"></i> 5.0 (Must Try)</div>
+                </div>
+            </div>
+
+            <div class="dish-card" data-aos="fade-up" data-aos-delay="600">
+                <img src="../imgs/Caramel Pudding.webp" alt="Caramel Pudding" loading="lazy">
+                <div class="dish-info">
+                    <h2>Caramel Pudding</h2>
+                    <p>Golden, glossy custard that trembles when touched. A smooth sweetness that hums like nostalgia left behind by the caramel glaze.</p>
+                    <div class="rating"><i class="fa-solid fa-star"></i> 4.8 (Classic)</div>
+                </div>
+            </div>
+
+        </section>
+    </main>
+
+    <footer id="contacts" data-aos="fade-up"></footer>
+
+    <a href="https://wa.me/911234567890" class="whatsapp-fab" target="_blank" aria-label="Chat on WhatsApp">
+        <i class="fa-brands fa-whatsapp"></i>
+    </a>
+    <a href="#home" class="back-to-top" aria-label="Back to top">
+        <i class="fa-solid fa-arrow-up"></i>
+    </a>
+
+    <script src="https://unpkg.com/aos@2.3.4/dist/aos.js"></script>
+    
+    <script src="../js/i18n.js"></script>
+    <script src="../js/language-dropdown.js"></script>
+    <script src="../js/app.js"></script>
+    <script src="../js/footer.js"></script>
+    <script src="../js/cursor.js"></script>
+
+    <script>
+        // Initialize Animations
+        document.addEventListener('DOMContentLoaded', () => {
+            AOS.init({
+                duration: 800,
+                easing: 'ease-out',
+                once: true,
+                offset: 100
+            });
+        });
+    </script>
+
 </body>
-
 </html>

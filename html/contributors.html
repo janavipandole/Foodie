@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Foodie - Our Contributors</title>
+    <meta name="description" content="Meet the amazing developers and designers who have contributed to the Foodie project.">
+
+    <script>
+        (function () {
+            const savedTheme = localStorage.getItem('theme');
+            if (savedTheme === 'dark') {
+                document.documentElement.setAttribute('data-theme', 'dark');
+            }
+        })();
+    </script>
+
+    <link rel="icon" href="../imgs/favicon.webp" type="image/webp" />
+    <link rel="stylesheet" href="../css/style.css" />
+    <link rel="stylesheet" href="../css/contributors.css" />
+    <link rel="stylesheet" href="../css/cursor.css">
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
+</head>
+
+<body>
+    <header>
+        <nav class="navbar flex between wrapper">
+            <a href="index.html" class="logo">Foodie.</a>
+            <ul class="navList flex gap-3 between">
+                <li><a href="./index.html#home" data-i18n="nav.home">Home</a></li>
+                <li><a href="./menu.html" data-i18n="nav.menu">Menu</a></li>
+                <li><a href="./aboutUs.html" data-i18n="nav.about">About Us</a></li>
+                <li><a href="./contactUs.html" data-i18n="nav.contact">Contact Us</a></li>
+            </ul>
+            <div class="desktop-action flex gap-2">
+                <button class="desktop-action theme-toggle"><i class="fa-solid fa-moon"></i></button>
+                <a href="./checkout.html" class="cart-icon"><i class="fa-solid fa-bag-shopping"></i><span class="cart-value">0</span></a>
+                <a href="#" class="hamberger"><i class="fa-solid fa-bars"></i></a>
+            </div>
+            <ul class="mobile-menu">
+                <li><a href="./index.html#home">Home</a></li>
+                <li><a href="./menu.html">Menu</a></li>
+                <li><a href="./aboutUs.html">About Us</a></li>
+                <li><a href="./contactUs.html">Contact Us</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <section class="contrib-hero">
+            <div class="wrapper text-center">
+                <h5>Open Source</h5>
+                <h1>Our Amazing <span class="highlight">Contributors</span></h1>
+                <p class="para m-auto">
+                    Meet the talented individuals who help make Foodie better every day.
+                </p>
+
+                <div class="repo-stats-container">
+                    <div class="stat-box">
+                        <i class="fa-solid fa-users"></i>
+                        <div class="stat-info">
+                            <h3 id="totalContributors">0</h3>
+                            <p>Contributors</p>
+                        </div>
+                    </div>
+                    <div class="stat-box">
+                        <i class="fa-solid fa-code-commit"></i>
+                        <div class="stat-info">
+                            <h3 id="totalCommits">0</h3>
+                            <p>Commits</p>
+                        </div>
+                    </div>
+                    <div class="stat-box">
+                        <i class="fa-solid fa-code-branch"></i>
+                        <div class="stat-info">
+                            <h3 id="totalPRs">0</h3>
+                            <p>Total PRs</p>
+                        </div>
+                    </div>
+                    <div class="stat-box highlight-box">
+                        <i class="fa-solid fa-trophy"></i>
+                        <div class="stat-info">
+                            <h3 id="totalPoints">0</h3>
+                            <p>Total Points</p>
+                        </div>
+                    </div>
+                    <div class="stat-box">
+                        <i class="fa-solid fa-star"></i>
+                        <div class="stat-info">
+                            <h3 id="totalStars">0</h3>
+                            <p>Stars</p>
+                        </div>
+                    </div>
+                    <div class="stat-box">
+                        <i class="fa-solid fa-code-fork"></i>
+                        <div class="stat-info">
+                            <h3 id="totalForks">0</h3>
+                            <p>Forks</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="project-lead-container">
+                    <div class="contrib-card special-lead">
+                        <div class="lead-badge">👑 Project Admin</div>
+                        <div class="contrib-img-wrapper">
+                            <img src="https://github.com/janavipandole.png" alt="Janavi Pandole" class="contrib-img">
+                        </div>
+                        <h3 class="contrib-name">Janavi Pandole</h3>
+                        <p class="para">Leading the project vision.</p>
+                        <div class="contrib-links">
+                            <a href="https://github.com/janavipandole" target="_blank"><i class="fa-brands fa-github"></i></a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="search-contributor-wrapper">
+                    <div class="search-contributor">
+                        <div class="input-group">
+                            <i class="fa-solid fa-magnifying-glass"></i>
+                            <input type="text" id="searchInput" placeholder="Search contributor..." />
+                        </div>
+                        <select id="sortBy" class="filter-select">
+                            <option value="contributions">Most Points</option>
+                            <option value="alphabetical">Alphabetical</option>
+                            <option value="recent">Recent Activity</option>
+                        </select>
+                        <select id="filterLevel" class="filter-select">
+                            <option value="all">All Leagues</option>
+                            <option value="top10">🏆 Top 10</option>
+                            <option value="gold">🥇 Gold League</option>
+                            <option value="silver">🥈 Silver League</option>
+                            <option value="bronze">🥉 Bronze League</option>
+                            <option value="new">👶 New Contributors</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="contributors-section wrapper">
+            <div id="spinner" class="loader-container">
+                <div class="spinner-circle"></div>
+                <p>Loading Data...</p>
+            </div>
+
+            <div id="contributorsList" class="contributors-grid">
+                </div>
+
+            <div id="errorMessage" class="error-message"></div>
+
+            <div id="controls" class="pagination-controls">
+                <button id="prevPage" class="btn-page" disabled><i class="fa-solid fa-arrow-left"></i> Prev</button>
+                <span class="page-info">Page <span id="currentPage">1</span> of <span id="totalPages">1</span></span>
+                <button id="nextPage" class="btn-page">Next <i class="fa-solid fa-arrow-right"></i></button>
+            </div>
+
+            <div id="activityTimeline" class="timeline-container">
+                <h2 class="text-center mb-2">Recent <span class="highlight">Activity</span></h2>
+                <div id="timelineContent" class="timeline-content">
+                    </div>
+            </div>
+        </section>
+
+        <section class="contribute-section">
+            <div class="wrapper text-center">
+                <h2>Want to Contribute?</h2>
+                <p class="para">Join our community and help improve Foodie.</p>
+                
+                <div class="contribute-steps">
+                    <div class="step-card">
+                        <div class="step-icon"><i class="fa-solid fa-clipboard-list"></i></div>
+                        <h3>1. Create Issue</h3>
+                        <p>Find or create an issue describing the change.</p>
+                    </div>
+                    <div class="step-card">
+                        <div class="step-icon"><i class="fa-solid fa-code-branch"></i></div>
+                        <h3>2. Fork & Branch</h3>
+                        <p>Fork the repo and create a feature branch.</p>
+                    </div>
+                    <div class="step-card">
+                        <div class="step-icon"><i class="fa-solid fa-code"></i></div>
+                        <h3>3. Code & Commit</h3>
+                        <p>Implement your changes and commit them.</p>
+                    </div>
+                    <div class="step-card">
+                        <div class="step-icon"><i class="fa-solid fa-upload"></i></div>
+                        <h3>4. Submit PR</h3>
+                        <p>Create a Pull Request for review.</p>
+                    </div>
+                </div>
+                
+                <a href="https://github.com/janavipandole/Foodie/blob/main/CONTRIBUTING.md" target="_blank" class="btn github-btn mt-2">
+                    Read Contributing Guide
+                </a>
+            </div>
+        </section>
+    </main>
+
+    <div id="contributorModal" class="contributor-modal">
+        <div class="modal-content">
+            <span class="modal-close">&times;</span>
+            <div class="modal-header">
+                <div class="modal-img-wrapper">
+                    <img id="modalAvatar" src="" alt="Avatar">
+                </div>
+                <div class="modal-info">
+                    <h2 id="modalName">Username</h2>
+                    <span id="modalLeague" class="league-badge">League</span>
+                </div>
+            </div>
+            
+            <div class="modal-stats-grid">
+                <div class="modal-stat-box">
+                    <i class="fa-solid fa-trophy"></i>
+                    <span id="modalRank">#0</span>
+                    <label>Rank</label>
+                </div>
+                <div class="modal-stat-box">
+                    <i class="fa-solid fa-star"></i>
+                    <span id="modalPoints">0</span>
+                    <label>Points</label>
+                </div>
+                <div class="modal-stat-box">
+                    <i class="fa-solid fa-code-branch"></i>
+                    <span id="modalPRs">0</span>
+                    <label>PRs</label>
+                </div>
+                <div class="modal-stat-box">
+                    <i class="fa-solid fa-code-commit"></i>
+                    <span id="modalCommits">0</span>
+                    <label>Commits</label>
+                </div>
+            </div>
+
+            <div class="modal-actions">
+                <a id="viewPrBtn" href="#" target="_blank" class="btn secondary-btn">
+                    <i class="fa-solid fa-code-branch"></i> View PRs
+                </a>
+                <a id="modalGithubLink" href="#" target="_blank" class="btn primary-btn">
+                    <i class="fa-brands fa-github"></i> GitHub Profile
+                </a>
+            </div>
+        </div>
+    </div>
+
+<footer id="contacts" data-aos="fade-up"></footer>
+
+    <script src="../js/i18n.js"></script>
+    <script src="../js/app.js"></script>
+    <script src="../js/cursor.js"></script>
+    <script src="../js/footer.js"></script>
+    <script src="../js/contributors.js"></script>
+</body>
+</html>

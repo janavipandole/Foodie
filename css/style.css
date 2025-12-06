@@ -221,6 +221,17 @@
         max-width: 100% !important;
         padding-inline: 3rem !important;
     }
+    .navbar {
+        flex-wrap: nowrap !important;
+    }
+    .navbar-search input {
+        width: 150px !important; /* reduce width */
+    }
+
+    .custom-select {
+        width: 110px !important; /* language select shorter */
+    }
+
 
     /* Hover effect for navbar links */
     .navList a {
@@ -2094,7 +2105,7 @@
     animation: qrPulse 2s infinite;
 }
 
-/* Smooth entrance animation */
+
 .app-download-content {
     animation: slideInRight 0.8s ease-out;
 }
@@ -2109,3 +2120,20 @@
         transform: translateX(0);
     }
 }
+@media (max-width: 1150px) and (min-width: 801px) {
+    .desktop-action .btn {        
+        display: none;
+    }
+    .navbar-search {         
+        display: none;
+    }
+    .custom-select {                
+        display: none;
+    }
+}
+    .desktop-action {
+        gap: 0.7rem !important;
+    }
+    .navList {
+        gap: 1.5rem !important;
+    }

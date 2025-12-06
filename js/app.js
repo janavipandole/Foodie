@@ -1,11 +1,13 @@
 // ===== SWIPER =====
-var swiper = new Swiper(".mySwiper", {
-  loop: true,
-  navigation: {
-    nextEl: ".fa-arrow-right",
-    prevEl: ".fa-arrow-left",
-  },
-});
+if (typeof Swiper !== 'undefined'){
+    var swiper = new Swiper(".mySwiper", {
+      loop: true,
+      navigation: {
+        nextEl: ".fa-arrow-right",
+        prevEl: ".fa-arrow-left",
+      },
+    });
+}
 
 // Use the shared fetchWithRetry provided by js/fetch-utils.js. This file must be included before app.js in HTML.
 const fetchWithRetry = window.fetchWithRetry;
@@ -36,8 +38,8 @@ const qrCodeImg = document.querySelector('.qr-code-img');
 cartIcon?.addEventListener("click", () => {
   cartTab.classList.add("cart-tab-active");
   // Show skeleton cart items if cart is empty
-  if (addProduct.length === 0) {
-    showSkeletonCartItems();
+  if (typeof addProduct !== 'undefind' && addProduct.length === 0) {
+      showSkeletonCartItems();
   }
 });
 closeBtn?.addEventListener("click", () =>
@@ -180,17 +182,20 @@ const showToast = (message) => {
     `;
 
   const container = document.querySelector(".toast-container");
-  container.appendChild(toast);
+  
+  if(contanier) {
+      container.appendChild(toast);
 
-  // Trigger reflow for animation
-  toast.offsetHeight;
-  toast.classList.add("show");
+    // Trigger reflow for animation
+    toast.offsetHeight;
+    toast.classList.add("show");
 
-  // Remove toast after 3 seconds
-  setTimeout(() => {
-    toast.classList.remove("show");
-    setTimeout(() => toast.remove(), 300);
-  }, 3000);
+    // Remove toast after 3 seconds
+    setTimeout(() => {
+      toast.classList.remove("show");
+      setTimeout(() => toast.remove(), 300);
+    }, 3000);
+  }
 };
 
 const updateTotalPrice = () => {
@@ -250,9 +255,9 @@ filterAll?.addEventListener("click", () => {
 });
 
 function setTypeActive(type) {
-  filterVeg.classList.toggle("active", type === "veg");
-  filterNonVeg.classList.toggle("active", type === "non-veg");
-  filterAll.classList.toggle("active", type === "all");
+  if (filterVeg) filterVeg.classList.toggle("active", type === "veg");
+  if (filterNonVeg) filterNonVeg.classList.toggle("active", type === "non-veg");
+  if (filterAll) filterAll.classList.toggle("active", type === "all");
 }
 
 // ===== UPDATE CARD BUTTON STATE =====

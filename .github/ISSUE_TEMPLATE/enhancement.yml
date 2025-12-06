@@ -1,0 +1,22 @@
+name: "✨ Enhancement"
+description: "Suggest an improvement or enhancement to the project"
+title: "[ENHANCEMENT] "
+labels: ["enhancement"]
+body:
+  - type: textarea
+    id: description
+    attributes:
+      label: "Description"
+      description: "Describe the enhancement or improvement."
+      placeholder: "What should be improved or added?"
+  - type: textarea
+    id: motivation
+    attributes:
+      label: "Motivation"
+      description: "Why is this enhancement needed?"
+  - type: textarea
+    id: solution
+    attributes:
+      label: "Proposed Solution"
+      description: "How would you implement it?"
+

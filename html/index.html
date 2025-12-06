@@ -34,8 +34,7 @@
 
     <link href="https://unpkg.com/aos@2.3.4/dist/aos.css" rel="stylesheet">
 
-     <!-- Google Analytics -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"></script>
+     <script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"></script>
     <script>
       window.dataLayer = window.dataLayer || [];
       function gtag(){dataLayer.push(arguments);}
@@ -71,7 +70,6 @@
         <nav class="navbar flex between wrapper">
             <a href="index.html" class="logo">Foodie.</a>
 
-            <!-- DESKTOP MENU -->
             <ul class="navList flex gap-3 between">
                 <li><a class="active" href="./index.html#home" data-i18n="nav.home">Home</a></li>
                 <li><a href="./menu.html" data-i18n="nav.menu">Menu</a></li>
@@ -80,7 +78,6 @@
                 <li><a href="nearbyres.html" data-i18n="nav.nearby">Nearby Restaurants</a></li>
             </ul>
             <div class="desktop-action flex gap-2">
-                <!-- Language Selector -->
                 <div class="custom-select" id="language-custom-select">
                     <div class="selected" tabindex="0" aria-haspopup="listbox" aria-expanded="false"
                         aria-labelledby="language-custom-select">
@@ -92,7 +89,6 @@
                     </ul>
                 </div>
 
-                <!-- Search Input -->
                 <form class="navbar-search" action="#" method="get">
 <input
   type="text"
@@ -105,36 +101,30 @@
                     </button>
                 </form>
 
-                <!-- Theme toggle -->
                 <button class="desktop-action theme-toggle" aria-label="Toggle dark mode">
                     <i class="fa-solid fa-moon"></i>
                 </button>
 
-                <!-- Cart Icon -->
                 <a href="./checkout.html" class="cart-icon">
                     <i class="fa-solid fa-bag-shopping"></i>
                     <span class="cart-value">0</span>
                 </a>
 
-                <!-- Sign-in button -->
                 <a href="./signup.html" class="btn" data-i18n="nav.signIn">
     Sign in&nbsp;<i class="fa-solid fa-arrow-right-from-bracket"></i>
 </a>
 
 
-                <!-- Hamburger -->
                 <a href="#" class="hamberger"><i class="fa-solid fa-bars"></i></a>
             </div>
 
 
-            <!-- MOBILE MENU -->
             <ul class="mobile-menu">
                 <li><a class="active" href="./index.html#home" data-i18n="nav.home">Home</a></li>
                 <li><a href="./menu.html" data-i18n="nav.menu">Menu</a></li>
                 <li><a href="./aboutUs.html" data-i18n="nav.about">About Us</a></li>
                 <li><a href="./contactUs.html" data-i18n="nav.contact">Contact Us</a></li>
                 <li><a href="nearbyres.html" data-i18n="nav.nearby">Nearby Restaurants</a></li>
-                <!-- Search Input -->
                 <form class="navbar-search" action="#" method="get">
                     <input type="text" name="search" id="navbar-search" placeholder="Search your food ...">
                     <button type="submit" id="navbar-search-btn" aria-label="Search">
@@ -301,20 +291,16 @@
         </section>
 
         <section id="about">
-            <div class="wrapper"> <!-- Removed p-top here -->
-                <div class="app-container flex gap-3">
-                    <!-- Left Side - Phone Mockup (keep existing) -->
+            <div class="wrapper"> <div class="app-container flex gap-3">
                     <div class="app-image" data-aos="fade-right">
                         <img src="../imgs/mobile-app.webp" alt="Food delivery mobile app interface">
                     </div>
 
-                    <!-- Right Side - Updated with QR Code -->
                     <div class="content app-download-content" data-aos="fade-left">
                         <h5 data-i18n="app.sectionTitle">Our Application</h5>
                         <h2 data-i18n="app.mainTitle">Simple way to <br> order your food</h2>
                         <p class="para" data-i18n="app.description">Crave it. Find it. Get it fast wherever, whenever.</p>
                         
-                        <!-- QR Code Download Section -->
                         <div class="qr-download-section">
                             <div class="qr-code-container">
                                 <div class="qr-header">
@@ -327,7 +313,6 @@
                                 </div>
                                 
                                 <div class="qr-code-box">
-                                    <!-- Replace this placeholder with your actual QR code image -->
                                     <img src="../imgs/qr-code.png" alt="Scan QR code to download Foodie app" class="qr-code-image">
                                     <div class="qr-logo-badge">
                                         <i class="fa-solid fa-mobile-screen-button"></i>
@@ -338,7 +323,6 @@
 
                             </div>
 
-                            <!-- App Store Buttons -->
                             <div class="app-store-buttons">
                                <p class="download-text" data-i18n="qr.orDownload"></p>
 
@@ -368,7 +352,6 @@
                                 </a>
                             </div>
 
-                            <!-- App Stats -->
                             <div class="app-stats">
                                 <div class="stat-card">
                                     <i class="fa-solid fa-users"></i>
@@ -426,73 +409,7 @@
         </section>
     </main>
 
-    <footer id="contacts" data-aos="fade-up">
-        <div class="footer-container">
-            <div class="flex wrapper gap-4">
-                <div class="footer-wrapper">
-                    <a href="#" class="logo">Foodie.</a>
-                    <p class="mt-one" data-i18n="footer.description">We will fill your tummy with delicious <br>food
-                        with fast delivery</p>
-                    <div class="media flex gap-2 mt-one">
-                        <a href="https://github.com/janavipandole" class="social-media">
-                            <img src="../imgs/GitHub.webp" alt="GitHub social icon in footer">
-                        </a>
-                        <a href="https://www.linkedin.com/in/janavi-pandole-80a7b2290" class="social-media linkdin">
-                            <img src="../imgs/linkdin.webp" alt="LinkedIn social icon in footer">
-                        </a>
-                        <a href="https://www.youtube.com/@JanaviPandole" class="social-media">
-                            <img src="../imgs/youtube.webp" alt="YouTube social icon in footer">
-                        </a>
-                        <a href="https://x.com/JanaviPandole" class="social-media">
-                            <img src="../imgs/twitter.webp" alt="Twitter social icon in footer">
-                        </a>
-                    </div>
-                </div>
-
-                <ul class="footer-wrapper">
-                    <li>
-                        <h4 data-i18n="footer.ourMenu">Our Menu</h4>
-                    </li>
-                    <li class="mt-one"><a href="Special-dishes·.html" class="footer-link"
-                            data-i18n="footer.special">Special</a></li>
-                    <li class="mt-one"><a href="popular.html" class="footer-link" data-i18n="footer.popular">Popular</a>
-                    </li>
-                    <li class="mt-one"><a href="../html/index.html" class="footer-link"
-                            data-i18n="footer.category">Category</a></li>
-                </ul>
-
-                <ul class="footer-wrapper">
-                    <li>
-                        <h4 data-i18n="footer.company">Company</h4>
-                    </li>
-                    <li class="mt-one"><a href="#" class="footer-link" data-i18n="footer.whyFoodie"> Why Foodie</a></li>
-                    <li class="mt-one"><a href="../html/PartnerWithUs.html" class="footer-link"
-                            data-i18n="footer.partnerWithUs"> Partner with us</a>
-                    </li>
-                    <li class="mt-one"><a href="./rideWithUs.html" class="footer-link" data-i18n="footer.rideWithUs"> Ride With Us</a></li>
-                    <li class="mt-one"><a href="../html/aboutUs.html" class="footer-link" data-i18n="footer.aboutUs">
-                            About us </a></li>
-                    <li class="mt-one"><a href="faq-page.html" class="footer-link" data-i18n="footer.faq"> FAQ's</a>
-                    </li>
-                </ul>
-
-                <ul class="footer-wrapper">
-                    <li>
-                        <h4 data-i18n="footer.support">Support</h4>
-                    </li>
-                    <li class="mt-one"><a href="../html/signup.html" class="footer-link"
-                            data-i18n="footer.account">Account</a></li>
-                    <li class="mt-one"><a href="../html/supportCenter.html" class="footer-link"
-                            data-i18n="footer.supportCenter"> Support center </a>
-                    </li>
-                    <li class="mt-one"><a href="../html/feedback.html" class="footer-link" data-i18n="footer.feedback">
-                            Feedback</a></li>
-                    <li class="mt-one"><a href="../html/contactUs.html" class="footer-link"
-                            data-i18n="footer.contactUs">Contact Us</a></li>
-                </ul>
-            </div>
-        </div>
-    </footer>
+    <footer id="contacts" data-aos="fade-up"></footer>
 
     <a href="https://wa.me/911234567890" class="whatsapp-fab" target="_blank" rel="noopener noreferrer"
         aria-label="Chat on WhatsApp" title="Chat on WhatsApp">
@@ -504,6 +421,7 @@
     </a>
 
     <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+    <script src="../js/footer.js"></script>
     <script src="../js/i18n.js"></script>
     <script src="../js/fetch-utils.js"></script>
     <script src="../js/app.js"></script>
