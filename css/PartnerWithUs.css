@@ -373,3 +373,26 @@ textarea {
   }
 }
 
+/* Inline field error styling used by partnerWithUs.js */
+.field-error {
+  color: #d93025;
+  font-size: 0.9rem;
+  margin-top: 6px;
+  display: block;
+}
+
+/* ensure toast shows when .show is added */
+.partner-success-toast {
+  display: none;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 14px;
+  border-radius: 6px;
+  background: #e6ffed;
+  color: #0b7027;
+  box-shadow: 0 6px 18px rgba(0,0,0,0.06);
+}
+
+.partner-success-toast.show {
+  display: flex !important;
+}
