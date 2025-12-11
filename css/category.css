@@ -1,0 +1,108 @@
+/* css/category.css */
+
+/* Hero Section */
+.category-hero {
+    padding-top: 2rem;
+    margin-bottom: 3rem;
+}
+
+.category-hero h1 {
+    margin-bottom: 0.5rem;
+}
+
+/* Grid Layout */
+.category-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2rem;
+    margin-bottom: 5rem;
+    min-height: 300px;
+}
+
+/* Category Card Styling */
+.category-card {
+    background: var(--bg-secondary);
+    border: 2px solid var(--border-color);
+    border-radius: 2rem;
+    overflow: hidden;
+    box-shadow: var(--shadow-strong) 0px 10px 20px;
+    transition: all 0.3s ease;
+    position: relative;
+    cursor: pointer;
+    text-decoration: none; /* content is inside an anchor or behaves like one */
+    display: flex;
+    flex-direction: column;
+}
+
+.category-card:hover {
+    transform: translateY(-10px);
+    border-color: var(--gold-finger);
+    box-shadow: 0 15px 30px rgba(242, 189, 18, 0.15);
+}
+
+.category-image-container {
+    width: 100%;
+    height: 220px;
+    overflow: hidden;
+}
+
+.category-card img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.5s ease;
+}
+
+.category-card:hover img {
+    transform: scale(1.1);
+}
+
+.category-info {
+    padding: 1.5rem;
+    text-align: center;
+    background: var(--bg-secondary);
+    position: relative;
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.category-info h2 {
+    font-size: 1.8rem;
+    color: var(--text-primary);
+    margin-bottom: 0.5rem;
+    text-transform: capitalize;
+}
+
+.category-count {
+    display: inline-block;
+    background: var(--bg-accent);
+    color: var(--gold-finger);
+    padding: 0.3rem 0.8rem;
+    border-radius: 2rem;
+    font-size: 0.9rem;
+    font-weight: 600;
+}
+
+/* Skeleton Loader */
+.skeleton-loader {
+    grid-column: 1 / -1;
+    text-align: center;
+    font-size: 1.2rem;
+    color: var(--text-secondary);
+    padding: 2rem;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .category-grid {
+        grid-template-columns: 1fr;
+        padding: 0 1rem;
+    }
+    
+    .category-hero h1 {
+        font-size: 2.5rem;
+    }
+}

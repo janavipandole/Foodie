@@ -1,0 +1,120 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Food Categories — Foodie</title>
+    <meta name="description" content="Explore our diverse menu by category. From Italian to Indian, we have it all." />
+
+    <script>
+        (function () {
+            const savedTheme = localStorage.getItem('theme');
+            if (savedTheme === 'dark') {
+                document.documentElement.setAttribute('data-theme', 'dark');
+            }
+        })();
+    </script>
+
+    <link rel="icon" href="../imgs/favicon.webp" type="image/webp" />
+    
+    <link rel="stylesheet" href="../css/style.css" />
+    <link rel="stylesheet" href="../css/cursor.css" />
+    <link rel="stylesheet" href="../css/category.css" />
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
+    <link href="https://unpkg.com/aos@2.3.4/dist/aos.css" rel="stylesheet">
+</head>
+
+<body>
+
+    <header>
+        <nav class="navbar flex between wrapper">
+            <a href="index.html" class="logo">Foodie.</a>
+
+            <ul class="navList flex gap-3 between">
+                <li><a href="./index.html#home" data-i18n="nav.home">Home</a></li>
+                <li><a href="./menu.html" data-i18n="nav.menu">Menu</a></li>
+                <li><a href="./aboutUs.html" data-i18n="nav.about">About Us</a></li>
+                <li><a href="./contactUs.html" data-i18n="nav.contact">Contact Us</a></li>
+                <li><a href="nearbyres.html" data-i18n="nav.nearby">Nearby Restaurants</a></li>
+            </ul>
+
+            <div class="desktop-action flex gap-2">
+                <div class="custom-select" id="language-custom-select">
+                    <div class="selected" tabindex="0" aria-haspopup="listbox" aria-expanded="false">English</div>
+                    <ul class="options" role="listbox">
+                        <li data-value="en" role="option" aria-selected="true">English</li>
+                        <li data-value="hi" role="option">हिंदी</li>
+                    </ul>
+                </div>
+
+                <form class="navbar-search" action="./menu.html" method="get">
+                    <input type="text" name="search" id="navbar-search" placeholder="Search..." aria-label="Search menu">
+                    <button type="submit" id="navbar-search-btn" aria-label="Search"><i class="fa-solid fa-magnifying-glass"></i></button>
+                </form>
+
+                <button class="desktop-action theme-toggle" aria-label="Toggle dark mode">
+                    <i class="fa-solid fa-moon"></i>
+                </button>
+                
+                <a href="./checkout.html" class="cart-icon">
+                    <i class="fa-solid fa-bag-shopping"></i>
+                    <span class="cart-value">0</span>
+                </a>
+
+                <a href="./signup.html" class="btn">Sign in&nbsp;<i class="fa-solid fa-arrow-right-from-bracket"></i></a>
+                
+                <a href="#" class="hamberger"><i class="fa-solid fa-bars"></i></a>
+            </div>
+
+            <ul class="mobile-menu">
+                <li><a href="./index.html#home" data-i18n="nav.home">Home</a></li>
+                <li><a href="./menu.html" data-i18n="nav.menu">Menu</a></li>
+                <li><a href="./aboutUs.html" data-i18n="nav.about">About Us</a></li>
+                <li><a href="./contactUs.html" data-i18n="nav.contact">Contact Us</a></li>
+                <li><a href="nearbyres.html" data-i18n="nav.nearby">Nearby Restaurants</a></li>
+                <li>
+                    <button class="theme-toggle mobile-theme-toggle">
+                        <i class="fa-solid fa-moon"></i><span>Dark Mode</span>
+                    </button>
+                </li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <section class="category-hero text-center p-top">
+            <div class="wrapper" data-aos="fade-down">
+                <h5>Discover Flavors</h5>
+                <h1>Browse by <span class="highlight">Cuisine</span></h1>
+                <p class="para m-auto">Explore our wide range of delicious cuisines from around the world.</p>
+            </div>
+        </section>
+
+        <section class="category-grid wrapper" id="categoryContainer">
+            <div class="skeleton-loader">Loading categories...</div>
+        </section>
+    </main>
+
+    <footer id="contacts" data-aos="fade-up"></footer>
+
+    <a href="https://wa.me/911234567890" class="whatsapp-fab" target="_blank" aria-label="Chat on WhatsApp">
+        <i class="fa-brands fa-whatsapp"></i>
+    </a>
+    <a href="#home" class="back-to-top" aria-label="Back to top">
+        <i class="fa-solid fa-arrow-up"></i>
+    </a>
+
+    <script src="https://unpkg.com/aos@2.3.4/dist/aos.js"></script>
+    
+    <script src="../js/i18n.js"></script>
+    <script src="../js/language-dropdown.js"></script>
+    <script src="../js/app.js"></script>
+    <script src="../js/footer.js"></script>
+    <script src="../js/cursor.js"></script>
+
+    <script src="../js/category.js"></script>
+
+</body>
+</html>
