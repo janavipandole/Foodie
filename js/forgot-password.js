@@ -1,32 +1,36 @@
-
-
 document.addEventListener('DOMContentLoaded', () => {
-  // Theme Toggle Functionality
+
+  /* =========================
+     THEME TOGGLE FUNCTIONALITY
+  ========================== */
+
   const themeToggle = document.getElementById('themeToggle');
   const html = document.documentElement;
   const themeIcon = themeToggle.querySelector('i');
 
-  // Check for saved theme preference or default to 'light'
-  const currentTheme = localStorage.getItem('theme') || 'light';
+  // Detect system theme
+  const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+
+  // Use saved theme or system theme
+  const savedTheme = localStorage.getItem('theme');
+  const currentTheme = savedTheme || (prefersDark ? 'dark' : 'light');
+
   html.setAttribute('data-theme', currentTheme);
   updateThemeIcon(currentTheme);
 
-  // Theme toggle event listener
+  // Theme toggle click
   themeToggle.addEventListener('click', () => {
-    // Add transition class
     html.classList.add('theme-transition');
-    
-    const currentTheme = html.getAttribute('data-theme');
-    const newTheme = currentTheme === 'light' ? 'dark' : 'light';
-    
+
+    const activeTheme = html.getAttribute('data-theme');
+    const newTheme = activeTheme === 'light' ? 'dark' : 'light';
+
     html.setAttribute('data-theme', newTheme);
     localStorage.setItem('theme', newTheme);
     updateThemeIcon(newTheme);
-    
-    // Add rotation animation to icon
+
     themeIcon.classList.add('rotate-icon');
-    
-    // Remove transition class after animation
+
     setTimeout(() => {
       html.classList.remove('theme-transition');
       themeIcon.classList.remove('rotate-icon');
@@ -43,22 +47,37 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   }
 
-  // Forgot Password Form Handler
+  /* =========================
+     FORGOT PASSWORD HANDLER
+  ========================== */
+
   function handleForgotPassword(event) {
     event.preventDefault();
-    
-    const email = document.getElementById('resetEmail').value;
-    
+
+    const emailInput = document.getElementById('resetEmail');
+    const email = emailInput.value.trim();
+
+    // Email validation
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!emailRegex.test(email)) {
+      alert('Please enter a valid email address');
+      emailInput.focus();
+      return;
+    }
+
     // Show success message
     document.getElementById('emailForm').classList.remove('active');
     document.getElementById('successMessage').classList.add('active');
     document.getElementById('sentEmail').textContent = email;
-    
-    // Store email for resend functionality
+
+    // Save email for resend
     localStorage.setItem('resetEmail', email);
   }
 
-  // Resend Email Function
+  /* =========================
+     RESEND EMAIL
+  ========================== */
+
   function resendEmail() {
     const email = localStorage.getItem('resetEmail');
     if (email) {
@@ -66,15 +85,20 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   }
 
-  // Switch back to email form
+  /* =========================
+     SWITCH BACK TO FORM
+  ========================== */
+
   function switchToEmailForm() {
     document.getElementById('successMessage').classList.remove('active');
     document.getElementById('emailForm').classList.add('active');
   }
 
-  // Make functions globally accessible
+  // Auto focus email input
+  document.getElementById('resetEmail')?.focus();
+
+  // Expose functions globally
   window.handleForgotPassword = handleForgotPassword;
   window.resendEmail = resendEmail;
   window.switchToEmailForm = switchToEmailForm;
 });
-
