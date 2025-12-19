@@ -28,22 +28,78 @@
     <header>
         <nav class="navbar flex between wrapper">
             <a href="index.html" class="logo">Foodie.</a>
+
             <ul class="navList flex gap-3 between">
-                <li><a href="./index.html#home" data-i18n="nav.home">Home</a></li>
+                <li><a class="active" href="./index.html#home" data-i18n="nav.home">Home</a></li>
                 <li><a href="./menu.html" data-i18n="nav.menu">Menu</a></li>
                 <li><a href="./aboutUs.html" data-i18n="nav.about">About Us</a></li>
                 <li><a href="./contactUs.html" data-i18n="nav.contact">Contact Us</a></li>
+                <li><a href="nearbyres.html" data-i18n="nav.nearby">Nearby Restaurants</a></li>
             </ul>
             <div class="desktop-action flex gap-2">
-                <button class="desktop-action theme-toggle"><i class="fa-solid fa-moon"></i></button>
-                <a href="./checkout.html" class="cart-icon"><i class="fa-solid fa-bag-shopping"></i><span class="cart-value">0</span></a>
+                <div class="custom-select" id="language-custom-select">
+                    <div class="selected" tabindex="0" aria-haspopup="listbox" aria-expanded="false"
+                        aria-labelledby="language-custom-select">
+                        English
+                    </div>
+                    <ul class="options" role="listbox" tabindex="-1">
+                        <li data-value="en" role="option" aria-selected="true">English</li>
+                        <li data-value="hi" role="option">हिंदी</li>
+                    </ul>
+                </div>
+
+                <form class="navbar-search" action="#" method="get">
+<input
+  type="text"
+  id="navbar-search"
+  placeholder="Search your food ..."
+  data-i18n-placeholder="nav.searchPlaceholder"
+/>
+                    <button type="submit" id="navbar-search-btn" aria-label="Search">
+                        <i class="fa-solid fa-magnifying-glass"></i>
+                    </button>
+                </form>
+
+                <button class="desktop-action theme-toggle" aria-label="Toggle dark mode">
+                    <i class="fa-solid fa-moon"></i>
+                </button>
+
+                <a href="./checkout.html" class="cart-icon">
+                    <i class="fa-solid fa-bag-shopping"></i>
+                    <span class="cart-value">0</span>
+                </a>
+
+                <a href="./signup.html" class="btn" data-i18n="nav.signIn">
+    Sign in&nbsp;<i class="fa-solid fa-arrow-right-from-bracket"></i>
+</a>
+
+
                 <a href="#" class="hamberger"><i class="fa-solid fa-bars"></i></a>
             </div>
+
+
             <ul class="mobile-menu">
-                <li><a href="./index.html#home">Home</a></li>
-                <li><a href="./menu.html">Menu</a></li>
-                <li><a href="./aboutUs.html">About Us</a></li>
-                <li><a href="./contactUs.html">Contact Us</a></li>
+                <li><a class="active" href="./index.html#home" data-i18n="nav.home">Home</a></li>
+                <li><a href="./menu.html" data-i18n="nav.menu">Menu</a></li>
+                <li><a href="./aboutUs.html" data-i18n="nav.about">About Us</a></li>
+                <li><a href="./contactUs.html" data-i18n="nav.contact">Contact Us</a></li>
+                <li><a href="nearbyres.html" data-i18n="nav.nearby">Nearby Restaurants</a></li>
+                <form class="navbar-search" action="#" method="get">
+                    <input type="text" name="search" id="navbar-search" placeholder="Search your food ...">
+                    <button type="submit" id="navbar-search-btn" aria-label="Search">
+                        <i class="fa-solid fa-magnifying-glass"></i>
+                    </button>
+                </form>
+                <li>
+                    <button class="theme-toggle mobile-theme-toggle" aria-label="Toggle dark mode">
+                        <i class="fa-solid fa-moon"></i><span>Dark Mode</span>
+                    </button>
+                </li>
+                <li>
+                    <a href="./signup.html" class="btn">
+                        Sign in&nbsp;<i class="fa-solid fa-arrow-right-from-bracket"></i>
+                    </a>
+                </li>
             </ul>
         </nav>
     </header>
