@@ -226,6 +226,10 @@ p {
   color: #ffa502;
 }
 
+.foodie-color {
+  color: #ebb756;
+}
+
 @media (max-width: 768px) {
   .story-wrapper {
     flex-direction: column;
