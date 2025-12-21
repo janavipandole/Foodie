@@ -48,13 +48,6 @@ class I18n {
         this.updateLanguageSelector();
     }
 
-    // Safe key lookup with fallback
-    t(key, fallback = "") {
-        return key.split(".").reduce((obj, k) => obj?.[k], this.translations) 
-            || fallback 
-            || key;
-    }
-
     // Faster DOM translation (one pass)
     applyTranslations() {
         const selectors = {
