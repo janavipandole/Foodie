@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Top Rated Restaurants Near You | Foodie</title>
+  <script>
+    // Immediately apply saved theme to prevent FOUC
+    (function () {
+      const savedTheme = localStorage.getItem('theme');
+      if (savedTheme === 'dark') {
+        document.documentElement.setAttribute('data-theme', 'dark');
+      }
+    })();
+  </script>
+  <link rel="icon" href="../imgs/favicon.webp" type="image/webp" />
+  <link rel="stylesheet" href="../css/style.css" />
+  <link rel="stylesheet" href="../css/cursor.css" />
+  <link rel="stylesheet" href="../css/google-maps-restaurants.css" />
+  <link href="https://unpkg.com/aos@2.3.4/dist/aos.css" rel="stylesheet" />
+  <script defer src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.0/css/all.min.css"
+    integrity="sha512-DxV+EoADOkOygM4IR9yXP8Sb2qwgidEmeqAEmDKIOfPRQZOWbXCzLC6vjbZyy0vPisbH2SyW27+ddLVCN+OMzQ=="
+    crossorigin="anonymous" referrerpolicy="no-referrer" />
+  <!-- Google Maps API -->
+  <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAIf_1fDDLOT5=g8MJNyEkvUsjOungrow5Dk&libraries=places"></script>
+</head>
+
+<body>
+  <header>
+    <nav class="navbar flex between wrapper">
+      <div class="logo">Foodie.</div>
+
+      <!-- DESKTOP MENU -->
+      <ul class="navList flex gap-3 between">
+        <li><a href="./index.html#home" data-i18n="nav.home">Home</a></li>
+        <li><a href="./menu.html" data-i18n="nav.menu">Menu</a></li>
+        <li><a href="./aboutUs.html" data-i18n="nav.about">About Us</a></li>
+        <li><a href="./contactUs.html" data-i18n="nav.contact">Contact Us</a></li>
+        <li><a class="active" href="google-maps-restaurants.html" data-i18n="nav.nearby">Nearby Restaurants</a></li>
+      </ul>
+      <div class="desktop-action flex gap-2">
+        <!-- Language Selector -->
+        <div class="custom-select" id="language-custom-select">
+          <div class="selected" tabindex="0" aria-haspopup="listbox" aria-expanded="false"
+            aria-labelledby="language-custom-select">
+            English
+          </div>
+          <ul class="options" role="listbox" tabindex="-1">
+            <li data-value="en" role="option" aria-selected="true">English</li>
+            <li data-value="hi" role="option">हिंदी</li>
+          </ul>
+        </div>
+
+        <!-- Search Input -->
+        <form class="navbar-search" action="#" method="get">
+          <input type="text" name="search" id="navbar-search" placeholder="Search your food ..."
+            aria-label="Search menu items">
+          <button type="submit" id="navbar-search-btn" aria-label="Search">
+            <i class="fa-solid fa-magnifying-glass"></i>
+          </button>
+        </form>
+
+        <!-- Theme toggle -->
+        <button class="desktop-action theme-toggle" aria-label="Toggle dark mode">
+          <i class="fa-solid fa-moon"></i>
+        </button>
+
+        <!-- Cart Icon -->
+        <a href="./checkout.html" class="cart-icon">
+          <i class="fa-solid fa-bag-shopping"></i>
+          <span class="cart-value">0</span>
+        </a>
+
+        <!-- Sign-in button -->
+        <a href="./signup.html" class="btn">
+          Sign in&nbsp;<i class="fa-solid fa-arrow-right-from-bracket"></i>
+        </a>
+
+        <!-- Hamburger -->
+        <a href="#" class="hamberger"><i class="fa-solid fa-bars"></i></a>
+      </div>
+
+      <!-- MOBILE MENU -->
+      <ul class="mobile-menu">
+        <li><a href="./index.html#home" data-i18n="nav.home">Home</a></li>
+        <li><a href="./menu.html" data-i18n="nav.menu">Menu</a></li>
+        <li><a href="./aboutUs.html" data-i18n="nav.about">About Us</a></li>
+        <li><a href="./contactUs.html" data-i18n="nav.contact">Contact Us</a></li>
+        <li><a href="google-maps-restaurants.html" data-i18n="nav.nearby">Nearby Restaurants</a></li>
+        <!-- Search Input -->
+        <form class="navbar-search" action="#" method="get">
+          <input type="text" name="search" id="navbar-search" placeholder="Search your food ..."
+            aria-label="Search menu items">
+          <button type="submit" id="navbar-search-btn" aria-label="Search">
+            <i class="fa-solid fa-magnifying-glass"></i>
+          </button>
+        </form>
+        <li>
+          <button class="theme-toggle mobile-theme-toggle" aria-label="Toggle dark mode">
+            <i class="fa-solid fa-moon"></i>
+          </button>
+        </li>
+      </ul>
+    </nav>
+  </header>
+
+  <main>
+    <!-- Hero Section -->
+    <section class="hero-section" data-aos="fade-up">
+      <div class="wrapper">
+        <h1 data-i18n="topRatedRestaurants.title">Top Rated Restaurants Near You</h1>
+        <p data-i18n="topRatedRestaurants.subtitle">Discover the best dining options in your area, powered by Google Reviews</p>
+      </div>
+    </section>
+
+    <!-- Restaurant Container -->
+    <section class="restaurants-section wrapper">
+      <!-- Loading State -->
+      <div id="loadingContainer" class="loading-container">
+        <div class="spinner"></div>
+        <p data-i18n="topRatedRestaurants.loading">Finding nearby restaurants...</p>
+      </div>
+
+      <!-- Error State -->
+      <div id="errorContainer" class="error-container" style="display: none;">
+        <i class="fa-solid fa-location-dot"></i>
+        <p id="errorMessage" data-i18n="topRatedRestaurants.error">Unable to get your location. Please enable geolocation.</p>
+        <button id="retryBtn" class="btn" data-i18n="topRatedRestaurants.retry">Retry</button>
+      </div>
+
+      <!-- View Toggle Buttons -->
+      <div id="viewToggleContainer" class="view-toggle" style="display: none;">
+        <button id="mapViewBtn" class="view-btn active" title="Map View">
+          <i class="fa-solid fa-map"></i> <span data-i18n="topRatedRestaurants.mapView">Map</span>
+        </button>
+        <button id="listViewBtn" class="view-btn" title="List View">
+          <i class="fa-solid fa-list"></i> <span data-i18n="topRatedRestaurants.listView">List</span>
+        </button>
+      </div>
+
+      <!-- Map Container -->
+      <div id="mapContainer" class="map-container active-view" style="display: none;"></div>
+
+      <!-- List Container -->
+      <div id="listContainer" class="restaurants-list" style="display: none;">
+        <div id="restaurantsList"></div>
+      </div>
+    </section>
+  </main>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="wrapper">
+      <div class="flex between gap-3">
+        <div class="col flex column gap-2">
+          <h4>Foodie</h4>
+          <ul>
+            <li><a href="./index.html" data-i18n="nav.home">Home</a></li>
+            <li><a href="./menu.html" data-i18n="nav.menu">Menu</a></li>
+            <li><a href="./aboutUs.html" data-i18n="nav.about">About Us</a></li>
+          </ul>
+        </div>
+        <div class="col flex column gap-2">
+          <h4 data-i18n="footer.support">Support</h4>
+          <ul>
+            <li><a href="./contactUs.html" data-i18n="nav.contact">Contact Us</a></li>
+            <li><a href="./supportCenter.html" data-i18n="footer.help">Help Center</a></li>
+            <li><a href="./feedback.html" data-i18n="footer.feedback">Feedback</a></li>
+          </ul>
+        </div>
+        <div class="col flex column gap-2">
+          <h4 data-i18n="footer.company">Company</h4>
+          <ul>
+            <li><a href="./PartnerWithUs.html" data-i18n="footer.partner">Partner With Us</a></li>
+            <li><a href="./rideWithUs.html" data-i18n="footer.ride">Ride With Us</a></li>
+            <li><a href="#" data-i18n="footer.careers">Careers</a></li>
+          </ul>
+        </div>
+        <div class="col flex column gap-2">
+          <h4 data-i18n="footer.legal">Legal</h4>
+          <ul>
+            <li><a href="#" data-i18n="footer.privacy">Privacy Policy</a></li>
+            <li><a href="#" data-i18n="footer.terms">Terms of Service</a></li>
+          </ul>
+        </div>
+        <div class="col flex column gap-2">
+          <h4 data-i18n="footer.followUs">Follow Us</h4>
+          <div class="social-media flex gap-2">
+            <a href="#"><i class="fa-brands fa-facebook"></i></a>
+            <a href="#"><i class="fa-brands fa-twitter"></i></a>
+            <a href="#"><i class="fa-brands fa-instagram"></i></a>
+            <a href="#"><i class="fa-brands fa-linkedin"></i></a>
+          </div>
+        </div>
+      </div>
+      <hr />
+      <div class="flex between gap-2">
+        <p>&copy; 2024 Foodie. All rights reserved.</p>
+        <div class="flex gap-3">
+          <a href="#" data-i18n="footer.privacy">Privacy</a>
+          <a href="#" data-i18n="footer.terms">Terms</a>
+          <a href="#" data-i18n="footer.cookies">Cookies</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Back to Top Button -->
+  <a href="#" class="back-to-top" title="Back to top">
+    <i class="fa-solid fa-arrow-up"></i>
+  </a>
+
+  <!-- Scripts -->
+  <script src="../js/i18n.js"></script>
+  <script src="../js/language-dropdown.js"></script>
+  <script src="../js/google-maps-restaurants.js"></script>
+  <script src="https://unpkg.com/aos@2.3.4/dist/aos.js"></script>
+  <script>
+    // Initialize AOS
+    AOS.init();
+
+    // Theme toggle
+    const themeToggles = document.querySelectorAll('.theme-toggle');
+    themeToggles.forEach(toggle => {
+      toggle.addEventListener('click', () => {
+        const currentTheme = document.documentElement.getAttribute('data-theme');
+        const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
+        document.documentElement.setAttribute('data-theme', newTheme);
+        localStorage.setItem('theme', newTheme);
+      });
+    });
+
+    // Hamburger menu
+    const hamburger = document.querySelector('.hamberger');
+    const mobileMenu = document.querySelector('.mobile-menu');
+    if (hamburger && mobileMenu) {
+      hamburger.addEventListener('click', (e) => {
+        e.preventDefault();
+        mobileMenu.classList.toggle('mobile-menu-active');
+      });
+    }
+
+    // Back to top
+    const backToTop = document.querySelector('.back-to-top');
+    if (backToTop) {
+      window.addEventListener('scroll', () => {
+        if (window.scrollY > 400) {
+          backToTop.classList.add('visible');
+        } else {
+          backToTop.classList.remove('visible');
+        }
+      });
+
+      backToTop.addEventListener('click', (e) => {
+        e.preventDefault();
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+      });
+    }
+  </script>
+</body>
+
+</html>
