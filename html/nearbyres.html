@@ -120,7 +120,7 @@
       </div>
 
       <div class="restaurant-grid flex wrap gap-4 mt-5">
-        
+
       </div>
     </section>
   </main>
@@ -143,17 +143,17 @@
   <script> AOS.init({ duration: 1000, easing: 'ease-out', once: true }); </script>
   <script>
     (function () {
-            const backToTop = document.querySelector('.back-to-top');
-            if (!backToTop) return;
-            window.addEventListener('scroll', () => {
-                if (window.scrollY > 400) backToTop.classList.add('visible');
-                else backToTop.classList.remove('visible');
-            });
-            backToTop.addEventListener('click', e => {
-                e.preventDefault();
-                window.scrollTo({ top: 0, behavior: 'smooth' });
-            });
-        })();
+      const backToTop = document.querySelector('.back-to-top');
+      if (!backToTop) return;
+      window.addEventListener('scroll', () => {
+        if (window.scrollY > 400) backToTop.classList.add('visible');
+        else backToTop.classList.remove('visible');
+      });
+      backToTop.addEventListener('click', e => {
+        e.preventDefault();
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+      });
+    })();
   </script>
 </body>
 

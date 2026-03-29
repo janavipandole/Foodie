@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en" data-theme="">
+
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -60,7 +61,8 @@
               <label for="loginPassword">Password</label>
               <div class="password-field">
                 <input type="password" id="loginPassword" placeholder="Enter your password" required />
-                <button type="button" class="toggle-password" onclick="togglePassword('loginPassword')" aria-label="Toggle password visibility">
+                <button type="button" class="toggle-password" onclick="togglePassword('loginPassword')"
+                  aria-label="Toggle password visibility">
                   👁️
                 </button>
               </div>
@@ -121,7 +123,8 @@
               <label for="signupPassword">Password</label>
               <div class="password-field">
                 <input type="password" id="signupPassword" placeholder="Create a strong password" required />
-                <button type="button" class="toggle-password" onclick="togglePassword('signupPassword')" aria-label="Toggle password visibility">
+                <button type="button" class="toggle-password" onclick="togglePassword('signupPassword')"
+                  aria-label="Toggle password visibility">
                   👁️
                 </button>
               </div>
@@ -167,7 +170,7 @@
           document.documentElement.setAttribute('data-theme', 'dark');
         }
         updateThemeIcon(theme);
-      } catch (e) {}
+      } catch (e) { }
     })();
 
     const themeToggle = document.getElementById('themeToggle');
@@ -186,7 +189,7 @@
         }
         localStorage.setItem('theme', newTheme);
         updateThemeIcon(newTheme);
-      } catch (e) {}
+      } catch (e) { }
     });
 
     /* Hero animation + form toggles remain unchanged */
@@ -245,4 +248,5 @@
     }
   </script>
 </body>
+
 </html>

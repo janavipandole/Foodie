@@ -12,7 +12,7 @@
 
     <script>
         // Immediately apply saved theme to prevent FOUC
-        (function() {
+        (function () {
             const savedTheme = localStorage.getItem('theme');
             if (savedTheme === 'dark') {
                 document.documentElement.setAttribute('data-theme', 'dark');
@@ -34,12 +34,12 @@
 
     <link href="https://unpkg.com/aos@2.3.4/dist/aos.css" rel="stylesheet">
 
-     <script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"></script>
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"></script>
     <script>
-      window.dataLayer = window.dataLayer || [];
-      function gtag(){dataLayer.push(arguments);}
-      gtag('js', new Date());
-      gtag('config', 'G-XXXXXXXXXX');
+        window.dataLayer = window.dataLayer || [];
+        function gtag() { dataLayer.push(arguments); }
+        gtag('js', new Date());
+        gtag('config', 'G-XXXXXXXXXX');
     </script>
 
 </head>
@@ -90,12 +90,8 @@
                 </div>
 
                 <form class="navbar-search" action="#" method="get">
-<input
-  type="text"
-  id="navbar-search"
-  placeholder="Search your food ..."
-  data-i18n-placeholder="nav.searchPlaceholder"
-/>
+                    <input type="text" id="navbar-search" placeholder="Search your food ..."
+                        data-i18n-placeholder="nav.searchPlaceholder" />
                     <button type="submit" id="navbar-search-btn" aria-label="Search">
                         <i class="fa-solid fa-magnifying-glass"></i>
                     </button>
@@ -111,8 +107,8 @@
                 </a>
 
                 <a href="./signup.html" class="btn" data-i18n="nav.signIn">
-    Sign in&nbsp;<i class="fa-solid fa-arrow-right-from-bracket"></i>
-</a>
+                    Sign in&nbsp;<i class="fa-solid fa-arrow-right-from-bracket"></i>
+                </a>
 
 
                 <a href="#" class="hamberger"><i class="fa-solid fa-bars"></i></a>
@@ -187,7 +183,7 @@
                 <div class="flex text-center gap-4 mt-4">
                     <div class="srevice-card" data-aos="zoom-in" data-aos-delay="100">
                         <div>
-                             <img src="../imgs/easy-to-order.webp" alt="Easy food ordering">
+                            <img src="../imgs/easy-to-order.webp" alt="Easy food ordering">
                         </div>
                         <h3 data-i18n="services.easyOrder.title">Easy to Order</h3>
                         <p data-i18n="services.easyOrder.description">You only need a few steps in ordering food.</p>
@@ -226,11 +222,11 @@
                         <div class="swiper-wrapper">
                             <div class="swiper-slide">
                                 <div class="flex gap-3 mt-4">
-                                    <div class="profile">                                 
+                                    <div class="profile">
                                         <img src="../imgs/profile1.webp" alt="Deepak Kumar">
                                     </div>
                                     <div class="">
-                                     <h4 data-i18n="reviews.deepakName"></h4>
+                                        <h4 data-i18n="reviews.deepakName"></h4>
 
                                         <div class="star mt-half">
                                             <i class="fa-solid fa-star highlighted-star"></i>
@@ -240,7 +236,7 @@
                                         </div>
                                     </div>
                                 </div>
-                               <p class="para" data-i18n="reviews.deepakReview"></p>
+                                <p class="para" data-i18n="reviews.deepakReview"></p>
 
                             </div>
 
@@ -292,7 +288,8 @@
         </section>
 
         <section id="about">
-            <div class="wrapper"> <div class="app-container flex gap-3">
+            <div class="wrapper">
+                <div class="app-container flex gap-3">
                     <div class="app-image" data-aos="fade-right">
                         <img src="../imgs/mobile-app.webp" alt="Food delivery mobile app interface">
                     </div>
@@ -300,8 +297,9 @@
                     <div class="content app-download-content" data-aos="fade-left">
                         <h5 data-i18n="app.sectionTitle">Our Application</h5>
                         <h2 data-i18n="app.mainTitle">Simple way to <br> order your food</h2>
-                        <p class="para" data-i18n="app.description">Crave it. Find it. Get it fast wherever, whenever.</p>
-                        
+                        <p class="para" data-i18n="app.description">Crave it. Find it. Get it fast wherever, whenever.
+                        </p>
+
                         <div class="qr-download-section">
                             <div class="qr-code-container">
                                 <div class="qr-header">
@@ -312,28 +310,29 @@
 
                                     </div>
                                 </div>
-                                
+
                                 <div class="qr-code-box">
-                                    <img src="../imgs/qr-code.png" alt="Scan QR code to download Foodie app" class="qr-code-image">
+                                    <img src="../imgs/qr-code.png" alt="Scan QR code to download Foodie app"
+                                        class="qr-code-image">
                                     <div class="qr-logo-badge">
                                         <i class="fa-solid fa-mobile-screen-button"></i>
                                     </div>
                                 </div>
-                                
-                               <p class="qr-instruction" data-i18n="qr.instruction"></p>
+
+                                <p class="qr-instruction" data-i18n="qr.instruction"></p>
 
                             </div>
 
                             <div class="app-store-buttons">
-                               <p class="download-text" data-i18n="qr.orDownload"></p>
+                                <p class="download-text" data-i18n="qr.orDownload"></p>
 
-                                
+
                                 <a href="#" class="app-store-btn ios-btn" target="_blank" rel="noopener noreferrer">
                                     <div class="store-btn-content">
                                         <i class="fa-brands fa-apple"></i>
                                         <div class="store-text">
-                                           <span class="small-text" data-i18n="qr.appStoreSmall"></span>
-<span class="large-text" data-i18n="qr.appStoreLarge"></span>
+                                            <span class="small-text" data-i18n="qr.appStoreSmall"></span>
+                                            <span class="large-text" data-i18n="qr.appStoreLarge"></span>
 
                                         </div>
                                     </div>
@@ -344,8 +343,8 @@
                                     <div class="store-btn-content">
                                         <i class="fa-brands fa-google-play"></i>
                                         <div class="store-text">
-                                           <span class="small-text" data-i18n="qr.googlePlaySmall"></span>
-<span class="large-text" data-i18n="qr.googlePlayLarge"></span>
+                                            <span class="small-text" data-i18n="qr.googlePlaySmall"></span>
+                                            <span class="large-text" data-i18n="qr.googlePlayLarge"></span>
 
                                         </div>
                                     </div>
@@ -395,13 +394,9 @@
                         drop you email below to get daily update about us.</p>
 
                     <form id="newsletterForm" class="input-container flex" data-aos="fade-up" data-aos-delay="200">
-<input 
-  type="email"
-  id="email"
-  placeholder="Enter your email"
-  data-i18n-placeholder="newsletter.placeholder"
-/>
-                            
+                        <input type="email" id="email" placeholder="Enter your email"
+                            data-i18n-placeholder="newsletter.placeholder" />
+
                         <button type="submit" class="btn" data-i18n="newsletter.subscribeButton">Subscribe</button>
                     </form>
                     <span class="error-message" id="emailError"></span>

@@ -1,219 +1,184 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Foodie - Ride With Us</title>
 
-    <link rel="icon" href="../imgs/favicon.png" type="image/png" />
-    <link
-      rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
-    />
-    <link rel="stylesheet" href="../css/style.css" />
-    <link rel="stylesheet" href="../css/rideWithUs.css" />
-    <link rel="stylesheet" href="../css/cursor.css" />
-  </head>
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Foodie - Ride With Us</title>
 
-  <body>
-    <header>
-      <nav class="navbar flex between wrapper">
-        <div class="logo">Foodie.</div>
+  <link rel="icon" href="../imgs/favicon.png" type="image/png" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+  <link rel="stylesheet" href="../css/style.css" />
+  <link rel="stylesheet" href="../css/rideWithUs.css" />
+  <link rel="stylesheet" href="../css/cursor.css" />
+</head>
 
-        <!-- DESKTOP MENU -->
-        <ul class="navList flex gap-3 between">
-          <li><a href="./index.html#home" data-i18n="nav.home">Home</a></li>
-          <li><a href="./menu.html" data-i18n="nav.menu">Menu</a></li>
-          <li><a href="./aboutUs.html" data-i18n="nav.about">About Us</a></li>
-          <li>
-            <a href="./contactUs.html" data-i18n="nav.contact">Contact Us</a>
-          </li>
-          <li>
-            <a href="nearbyres.html" data-i18n="nav.nearby"
-              >Nearby Restaurants</a
-            >
-          </li>
-          <li><a class="active" href="./rideWithUs.html" data-i18n="nav.rideWithUs">Ride With Us</a></li>
-        </ul>
-        <div class="desktop-action flex gap-2">
-          <!-- Theme toggle -->
-          <button
-            class="desktop-action theme-toggle"
-            aria-label="Toggle dark mode"
-          >
-            <i class="fa-solid fa-moon"></i>
+<body>
+  <header>
+    <nav class="navbar flex between wrapper">
+      <div class="logo">Foodie.</div>
+
+      <!-- DESKTOP MENU -->
+      <ul class="navList flex gap-3 between">
+        <li><a href="./index.html#home" data-i18n="nav.home">Home</a></li>
+        <li><a href="./menu.html" data-i18n="nav.menu">Menu</a></li>
+        <li><a href="./aboutUs.html" data-i18n="nav.about">About Us</a></li>
+        <li>
+          <a href="./contactUs.html" data-i18n="nav.contact">Contact Us</a>
+        </li>
+        <li>
+          <a href="nearbyres.html" data-i18n="nav.nearby">Nearby Restaurants</a>
+        </li>
+        <li><a class="active" href="./rideWithUs.html" data-i18n="nav.rideWithUs">Ride With Us</a></li>
+      </ul>
+      <div class="desktop-action flex gap-2">
+        <!-- Theme toggle -->
+        <button class="desktop-action theme-toggle" aria-label="Toggle dark mode">
+          <i class="fa-solid fa-moon"></i>
+        </button>
+
+        <!-- Cart Icon -->
+        <a href="./checkout.html" class="cart-icon">
+          <i class="fa-solid fa-bag-shopping"></i>
+          <span class="cart-value">0</span>
+        </a>
+
+        <!-- Sign-in button -->
+        <a href="./signup.html" class="btn">
+          Sign in&nbsp;<i class="fa-solid fa-arrow-right-from-bracket"></i>
+        </a>
+
+        <!-- Hamburger -->
+        <a href="#" class="hamberger"><i class="fa-solid fa-bars"></i></a>
+      </div>
+
+      <!-- MOBILE MENU -->
+      <ul class="mobile-menu">
+        <li><a href="./index.html#home" data-i18n="nav.home">Home</a></li>
+        <li><a href="./menu.html" data-i18n="nav.menu">Menu</a></li>
+        <li><a href="./aboutUs.html" data-i18n="nav.about">About Us</a></li>
+        <li>
+          <a href="./contactUs.html" data-i18n="nav.contact">Contact Us</a>
+        </li>
+        <li>
+          <a href="nearbyres.html" data-i18n="nav.nearby">Nearby Restaurants</a>
+        </li>
+        <li><a class="active" href="./rideWithUs.html" data-i18n="nav.rideWithUs">Ride With Us</a></li>
+        <li>
+          <button class="theme-toggle mobile-theme-toggle" aria-label="Toggle dark mode">
+            <i class="fa-solid fa-moon"></i><span>Dark Mode</span>
           </button>
-
-          <!-- Cart Icon -->
-          <a href="./checkout.html" class="cart-icon">
-            <i class="fa-solid fa-bag-shopping"></i>
-            <span class="cart-value">0</span>
-          </a>
-
-          <!-- Sign-in button -->
+        </li>
+        <li>
           <a href="./signup.html" class="btn">
             Sign in&nbsp;<i class="fa-solid fa-arrow-right-from-bracket"></i>
           </a>
+        </li>
+      </ul>
+    </nav>
+  </header>
 
-          <!-- Hamburger -->
-          <a href="#" class="hamberger"><i class="fa-solid fa-bars"></i></a>
+  <main>
+    <!-- Hero Section -->
+    <section class="ride-hero">
+      <div class="wrapper flex between">
+        <div class="hero-content">
+          <h1>
+            Ride with India’s Biggest
+            <span class="highlight">delivery squad!</span>
+          </h1>
         </div>
-
-        <!-- MOBILE MENU -->
-        <ul class="mobile-menu">
-          <li><a href="./index.html#home" data-i18n="nav.home">Home</a></li>
-          <li><a href="./menu.html" data-i18n="nav.menu">Menu</a></li>
-          <li><a href="./aboutUs.html" data-i18n="nav.about">About Us</a></li>
-          <li>
-            <a href="./contactUs.html" data-i18n="nav.contact">Contact Us</a>
-          </li>
-          <li>
-            <a href="nearbyres.html" data-i18n="nav.nearby"
-              >Nearby Restaurants</a
-            >
-          </li>
-          <li><a class="active" href="./rideWithUs.html" data-i18n="nav.rideWithUs">Ride With Us</a></li>
-          <li>
-            <button
-              class="theme-toggle mobile-theme-toggle"
-              aria-label="Toggle dark mode"
-            >
-              <i class="fa-solid fa-moon"></i><span>Dark Mode</span>
-            </button>
-          </li>
-          <li>
-            <a href="./signup.html" class="btn">
-              Sign in&nbsp;<i class="fa-solid fa-arrow-right-from-bracket"></i>
-            </a>
-          </li>
-        </ul>
-      </nav>
-    </header>
-
-    <main>
-      <!-- Hero Section -->
-      <section class="ride-hero">
-        <div class="wrapper flex between">
-          <div class="hero-content">
-            <h1>
-              Ride with India’s Biggest
-              <span class="highlight">delivery squad!</span>
-            </h1>
-          </div>
-          <div class="register-form-container">
-            <div class="register-card">
-              <h3>Register as Foodie Partner</h3>
-              <form id="partnerRegisterForm">
-                <div class="form-group">
-                  <label for="partnerName">Enter your name</label>
-                  <input
-                    type="text"
-                    id="partnerName"
-                    placeholder="Your Name"
-                    required
-                  />
-                </div>
-                <div class="form-group">
-                  <label for="partnerCity">Select a city</label>
-                  <select id="partnerCity" required>
-                    <option value="">Select City</option>
-                    <option value="bangalore">Bangalore</option>
-                    <option value="gurgaon">Gurgaon</option>
-                    <option value="hyderabad">Hyderabad</option>
-                    <option value="delhi">Delhi</option>
-                    <option value="mumbai">Mumbai</option>
-                    <option value="pune">Pune</option>
-                    <option value="nashik">Nashik</option>
-                  </select>
-                </div>
-                <div class="form-group">
-                  <label for="partnerMobile">Enter Your Mobile Number</label>
-                  <input
-                    type="tel"
-                    id="partnerMobile"
-                    placeholder="+91 12345 67890"
-                    required
-                  />
-                </div>
-                <button type="submit" class="btn get-otp-btn">Get OTP</button>
-              </form>
-            </div>
+        <div class="register-form-container">
+          <div class="register-card">
+            <h3>Register as Foodie Partner</h3>
+            <form id="partnerRegisterForm">
+              <div class="form-group">
+                <label for="partnerName">Enter your name</label>
+                <input type="text" id="partnerName" placeholder="Your Name" required />
+              </div>
+              <div class="form-group">
+                <label for="partnerCity">Select a city</label>
+                <select id="partnerCity" required>
+                  <option value="">Select City</option>
+                  <option value="bangalore">Bangalore</option>
+                  <option value="gurgaon">Gurgaon</option>
+                  <option value="hyderabad">Hyderabad</option>
+                  <option value="delhi">Delhi</option>
+                  <option value="mumbai">Mumbai</option>
+                  <option value="pune">Pune</option>
+                  <option value="nashik">Nashik</option>
+                </select>
+              </div>
+              <div class="form-group">
+                <label for="partnerMobile">Enter Your Mobile Number</label>
+                <input type="tel" id="partnerMobile" placeholder="+91 12345 67890" required />
+              </div>
+              <button type="submit" class="btn get-otp-btn">Get OTP</button>
+            </form>
           </div>
         </div>
-      </section>
+      </div>
+    </section>
 
-      <!-- How It Works Section -->
-      <section class="how-it-works-section wrapper p-top">
-        <div class="flex between align-center">
-          <div class="how-it-works-image">
-            <img src="../imgs/rideWithUs.png" alt="Delivery rider" />
-          </div>
-          <div class="how-it-works-content">
-            <h2>Join the team in <span>3 simple steps</span></h2>
-            <ol class="steps-list">
-              <li>Download the Foodie Rider app from the app store</li>
-              <li>Submit your details and required documents</li>
-              <li>Pick up your delivery bag and t-shirt</li>
-            </ol>
-
-            <a href="#" class="btn get-started-btn">Get started</a>
-          </div>
+    <!-- How It Works Section -->
+    <section class="how-it-works-section wrapper p-top">
+      <div class="flex between align-center">
+        <div class="how-it-works-image">
+          <img src="../imgs/rideWithUs.png" alt="Delivery rider" />
         </div>
-      </section>
+        <div class="how-it-works-content">
+          <h2>Join the team in <span>3 simple steps</span></h2>
+          <ol class="steps-list">
+            <li>Download the Foodie Rider app from the app store</li>
+            <li>Submit your details and required documents</li>
+            <li>Pick up your delivery bag and t-shirt</li>
+          </ol>
 
-      <!-- Awesome Fleet Section -->
-      <section class="awesome-fleet-section wrapper p-top">
-        <h2 class="text-center">
-          Become a part of an <span>epic delivery crew</span>
-        </h2>
-        <div class="fleet-grid flex gap-3 mt-4">
-          <div class="fleet-card">
-            <img
-              src="../imgs/delivery-boy-on-bike.png"
-              alt="Delivery partner on bike"
-            />
-            <h3>3 Lakh+</h3>
-            <p>RESTAURANT PARTNERS</p>
-          </div>
-          <div class="fleet-card">
-            <img
-              src="../imgs/handing-over-food.png"
-              alt="Delivery partner handing over food"
-            />
-            <h3>500+</h3>
-            <p>CITIES</p>
-          </div>
-          <div class="fleet-card">
-            <img
-              src="../imgs/delivery-boy-with-bag.png"
-              alt="Delivery partner with bag"
-            />
-            <h3>10 Cr+</h3>
-            <p>HAPPY DELIVERIES</p>
-          </div>
-          <div class="fleet-card">
-            <img
-              src="../imgs/delivery-guy-walking.png"
-              alt="Delivery partner walking"
-            />
-            <h3>2 Lakh+</h3>
-            <p>DELIVERY PARTNERS</p>
-          </div>
+          <a href="#" class="btn get-started-btn">Get started</a>
         </div>
-      </section>
-    </main>
+      </div>
+    </section>
 
-<footer id="contacts" data-aos="fade-up"></footer>
+    <!-- Awesome Fleet Section -->
+    <section class="awesome-fleet-section wrapper p-top">
+      <h2 class="text-center">
+        Become a part of an <span>epic delivery crew</span>
+      </h2>
+      <div class="fleet-grid flex gap-3 mt-4">
+        <div class="fleet-card">
+          <img src="../imgs/delivery-boy-on-bike.png" alt="Delivery partner on bike" />
+          <h3>3 Lakh+</h3>
+          <p>RESTAURANT PARTNERS</p>
+        </div>
+        <div class="fleet-card">
+          <img src="../imgs/handing-over-food.png" alt="Delivery partner handing over food" />
+          <h3>500+</h3>
+          <p>CITIES</p>
+        </div>
+        <div class="fleet-card">
+          <img src="../imgs/delivery-boy-with-bag.png" alt="Delivery partner with bag" />
+          <h3>10 Cr+</h3>
+          <p>HAPPY DELIVERIES</p>
+        </div>
+        <div class="fleet-card">
+          <img src="../imgs/delivery-guy-walking.png" alt="Delivery partner walking" />
+          <h3>2 Lakh+</h3>
+          <p>DELIVERY PARTNERS</p>
+        </div>
+      </div>
+    </section>
+  </main>
 
-    <!-- Back to Top Button -->
-    <a href="#" class="back-to-top" aria-label="Back to top"
-      ><i class="fa-solid fa-arrow-up"></i
-    ></a>
+  <footer id="contacts" data-aos="fade-up"></footer>
 
-    <script src="../js/i18n.js"></script>
-    <script src="../js/app.js"></script>
-    <script src="../js/cursor.js"></script>
-    <script src="../js/footer.js"></script>
-    <script src="../js/rideWithUs.js"></script>
-  </body>
+  <!-- Back to Top Button -->
+  <a href="#" class="back-to-top" aria-label="Back to top"><i class="fa-solid fa-arrow-up"></i></a>
+
+  <script src="../js/i18n.js"></script>
+  <script src="../js/app.js"></script>
+  <script src="../js/cursor.js"></script>
+  <script src="../js/footer.js"></script>
+  <script src="../js/rideWithUs.js"></script>
+</body>
+
 </html>

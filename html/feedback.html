@@ -9,7 +9,6 @@
   <link rel="stylesheet" href="../css/cursor.css">
 
   <style>
-    
     * {
       margin: 0;
       padding: 0;
@@ -26,7 +25,7 @@
     .hero {
       text-align: center;
       padding: 4rem 1rem;
-      background: linear-gradient(135deg,  #ebce6e, #F2BD12);
+      background: linear-gradient(135deg, #ebce6e, #F2BD12);
       color: #fff;
       border-bottom-left-radius: 50px;
       border-bottom-right-radius: 50px;
@@ -70,7 +69,7 @@
     }
 
     .feedback-card h2 {
-      color:  #F2BD12;
+      color: #F2BD12;
       margin-bottom: 0.5rem;
     }
 
@@ -99,7 +98,7 @@
 
     input:focus,
     textarea:focus {
-      border-color:  #F2BD12;
+      border-color: #F2BD12;
       box-shadow: 0 0 0 4px rgba(0, 157, 255, 0.15);
       background: #fff;
       outline: none;
@@ -126,9 +125,9 @@
       transition: color 0.2s;
     }
 
-    .rating input:checked ~ label,
+    .rating input:checked~label,
     .rating label:hover,
-    .rating label:hover ~ label {
+    .rating label:hover~label {
       color: #ffb400;
     }
 
@@ -146,14 +145,14 @@
     .submit-btn:hover {
       background: #F2BD12;
       transform: translateY(-2px);
-      box-shadow: 0 4px 10px  #c7a841
+      box-shadow: 0 4px 10px #c7a841
     }
 
     /* ===== FOOTER ===== */
     footer {
       text-align: center;
       padding: 2rem;
-      background:   #F2BD12;
+      background: #F2BD12;
       color: #fff;
       font-size: 0.9rem;
       border-top-left-radius: 40px;
@@ -180,7 +179,7 @@
     <p>We would love to hear your thoughts about our services.</p>
   </section>
 
-  
+
   <section class="feedback-container">
 
     <!-- Website Feedback -->
@@ -258,7 +257,7 @@
   <script src="../js/cursor.js"></script>
 
   <script>
-    
+
     document.querySelectorAll("form").forEach(form => {
       form.addEventListener("submit", (e) => {
         e.preventDefault();

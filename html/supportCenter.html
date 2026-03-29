@@ -7,7 +7,7 @@
     <title>Support Center</title>
     <script>
         // Immediately apply saved theme to prevent FOUC
-        (function() {
+        (function () {
             const savedTheme = localStorage.getItem('theme');
             if (savedTheme === 'dark') {
                 document.documentElement.setAttribute('data-theme', 'dark');
@@ -64,8 +64,8 @@
         form.support-form input:focus,
         form.support-form select:focus,
         form.support-form textarea:focus {
-            border-color:  #F2BD12;
-            box-shadow: 0 0 0 3px  #a3800f;
+            border-color: #F2BD12;
+            box-shadow: 0 0 0 3px #a3800f;
             outline: none;
         }
 

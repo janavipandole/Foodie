@@ -8,7 +8,7 @@
 
     <script>
         // Immediately apply saved theme to prevent FOUC
-        (function() {
+        (function () {
             const savedTheme = localStorage.getItem('theme');
             if (savedTheme === 'dark') {
                 document.documentElement.setAttribute('data-theme', 'dark');
@@ -24,7 +24,7 @@
     <link rel="stylesheet" href="../css/style.css">
     <link rel="stylesheet" href="../css/aboutUs.css" />
     <link rel="stylesheet" href="../css/cursor.css">
-    
+
 </head>
 
 
@@ -119,33 +119,34 @@
         <p data-i18n="aboutUs.hero.subtitle">Your trusted partner in delivering delicious food with lightning-fast
             service</p>
     </section>
-<!-- Our Story Section -->
-<section class="story-section">
-  <div class="story-wrapper">
-    <div class="story-image">
-      <img src="https://images.unsplash.com/photo-1504674900247-0877df9cc836" alt="Our Story - Foodie Journey">
-    </div>
+    <!-- Our Story Section -->
+    <section class="story-section">
+        <div class="story-wrapper">
+            <div class="story-image">
+                <img src="https://images.unsplash.com/photo-1504674900247-0877df9cc836"
+                    alt="Our Story - Foodie Journey">
+            </div>
 
-    <div class="story-text">
-      <h2 class="story-title">Our Story</h2>
-      <p class="story-intro">
-        Founded in <strong>2022</strong>, <span class="brand">Foodie</span> began with a simple dream — 
-        to bring people closer to their favorite meals, anytime and anywhere.
-      </p>
-      <p>
-        What started as a small local venture has evolved into a trusted food delivery platform 
-        serving <strong>thousands of happy customers</strong> every day. We’ve grown, but our values 
-        remain the same — quality, speed, and care.
-      </p>
-      <p class="story-highlight">
-        Because at <span class="brand">Foodie</span>, we don’t just deliver food — 
-        <span class="highlight-text">we deliver happiness 🍽️💛</span>
-      </p>
-    </div>
-  </div>
-</section>
+            <div class="story-text">
+                <h2 class="story-title">Our Story</h2>
+                <p class="story-intro">
+                    Founded in <strong>2022</strong>, <span class="brand">Foodie</span> began with a simple dream —
+                    to bring people closer to their favorite meals, anytime and anywhere.
+                </p>
+                <p>
+                    What started as a small local venture has evolved into a trusted food delivery platform
+                    serving <strong>thousands of happy customers</strong> every day. We’ve grown, but our values
+                    remain the same — quality, speed, and care.
+                </p>
+                <p class="story-highlight">
+                    Because at <span class="brand">Foodie</span>, we don’t just deliver food —
+                    <span class="highlight-text">we deliver happiness 🍽️💛</span>
+                </p>
+            </div>
+        </div>
+    </section>
 
-    
+
 
     <section class="mission-section">
         <div class="mission-container">
@@ -302,69 +303,69 @@
     </section>
 
     <!-- Testimonials Section -->
-   <section class="testimonials-section">
-    <div class="testimonials-header">
-        <h2>What Our Customers Say</h2>
-        <p>Real feedback from real customers</p>
-    </div>
-
-    <div class="testimonial-slider">
-        <div class="testimonial-track">
-
-            <!-- Card 1 -->
-            <div class="testimonial-card" data-rating="5">
-                <div class="stars">
-                    <span class="stars-fill"></span>
-                </div>
-                <p class="testimonial-text">
-                    "Best food delivery service I've ever used! Fast, reliable, and always hot."
-                </p>
-                <div class="testimonial-author">
-                    <div class="author-avatar">A</div>
-                    <div>
-                        <strong>Alex Kumar</strong>
-                        <span>Regular Customer</span>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Card 2 -->
-            <div class="testimonial-card" data-rating="5">
-                <div class="stars">
-                    <span class="stars-fill"></span>
-                </div>
-                <p class="testimonial-text">
-                    "Customer service was outstanding. They really care about customers!"
-                </p>
-                <div class="testimonial-author">
-                    <div class="author-avatar">P</div>
-                    <div>
-                        <strong>Priya Sharma</strong>
-                        <span>Food Enthusiast</span>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Card 3 -->
-            <div class="testimonial-card" data-rating="4">
-                <div class="stars">
-                    <span class="stars-fill"></span>
-                </div>
-                <p class="testimonial-text">
-                    "Amazing variety of restaurants. My go-to app for cravings."
-                </p>
-                <div class="testimonial-author">
-                    <div class="author-avatar">R</div>
-                    <div>
-                        <strong>Rahul Patel</strong>
-                        <span>Tech Professional</span>
-                    </div>
-                </div>
-            </div>
-
+    <section class="testimonials-section">
+        <div class="testimonials-header">
+            <h2>What Our Customers Say</h2>
+            <p>Real feedback from real customers</p>
         </div>
-    </div>
-</section>
+
+        <div class="testimonial-slider">
+            <div class="testimonial-track">
+
+                <!-- Card 1 -->
+                <div class="testimonial-card" data-rating="5">
+                    <div class="stars">
+                        <span class="stars-fill"></span>
+                    </div>
+                    <p class="testimonial-text">
+                        "Best food delivery service I've ever used! Fast, reliable, and always hot."
+                    </p>
+                    <div class="testimonial-author">
+                        <div class="author-avatar">A</div>
+                        <div>
+                            <strong>Alex Kumar</strong>
+                            <span>Regular Customer</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Card 2 -->
+                <div class="testimonial-card" data-rating="5">
+                    <div class="stars">
+                        <span class="stars-fill"></span>
+                    </div>
+                    <p class="testimonial-text">
+                        "Customer service was outstanding. They really care about customers!"
+                    </p>
+                    <div class="testimonial-author">
+                        <div class="author-avatar">P</div>
+                        <div>
+                            <strong>Priya Sharma</strong>
+                            <span>Food Enthusiast</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Card 3 -->
+                <div class="testimonial-card" data-rating="4">
+                    <div class="stars">
+                        <span class="stars-fill"></span>
+                    </div>
+                    <p class="testimonial-text">
+                        "Amazing variety of restaurants. My go-to app for cravings."
+                    </p>
+                    <div class="testimonial-author">
+                        <div class="author-avatar">R</div>
+                        <div>
+                            <strong>Rahul Patel</strong>
+                            <span>Tech Professional</span>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
 
 
     <!-- CTA Section -->
@@ -463,12 +464,12 @@
         })();
     </script>
     <script>
-document.querySelectorAll('.testimonial-card').forEach(card => {
-    const rating = card.dataset.rating;
-    const fill = card.querySelector('.stars-fill');
-    fill.style.setProperty('--rating-width', `${rating * 20}%`);
-});
-</script>
+        document.querySelectorAll('.testimonial-card').forEach(card => {
+            const rating = card.dataset.rating;
+            const fill = card.querySelector('.stars-fill');
+            fill.style.setProperty('--rating-width', `${rating * 20}%`);
+        });
+    </script>
 
 
     <script src="../js/i18n.js"></script>
