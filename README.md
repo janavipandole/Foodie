@@ -3,8 +3,8 @@
 
 ### 🍽️ **Foodie — Responsive Food Delivery Website**
 
-![NSoC 2026](https://img.shields.io/badge/NSoC-2026-purple)
-![Project Kernel](https://img.shields.io/badge/Role-Project%20Kernel-success)
+[![NSoC 2026](https://img.shields.io/badge/NSoC-2026-purple?style=for-the-badge)](https://www.nsoc.in/)
+[![Project Kernel](https://img.shields.io/badge/Role-Project%20Kernel-success?style=for-the-badge)](https://www.nsoc.in/)
 [![Hacktoberfest 2025](https://img.shields.io/badge/Hacktoberfest-2025-blueviolet?style=for-the-badge&logo=github)](https://hacktoberfest.com/)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg?style=for-the-badge)](https://opensource.org/licenses/MIT)
 [![Stars](https://img.shields.io/github/stars/janavipandole/Hacktoberfest2025-Foodie?style=for-the-badge)](https://github.com/janavipandole/Hacktoberfest2025-Foodie/stargazers)
