@@ -1,5 +1,5 @@
-❄️ Winter Of Code Social 2025
-# 🎃 Hacktoberfest 2025
+## ❄️ Winter Of Code Social 2025
+## 🎃 Hacktoberfest 2025
 
 ### 🍽️ **Foodie — Responsive Food Delivery Website**
 
