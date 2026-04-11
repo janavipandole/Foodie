@@ -1,4 +1,4 @@
-## Nexus Spring of Code
+## <img src="https://www.nsoc.in/_next/image?url=%2Flogo.png&w=64&q=75" /> Nexus Spring of Code
 ## ❄️ Winter Of Code Social 2025
 ## 🎃 Hacktoberfest 2025
 
