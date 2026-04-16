@@ -258,3 +258,30 @@ export const isInViewport = (element) => {
         rect.right <= (window.innerWidth || document.documentElement.clientWidth)
     );
 };
+
+
+// ================= CART UTILITIES =================
+
+// Get cart items
+export const getCart = () => {
+    return storage.get("cart", []);
+};
+
+// Add item to cart
+export const addToCart = (item) => {
+    const cart = getCart();
+    cart.push(item);
+    storage.set("cart", cart);
+};
+
+// Remove item from cart
+export const removeFromCart = (index) => {
+    const cart = getCart();
+    cart.splice(index, 1);
+    storage.set("cart", cart);
+};
+
+// Clear cart
+export const clearCart = () => {
+    storage.remove("cart");
+};

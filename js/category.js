@@ -83,3 +83,23 @@ function renderCategories(products, container) {
         container.appendChild(card);
     });
 }
+
+import { addToCart } from "./utils.js";
+
+document.addEventListener("click", function(e) {
+    if (e.target.classList.contains("add-cart-btn")) {
+        const name = e.target.dataset.name;
+        const price = e.target.dataset.price;
+
+        const item = { name, price };
+        addToCart(item);
+
+        alert(`${name} added to cart`);
+    }
+});
+<button 
+  class="add-cart-btn" 
+  data-name="${product.name}" 
+  data-price="${product.price}">
+  Add to Cart
+</button>
