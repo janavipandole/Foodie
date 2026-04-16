@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Near By Restaurants | Foodie</title>
+  <script>
+    // Immediately apply saved theme to prevent FOUC
+    (function () {
+      const savedTheme = localStorage.getItem('theme');
+      if (savedTheme === 'dark') {
+        document.documentElement.setAttribute('data-theme', 'dark');
+      }
+    })();
+  </script>
+  <link rel="icon" href="../imgs/favicon.webp" type="image/webp" />
+  <link rel="stylesheet" href="../css/style.css" />
+  <link rel="stylesheet" href="../css/cursor.css" />
+  <link href="https://unpkg.com/aos@2.3.4/dist/aos.css" rel="stylesheet" />
+  <script defer src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.0/css/all.min.css"
+    integrity="sha512-DxV+EoADOkOygM4IR9yXP8Sb2qwgidEmeqAEmDKIOfPRQZOWbXCzLC6vjbZyy0vPisbH2SyW27+ddLVCN+OMzQ=="
+    crossorigin="anonymous" referrerpolicy="no-referrer" />
+</head>
+
+<body>
+  <header>
+    <nav class="navbar flex between wrapper">
+      <div class="logo">Foodie.</div>
+
+      <!-- DESKTOP MENU -->
+      <ul class="navList flex gap-3 between">
+        <li><a class="active" href="./index.html#home" data-i18n="nav.home">Home</a></li>
+        <li><a href="./menu.html" data-i18n="nav.menu">Menu</a></li>
+        <li><a href="./aboutUs.html" data-i18n="nav.about">About Us</a></li>
+        <li><a href="./contactUs.html" data-i18n="nav.contact">Contact Us</a></li>
+        <li><a class="active" href="nearbyres.html" data-i18n="nav.nearby">Nearby Restaurants</a></li>
+      </ul>
+      <div class="desktop-action flex gap-2">
+        <!-- Language Selector -->
+        <div class="custom-select" id="language-custom-select">
+          <div class="selected" tabindex="0" aria-haspopup="listbox" aria-expanded="false"
+            aria-labelledby="language-custom-select">
+            English
+          </div>
+          <ul class="options" role="listbox" tabindex="-1">
+            <li data-value="en" role="option" aria-selected="true">English</li>
+            <li data-value="hi" role="option">हिंदी</li>
+          </ul>
+        </div>
+
+        <!-- Search Input -->
+        <form class="navbar-search" action="#" method="get">
+          <input type="text" name="search" id="navbar-search" placeholder="Search your food ..."
+            aria-label="Search menu items">
+          <button type="submit" id="navbar-search-btn" aria-label="Search">
+            <i class="fa-solid fa-magnifying-glass"></i>
+          </button>
+        </form>
+
+        <!-- Theme toggle -->
+        <button class="desktop-action theme-toggle" aria-label="Toggle dark mode">
+          <i class="fa-solid fa-moon"></i>
+        </button>
+
+        <!-- Cart Icon -->
+        <a href="./checkout.html" class="cart-icon">
+          <i class="fa-solid fa-bag-shopping"></i>
+          <span class="cart-value">0</span>
+        </a>
+
+        <!-- Sign-in button -->
+        <a href="./signup.html" class="btn">
+          Sign in&nbsp;<i class="fa-solid fa-arrow-right-from-bracket"></i>
+        </a>
+
+        <!-- Hamburger -->
+        <a href="#" class="hamberger"><i class="fa-solid fa-bars"></i></a>
+      </div>
+
+
+      <!-- MOBILE MENU -->
+      <ul class="mobile-menu">
+        <li><a class="active" href="./index.html#home" data-i18n="nav.home">Home</a></li>
+        <li><a href="./menu.html" data-i18n="nav.menu">Menu</a></li>
+        <li><a href="./aboutUs.html" data-i18n="nav.about">About Us</a></li>
+        <li><a href="./contactUs.html" data-i18n="nav.contact">Contact Us</a></li>
+        <li><a href="nearbyres.html" data-i18n="nav.nearby">Nearby Restaurants</a></li>
+        <!-- Search Input -->
+        <form class="navbar-search" action="#" method="get">
+          <input type="text" name="search" id="navbar-search" placeholder="Search your food ..."
+            aria-label="Search menu items">
+          <button type="submit" id="navbar-search-btn" aria-label="Search">
+            <i class="fa-solid fa-magnifying-glass"></i>
+          </button>
+        </form>
+        <li>
+          <button class="theme-toggle mobile-theme-toggle" aria-label="Toggle dark mode">
+            <i class="fa-solid fa-moon"></i><span>Dark Mode</span>
+          </button>
+        </li>
+        <li>
+          <a href="./signup.html" class="btn">
+            Sign in&nbsp;<i class="fa-solid fa-arrow-right-from-bracket"></i>
+          </a>
+        </li>
+      </ul>
+    </nav>
+  </header>
+
+  <!-- MAIN -->
+  <main>
+    <section id="home" class="wrapper p-top" data-aos="fade-up">
+      <div class="text-center">
+        <h5>Discover Nearby</h5>
+        <h2>Top Rated Restaurants Around You 🍴</h2>
+        <p class="para m-auto">Find the best food spots nearby, handpicked for taste, quality, and service.</p>
+      </div>
+
+      <div class="restaurant-grid flex wrap gap-4 mt-5">
+
+      </div>
+    </section>
+  </main>
+
+  <footer id="contacts" data-aos="fade-up"></footer>
+
+  <a href="https://wa.me/911234567890" class="whatsapp-fab" target="_blank" rel="noopener noreferrer"
+    aria-label="Chat on WhatsApp" title="Chat on WhatsApp">
+    <i class="fa-brands fa-whatsapp"></i>
+  </a>
+
+  <a href="#home" class="back-to-top" aria-label="Back to top">
+    <i class="fa-solid fa-arrow-up"></i>
+  </a>
+
+  <script src="https://unpkg.com/aos@2.3.4/dist/aos.js"></script>
+  <script src="../js/nearbyres.js" defer></script>
+  <script src="../js/cursor.js"></script>
+  <script src="../js/footer.js"></script>
+  <script> AOS.init({ duration: 1000, easing: 'ease-out', once: true }); </script>
+  <script>
+    (function () {
+      const backToTop = document.querySelector('.back-to-top');
+      if (!backToTop) return;
+      window.addEventListener('scroll', () => {
+        if (window.scrollY > 400) backToTop.classList.add('visible');
+        else backToTop.classList.remove('visible');
+      });
+      backToTop.addEventListener('click', e => {
+        e.preventDefault();
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+      });
+    })();
+  </script>
+</body>
+
+</html>

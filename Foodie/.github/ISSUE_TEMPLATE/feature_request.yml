@@ -1,0 +1,21 @@
+name: "🚀 Feature Request"
+description: "Request a new feature or functionality"
+title: "[FEATURE] "
+labels: ["feature"]
+body:
+  - type: textarea
+    id: description
+    attributes:
+      label: "Description"
+      description: "Describe the feature you want."
+      placeholder: "What feature should be added?"
+  - type: textarea
+    id: benefit
+    attributes:
+      label: "Benefit"
+      description: "Why is this feature useful?"
+  - type: textarea
+    id: alternatives
+    attributes:
+      label: "Alternatives"
+      description: "Alternative approaches or solutions (if any)."

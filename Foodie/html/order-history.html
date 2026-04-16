@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Order History - Foodie</title>
+  <script>
+    // Immediately apply saved theme to prevent FOUC
+    (function () {
+      const savedTheme = localStorage.getItem('theme');
+      if (savedTheme === 'dark') {
+        document.documentElement.setAttribute('data-theme', 'dark');
+      }
+    })();
+  </script>
+
+  <link rel="icon" href="../imgs/favicon.webp" type="image/webp" />
+
+  <!-- CSS links -->
+  <link rel="stylesheet" href="../css/style.css" />
+  <link rel="stylesheet" href="../css/order-history.css" />
+  <link rel="stylesheet" href="../css/cursor.css" />
+
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.0/css/all.min.css"
+    integrity="sha512-DxV+EoADOkOygM4IR9yXP8Sb2qwgidEmeqAEmDKIOfPRQZOWbXCzLC6vjbZyy0vPisbH2SyW27+ddLVCN+OMzQ=="
+    crossorigin="anonymous" referrerpolicy="no-referrer" />
+</head>
+
+<body>
+
+  <header>
+    <nav class="navbar flex between wrapper">
+      <div class="logo">Foodie.</div>
+
+      <!-- DESKTOP MENU -->
+      <ul class="navList flex gap-3 between">
+        <li><a class="active" href="./index.html#home" data-i18n="nav.home">Home</a></li>
+        <li><a href="./menu.html" data-i18n="nav.menu">Menu</a></li>
+        <li><a href="./aboutUs.html" data-i18n="nav.about">About Us</a></li>
+        <li><a href="./contactUs.html" data-i18n="nav.contact">Contact Us</a></li>
+        <li><a href="nearbyres.html" data-i18n="nav.nearby">Nearby Restaurants</a></li>
+      </ul>
+      <div class="desktop-action flex gap-2">
+        <!-- Language Selector -->
+        <div class="custom-select" id="language-custom-select">
+          <div class="selected" tabindex="0" aria-haspopup="listbox" aria-expanded="false"
+            aria-labelledby="language-custom-select">
+            English
+          </div>
+          <ul class="options" role="listbox" tabindex="-1">
+            <li data-value="en" role="option" aria-selected="true">English</li>
+            <li data-value="hi" role="option">हिंदी</li>
+          </ul>
+        </div>
+
+        <!-- Search Input -->
+        <form class="navbar-search" action="#" method="get">
+          <input type="text" name="search" id="navbar-search" placeholder="Search your food ..."
+            aria-label="Search menu items">
+          <button type="submit" id="navbar-search-btn" aria-label="Search">
+            <i class="fa-solid fa-magnifying-glass"></i>
+          </button>
+        </form>
+
+        <!-- Theme toggle -->
+        <button class="desktop-action theme-toggle" aria-label="Toggle dark mode">
+          <i class="fa-solid fa-moon"></i>
+        </button>
+
+        <!-- Cart Icon -->
+        <a href="./checkout.html" class="cart-icon">
+          <i class="fa-solid fa-bag-shopping"></i>
+          <span class="cart-value">0</span>
+        </a>
+
+        <!-- Sign-in button -->
+        <a href="./signup.html" class="btn">
+          Sign in&nbsp;<i class="fa-solid fa-arrow-right-from-bracket"></i>
+        </a>
+
+        <!-- Hamburger -->
+        <a href="#" class="hamberger"><i class="fa-solid fa-bars"></i></a>
+      </div>
+
+
+      <!-- MOBILE MENU -->
+      <ul class="mobile-menu">
+        <li><a class="active" href="./index.html#home" data-i18n="nav.home">Home</a></li>
+        <li><a href="./menu.html" data-i18n="nav.menu">Menu</a></li>
+        <li><a href="./aboutUs.html" data-i18n="nav.about">About Us</a></li>
+        <li><a href="./contactUs.html" data-i18n="nav.contact">Contact Us</a></li>
+        <li><a href="nearbyres.html" data-i18n="nav.nearby">Nearby Restaurants</a></li>
+        <!-- Search Input -->
+        <form class="navbar-search" action="#" method="get">
+          <input type="text" name="search" id="navbar-search" placeholder="Search your food ..."
+            aria-label="Search menu items">
+          <button type="submit" id="navbar-search-btn" aria-label="Search">
+            <i class="fa-solid fa-magnifying-glass"></i>
+          </button>
+        </form>
+        <li>
+          <button class="theme-toggle mobile-theme-toggle" aria-label="Toggle dark mode">
+            <i class="fa-solid fa-moon"></i><span>Dark Mode</span>
+          </button>
+        </li>
+        <li>
+          <a href="./signup.html" class="btn">
+            Sign in&nbsp;<i class="fa-solid fa-arrow-right-from-bracket"></i>
+          </a>
+        </li>
+      </ul>
+    </nav>
+  </header>
+
+  <main class="order-history-container">
+    <h5 class="text-center">Order History</h5>
+    <h1>Your Past <span>Orders</span></h1>
+
+    <!-- EMPTY ORDERS MESSAGE -->
+    <div id="emptyOrdersMessage" class="empty-orders" style="display: none">
+      <i class="fa-solid fa-receipt"></i>
+      <h2>No orders yet</h2>
+      <p>You haven't placed any orders. Start exploring our delicious menu!</p>
+      <a href="./menu.html" class="btn">Browse Menu</a>
+    </div>
+
+    <!-- ORDERS LIST -->
+    <div id="ordersList" class="orders-grid">
+      <!-- Orders will be dynamically inserted here -->
+    </div>
+  </main>
+
+  <footer id="contacts" data-aos="fade-up"></footer>
+
+  <a href="#home" class="back-to-top" aria-label="Back to top">
+    <i class="fa-solid fa-arrow-up"></i>
+  </a>
+
+  <script>
+    // Theme toggle functionality
+    const themeToggle = document.querySelector(".theme-toggle");
+    const html = document.documentElement;
+
+    // Initial theme setting is now handled by the inline script in the head.
+    // This script only updates the icon and sets up event listeners.
+
+    // Update icon based on theme
+    function updateThemeIcon() {
+      const icon = themeToggle.querySelector("i");
+      if (html.getAttribute("data-theme") === "dark") {
+        icon.style.transform = "rotate(360deg) scale(0)";
+        setTimeout(() => {
+          icon.className = "fa-solid fa-sun";
+          icon.style.transform = "rotate(0deg) scale(1)";
+        }, 250);
+      } else {
+        icon.style.transform = "rotate(-360deg) scale(0)";
+        setTimeout(() => {
+          icon.className = "fa-solid fa-moon";
+          icon.style.transform = "rotate(0deg) scale(1)";
+        }, 250);
+      }
+    }
+
+    updateThemeIcon(); // Call once on load to set initial icon
+
+    themeToggle.addEventListener("click", () => {
+      const currentTheme = html.getAttribute("data-theme");
+      const newTheme = currentTheme === "dark" ? "light" : "dark";
+
+      html.setAttribute("data-theme", newTheme);
+      localStorage.setItem("theme", newTheme);
+      updateThemeIcon();
+    });
+
+    // Mobile Menu Toggle
+    const hamburger = document.querySelector(".hamberger");
+    const mobileMenu = document.querySelector(".mobile-menu");
+
+    hamburger.addEventListener("click", (e) => {
+      e.preventDefault();
+      mobileMenu.classList.toggle("mobile-menu-active");
+    });
+  </script>
+
+  <script src="../js/app.js"></script>
+  <script src="../js/cursor.js"></script>
+  <script src="../js/footer.js"></script>
+  <script src="../js/order-history.js"></script>
+</body>
+
+</html>

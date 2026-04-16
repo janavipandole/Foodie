@@ -1,0 +1,187 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Popular & Trending Dishes — Foodie</title>
+    <meta name="description"
+        content="Discover India’s most loved and top-rated dishes, trending across regions on Foodie." />
+
+    <script>
+        (function () {
+            const savedTheme = localStorage.getItem('theme');
+            if (savedTheme === 'dark') {
+                document.documentElement.setAttribute('data-theme', 'dark');
+            }
+        })();
+    </script>
+
+    <link rel="icon" href="../imgs/favicon.webp" type="image/webp" />
+
+    <link rel="stylesheet" href="../css/style.css" />
+    <link rel="stylesheet" href="../css/cursor.css" />
+
+    <link rel="stylesheet" href="../css/popular.css" />
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
+
+    <link href="https://unpkg.com/aos@2.3.4/dist/aos.css" rel="stylesheet">
+</head>
+
+<body>
+
+    <header>
+        <nav class="navbar flex between wrapper">
+            <a href="index.html" class="logo">Foodie.</a>
+
+            <ul class="navList flex gap-3 between">
+                <li><a href="./index.html#home" data-i18n="nav.home">Home</a></li>
+                <li><a href="./menu.html" data-i18n="nav.menu">Menu</a></li>
+                <li><a href="./aboutUs.html" data-i18n="nav.about">About Us</a></li>
+                <li><a href="./contactUs.html" data-i18n="nav.contact">Contact Us</a></li>
+                <li><a href="nearbyres.html" data-i18n="nav.nearby">Nearby Restaurants</a></li>
+            </ul>
+
+            <div class="desktop-action flex gap-2">
+                <div class="custom-select" id="language-custom-select">
+                    <div class="selected" tabindex="0" aria-haspopup="listbox" aria-expanded="false">English</div>
+                    <ul class="options" role="listbox">
+                        <li data-value="en" role="option" aria-selected="true">English</li>
+                        <li data-value="hi" role="option">हिंदी</li>
+                    </ul>
+                </div>
+
+                <form class="navbar-search" action="./menu.html" method="get">
+                    <input type="text" name="search" id="navbar-search" placeholder="Search..."
+                        aria-label="Search menu">
+                    <button type="submit" id="navbar-search-btn" aria-label="Search"><i
+                            class="fa-solid fa-magnifying-glass"></i></button>
+                </form>
+
+                <button class="desktop-action theme-toggle" aria-label="Toggle dark mode">
+                    <i class="fa-solid fa-moon"></i>
+                </button>
+
+                <a href="./checkout.html" class="cart-icon">
+                    <i class="fa-solid fa-bag-shopping"></i>
+                    <span class="cart-value">0</span>
+                </a>
+
+                <a href="./signup.html" class="btn">Sign in&nbsp;<i
+                        class="fa-solid fa-arrow-right-from-bracket"></i></a>
+
+                <a href="#" class="hamberger"><i class="fa-solid fa-bars"></i></a>
+            </div>
+
+            <ul class="mobile-menu">
+                <li><a href="./index.html#home" data-i18n="nav.home">Home</a></li>
+                <li><a href="./menu.html" data-i18n="nav.menu">Menu</a></li>
+                <li><a href="./aboutUs.html" data-i18n="nav.about">About Us</a></li>
+                <li><a href="./contactUs.html" data-i18n="nav.contact">Contact Us</a></li>
+                <li><a href="nearbyres.html" data-i18n="nav.nearby">Nearby Restaurants</a></li>
+                <li>
+                    <button class="theme-toggle mobile-theme-toggle">
+                        <i class="fa-solid fa-moon"></i><span>Dark Mode</span>
+                    </button>
+                </li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <section class="popular-hero text-center p-top">
+            <div class="wrapper" data-aos="fade-down">
+                <h5>Trending Now</h5>
+                <h1>Popular & <span class="highlight">Trending</span> Dishes</h1>
+                <p class="para m-auto">Discover India’s most loved and top-rated dishes, selected by food lovers across
+                    regions.</p>
+            </div>
+        </section>
+
+        <section class="popular-grid wrapper">
+
+            <div class="dish-card" data-aos="fade-up" data-aos-delay="100">
+                <img src="../imgs/p1.webp" alt="Butter Chicken" loading="lazy">
+                <div class="dish-info">
+                    <h2>Butter Chicken</h2>
+                    <p>Creamy, flavorful North Indian curry made with tender chicken pieces cooked in buttery tomato
+                        gravy.</p>
+                    <div class="rating"><i class="fa-solid fa-star"></i> 5.0 (2k+ Reviews)</div>
+                </div>
+            </div>
+
+            <div class="dish-card" data-aos="fade-up" data-aos-delay="200">
+                <img src="../imgs/p2.webp" alt="Masala Dosa" loading="lazy">
+                <div class="dish-info">
+                    <h2>Masala Dosa</h2>
+                    <p>South Indian crispy crepe stuffed with spicy potato filling, served with coconut chutney and
+                        sambar.</p>
+                    <div class="rating"><i class="fa-solid fa-star"></i> 4.9 (1.5k+ Reviews)</div>
+                </div>
+            </div>
+
+            <div class="dish-card" data-aos="fade-up" data-aos-delay="300">
+                <img src="../imgs/p3.webp" alt="Pani Puri" loading="lazy">
+                <div class="dish-info">
+                    <h2>Pani Puri</h2>
+                    <p>India’s favorite street snack — crisp puris filled with spicy, tangy water and mashed potato mix.
+                    </p>
+                    <div class="rating"><i class="fa-solid fa-star"></i> 4.8 (3k+ Reviews)</div>
+                </div>
+            </div>
+
+            <div class="dish-card" data-aos="fade-up" data-aos-delay="400">
+                <img src="../imgs/p4.webp" alt="Hyderabadi Biryani" loading="lazy">
+                <div class="dish-info">
+                    <h2>Hyderabadi Biryani</h2>
+                    <p>Fragrant rice layered with marinated meat, saffron, and spices — an all-time favorite Indian
+                        delicacy.</p>
+                    <div class="rating"><i class="fa-solid fa-star"></i> 4.9 (5k+ Reviews)</div>
+                </div>
+            </div>
+
+            <div class="dish-card" data-aos="fade-up" data-aos-delay="500">
+                <img src="../imgs/p5.webp" alt="Chole Bhature" loading="lazy">
+                <div class="dish-info">
+                    <h2>Chole Bhature</h2>
+                    <p>Delicious combination of spicy chickpea curry and fluffy deep-fried bread, popular in North
+                        India.</p>
+                    <div class="rating"><i class="fa-solid fa-star"></i> 4.7 (1.8k+ Reviews)</div>
+                </div>
+            </div>
+
+            <div class="dish-card" data-aos="fade-up" data-aos-delay="600">
+                <img src="../imgs/p6.webp" alt="Gulab Jamun" loading="lazy">
+                <div class="dish-info">
+                    <h2>Gulab Jamun</h2>
+                    <p>Soft, round sweet dumplings soaked in sugar syrup — the heart of every Indian dessert table.</p>
+                    <div class="rating"><i class="fa-solid fa-star"></i> 5.0 (4k+ Reviews)</div>
+                </div>
+            </div>
+
+        </section>
+    </main>
+
+    <footer id="contacts" data-aos="fade-up"></footer>
+
+    <a href="https://wa.me/911234567890" class="whatsapp-fab" target="_blank" aria-label="Chat on WhatsApp">
+        <i class="fa-brands fa-whatsapp"></i>
+    </a>
+    <a href="#home" class="back-to-top" aria-label="Back to top">
+        <i class="fa-solid fa-arrow-up"></i>
+    </a>
+
+    <script src="https://unpkg.com/aos@2.3.4/dist/aos.js"></script>
+
+    <script src="../js/i18n.js"></script>
+    <script src="../js/language-dropdown.js"></script>
+    <script src="../js/app.js"></script>
+    <script src="../js/footer.js"></script>
+    <script src="../js/cursor.js"></script>
+
+    <script src="../js/popular.js"></script>
+
+</body>
+
+</html>

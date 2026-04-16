@@ -1,0 +1,398 @@
+/* ===== Ride With Us Page Styling ===== */
+
+/* Hero Section */
+.ride-hero {
+    background: url('../imgs/ride-hero-bg.png') no-repeat center center/cover;
+    min-height: 80vh;
+    display: flex;
+    align-items: center;
+    padding: 4rem 0;
+    position: relative;
+    color: var(--pure-while);
+}
+
+.ride-hero::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5); /* Dark overlay for text readability */
+}
+
+.ride-hero .wrapper {
+    position: relative;
+    z-index: 1;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    /* Increased gap for better spacing between text and form */
+    gap: 6rem; 
+    /* Adjusted padding to shift content slightly left */
+    padding-left: 2rem; /* Reduced from 3rem */
+    padding-right: 3rem; /* Kept the same */
+}
+
+.ride-hero .hero-content {
+    flex: 1;
+    min-width: 300px;
+    /* Reduced max-width to make the text block less wide */
+    max-width: 450px; 
+}
+
+.ride-hero h1 {
+    font-size: 3.5rem;
+    font-weight: 700;
+    color: var(--pure-while); /* This is the default color, which is dark in dark mode */
+    margin-bottom: 1rem;
+    line-height: 1.2;
+}
+
+/* Override for dark theme to make hero h1 text visible */
+[data-theme="dark"] .ride-hero h1 {
+    color: var(--lead); /* Use a lighter color for better contrast in dark mode */
+}
+
+.ride-hero h1 .highlight {
+    color: var(--gold-finger);
+}
+
+/* Registration Form Card */
+.register-form-container {
+    flex: 0 0 auto;
+    width: 100%;
+    max-width: 400px;
+    background: var(--bg-secondary);
+    border-radius: 1.5rem;
+    padding: 2rem;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+    text-align: center;
+    border: 2px solid var(--gold-finger);
+}
+
+.register-card h3 {
+    font-size: 1.8rem;
+    color: var(--text-primary);
+    margin-bottom: 1.5rem;
+}
+
+.register-form-container .form-group {
+    margin-bottom: 1.2rem;
+    text-align: left;
+}
+
+.register-form-container label {
+    display: block;
+    font-weight: 600;
+    color: var(--text-primary);
+    margin-bottom: 0.5rem;
+    font-size: 0.95rem;
+}
+
+.register-form-container input,
+.register-form-container select {
+    width: 100%;
+    padding: 0.8rem 1rem;
+    border: 1.5px solid var(--border-color);
+    border-radius: 0.6rem;
+    font-size: 0.95rem;
+    outline: none;
+    transition: 0.3s ease;
+    background-color: var(--bg-primary);
+    color: var(--text-primary);
+}
+
+.register-form-container input:focus,
+.register-form-container select:focus {
+    border-color: var(--gold-finger);
+    box-shadow: 0 0 6px rgba(242, 189, 18, 0.3);
+    background-color: var(--bg-secondary);
+}
+
+.register-form-container .get-otp-btn {
+    width: 100%;
+    background-color: var(--gold-finger);
+    color: var(--lead);
+    padding: 0.9rem 2rem;
+    border: none;
+    border-radius: 0.8rem;
+    font-size: 1.1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background 0.3s ease, transform 0.2s ease;
+    margin-top: 1rem;
+}
+
+.register-form-container .get-otp-btn:hover {
+    background-color: var(--lead);
+    color: var(--pure-while);
+    transform: translateY(-2px);
+}
+
+/* How It Works Section */
+.how-it-works-section {
+    padding: 6rem 0;
+    background: var(--bg-primary);
+}
+
+.how-it-works-section .flex {
+    align-items: center;
+    justify-content: center;
+    gap: 4rem;
+}
+
+.how-it-works-image {
+    flex: 1;
+    min-width: 300px;
+    text-align: center;
+}
+
+.how-it-works-image img {
+    max-width: 400px;
+    height: auto;
+    filter: drop-shadow(0 10px 20px rgba(0, 0, 0, 0.15));
+}
+
+.how-it-works-content {
+    flex: 1;
+    min-width: 300px;
+}
+
+.how-it-works-content h2 {
+    font-size: 2.8rem;
+    color: var(--text-primary);
+    margin-bottom: 2rem;
+    line-height: 1.2;
+}
+
+.how-it-works-content h2 span {
+    color: var(--gold-finger);
+}
+
+.steps-list {
+    list-style: none;
+    padding: 0;
+    margin-bottom: 2.5rem;
+}
+
+.steps-list li {
+    position: relative;
+    font-size: 1.2rem;
+    color: var(--text-secondary);
+    margin-bottom: 1rem;
+    padding-left: 2.5rem;
+}
+
+.steps-list li::before {
+    content: counter(step-counter);
+    counter-increment: step-counter;
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 2rem;
+    height: 2rem;
+    background-color: var(--gold-finger);
+    color: var(--lead);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 700;
+    font-size: 1rem;
+}
+
+.steps-list {
+    counter-reset: step-counter;
+}
+
+.how-it-works-content .get-started-btn {
+    background-color: var(--gold-finger);
+    color: var(--lead);
+    padding: 0.9rem 2.5rem;
+    border-radius: 0.8rem;
+    font-size: 1.1rem;
+    font-weight: 600;
+    transition: background 0.3s ease, transform 0.2s ease;
+}
+
+.how-it-works-content .get-started-btn:hover {
+    background-color: var(--lead);
+    color: var(--pure-while);
+    transform: translateY(-2px);
+}
+
+/* Awesome Fleet Section */
+.awesome-fleet-section {
+    padding: 6rem 0;
+    background: var(--bg-accent);
+}
+
+.awesome-fleet-section h2 {
+    font-size: 2.8rem;
+    color: var(--text-primary);
+    margin-bottom: 3rem;
+}
+
+.awesome-fleet-section h2 span {
+    color: var(--gold-finger);
+}
+
+.fleet-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 2rem;
+    justify-content: center;
+}
+
+.fleet-card {
+    background: var(--bg-secondary);
+    border-radius: 1.5rem;
+    padding: 1.5rem;
+    text-align: center;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+    border: 2px solid var(--border-color);
+    transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
+}
+
+.fleet-card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 12px 25px rgba(0, 0, 0, 0.15);
+    border-color: var(--gold-finger);
+}
+
+.fleet-card img {
+    width: 100%;
+    height: 180px; /* Increased height for better fit with 'contain' */
+    object-fit: contain; /* Ensure entire image is visible */
+    border-radius: 1rem;
+    margin-bottom: 1.5rem;
+    /* Removed: border: 1px solid var(--border-color); */
+}
+
+.fleet-card h3 {
+    font-size: 2.2rem;
+    color: var(--gold-finger);
+    margin-bottom: 0.5rem;
+}
+
+.fleet-card p {
+    font-size: 1rem;
+    color: var(--text-secondary);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+/* Responsive Adjustments */
+@media (max-width: 992px) {
+    .ride-hero .wrapper {
+        flex-direction: column;
+        text-align: center;
+        /* Reset padding for smaller screens */
+        padding-inline: 1.5rem;
+        gap: 2rem; /* Adjust gap for stacked layout */
+    }
+
+    .ride-hero .hero-content {
+        max-width: 100%;
+        margin-bottom: 2rem;
+    }
+
+    .ride-hero h1 {
+        font-size: 2.8rem;
+    }
+
+    .register-form-container {
+        max-width: 100%;
+    }
+
+    .how-it-works-section .flex {
+        flex-direction: column;
+        text-align: center;
+    }
+
+    .how-it-works-image {
+        margin-bottom: 2rem;
+    }
+
+    .how-it-works-content h2 {
+        font-size: 2.2rem;
+    }
+
+    .steps-list li {
+        text-align: left;
+        margin-left: auto;
+        margin-right: auto;
+        max-width: 350px;
+    }
+
+    .awesome-fleet-section h2 {
+        font-size: 2.2rem;
+    }
+}
+
+@media (max-width: 576px) {
+    .ride-hero h1 {
+        font-size: 2.2rem;
+    }
+
+    .register-form-container {
+        padding: 1.5rem;
+    }
+
+    .register-card h3 {
+        font-size: 1.5rem;
+    }
+
+    .how-it-works-content h2 {
+        font-size: 1.8rem;
+    }
+
+    .steps-list li {
+        font-size: 1rem;
+    }
+
+    .awesome-fleet-section h2 {
+        font-size: 1.8rem;
+    }
+
+    .fleet-card h3 {
+        font-size: 1.8rem;
+    }
+
+    .fleet-card p {
+        font-size: 0.9rem;
+    }
+}
+
+/* Dark Theme Support */
+[data-theme="dark"] .ride-hero::before {
+    background: rgba(0, 0, 0, 0.7);
+}
+
+[data-theme="dark"] .register-form-container {
+    background: var(--bg-secondary);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
+}
+
+/* Ensure text on yellow buttons is dark in dark mode */
+[data-theme="dark"] .register-form-container .get-otp-btn,
+[data-theme="dark"] .how-it-works-content .get-started-btn {
+    color: var(--pure-while); /* This resolves to a dark grey in dark mode */
+}
+
+[data-theme="dark"] .register-form-container .get-otp-btn:hover {
+    background-color: var(--gold-finger);
+    color: var(--lead);
+}
+
+[data-theme="dark"] .how-it-works-content .get-started-btn:hover {
+    background-color: var(--gold-finger);
+    color: var(--lead);
+}
+
+[data-theme="dark"] .fleet-card {
+    background: var(--bg-secondary);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.4);
+}

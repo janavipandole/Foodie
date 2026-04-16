@@ -1,0 +1,483 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Foodie - About Us</title>
+
+    <script>
+        // Immediately apply saved theme to prevent FOUC
+        (function () {
+            const savedTheme = localStorage.getItem('theme');
+            if (savedTheme === 'dark') {
+                document.documentElement.setAttribute('data-theme', 'dark');
+            }
+        })();
+    </script>
+
+    <link rel="icon" href="../imgs/favicon.webp" type="image/webp" />
+
+    <!-- Font (valid CDN) -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="../css/aboutUs.css" />
+    <link rel="stylesheet" href="../css/cursor.css">
+
+</head>
+
+
+<body>
+    <header>
+        <nav class="navbar flex between wrapper">
+            <div class="logo">Foodie.</div>
+
+            <!-- DESKTOP MENU -->
+            <ul class="navList flex gap-3 between">
+                <li><a class="active" href="./index.html#home" data-i18n="nav.home">Home</a></li>
+                <li><a href="./menu.html" data-i18n="nav.menu">Menu</a></li>
+                <li><a href="./aboutUs.html" data-i18n="nav.about">About Us</a></li>
+                <li><a href="./contactUs.html" data-i18n="nav.contact">Contact Us</a></li>
+                <li><a href="nearbyres.html" data-i18n="nav.nearby">Nearby Restaurants</a></li>
+            </ul>
+            <div class="desktop-action flex gap-2">
+                <!-- Language Selector -->
+                <div class="custom-select" id="language-custom-select">
+                    <div class="selected" tabindex="0" aria-haspopup="listbox" aria-expanded="false"
+                        aria-labelledby="language-custom-select">
+                        English
+                    </div>
+                    <ul class="options" role="listbox" tabindex="-1">
+                        <li data-value="en" role="option" aria-selected="true">English</li>
+                        <li data-value="hi" role="option">हिंदी</li>
+                    </ul>
+                </div>
+
+                <!-- Search Input -->
+                <form class="navbar-search" action="#" method="get">
+                    <input type="text" name="search" id="navbar-search" placeholder="Search your food ..."
+                        aria-label="Search menu items">
+                    <button type="submit" id="navbar-search-btn" aria-label="Search">
+                        <i class="fa-solid fa-magnifying-glass"></i>
+                    </button>
+                </form>
+
+                <!-- Theme toggle -->
+                <button class="desktop-action theme-toggle" aria-label="Toggle dark mode">
+                    <i class="fa-solid fa-moon"></i>
+                </button>
+
+                <!-- Cart Icon -->
+                <a href="./checkout.html" class="cart-icon">
+                    <i class="fa-solid fa-bag-shopping"></i>
+                    <span class="cart-value">0</span>
+                </a>
+
+                <!-- Sign-in button -->
+                <a href="./signup.html" class="btn">
+                    Sign in&nbsp;<i class="fa-solid fa-arrow-right-from-bracket"></i>
+                </a>
+
+                <!-- Hamburger -->
+                <a href="#" class="hamberger"><i class="fa-solid fa-bars"></i></a>
+            </div>
+
+
+            <!-- MOBILE MENU -->
+            <ul class="mobile-menu">
+                <li><a class="active" href="./index.html#home" data-i18n="nav.home">Home</a></li>
+                <li><a href="./menu.html" data-i18n="nav.menu">Menu</a></li>
+                <li><a href="./aboutUs.html" data-i18n="nav.about">About Us</a></li>
+                <li><a href="./contactUs.html" data-i18n="nav.contact">Contact Us</a></li>
+                <li><a href="nearbyres.html" data-i18n="nav.nearby">Nearby Restaurants</a></li>
+                <!-- Search Input -->
+                <form class="navbar-search" action="#" method="get">
+                    <input type="text" name="search" id="navbar-search" placeholder="Search your food ..."
+                        aria-label="Search menu items">
+                    <button type="submit" id="navbar-search-btn" aria-label="Search">
+                        <i class="fa-solid fa-magnifying-glass"></i>
+                    </button>
+                </form>
+                <li>
+                    <button class="theme-toggle mobile-theme-toggle" aria-label="Toggle dark mode">
+                        <i class="fa-solid fa-moon"></i><span>Dark Mode</span>
+                    </button>
+                </li>
+                <li>
+                    <a href="./signup.html" class="btn">
+                        Sign in&nbsp;<i class="fa-solid fa-arrow-right-from-bracket"></i>
+                    </a>
+                </li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <h1>About <span id="foodie-color">Foodie</span></h1>
+        <p data-i18n="aboutUs.hero.subtitle">Your trusted partner in delivering delicious food with lightning-fast
+            service</p>
+    </section>
+    <!-- Our Story Section -->
+    <section class="story-section">
+        <div class="story-wrapper">
+            <div class="story-image">
+                <img src="https://images.unsplash.com/photo-1504674900247-0877df9cc836"
+                    alt="Our Story - Foodie Journey">
+            </div>
+
+            <div class="story-text">
+                <h2 class="story-title">Our Story</h2>
+                <p class="story-intro">
+                    Founded in <strong>2022</strong>, <span class="brand">Foodie</span> began with a simple dream —
+                    to bring people closer to their favorite meals, anytime and anywhere.
+                </p>
+                <p>
+                    What started as a small local venture has evolved into a trusted food delivery platform
+                    serving <strong>thousands of happy customers</strong> every day. We’ve grown, but our values
+                    remain the same — quality, speed, and care.
+                </p>
+                <p class="story-highlight">
+                    Because at <span class="brand">Foodie</span>, we don’t just deliver food —
+                    <span class="highlight-text">we deliver happiness 🍽️💛</span>
+                </p>
+            </div>
+        </div>
+    </section>
+
+
+
+    <section class="mission-section">
+        <div class="mission-container">
+
+            <div class="mission-card">
+                <div class="mission-inner">
+                    <div class="mission-front">
+                        <div class="mission-icon">🎯</div>
+                        <h3 data-i18n="aboutUs.mission.mission.title">Our Mission</h3>
+                    </div>
+                    <div class="mission-back">
+                        <p data-i18n="aboutUs.mission.mission.description">To revolutionize food delivery by supporting
+                            local restaurants, and creating memorable dining experiences for customers.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="mission-card">
+                <div class="mission-inner">
+                    <div class="mission-front">
+                        <div class="mission-icon">👁️</div>
+                        <h3 data-i18n="aboutUs.mission.vision.title">Our Vision</h3>
+                    </div>
+                    <div class="mission-back">
+                        <p data-i18n="aboutUs.mission.vision.description">To become the most trusted and loved food
+                            delivery platform globally, setting new standards for quality, speed, and customer
+                            satisfaction.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="mission-card">
+                <div class="mission-inner">
+                    <div class="mission-front">
+                        <div class="mission-icon">💡</div>
+                        <h3 data-i18n="aboutUs.mission.values.title">Our Values</h3>
+                    </div>
+                    <div class="mission-back">
+                        <p data-i18n="aboutUs.mission.values.description">Quality, reliability, innovation, and
+                            customer-first approach guide everything we do. We're committed to excellence in every
+                            delivery.</p>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+
+    <!-- Stats Section -->
+    <section class="stats-section">
+        <div class="stats-container">
+            <div class="stat-card">
+                <div class="stat-number">25K+</div>
+                <div class="stat-label" data-i18n="aboutUs.stats.customers">Happy Customers</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-number">100+</div>
+                <div class="stat-label" data-i18n="aboutUs.stats.partners">Restaurant Partners</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-number">500K+</div>
+                <div class="stat-label" data-i18n="aboutUs.stats.orders">Orders Delivered</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-number">15 Min</div>
+                <div class="stat-label" data-i18n="aboutUs.stats.time">Avg. Delivery Time</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Why Choose Us Section -->
+    <section class="why-choose-section">
+        <div class="why-choose-header">
+            <h2 data-i18n="aboutUs.whyChoose.title">Why Choose Foodie?</h2>
+            <p data-i18n="aboutUs.whyChoose.subtitle">We're not just another food delivery service</p>
+        </div>
+        <div class="features-grid">
+            <div class="feature-card">
+                <div class="feature-icon">⚡</div>
+                <h3 data-i18n="aboutUs.whyChoose.features.fast.title">Lightning Fast</h3>
+                <p data-i18n="aboutUs.whyChoose.features.fast.description">Average delivery time of just 30 minutes. Hot
+                    food, guaranteed.</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">🏆</div>
+                <h3 data-i18n="aboutUs.whyChoose.features.quality.title">Premium Quality</h3>
+                <p data-i18n="aboutUs.whyChoose.features.quality.description">Partner with only the best restaurants to
+                    ensure top-notch quality.</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">📱</div>
+                <h3 data-i18n="aboutUs.whyChoose.features.easy.title">Easy Ordering</h3>
+                <p data-i18n="aboutUs.whyChoose.features.easy.description">Simple, intuitive app and website for
+                    hassle-free ordering.</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">🔒</div>
+                <h3 data-i18n="aboutUs.whyChoose.features.secure.title">Safe & Secure</h3>
+                <p data-i18n="aboutUs.whyChoose.features.secure.description">Contactless delivery and secure payment
+                    options for your safety.</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">💰</div>
+                <h3 data-i18n="aboutUs.whyChoose.features.prices.title">Best Prices</h3>
+                <p data-i18n="aboutUs.whyChoose.features.prices.description">Competitive pricing with exclusive deals
+                    and discounts.</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">🎧</div>
+                <h3 data-i18n="aboutUs.whyChoose.features.support.title">24/7 Support</h3>
+                <p data-i18n="aboutUs.whyChoose.features.support.description">Round-the-clock customer support for any
+                    queries or issues.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Team Section -->
+    <section class="team-section">
+        <div class="team-header">
+            <h2 data-i18n="aboutUs.team.title">Meet Our Team</h2>
+            <p data-i18n="aboutUs.team.subtitle">The passionate people behind Foodie</p>
+        </div>
+        <div class="team-grid">
+            <div class="team-card">
+                <div class="team-photo">👩‍💼</div>
+                <h3 data-i18n="aboutUs.team.members.janavi.name">Janavi Pandole</h3>
+                <p class="team-role" data-i18n="aboutUs.team.members.janavi.role">CEO & Founder</p>
+                <p class="team-bio" data-i18n="aboutUs.team.members.janavi.bio">Visionary leader with 10+ years in tech
+                    and food industry.</p>
+            </div>
+            <div class="team-card">
+                <div class="team-photo">👨‍💼</div>
+                <h3 data-i18n="aboutUs.team.members.rahul.name">Rahul Pandole</h3>
+                <p class="team-role" data-i18n="aboutUs.team.members.rahul.role">Head of Operations</p>
+                <p class="team-bio" data-i18n="aboutUs.team.members.rahul.bio">Expert in logistics and supply chain
+                    management.</p>
+            </div>
+            <div class="team-card">
+                <div class="team-photo">👨‍🍳</div>
+                <h3 data-i18n="aboutUs.team.members.manoj.name">Manoj Pandole</h3>
+                <p class="team-role" data-i18n="aboutUs.team.members.manoj.role">Culinary Director</p>
+                <p class="team-bio" data-i18n="aboutUs.team.members.manoj.bio">Award-winning chef ensuring quality
+                    standards.</p>
+            </div>
+            <div class="team-card">
+                <div class="team-photo">👩‍💻</div>
+                <h3 data-i18n="aboutUs.team.members.janaviTech.name">Janavi Pandole</h3>
+                <p class="team-role" data-i18n="aboutUs.team.members.janaviTech.role">Tech Lead</p>
+                <p class="team-bio" data-i18n="aboutUs.team.members.janaviTech.bio">Building innovative solutions for
+                    seamless experience.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials Section -->
+    <section class="testimonials-section">
+        <div class="testimonials-header">
+            <h2>What Our Customers Say</h2>
+            <p>Real feedback from real customers</p>
+        </div>
+
+        <div class="testimonial-slider">
+            <div class="testimonial-track">
+
+                <!-- Card 1 -->
+                <div class="testimonial-card" data-rating="5">
+                    <div class="stars">
+                        <span class="stars-fill"></span>
+                    </div>
+                    <p class="testimonial-text">
+                        "Best food delivery service I've ever used! Fast, reliable, and always hot."
+                    </p>
+                    <div class="testimonial-author">
+                        <div class="author-avatar">A</div>
+                        <div>
+                            <strong>Alex Kumar</strong>
+                            <span>Regular Customer</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Card 2 -->
+                <div class="testimonial-card" data-rating="5">
+                    <div class="stars">
+                        <span class="stars-fill"></span>
+                    </div>
+                    <p class="testimonial-text">
+                        "Customer service was outstanding. They really care about customers!"
+                    </p>
+                    <div class="testimonial-author">
+                        <div class="author-avatar">P</div>
+                        <div>
+                            <strong>Priya Sharma</strong>
+                            <span>Food Enthusiast</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Card 3 -->
+                <div class="testimonial-card" data-rating="4">
+                    <div class="stars">
+                        <span class="stars-fill"></span>
+                    </div>
+                    <p class="testimonial-text">
+                        "Amazing variety of restaurants. My go-to app for cravings."
+                    </p>
+                    <div class="testimonial-author">
+                        <div class="author-avatar">R</div>
+                        <div>
+                            <strong>Rahul Patel</strong>
+                            <span>Tech Professional</span>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+
+    <!-- CTA Section -->
+    <section class="cta-section">
+        <div class="cta-content">
+            <h2 data-i18n="aboutUs.cta.title">Ready to Experience Foodie?</h2>
+            <p data-i18n="aboutUs.cta.subtitle">Join thousands of satisfied customers and enjoy delicious food delivered
+                to your doorstep</p>
+            <div class="cta-buttons">
+                <a href="../html/signup.html" class="cta-btn primary" data-i18n="aboutUs.cta.signUp">Sign Up Now</a>
+                <a href="../html/menu.html" class="cta-btn primary" data-i18n="aboutUs.cta.browseMenu">Browse Menu</a>
+            </div>
+        </div>
+    </section>
+    <footer id="contacts" data-aos="fade-up"></footer>
+
+    <a href="https://wa.me/911234567890" class="whatsapp-fab" target="_blank" rel="noopener noreferrer"
+        aria-label="Chat on WhatsApp" title="Chat on WhatsApp">
+        <i class="fa-brands fa-whatsapp"></i>
+    </a>
+
+    <a href="#home" class="back-to-top" aria-label="Back to top">
+        <i class="fa-solid fa-arrow-up"></i>
+    </a>
+
+    <script>
+        // Theme Toggle with smooth icon transition
+        (function () {
+            const themeToggles = document.querySelectorAll('.theme-toggle');
+            const html = document.documentElement;
+
+            // Initial theme setting is now handled by the inline script in the head.
+            // This script only updates the icon and sets up event listeners.
+
+            // Update icon based on theme (guarded)
+            function updateThemeIcon() {
+                themeToggles.forEach(toggle => {
+                    if (!toggle) return;
+                    const icon = toggle.querySelector('i');
+                    if (!icon) return;
+                    if (html.getAttribute('data-theme') === 'dark') {
+                        icon.style.transform = 'rotate(360deg) scale(0)';
+                        setTimeout(() => {
+                            icon.className = 'fa-solid fa-sun';
+                            icon.style.transform = 'rotate(0deg) scale(1)';
+                        }, 250);
+                    } else {
+                        icon.style.transform = 'rotate(-360deg) scale(0)';
+                        setTimeout(() => {
+                            icon.className = 'fa-solid fa-moon';
+                            icon.style.transform = 'rotate(0deg) scale(1)';
+                        }, 250);
+                    }
+                });
+            }
+
+            updateThemeIcon(); // Call once on load to set initial icon
+
+            themeToggles.forEach(toggle => {
+                if (toggle) {
+                    toggle.addEventListener('click', () => {
+                        const currentTheme = html.getAttribute('data-theme');
+                        const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
+                        html.setAttribute('data-theme', newTheme);
+                        localStorage.setItem('theme', newTheme);
+                        updateThemeIcon();
+                    });
+                }
+            });
+        })();
+
+        // Mobile Menu Toggle (guarded)
+        (function () {
+            const hamburger = document.querySelector('.hamberger');
+            const mobileMenu = document.querySelector('.mobile-menu');
+            if (hamburger && mobileMenu) {
+                hamburger.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    mobileMenu.classList.toggle('mobile-menu-active');
+                });
+            }
+        })();
+
+        // Back to Top (guarded)
+        (function () {
+            const backToTop = document.querySelector('.back-to-top');
+            if (!backToTop) return;
+            window.addEventListener('scroll', () => {
+                if (window.scrollY > 400) backToTop.classList.add('visible');
+                else backToTop.classList.remove('visible');
+            });
+            backToTop.addEventListener('click', (e) => {
+                e.preventDefault();
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+            });
+        })();
+    </script>
+    <script>
+        document.querySelectorAll('.testimonial-card').forEach(card => {
+            const rating = card.dataset.rating;
+            const fill = card.querySelector('.stars-fill');
+            fill.style.setProperty('--rating-width', `${rating * 20}%`);
+        });
+    </script>
+
+
+    <script src="../js/i18n.js"></script>
+    <script src="../js/footer.js"></script>
+    <script src="../js/cursor.js"></script>
+    <script src="../js/app.js"></script>
+    <script src="../js/i18n.js"></script>
+
+</body>
+
+</html>

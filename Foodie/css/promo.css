@@ -1,0 +1,130 @@
+/* ===== PROMO CODE SECTION ===== */
+.promo-code-section {
+    margin-top: 2rem;
+    padding: 1.5rem;
+    background: var(--bg-accent);
+    border-radius: 1rem;
+    border: 2px solid var(--gold-finger);
+    box-shadow: var(--shadow) 4px 4px 8px;
+}
+
+.promo-code-section h4 {
+    font-size: 1.3rem;
+    color: var(--text-primary);
+    margin-bottom: 1rem;
+    font-weight: 600;
+}
+
+.promo-input-group {
+    display: flex;
+    gap: 0.8rem;
+    margin-bottom: 1rem;
+}
+
+.promo-input-group input {
+    flex: 1;
+    padding: 0.8rem 1rem;
+    border: 2px solid var(--gold-finger);
+    border-radius: 0.8rem;
+    font-size: 1rem;
+    font-family: "Roboto Condensed";
+    background: var(--bg-primary);
+    color: var(--text-primary);
+    transition: all 0.3s ease;
+    text-transform: uppercase;
+}
+
+.promo-input-group input:focus {
+    outline: none;
+    border-color: var(--gold-finger);
+    box-shadow: 0 0 8px rgba(242, 189, 18, 0.3);
+    background: var(--bg-secondary);
+}
+
+.apply-promo-btn {
+    padding: 0.8rem 1.5rem;
+    background-color: var(--gold-finger);
+    color: var(--lead);
+    border: none;
+    border-radius: 0.8rem;
+    font-size: 1rem;
+    font-weight: 600;
+    font-family: "Roboto Condensed";
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: rgba(0, 0, 0, 0.1) 0 2px 4px;
+}
+
+.apply-promo-btn:hover {
+    background-color: var(--lead);
+    color: var(--pure-while);
+    transform: translateY(-2px);
+    box-shadow: rgba(0, 0, 0, 0.2) 0 4px 8px;
+}
+
+.promo-error {
+    color: #e74c3c;
+    font-size: 0.9rem;
+    margin-bottom: 0.5rem;
+    font-weight: 500;
+    display: none;
+}
+
+.applied-promo {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0.8rem 1rem;
+    background: var(--hint-yellow);
+    border: 2px solid var(--gold-finger);
+    border-radius: 0.8rem;
+    margin-bottom: 1rem;
+}
+
+.applied-promo span {
+    font-weight: 600;
+    color: var(--text-primary);
+    font-size: 1rem;
+}
+
+.remove-promo-btn {
+    background: none;
+    border: none;
+    color: #e74c3c;
+    font-size: 1.2rem;
+    cursor: pointer;
+    padding: 0.2rem;
+    border-radius: 50%;
+    transition: all 0.3s ease;
+}
+
+.remove-promo-btn:hover {
+    background: rgba(231, 76, 60, 0.1);
+    transform: scale(1.1);
+}
+
+/* ===== RESPONSIVE DESIGN ===== */
+@media (max-width: 768px) {
+    .promo-input-group {
+        flex-direction: column;
+        gap: 0.5rem;
+    }
+
+    .promo-code-section {
+        padding: 1rem;
+    }
+
+    .promo-code-section h4 {
+        font-size: 1.1rem;
+    }
+
+    .applied-promo {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 0.5rem;
+    }
+
+    .applied-promo span {
+        font-size: 0.9rem;
+    }
+}

@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Checkout - Foodie</title>
+
+  <!-- Single synchronous theme initialization to prevent FOUC -->
+  <script>
+    (function () {
+      const savedTheme = localStorage.getItem('theme');
+      if (savedTheme === 'dark') {
+        document.documentElement.setAttribute('data-theme', 'dark');
+      }
+    })();
+  </script>
+
+  <link rel="icon" href="../imgs/favicon.webp" type="image/webp" />
+
+  <!-- CSS links -->
+  <link rel="stylesheet" href="../css/style.css" />
+  <link rel="stylesheet" href="../css/checkout.css" />
+  <link rel="stylesheet" href="../css/promo.css" />
+  <link rel="stylesheet" href="../css/cursor.css" />
+
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.0/css/all.min.css"
+    integrity="sha512-DxV+EoADOkOygM4IR9yXP8Sb2qwgidEmeqAEmDKIOfPRQZOWbXCzLC6vjbZyy0vPisbH2SyW27+ddLVCN+OMzQ=="
+    crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+  <!-- Razorpay -->
+  <script src="https://checkout.razorpay.com/v1/checkout.js"></script>
+</head>
+
+<body>
+  <header>
+    <nav class="navbar flex between wrapper">
+      <div class="logo">Foodie.</div>
+
+      <!-- DESKTOP MENU -->
+      <ul class="navList flex gap-3 between">
+        <li><a class="active" href="./index.html#home" data-i18n="nav.home">Home</a></li>
+        <li><a href="./menu.html" data-i18n="nav.menu">Menu</a></li>
+        <li><a href="./aboutUs.html" data-i18n="nav.about">About Us</a></li>
+        <li><a href="./contactUs.html" data-i18n="nav.contact">Contact Us</a></li>
+        <li><a href="nearbyres.html" data-i18n="nav.nearby">Nearby Restaurants</a></li>
+      </ul>
+      <div class="desktop-action flex gap-2">
+        <!-- Language Selector -->
+        <div class="custom-select" id="language-custom-select">
+          <div class="selected" tabindex="0" aria-haspopup="listbox" aria-expanded="false"
+            aria-labelledby="language-custom-select">
+            English
+          </div>
+          <ul class="options" role="listbox" tabindex="-1">
+            <li data-value="en" role="option" aria-selected="true">English</li>
+            <li data-value="hi" role="option">हिंदी</li>
+          </ul>
+        </div>
+
+        <!-- Search Input -->
+        <form class="navbar-search" action="#" method="get">
+          <input type="text" name="search" id="navbar-search" placeholder="Search your food ..."
+            aria-label="Search menu items">
+          <button type="submit" id="navbar-search-btn" aria-label="Search">
+            <i class="fa-solid fa-magnifying-glass"></i>
+          </button>
+        </form>
+
+        <!-- Theme toggle -->
+        <button class="desktop-action theme-toggle" aria-label="Toggle dark mode">
+          <i class="fa-solid fa-moon"></i>
+        </button>
+
+        <!-- Cart Icon -->
+        <a href="./checkout.html" class="cart-icon active">
+          <i class="fa-solid fa-bag-shopping"></i>
+          <span class="cart-value">0</span>
+        </a>
+
+        <!-- Sign-in button -->
+        <a href="./signup.html" class="btn">
+          Sign in&nbsp;<i class="fa-solid fa-arrow-right-from-bracket"></i>
+        </a>
+
+        <!-- Hamburger -->
+        <a href="#" class="hamberger"><i class="fa-solid fa-bars"></i></a>
+      </div>
+
+
+      <!-- MOBILE MENU -->
+      <ul class="mobile-menu">
+        <li><a class="active" href="./index.html#home" data-i18n="nav.home">Home</a></li>
+        <li><a href="./menu.html" data-i18n="nav.menu">Menu</a></li>
+        <li><a href="./aboutUs.html" data-i18n="nav.about">About Us</a></li>
+        <li><a href="./contactUs.html" data-i18n="nav.contact">Contact Us</a></li>
+        <li><a href="nearbyres.html" data-i18n="nav.nearby">Nearby Restaurants</a></li>
+        <!-- Search Input -->
+        <form class="navbar-search" action="#" method="get">
+          <input type="text" name="search" id="navbar-search" placeholder="Search your food ..."
+            aria-label="Search menu items">
+          <button type="submit" id="navbar-search-btn" aria-label="Search">
+            <i class="fa-solid fa-magnifying-glass"></i>
+          </button>
+        </form>
+        <li>
+          <button class="theme-toggle mobile-theme-toggle" aria-label="Toggle dark mode">
+            <i class="fa-solid fa-moon"></i><span>Dark Mode</span>
+          </button>
+        </li>
+        <li>
+          <a href="./signup.html" class="btn">
+            Sign in&nbsp;<i class="fa-solid fa-arrow-right-from-bracket"></i>
+          </a>
+        </li>
+      </ul>
+    </nav>
+  </header>
+
+  <main class="checkout-container">
+    <h5 class="text-center">Checkout</h5>
+    <h1>Let's Wrap Up Your <span>Cravings</span></h1>
+
+    <!-- EMPTY CART MESSAGE -->
+    <div id="emptyCartMessage" class="empty-cart" style="display: none">
+      <i class="fa-solid fa-cart-shopping"></i>
+      <h2>Your cart is empty</h2>
+      <p>Add some delicious items to get started!</p>
+      <a href="./menu.html" class="btn">Browse Menu</a>
+    </div>
+
+    <!-- CHECKOUT CONTENT -->
+    <div id="checkoutContent" class="checkout-grid">
+      <!-- DELIVERY INFORMATION -->
+      <div>
+        <div class="checkout-section">
+          <h3>
+            <i class="fa-solid fa-location-dot"></i> Delivery Information
+          </h3>
+          <form id="checkoutForm">
+            <div class="form-group">
+              <label for="fullName">Full Name *</label>
+              <input type="text" id="fullName" name="fullName" required />
+              <span class="error-message">Please enter your full name</span>
+            </div>
+
+            <div class="form-group">
+              <label for="email">Email Address *</label>
+              <input type="email" id="email" name="email" required />
+              <span class="error-message">Please enter a valid email</span>
+            </div>
+
+            <div class="form-group">
+              <label for="phone">Phone Number *</label>
+              <input type="tel" id="phone" name="phone" required />
+              <span class="error-message">Please enter a valid phone number</span>
+            </div>
+
+            <div class="form-group">
+              <label for="address">Delivery Address *</label>
+              <textarea id="address" name="address" rows="3" required></textarea>
+              <span class="error-message">Please enter your delivery address</span>
+            </div>
+
+            <div class="form-row">
+              <div class="form-group">
+                <label for="city">City *</label>
+                <input type="text" id="city" name="city" required autocomplete="address-level2" autocapitalize="none"
+                  spellcheck="false" placeholder="Enter your city" />
+                <span class="error-message">Required</span>
+                <div id="citySuggestions" class="autocomplete-list" role="listbox" aria-label="City suggestions"></div>
+              </div>
+              <div class="form-group">
+                <label for="zipCode">ZIP Code *</label>
+                <input type="text" id="zipCode" name="zipCode" required />
+                <span class="error-message">Required</span>
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label for="notes">Delivery Notes (Optional)</label>
+              <textarea id="notes" name="notes" rows="2" placeholder="e.g., Ring the doorbell twice"></textarea>
+            </div>
+          </form>
+        </div>
+
+        <!-- PAYMENT METHOD -->
+        <div class="checkout-section" style="margin-top: 2rem">
+          <h3><i class="fa-solid fa-credit-card"></i> Payment Method</h3>
+          <div class="payment-methods">
+            <div class="payment-method active" data-method="card">
+              <i class="fa-solid fa-credit-card"></i>
+              <p>Card</p>
+            </div>
+            <div class="payment-method" data-method="cash">
+              <i class="fa-solid fa-money-bill-wave"></i>
+              <p>Cash</p>
+            </div>
+            <div class="payment-method" data-method="online">
+              <i class="fa-solid fa-wallet"></i>
+              <p>Online</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ORDER SUMMARY -->
+      <div>
+        <div class="checkout-section order-summary">
+          <h3><i class="fa-solid fa-receipt"></i> Order Summary</h3>
+          <div id="orderItems"></div>
+
+          <!-- PROMO CODE SECTION -->
+          <div class="promo-code-section">
+            <h4>Have a Promo Code?</h4>
+            <div class="promo-input-group">
+              <input type="text" id="promoCode" placeholder="Enter promo code" maxlength="20">
+              <button id="applyPromoBtn" class="apply-promo-btn">Apply</button>
+            </div>
+            <div id="promoError" class="promo-error"></div>
+            <div id="appliedPromo" class="applied-promo" style="display: none;">
+              <span id="appliedPromoText"></span>
+              <button id="removePromoBtn" class="remove-promo-btn">Remove</button>
+            </div>
+          </div>
+
+          <div class="order-totals">
+            <div class="total-row">
+              <span>Subtotal:</span>
+              <span id="subtotal">₹0.00</span>
+            </div>
+            <div class="total-row">
+              <span>Delivery Fee:</span>
+              <span id="deliveryFee">₹29.00</span>
+            </div>
+            <div class="total-row">
+              <span>Tax (10%):</span>
+              <span id="tax">₹0.00</span>
+            </div>
+            <div class="total-row final">
+              <span>Total:</span>
+              <span id="finalTotal">₹0.00</span>
+            </div>
+          </div>
+
+          <button class="place-order-btn" id="placeOrderBtn">
+            <i class="fa-solid fa-check"></i> Place Order
+          </button>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <footer id="contacts" data-aos="fade-up"></footer>
+
+  <a href="#home" class="back-to-top" aria-label="Back to top">
+    <i class="fa-solid fa-arrow-up"></i>
+  </a>
+
+  <!-- SUCCESS MODAL -->
+  <div class="success-modal" id="successModal">
+    <div class="success-content">
+      <div class="success-icon">
+        <i class="fa-solid fa-check"></i>
+      </div>
+      <h2>Order Placed Successfully!</h2>
+      <p>Your order has been received and is being prepared.</p>
+      <p>
+        <strong>Order ID: <span id="orderId"></span></strong>
+      </p>
+      <p>Estimated delivery time: 30-45 minutes</p>
+      <a href="./index.html" class="btn" style="margin-top: 1.5rem">Back to Home</a>
+    </div>
+  </div>
+
+  <!-- All cart and theme logic is now handled by app.js -->
+
+  <script src="../js/app.js"></script>
+  <script src="../js/footer.js"></script>
+  <script src="../js/cursor.js"></script>
+  <script src="../js/checkout.js"></script>
+  <script src="../js/notifications.js"></script>
+</body>
+
+</html>

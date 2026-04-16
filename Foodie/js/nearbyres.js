@@ -1,0 +1,181 @@
+// ===== DARK MODE FUNCTIONALITY =====
+const themeToggleBtns = document.querySelectorAll('.theme-toggle');
+const body = document.body;
+const navbar = document.querySelector('header');
+
+// Check for saved theme preference or default to 'light'
+const currentTheme = localStorage.getItem('theme') || 'light';
+document.documentElement.setAttribute('data-theme', currentTheme);
+
+// Update icon on page load
+updateThemeIcon(currentTheme);
+
+// Theme toggle event
+themeToggleBtns.forEach(btn => {
+  btn.addEventListener('click', () => {
+    const currentTheme = document.documentElement.getAttribute('data-theme');
+    const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
+    
+    document.documentElement.setAttribute('data-theme', newTheme);
+    localStorage.setItem('theme', newTheme);
+    updateThemeIcon(newTheme);
+  });
+});
+
+function updateThemeIcon(theme) {
+  themeToggleBtns.forEach(btn => {
+    const icon = btn.querySelector('i');
+    if (theme === 'dark') {
+      icon.classList.remove('fa-moon');
+      icon.classList.add('fa-sun');
+    } else {
+      icon.classList.remove('fa-sun');
+      icon.classList.add('fa-moon');
+    }
+  });
+}
+
+// ===== NAVBAR SCROLL EFFECT =====
+window.addEventListener('scroll', () => {
+  if (window.scrollY > 50) {
+    navbar.classList.add('scrolled');
+  } else {
+    navbar.classList.remove('scrolled');
+  }
+});
+
+// ===== HAMBURGER MENU TOGGLE =====
+const hamburger = document.querySelector('.hamberger');
+const mobileMenu = document.querySelector('.mobile-menu');
+
+hamburger.addEventListener('click', (e) => {
+  e.preventDefault();
+  mobileMenu.classList.toggle('mobile-menu-active');
+});
+
+// ===== CUSTOM LANGUAGE SELECT =====
+const customSelect = document.getElementById('language-custom-select');
+const selected = customSelect.querySelector('.selected');
+const optionsList = customSelect.querySelector('.options');
+const options = customSelect.querySelectorAll('.options li');
+
+selected.addEventListener('click', () => {
+  customSelect.classList.toggle('open');
+  const isOpen = customSelect.classList.contains('open');
+  selected.setAttribute('aria-expanded', isOpen);
+});
+
+options.forEach(option => {
+  option.addEventListener('click', () => {
+    selected.textContent = option.textContent;
+    customSelect.classList.remove('open');
+    selected.setAttribute('aria-expanded', 'false');
+    
+    // Update all options' aria-selected
+    options.forEach(opt => opt.setAttribute('aria-selected', 'false'));
+    option.setAttribute('aria-selected', 'true');
+  });
+});
+
+// Close dropdown when clicking outside
+document.addEventListener('click', (e) => {
+  if (!customSelect.contains(e.target)) {
+    customSelect.classList.remove('open');
+    selected.setAttribute('aria-expanded', 'false');
+  }
+});
+
+// ===== BACK TO TOP BUTTON =====
+const backToTop = document.querySelector('.back-to-top');
+
+// Guard: only run behavior when element exists
+if (backToTop) {
+  // show/hide when user scrolls
+  window.addEventListener('scroll', () => {
+    if (window.scrollY > 300) {
+      backToTop.classList.add('visible');
+    } else {
+      backToTop.classList.remove('visible');
+    }
+  });
+
+  // click/keyboard to scroll to top
+  const scrollToTop = (e) => {
+    if (e) e.preventDefault();
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  };
+
+  backToTop.addEventListener('click', scrollToTop);
+  backToTop.addEventListener('keydown', (e) => {
+    if (e.key === 'Enter' || e.key === ' ') scrollToTop(e);
+  });
+}
+
+// ===== RESTAURANT DATA & RENDERING (UPDATED FOR FLIP) =====
+const restaurants = [
+  { name: "Spice Affair", type: "Authentic Indian Cuisine", rating: 4.7, distance: "1.2 km", image: "../imgs/rest1.webp", description: "Experience the rich heritage of Indian spices with our signature butter chicken and tandoori specialties." },
+  { name: "Urban Eatery", type: "Modern Café & Grill", rating: 4.6, distance: "0.8 km", image: "../imgs/rest2.webp", description: "A trendy spot for artisan coffee, gourmet burgers, and farm-to-table breakfast options." },
+  { name: "Sushi Haven", type: "Fresh Japanese Rolls", rating: 4.8, distance: "1.5 km", image: "../imgs/rest3.webp", description: "Premium seafood delivered daily. Our master chefs prepare authentic sushi and sashimi with precision." },
+  { name: "The Green Bowl", type: "Healthy Salads & Smoothies", rating: 4.5, distance: "2.1 km", image: "../imgs/rest4.webp", description: "Fuel your body with nutrient-dense bowls, organic smoothies, and vegan-friendly treats." },
+  { name: "Delici", type: "Italian Delights", rating: 4.9, distance: "1.8 km", image: "../imgs/rest5.webp", description: "Hand-tossed pizzas and homemade pasta sauces that bring a taste of Italy right to your doorstep." },
+  { name: "Kovason", type: "Korean BBQ", rating: 4.7, distance: "2.5 km", image: "../imgs/rest6.webp", description: "Interactive dining experience featuring premium marinated meats and traditional banchan side dishes." },
+  { name: "Mezban", type: "Traditional Biryani House", rating: 4.8, distance: "1.3 km", image: "../imgs/rest7.webp", description: "Specializing in Dum Biryani cooked with long-grain basmati rice and secret family spice blends." }
+];
+
+const container = document.querySelector(".restaurant-grid");
+
+// Render restaurant cards with Flip functionality
+restaurants.forEach((res, index) => {
+  const card = document.createElement("div");
+  card.classList.add("restaurant-card");
+  card.setAttribute("data-aos", "zoom-in");
+  card.setAttribute("data-aos-delay", (index + 1) * 100);
+  
+  // Click event to toggle the flip
+  card.addEventListener('click', function() {
+    this.classList.toggle('is-flipped');
+  });
+
+  card.innerHTML = `
+    <div class="card-inner">
+      <div class="card-front">
+        <img src="${res.image}" alt="${res.name}" class="restaurant-img" />
+        <div class="restaurant-info">
+          <h3>${res.name}</h3>
+          <p>${res.type}</p>
+          <p><i class="fa-solid fa-star"></i> ${res.rating} | ${res.distance} away</p>
+        </div>
+      </div>
+      <div class="card-back">
+        <div class="restaurant-info">
+          <h3>About ${res.name}</h3>
+          <p class="para" style="font-size: 0.9rem; margin-bottom: 15px;">${res.description}</p>
+          <p><strong>Cuisine:</strong> ${res.type}</p>
+          <p><strong>Status:</strong> Open Now</p>
+          <a href="./menu.html" class="btn" style="margin-top: 20px; display: inline-block;">View Menu</a>
+        </div>
+      </div>
+    </div>
+  `;
+  container.appendChild(card);
+});
+
+// ===== CART VALUE FROM LOCALSTORAGE =====
+function updateCartDisplay() {
+  const cartValue = document.querySelector('.cart-value');
+  const cart = JSON.parse(localStorage.getItem('cart')) || [];
+  const totalItems = cart.reduce((sum, item) => sum + item.quantity, 0);
+  if (cartValue) {
+    cartValue.textContent = totalItems;
+  }
+}
+
+// Update cart on page load
+updateCartDisplay();
+
+// Listen for storage changes from other tabs/pages
+window.addEventListener('storage', (e) => {
+  if (e.key === 'cart') {
+    updateCartDisplay();
+  }
+});

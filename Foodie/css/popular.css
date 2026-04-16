@@ -1,0 +1,107 @@
+/* Hero Section Overrides */
+.popular-hero {
+    padding-top: 2rem;
+    margin-bottom: 3rem;
+}
+
+.popular-hero h1 {
+    margin-bottom: 0.5rem;
+}
+
+/* Grid Layout */
+.popular-grid {
+    display: grid;
+    /* CHANGED: Forces exactly 3 columns on screens larger than mobile */
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2rem;
+    margin-bottom: 4rem;
+}
+
+/* Card Styling */
+.dish-card {
+    background: var(--bg-secondary);
+    border: 2px solid var(--border-color);
+    border-radius: 2rem;
+    overflow: hidden;
+    box-shadow: var(--shadow-strong) 0px 10px 20px;
+    transition: all 0.3s ease;
+    position: relative;
+    cursor: pointer;
+}
+
+.dish-card:hover {
+    transform: translateY(-10px);
+    border-color: var(--gold-finger);
+    box-shadow: 0 15px 30px rgba(242, 189, 18, 0.15);
+}
+
+.dish-card img {
+    width: 100%;
+    height: 240px;
+    object-fit: cover;
+    transition: transform 0.5s ease;
+}
+
+.dish-card:hover img {
+    transform: scale(1.05);
+}
+
+.dish-info {
+    padding: 1.5rem;
+    background: var(--bg-secondary);
+    position: relative;
+}
+
+/* Subtle text gradient overlay */
+.dish-info::before {
+    content: '';
+    position: absolute;
+    top: -30px;
+    left: 0;
+    width: 100%;
+    height: 30px;
+    background: linear-gradient(to top, var(--bg-secondary), transparent);
+}
+
+.dish-info h2 {
+    font-size: 1.6rem;
+    color: var(--gold-finger);
+    margin-bottom: 0.5rem;
+}
+
+.dish-info p {
+    font-size: 1rem;
+    color: var(--text-secondary);
+    line-height: 1.6;
+    margin-bottom: 1rem;
+}
+
+/* Rating Badge */
+.rating {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    background: var(--bg-accent);
+    padding: 0.4rem 0.8rem;
+    border-radius: 1rem;
+    font-weight: bold;
+    color: var(--text-primary);
+    font-size: 0.9rem;
+}
+
+.rating i {
+    color: #ffa502;
+}
+
+/* Responsive Adjustments */
+@media (max-width: 768px) {
+    .popular-grid {
+        /* Stacks to 1 column on mobile devices */
+        grid-template-columns: 1fr;
+        padding: 0 1rem;
+    }
+    
+    .popular-hero h1 {
+        font-size: 2.5rem;
+    }
+}

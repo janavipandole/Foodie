@@ -1,0 +1,292 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Foodie - Partner with Us</title>
+
+    <script>
+        // Immediately apply saved theme to prevent FOUC
+        (function () {
+            const savedTheme = localStorage.getItem('theme');
+            if (savedTheme === 'dark') {
+                document.documentElement.setAttribute('data-theme', 'dark');
+            }
+        })();
+    </script>
+
+    <link rel="icon" href="../imgs/favicon.webp" type="image/webp" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="../css/aboutUs.css" />
+    <link rel="stylesheet" href="../css/PartnerWithUs.css" />
+    <link rel="stylesheet" href="../css/cursor.css">
+</head>
+
+<body>
+
+    <!-- UNIVERSAL NAVBAR -->
+    <header>
+        <nav class="navbar flex between wrapper">
+            <a href="index.html" class="logo">Foodie.</a>
+
+            <ul class="navList flex gap-3 between">
+                <li><a class="active" href="./index.html#home" data-i18n="nav.home">Home</a></li>
+                <li><a href="./menu.html" data-i18n="nav.menu">Menu</a></li>
+                <li><a href="./aboutUs.html" data-i18n="nav.about">About Us</a></li>
+                <li><a href="./contactUs.html" data-i18n="nav.contact">Contact Us</a></li>
+                <li><a href="nearbyres.html" data-i18n="nav.nearby">Nearby Restaurants</a></li>
+            </ul>
+            <div class="desktop-action flex gap-2">
+                <div class="custom-select" id="language-custom-select">
+                    <div class="selected" tabindex="0" aria-haspopup="listbox" aria-expanded="false"
+                        aria-labelledby="language-custom-select">
+                        English
+                    </div>
+                    <ul class="options" role="listbox" tabindex="-1">
+                        <li data-value="en" role="option" aria-selected="true">English</li>
+                        <li data-value="hi" role="option">हिंदी</li>
+                    </ul>
+                </div>
+
+                <form class="navbar-search" action="#" method="get">
+                    <input type="text" id="navbar-search" placeholder="Search your food ..."
+                        data-i18n-placeholder="nav.searchPlaceholder" />
+                    <button type="submit" id="navbar-search-btn" aria-label="Search">
+                        <i class="fa-solid fa-magnifying-glass"></i>
+                    </button>
+                </form>
+
+                <button class="desktop-action theme-toggle" aria-label="Toggle dark mode">
+                    <i class="fa-solid fa-moon"></i>
+                </button>
+
+                <a href="./checkout.html" class="cart-icon">
+                    <i class="fa-solid fa-bag-shopping"></i>
+                    <span class="cart-value">0</span>
+                </a>
+
+                <a href="./signup.html" class="btn" data-i18n="nav.signIn">
+                    Sign in&nbsp;<i class="fa-solid fa-arrow-right-from-bracket"></i>
+                </a>
+
+
+                <a href="#" class="hamberger"><i class="fa-solid fa-bars"></i></a>
+            </div>
+
+
+            <ul class="mobile-menu">
+                <li><a class="active" href="./index.html#home" data-i18n="nav.home">Home</a></li>
+                <li><a href="./menu.html" data-i18n="nav.menu">Menu</a></li>
+                <li><a href="./aboutUs.html" data-i18n="nav.about">About Us</a></li>
+                <li><a href="./contactUs.html" data-i18n="nav.contact">Contact Us</a></li>
+                <li><a href="nearbyres.html" data-i18n="nav.nearby">Nearby Restaurants</a></li>
+                <form class="navbar-search" action="#" method="get">
+                    <input type="text" name="search" id="navbar-search" placeholder="Search your food ...">
+                    <button type="submit" id="navbar-search-btn" aria-label="Search">
+                        <i class="fa-solid fa-magnifying-glass"></i>
+                    </button>
+                </form>
+                <li>
+                    <button class="theme-toggle mobile-theme-toggle" aria-label="Toggle dark mode">
+                        <i class="fa-solid fa-moon"></i><span>Dark Mode</span>
+                    </button>
+                </li>
+                <li>
+                    <a href="./signup.html" class="btn">
+                        Sign in&nbsp;<i class="fa-solid fa-arrow-right-from-bracket"></i>
+                    </a>
+                </li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <h1>Partner with <span>Foodie</span></h1>
+        <p>Join our network and grow your restaurant with thousands of customers daily.</p>
+    </section>
+
+    <!-- Benefits Section -->
+    <section class="benefits-section">
+        <div class="wrapper">
+            <h2>Why Partner with Foodie?</h2>
+            <div class="features-grid">
+                <div class="feature-card">
+                    <div class="feature-icon">📈</div>
+                    <h3>Grow Your Business</h3>
+                    <p>Reach a wider audience and increase your sales with our platform.</p>
+                </div>
+                <div class="feature-card">
+                    <span class="ribbon">Most Popular</span>
+                    <div class="feature-icon">⚡</div>
+                    <h3>Fast Delivery Integration</h3>
+                    <p>Seamlessly integrate with our delivery system to ensure your food arrives hot and on time.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">💳</div>
+                    <h3>Secure Payments</h3>
+                    <p>Get paid quickly and securely with our reliable payment system.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">📊</div>
+                    <h3>Insights & Analytics</h3>
+                    <p>Access reports to optimize menu performance and customer satisfaction.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">🤝</div>
+                    <h3>Dedicated Support</h3>
+                    <p>Our team is always ready to help you manage and grow your restaurant partnership.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Partner Form Section -->
+    <section class="partner-form-section">
+        <div class="wrapper">
+            <h2><span>Become a Partner</span></h2>
+            <p>Fill out the form below and our team will reach out to you shortly.</p>
+
+            <form action="#" class="partner-form two-column-form">
+
+                <!-- Row 1 -->
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="restaurantName">Restaurant Name</label>
+                        <input type="text" id="restaurantName" name="restaurantName" placeholder="Enter restaurant name"
+                            required>
+                    </div>
+                    <div class="form-group">
+                        <label for="ownerName">Owner Name</label>
+                        <input type="text" id="ownerName" name="ownerName" placeholder="Enter your name" required>
+                    </div>
+                </div>
+
+                <!-- Row 2 -->
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="email">Email Address</label>
+                        <input type="email" id="email" name="email" placeholder="Enter email" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="phone">Phone Number</label>
+                        <input type="tel" id="phone" name="phone" placeholder="Enter phone number" required>
+                    </div>
+                </div>
+
+                <!-- Row 3 -->
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="city">City</label>
+                        <input type="text" id="city" name="city" placeholder="Enter city" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="cuisine">Type of Cuisine</label>
+                        <input type="text" id="cuisine" name="cuisine" placeholder="e.g., Italian, Indian" required>
+                    </div>
+                </div>
+
+                <!-- Full-width field -->
+                <div class="form-group full-width">
+                    <label for="message">Additional Info</label>
+                    <textarea id="message" name="message" placeholder="Any other information"></textarea>
+                </div>
+
+                <!-- Submit Button -->
+                <button type="submit" class="cta-btn primary">Submit Application</button>
+            </form>
+
+            <!-- Success Toast for Partner Form -->
+            <div id="partner-success-toast" class="partner-success-toast" role="status" aria-live="polite">
+                <span class="partner-toast-icon">✔️</span>
+                <span class="partner-toast-msg">Application submitted successfully!</span>
+            </div>
+        </div>
+    </section>
+
+
+
+    <footer id="contacts" data-aos="fade-up"></footer>
+
+    <!-- Back to Top Button -->
+    <a href="#" class="back-to-top" aria-label="Back to top"><i class="fa-solid fa-arrow-up"></i></a>
+
+    <script>
+        // Theme Toggle with smooth icon transition
+        (function () {
+            const themeToggle = document.querySelector('.theme-toggle');
+            const html = document.documentElement;
+
+            // Load saved theme is now handled by the inline script in the head.
+            // This script only updates the icon and sets up event listeners.
+
+            // Update icon based on theme (guarded)
+            function updateThemeIcon() {
+                if (!themeToggle) return;
+                const icon = themeToggle.querySelector('i');
+                if (!icon) return;
+                if (html.getAttribute('data-theme') === 'dark') {
+                    icon.style.transform = 'rotate(360deg) scale(0)';
+                    setTimeout(() => {
+                        icon.className = 'fa-solid fa-sun';
+                        icon.style.transform = 'rotate(0deg) scale(1)';
+                    }, 250);
+                } else {
+                    icon.style.transform = 'rotate(-360deg) scale(0)';
+                    setTimeout(() => {
+                        icon.className = 'fa-solid fa-moon';
+                        icon.style.transform = 'rotate(0deg) scale(1)';
+                    }, 250);
+                }
+            }
+
+            updateThemeIcon(); // Call once on load to set initial icon
+
+            if (themeToggle) {
+                themeToggle.addEventListener('click', () => {
+                    const currentTheme = html.getAttribute('data-theme');
+                    const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
+                    html.setAttribute('data-theme', newTheme);
+                    localStorage.setItem('theme', newTheme);
+                    updateThemeIcon();
+                });
+            }
+        })();
+
+        // Mobile Menu Toggle (guarded)
+        (function () {
+            const hamburger = document.querySelector('.hamberger');
+            const mobileMenu = document.querySelector('.mobile-menu');
+            if (hamburger && mobileMenu) {
+                hamburger.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    mobileMenu.classList.toggle('mobile-menu-active');
+                });
+            }
+        })();
+
+        // Back to Top (guarded)
+        (function () {
+            const backToTop = document.querySelector('.back-to-top');
+            if (!backToTop) return;
+            window.addEventListener('scroll', () => {
+                if (window.scrollY > 400) backToTop.classList.add('visible');
+                else backToTop.classList.remove('visible');
+            });
+            backToTop.addEventListener('click', (e) => {
+                e.preventDefault();
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+            });
+        })();
+    </script>
+
+    <script src="../js/i18n.js"></script>
+    <script src="../js/cursor.js"></script>
+    <script src="../js/footer.js"></script>
+    <script src="../js/app.js"></script>
+    <script src="../js/partnerWithUs.js"></script>
+</body>
+
+</html>
