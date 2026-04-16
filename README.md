@@ -1,4 +1,7 @@
 # <img src="https://www.nsoc.in/_next/image?url=%2Flogo.png&w=64&q=75" width="45" align="center" /> Nexus Spring of Code
+
+> Officially participating in **Nexus Spring of Code 2026**
+
 ## ❄️ Winter Of Code Social 2025
 ## 🎃 Hacktoberfest 2025
 
@@ -12,6 +15,8 @@
 [![Forks](https://img.shields.io/github/forks/janavipandole/Hacktoberfest2025-Foodie?style=for-the-badge)](https://github.com/janavipandole/Hacktoberfest2025-Foodie/forks)
 
 <img src="https://github.com/Mayur-Pagote/README_Design_Kit/blob/730d340c8008758ac291ebc555f818f851feda0f/Assets/RGB%20Line%20Thick.gif" width="100%" />
+
+<img src="(image.png)>
 
 ## 🧁 Overview
 
@@ -123,6 +128,9 @@ xdg-open html/index.html
 
 <img src="https://github.com/Mayur-Pagote/README_Design_Kit/blob/730d340c8008758ac291ebc555f818f851feda0f/Assets/RGB%20Line%20Thick.gif" width="100%" />
 
+
+<img src="./imgs/image.png" alt="Homepage Preview" width="800"/>
+
 ## 🧩 Chrome Extension
 
 Load the extension for local testing:
@@ -176,6 +184,14 @@ This site’s entry file is at `html/index.html`. To use GitHub Pages:
 
 <img src="https://github.com/Mayur-Pagote/README_Design_Kit/blob/730d340c8008758ac291ebc555f818f851feda0f/Assets/RGB%20Line%20Thick.gif" width="100%" />
 
+
+## Steps to Deploy
+* Push your project to GitHub
+* Open the repository settings
+* Navigate to Pages
+* Select the desired branch
+* Save the settings
+* Your site will be published automatically
 
 ## 🧪 Command for Running Tests
 
@@ -243,6 +259,19 @@ Whether it’s bug fixes, new features, or improving documentation — every con
 📘 For more details, see the [CONTRIBUTING.md](./CONTRIBUTING.md) file.
 
 <img src="https://github.com/Mayur-Pagote/README_Design_Kit/blob/730d340c8008758ac291ebc555f818f851feda0f/Assets/RGB%20Line%20Thick.gif" width="100%" />
+
+
+## Future Improvements
+
+Some potential enhancements for Foodie include:
+
+* User authentication and login system
+* Wishlist and favorite items feature
+* Backend integration for real orders
+* Dark mode support
+* Search and filter functionality
+* Multi-language support
+* Payment gateway integration
 
 ## 🏆 NSoC 2026 Project Selection
 
