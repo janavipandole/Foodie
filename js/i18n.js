@@ -3,6 +3,7 @@ class I18n {
     constructor() {
         this.currentLang = localStorage.getItem("foodie:lang") || "en";
         this.translations = {};
+        this.fallbackTranslations = {};
 
         document.addEventListener("DOMContentLoaded", () => this.init());
     }
@@ -26,6 +27,13 @@ class I18n {
             }
 
             this.translations = await response.json();
+
+            if (lang !== "en" && Object.keys(this.fallbackTranslations).length === 0) {
+                const fallbackResponse = await fetch(`${basePath}en.json`);
+                if (fallbackResponse.ok) {
+                    this.fallbackTranslations = await fallbackResponse.json();
+                }
+            }
         } catch (err) {
             console.error("Translation load error:", err);
 
@@ -50,8 +58,9 @@ class I18n {
 
     // Safe key lookup with fallback
     t(key, fallback = "") {
-        return key.split(".").reduce((obj, k) => obj?.[k], this.translations) 
-            || fallback 
+        return key.split(".").reduce((obj, k) => obj?.[k], this.translations)
+            || key.split(".").reduce((obj, k) => obj?.[k], this.fallbackTranslations)
+            || fallback
             || key;
     }
 
