@@ -5,3 +5,9 @@ dist/
 coverage/
 .DS_Store
 .vercel
+
+# wrangler files
+.wrangler
+.dev.vars*
+!.dev.vars.example
+!.env.example
