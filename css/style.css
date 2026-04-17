@@ -509,6 +509,7 @@
     }
 
     .image-container {
+        position: relative;
         width: 600px;
         height: 600px;
         border-radius: 30px;
@@ -517,16 +518,43 @@
     }
 
     .pizza-boy {
+        position: relative;
+        z-index: 1;
         width: 100%;
         height: 100%;
         border-radius: 30px;
-        transition: transform 1s ease;
-        transform-style: preserve-3d;
+        animation: pizzaSlowSpin 24s linear infinite;
+        transform-origin: center center;
     }
 
-    /* On hover, rotate halfway */
-    .image-container:hover .pizza-boy {
-        transform: rotateY(180deg);
+    .pizza-pause-zone {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        width: 72%;
+        height: 72%;
+        border-radius: 50%;
+        transform: translate(-50%, -50%);
+        z-index: 2;
+    }
+
+    .pizza-pause-zone:hover ~ .pizza-boy {
+        animation-play-state: paused;
+    }
+
+    @keyframes pizzaSlowSpin {
+        from {
+            transform: rotate(0deg);
+        }
+        to {
+            transform: rotate(360deg);
+        }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+        .pizza-boy {
+            animation: none;
+        }
     }
 
 
