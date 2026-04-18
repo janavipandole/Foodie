@@ -1,0 +1,147 @@
+/* ===== HERO ===== */
+.resources-hero {
+  background: linear-gradient(135deg, #e8f5e9, #f1f8e9);
+  padding: 70px 20px;
+  text-align: center;
+}
+
+.hero-content h1 {
+  font-size: 3rem;
+  color: #1b5e20;
+}
+
+.hero-content p {
+  color: #555;
+  margin-top: 10px;
+}
+
+/* SEARCH BOX */
+.search-box {
+  margin: 25px auto 0;
+  max-width: 420px;
+  display: flex;
+  align-items: center;
+  background: #fff;
+  padding: 10px 15px;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+}
+
+.search-box input {
+  border: none;
+  outline: none;
+  width: 100%;
+  margin-left: 10px;
+}
+
+/* CATEGORY BAR */
+.category-bar {
+  display: flex;
+  justify-content: center;
+  gap: 12px;
+  padding: 25px;
+  flex-wrap: wrap;
+}
+
+.category-bar button {
+  padding: 8px 14px;
+  border: none;
+  border-radius: 20px;
+  background: #eee;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.category-bar button.active,
+.category-bar button:hover {
+  background: #2e7d32;
+  color: white;
+}
+
+/* GRID */
+.resources-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 25px;
+  padding: 40px 20px;
+  max-width: 1200px;
+  margin: auto;
+}
+
+/* CARD */
+.resource-card {
+  background: #fff;
+  padding: 22px;
+  border-radius: 18px;
+  box-shadow: 0 6px 18px rgba(0,0,0,0.08);
+  transition: 0.3s ease;
+  border: 1px solid #eee;
+}
+
+.resource-card:hover {
+  transform: translateY(-10px);
+  box-shadow: 0 14px 28px rgba(0,0,0,0.15);
+}
+
+/* CARD HEADER */
+.card-header {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  color: #2e7d32;
+  font-weight: 600;
+  margin-bottom: 10px;
+}
+
+/* TITLE */
+.resource-card h3 {
+  margin: 10px 0;
+  color: #1b5e20;
+}
+
+/* TEXT */
+.resource-card p {
+  color: #666;
+  font-size: 0.95rem;
+}
+
+/* TAGS */
+.tags {
+  margin: 12px 0;
+}
+
+.tags span {
+  display: inline-block;
+  background: #e8f5e9;
+  color: #2e7d32;
+  font-size: 0.75rem;
+  padding: 4px 8px;
+  border-radius: 12px;
+  margin-right: 5px;
+}
+
+/* BUTTON */
+.resource-card button {
+  margin-top: 10px;
+  padding: 10px 14px;
+  border: none;
+  border-radius: 10px;
+  background: #2e7d32;
+  color: white;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  transition: 0.3s;
+}
+
+.resource-card button:hover {
+  background: #1b5e20;
+}
+
+/* FOOTER */
+.footer {
+  text-align: center;
+  padding: 20px;
+  background: #f5f5f5;
+}
