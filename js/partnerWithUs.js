@@ -76,16 +76,57 @@ document.addEventListener("DOMContentLoaded", function () {
         setTimeout(() => toast.classList.remove("show"), 2000);
     }
 
-    // REAL backend API request
+    // ===== LOADING STATE MANAGEMENT =====
+    function setLoadingState(element, isLoading, message = 'Submitting...') {
+        if (!element) return;
+
+        const existingLoader = element.querySelector('.loading-overlay');
+        if (isLoading) {
+            if (!existingLoader) {
+                const loader = document.createElement('div');
+                loader.className = 'loading-overlay';
+                loader.innerHTML = `
+                    <div class="loading-spinner"></div>
+                    <span class="loading-text">${message}</span>
+                `;
+                element.style.position = 'relative';
+                element.appendChild(loader);
+            }
+            element.classList.add('loading');
+        } else {
+            if (existingLoader) {
+                existingLoader.remove();
+            }
+            element.classList.remove('loading');
+        }
+    }
+
+    // REAL backend API request with error handling
     async function sendRealRequest(payload) {
         const endpoint = form.getAttribute("action")?.trim() || "/api/partners";
 
-        return fetch(endpoint, {
-            method: "POST",
-            headers: { "Content-Type": "application/json" },
-            credentials: "same-origin",
-            body: JSON.stringify(payload)
-        });
+        // Import error handling utilities
+        const {
+            retry,
+            NetworkError,
+            showErrorToast,
+            errorLogger
+        } = window.FoodieErrorHandler || {};
+
+        return await retry(async () => {
+            const response = await fetch(endpoint, {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                credentials: "same-origin",
+                body: JSON.stringify(payload)
+            });
+
+            if (!response.ok) {
+                throw new NetworkError(`Submission failed: HTTP ${response.status}`);
+            }
+
+            return response;
+        }, 2, 1000); // 2 retries with 1s delay
     }
 
     // Form submit
@@ -98,18 +139,33 @@ document.addEventListener("DOMContentLoaded", function () {
         // Validate
         if (!validateForm(data)) return;
 
-        // Real backend request
-        const resp = await sendRealRequest(data);
+        // Show loading state
+        setLoadingState(form, true, 'Submitting partnership request...');
 
-        if (resp.ok) {
+        try {
+            // Real backend request with retry
+            const resp = await sendRealRequest(data);
+
+            setLoadingState(form, false);
             form.reset();
             showToast();
-        } else {
-            console.warn("Server rejected submission:", resp.status);
+
+        } catch (error) {
+            setLoadingState(form, false);
+
+            // Log the error
+            errorLogger.log(error, { operation: 'partnerSubmission', data });
+
+            console.warn("Server rejected submission:", error.message);
+
+            // Show user-friendly error message
             showFieldError(
                 form.querySelector("[name='email']"),
-                "Submission failed. Please try again."
+                "Submission failed. Please check your connection and try again."
             );
+
+            // Show toast notification
+            showErrorToast('Failed to submit partnership request. Please try again.');
         }
     });
 

@@ -1,247 +1,248 @@
 {
   "nav": {
-    "home": "Home",
-    "services": "Services",
-    "menu": "Menu",
-    "about": "About Us",
-    "contact": "Contact Us",
-    "nearby": "Nearby Restaurants",
-    "rideWithUs": "Ride With Us",
-    "searchPlaceholder": "Search your food ...",
-    "darkMode": "Dark Mode",
-    "lightMode": "Light Mode",
-    "signIn": "Sign in",
-    "cart": "Cart"
+    "home": "मुख्यपृष्ठ",
+    "services": "सेवा",
+    "menu": "मेनू",
+    "about": "आमच्याबद्दल",
+    "contact": "संपर्क करा",
+    "nearby": "जवळचे रेस्टॉरंट",
+    "rideWithUs": "आमच्यासोबत राइड करा",
+    "searchPlaceholder": "तुमचा खाना शोधा ...",
+    "darkMode": "डार्क मोड",
+    "lightMode": "लाइट मोड",
+    "signIn": "साइन इन",
+    "cart": "कार्ट"
   },
   "hero": {
-    "title": "Enjoy Your Delicious",
-    "highlight": "Food",
-    "subtitle": "We will fill your tummy with delicious food with fast delivery",
-    "orderNow": "Order now"
+    "title": "तुमचा स्वादिष्ट खाना आनंद घ्या",
+    "highlight": "खाना",
+    "subtitle": "आम्ही जलद डिलिव्हरीसह तुमच्या पोटाला स्वादिष्ट खानाने भरू",
+    "orderNow": "आता ऑर्डर करा"
   },
   "services": {
-    "sectionTitle": "Our Services",
-    "mainTitle": "How does it work?",
+    "sectionTitle": "आमच्या सेवा",
+    "mainTitle": "हे कसे कार्य करते?",
     "easyOrder": {
-      "title": "Easy to Order",
-      "description": "You only need a few steps in ordering food."
+      "title": "ऑर्डर करणे सोपे",
+      "description": "खाना ऑर्डर करण्यासाठी तुम्हाला फक्त काही पायऱ्या उचलाव्या लागतील."
     },
     "fastDelivery": {
-      "title": "Fast delivery",
-      "description": "Delivery that is always on time, even faster."
+      "title": "जलद डिलिव्हरी",
+      "description": "डिलिव्हरी जी नेहमी वेळेवर असते, आणखी जलद."
     },
     "bestQuality": {
-      "title": "Best quality",
-      "description": "Not only fast, for us quality is number one."
+      "title": "सर्वोत्तम गुणवत्ता",
+      "description": "फक्त जलद नाही, आमच्यासाठी गुणवत्ता पहिली आहे."
     }
   },
   "reviews": {
-    "sectionTitle": "Our reviews",
-    "mainTitle": "what they say",
-    "deepakName": "Deepak Kumar",
-    "deepakReview": "Foodie is the best! Besides the many delicious meals, the service is excellent—especially the fast delivery. I highly recommend Foodie to you.",
-    "priyaName": "Priya Roy",
-    "priyaReview": "Fresh ingredients, a creative menu, and warm service make this spot a hidden gem. Perfect from casual dinners or special nights out. Truly a foodie's paradise!",
-    "anjaliName": "Anjali Joshi",
-    "anjaliReview": "Had an amazing time here! The food was bursting with flavor, the ambiance was warm and inviting, and the staff made us feel truly welcome. Every dish was a delight—definitely a spot I’ll be coming back to."
+    "sectionTitle": "आमच्या समीक्षा",
+    "mainTitle": "ते काय म्हणतात",
+    "deepakName": "दीपक कुमार",
+    "deepakReview": "फूडी सर्वोत्कृष्ट आहे! अनेक स्वादिष्ट जेवणांव्यतिरिक्त, सेवा उत्कृष्ट आहे—विशेषतः जलद डिलिव्हरी. मी तुम्हाला फूडीची अत्यंत शिफारस करतो.",
+    "priyaName": "प्रिया रॉय",
+    "priyaReview": "ताज्या घटक, एक रचनात्मक मेनू आणि उष्ण सेवा या ठिकाणाला एक लपलेले रत्न बनवते. आकस्मिक रात्रीच्या जेवणासाठी किंवा विशेष रात्रींसाठी परिपूर्ण. खरोखर एक फूडीचे स्वर्ग!",
+    "anjaliName": "अंजली जोशी",
+    "anjaliReview": "येथे एक अद्भुत वेळ घालवला! खाना चवनेने भरलेले होते, वातावरण उष्ण आणि आमंत्रित करणारे होते आणि कर्मचाऱ्यांनी आम्हाला खरोखर स्वागतार्ह महसूस करून दिले. प्रत्येक डिश एक आनंद होता—निश्चितच एक अशी जागा जिथे मी परत येईल."
   },
   "app": {
-    "sectionTitle": "Our Application",
-    "mainTitle": "Simple way to order your food",
-    "description": "Crave it. Find it. Get it fast wherever, whenever.",
-    "installButton": "Install the app"
+    "sectionTitle": "आमचे अॅप्लिकेशन",
+    "mainTitle": "तुमचा खाना ऑर्डर करण्याचा सोपा मार्ग",
+    "description": "इच्छा करा. शोधा. जिथेही, जेव्हाही जलद मिळवा.",
+    "installButton": "अॅप इन्स्टॉल करा"
   },
   "qr": {
-  "scan": "Scan to Download",
-  "quickAccess": "Quick access to our mobile app",
-  "instruction": "Point your camera at the QR code",
-  "orDownload": "Or download from:",
-  "appStoreSmall": "Download on the",
-  "appStoreLarge": "App Store",
-  "googlePlaySmall": "Get it on",
-  "googlePlayLarge": "Google Play",
-  "users": "Active Users",
-  "rating": "App Rating",
-  "downloads": "Downloads"
+  "scan": "डाउनलोड करण्यासाठी स्कॅन करा",
+  "quickAccess": "आमच्या मोबाइल अॅपमध्ये जलद प्रवेश",
+  "instruction": "तुमच्या कॅमेऱ्याला QR कोडच्या दिशेने निर्देशित करा",
+  "orDownload": "किंवा येथून डाउनलोड करा:",
+  "appStoreSmall": "डाउनलोड करा",
+  "appStoreLarge": "अॅप स्टोअर",
+  "googlePlaySmall": "मिळवा",
+  "googlePlayLarge": "गूगल प्ले",
+  "users": "सक्रिय वापरकर्ते",
+  "rating": "अॅप रेटिंग",
+  "downloads": "डाउनलोड"
 },
   "newsletter": {
-    "sectionTitle": "Our Subscribe",
-    "mainTitle": "Subscribe to Our newsletter",
-    "description": "We recommend you to Subscribe our newsletter, drop you email below to get daily update about us.",
-    "placeholder": "Enter your email address",
-    "subscribeButton": "Subscribe"
+    "sectionTitle": "आमचे सबस्क्राइब",
+    "mainTitle": "आमच्या न्यूजलेटरला सबस्क्राइब करा",
+    "description": "आम्ही तुम्हाला आमच्या न्यूजलेटरला सबस्क्राइब करण्याची शिफारस करतो, आमच्याबद्दल दैनिक अपडेट मिळण्यासाठी तुमचा ईमेल खाली टाका.",
+    "placeholder": "तुमचा ईमेल पत्ता प्रविष्ट करा",
+    "subscribeButton": "सबस्क्राइब करा"
   },
   "footer": {
-    "ourMenu": "Our Menu",
-    "special": "Special",
-    "popular": "Popular",
-    "category": "Category",
-    "company": "Company",
-    "whyFoodie": "Why Foodie",
-    "partnerWithUs": "Partner with us",
-    "aboutUs": "About us",
-    "faq": "FAQ's",
-    "support": "Support",
-    "account": "Account",
-    "supportCenter": "Support center",
-    "feedback": "Feedback",
-    "contactUs": "Contact Us",
-    "description": "We will fill your tummy with delicious food with fast delivery",
-    "rideWithUs": "Ride With Us"
+    "ourMenu": "आमचे मेनू",
+    "special": "विशेष",
+    "popular": "लोकप्रिय",
+    "category": "वर्ग",
+    "company": "कंपनी",
+    "whyFoodie": "फूडी का?",
+    "partnerWithUs": "आमच्यासोबत पार्टनर व्हा",
+    "aboutUs": "आमच्याबद्दल",
+    "faq": "FAQ",
+    "support": "सपोर्ट",
+    "account": "खाते",
+    "supportCenter": "सपोर्ट सेंटर",
+    "feedback": "अभिप्राय",
+    "contactUs": "संपर्क करा",
+    "description": "आम्ही जलद डिलिव्हरीसह तुमच्या पोटाला स्वादिष्ट खानाने भरू",
+    "rideWithUs": "आमच्यासोबत राइड करा"
   },
   "cart": {
-    "yourCart": "Your Cart",
-    "empty": "Your cart is empty!",
-    "total": "Total",
-    "close": "Close",
-    "checkout": "Checkout"
+    "yourCart": "तुमचा कार्ट",
+    "empty": "तुमचा कार्ट रिकामा आहे!",
+    "total": "एकूण",
+    "close": "बंद करा",
+    "checkout": "चेकआउट"
   },
   "toasts": {
-    "addedToCart": "added to cart",
-    "addedAnother": "Added another"
+    "addedToCart": "कार्टमध्ये जोडले",
+    "addedAnother": "दुसरे जोडले"
   },
   "menu": {
-    "ourMenu": "Our menu",
-    "mostPopular": "The Most Popular",
-    "searchPlaceholder": "Search your favorite dish...",
-    "allPrices": "All Prices",
-    "below100": "Below ₹100",
+    "ourMenu": "आमचे मेनू",
+    "mostPopular": "सर्वात लोकप्रिय",
+    "searchPlaceholder": "तुमचे आवडते डिश शोधा...",
+    "allPrices": "सर्व किमती",
+    "below100": "₹100 खाली",
     "midRange": "₹100 - ₹200",
-    "above200": "Above ₹200",
-    "favorites": "Favorites",
-    "veg": "Veg",
-    "nonVeg": "Non-Veg",
-    "all": "All"
+    "above200": "₹200 वर",
+    "favorites": "आवडते",
+    "veg": "शाकाहारी",
+    "nonVeg": "मांसाहारी",
+    "all": "सर्व"
   },
   "modal": {
-    "addToCart": "Add to Cart",
-    "viewCart": "View Cart"
+    "addToCart": "कार्टमध्ये जोडा",
+    "viewCart": "कार्ट पहा"
   },
   "errors": {
-    "noItems": "Oops! No items available.",
-    "loadError": "Unable to load products. Please check your connection and try again.",
-    "retry": "Retry"
+    "noItems": "अरेरे! कोणतीही वस्तू उपलब्ध नाही.",
+    "loadError": "उत्पाद लोड करण्यास असमर्थ. कृपया तुमचे कनेक्शन तपासा आणि पुन्हा प्रयत्न करा.",
+    "retry": "पुन्हा प्रयत्न करा"
   },
   "languages": {
     "english": "English",
     "hindi": "हिंदी",
     "kannada": "ಕನ್ನಡ",
-    "marathi": "मराठी"
+    "marathi": "मराठी",
+    "bengali": "বাংলা"
   },
   "aboutUs": {
     "hero": {
-      "title": "About",
-      "highlight": "Foodie",
-      "subtitle": "Your trusted partner in delivering delicious food with lightning-fast service"
+      "title": "बद्दल",
+      "highlight": "फूडी",
+      "subtitle": "विजेच्या वेगाने सेवा सह स्वादिष्ट खाना पुरवण्यात तुमचा विश्वासू साथीदार"
     },
     "story": {
-      "title": "Our Story",
-      "para1": "Founded in 2022, Foodie began with a simple mission: to connect food lovers with their favorite restaurants through fast, reliable delivery. What started as a small startup has grown into a trusted platform serving thousands of customers daily.",
-      "para2": "We believe that great food should be accessible to everyone, anytime. Our team works tirelessly to ensure that every meal arrives hot, fresh, and on time.",
-      "para3": "Finally...at Foodie we don't just deliver meals, we deliver happiness at a time 🍽️💛"
+      "title": "आमची कहाणी",
+      "para1": "2022 मध्ये स्थापित, फूडीची सुरुवात एका साध्या मिशनने झाली: जलद, विश्वासार्ह डिलिव्हरीद्वारे खाना प्रेमींना त्यांच्या आवडत्या रेस्टॉरंटशी जोडणे. जी एक छोटी स्टार्टअप म्हणून सुरू झाली ती हजारो ग्राहकांना रोज सेवा देणारा एक विश्वासार्ह प्लॅटफॉर्म बनला आहे.",
+      "para2": "आम्हाला विश्वास आहे की उत्तम खाना प्रत्येकाला, कधीही प्रवेशयोग्य असावे. आमची टीम प्रत्येक जेवण गरम, ताजे आणि वेळेवर पोहोचेल याची खात्री करण्यासाठी अथक परिश्रम करते.",
+      "para3": "शेवटी...फूडीमध्ये आम्ही फक्त जेवण पुरवत नाही, आम्ही वेळेवर आनंद पुरवतो 🍽️💛"
     },
     "mission": {
       "mission": {
-        "title": "Our Mission",
-        "description": "To revolutionize food delivery by supporting local restaurants, and creating memorable dining experiences for customers."
+        "title": "आमचे ध्येय",
+        "description": "स्थानिक रेस्टॉरंटला सपोर्ट देऊन आणि ग्राहकांसाठी अविस्मरणीय जेवणाचा अनुभव निर्माण करून खाना डिलिव्हरीमध्ये क्रांती घडवणे."
       },
       "vision": {
-        "title": "Our Vision",
-        "description": "To become the most trusted and loved food delivery platform globally, setting new standards for quality, speed, and customer satisfaction."
+        "title": "आमचे दृष्टी",
+        "description": "गुणवत्ता, वेग आणि ग्राहक समाधानासाठी नवीन मानके स्थापित करून जगातील सर्वात विश्वासार्ह आणि आवडता खाना डिलिव्हरी प्लॅटफॉर्म बनणे."
       },
       "values": {
-        "title": "Our Values",
-        "description": "Quality, reliability, innovation, and customer-first approach guide everything we do. We're committed to excellence in every delivery."
+        "title": "आमची मूल्ये",
+        "description": "गुणवत्ता, विश्वासार्हता, नाविन्य आणि ग्राहक-प्रथम दृष्टीकोन आमच्या प्रत्येक कार्याला मार्गदर्शन करतो. आम्ही प्रत्येक डिलिव्हरीमध्ये उत्कृष्टतेला वचनबद्ध आहोत."
       }
     },
     "stats": {
-      "customers": "Happy Customers",
-      "partners": "Restaurant Partners",
-      "orders": "Orders Delivered",
-      "time": "Avg. Delivery Time"
+      "customers": "आनंदी ग्राहक",
+      "partners": "रेस्टॉरंट पार्टनर्स",
+      "orders": "ऑर्डर डिलिव्हर केले",
+      "time": "सरासरी डिलिव्हरी वेळ"
     },
     "whyChoose": {
-      "title": "Why Choose Foodie?",
-      "subtitle": "We're not just another food delivery service",
+      "title": "फूडी का निवडावे?",
+      "subtitle": "आम्ही फक्त दुसरी खाना डिलिव्हरी सेवा नाही",
       "features": {
         "fast": {
-          "title": "Lightning Fast",
-          "description": "Average delivery time of just 30 minutes. Hot food, guaranteed."
+          "title": "विजेसारखे जलद",
+          "description": "फक्त 30 मिनिटांची सरासरी डिलिव्हरी वेळ. गरम खाना, हमी."
         },
         "quality": {
-          "title": "Premium Quality",
-          "description": "Partner with only the best restaurants to ensure top-notch quality."
+          "title": "प्रीमियम गुणवत्ता",
+          "description": "सर्वोत्तम गुणवत्ता सुनिश्चित करण्यासाठी फक्त सर्वोत्कृष्ट रेस्टॉरंटसोबत पार्टनर."
         },
         "easy": {
-          "title": "Easy Ordering",
-          "description": "Simple, intuitive app and website for hassle-free ordering."
+          "title": "सोपे ऑर्डरिंग",
+          "description": "तंटामुक्त ऑर्डरिंगसाठी सोपे, अंतर्ज्ञानी अॅप आणि वेबसाइट."
         },
         "secure": {
-          "title": "Safe & Secure",
-          "description": "Contactless delivery and secure payment options for your safety."
+          "title": "सुरक्षित आणि सुरक्षित",
+          "description": "तुमच्या सुरक्षेसाठी कॉन्टॅक्टलेस डिलिव्हरी आणि सुरक्षित पेमेंट पर्याय."
         },
         "prices": {
-          "title": "Best Prices",
-          "description": "Competitive pricing with exclusive deals and discounts."
+          "title": "सर्वोत्कृष्ट किमती",
+          "description": "विशिष्ट डील आणि डिस्काउंटसह स्पर्धात्मक किंमत."
         },
         "support": {
-          "title": "24/7 Support",
-          "description": "Round-the-clock customer support for any queries or issues."
+          "title": "24/7 सपोर्ट",
+          "description": "कोणत्याही प्रश्नांसाठी किंवा समस्यांसाठी 24 तास ग्राहक सपोर्ट."
         }
       }
     },
     "team": {
-      "title": "Meet Our Team",
-      "subtitle": "The passionate people behind Foodie",
+      "title": "आमच्या टीमला भेटा",
+      "subtitle": "फूडीच्या मागील भावूक लोक",
       "members": {
         "janavi": {
-          "name": "Janavi Pandole",
-          "role": "CEO & Founder",
-          "bio": "Visionary leader with 10+ years in tech and food industry."
+          "name": "जनवी पंडोले",
+          "role": "CEO & संस्थापक",
+          "bio": "टेक आणि खाना इंडस्ट्रीमध्ये 10+ वर्षांचा अनुभव असलेला दूरदर्शी नेता."
         },
         "rahul": {
-          "name": "Rahul Pandole",
-          "role": "Head of Operations",
-          "bio": "Expert in logistics and supply chain management."
+          "name": "राहुल पंडोले",
+          "role": "ऑपरेशन्स प्रमुख",
+          "bio": "लॉजिस्टिक्स आणि सप्लाय चेन मॅनेजमेंटमध्ये तज्ञ."
         },
         "manoj": {
-          "name": "Manoj Pandole",
-          "role": "Culinary Director",
-          "bio": "Award-winning chef ensuring quality standards."
+          "name": "मनोज पंडोले",
+          "role": "क्युलिनरी डायरेक्टर",
+          "bio": "गुणवत्ता मानके सुनिश्चित करणारा पुरस्कार विजेता शेफ."
         },
         "janaviTech": {
-          "name": "Janavi Pandole",
-          "role": "Tech Lead",
-          "bio": "Building innovative solutions for seamless experience."
+          "name": "जनवी पंडोले",
+          "role": "टेक लीड",
+          "bio": "सहज अनुभवासाठी नाविन्यपूर्ण उपाय तयार करणे."
         }
       }
     },
     "testimonials": {
-      "title": "What Our Customers Say",
-      "subtitle": "Real feedback from real customers",
+      "title": "आमचे ग्राहक काय म्हणतात",
+      "subtitle": "खर्या ग्राहकांकडून खरी प्रतिक्रिया",
       "reviews": {
         "alex": {
-          "text": "Best food delivery service I've ever used! Fast, reliable, and the food always arrives hot. Highly recommend!",
-          "author": "Alex Kumar",
-          "role": "Regular Customer"
+          "text": "मी कधीही वापरलेला सर्वोत्कृष्ट खाना डिलिव्हरी सेवा! जलद, विश्वासार्ह आणि खाना नेहमी गरम पोहोचतो. अत्यंत शिफारस!",
+          "author": "अलेक्स कुमार",
+          "role": "नियमित ग्राहक"
         },
         "priya": {
-          "text": "The customer service is exceptional. They went above and beyond to ensure my order was perfect. 5 stars!",
-          "author": "Priya Sharma",
-          "role": "Food Enthusiast"
+          "text": "ग्राहक सेवा अपवादात्मक आहे. माझा ऑर्डर परिपूर्ण करण्यासाठी त्यांनी जास्तीत जास्त केले. 5 स्टार!",
+          "author": "प्रिया शर्मा",
+          "role": "खाना उत्साही"
         },
         "rahul": {
-          "text": "Amazing variety of restaurants and cuisines. The app is super easy to use. My go-to for all food cravings!",
-          "author": "Rahul Patel",
-          "role": "Tech Professional"
+          "text": "रेस्टॉरंट आणि पाककृतींची आश्चर्यकारक विविधता. अॅप वापरणे खूप सोपे आहे. माझ्या सर्व खाना इच्छांसाठी माझा पर्याय!",
+          "author": "राहुल पटेल",
+          "role": "टेक प्रोफेशनल"
         }
       }
     },
     "cta": {
-      "title": "Ready to Experience Foodie?",
-      "subtitle": "Join thousands of satisfied customers and enjoy delicious food delivered to your doorstep",
-      "signUp": "Sign Up Now",
-      "browseMenu": "Browse Menu"
+      "title": "फूडीचा अनुभव घेण्यास तयार आहात?",
+      "subtitle": "हजारो समाधानी ग्राहकांमध्ये सामील व्हा आणि तुमच्या दारापर्यंत स्वादिष्ट खाना आनंद घ्या",
+      "signUp": "आता साइन अप करा",
+      "browseMenu": "मेनू ब्राउझ करा"
     }
   }
 }

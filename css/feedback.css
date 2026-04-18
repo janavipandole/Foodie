@@ -114,88 +114,209 @@ body {
     filter: drop-shadow(0 2px 6px var(--lead));
 }
 
-/* ====== Modal Styles ====== */
-.modal-overlay {
-    position: fixed;
-    top: 0; left: 0; right: 0; bottom: 0;
-    background: rgba(0,0,0,0.18);
-    z-index: 1000;
-    opacity: 0;
-    pointer-events: none;
-    transition: opacity 0.3s;
-}
-
-.modal-overlay.open {
-    opacity: 1;
-    pointer-events: auto;
-}
-
-.feedback-modal {
-    position: fixed;
-    top: 50%; left: 50%;
-    transform: translate(-50%, -50%) scale(0.95);
-    background: var(--bg-secondary);
-    border-radius: 1.5rem;
-    box-shadow: 0 12px 32px var(--shadow);
-    padding: 2.5rem 2rem 2rem 2rem;
-    z-index: 1100;
-    min-width: 320px;
-    max-width: 95vw;
-    width: 400px;
-    opacity: 0;
-    pointer-events: none;
-    transition: opacity 0.3s, transform 0.3s;
+/* ====== Modal Header and Body ====== */
+.modal-header {
     display: flex;
-    flex-direction: column;
-    align-items: stretch;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1.5rem;
+    padding-bottom: 1rem;
+    border-bottom: 1px solid var(--border-color);
 }
 
-.feedback-modal.open {
-    opacity: 1;
-    pointer-events: auto;
-    transform: translate(-50%, -50%) scale(1);
+.modal-header h2 {
+    margin: 0;
+    color: var(--text-primary);
+    font-size: 1.5rem;
+    font-weight: 600;
 }
 
-.close-modal {
-    position: absolute;
-    top: 1rem;
-    right: 1.2rem;
+.close-btn {
     background: none;
     border: none;
     font-size: 2rem;
     color: var(--text-secondary);
     cursor: pointer;
-    transition: color 0.2s;
-    z-index: 2;
+    padding: 0.5rem;
+    border-radius: 0.5rem;
+    transition: all 0.2s;
+    line-height: 1;
 }
 
-.close-modal:hover,
-.close-modal:focus {
+.close-btn:hover,
+.close-btn:focus {
     color: var(--lead);
+    background: var(--bg-primary);
 }
 
-#feedback-form {
-    display: flex;
-    flex-direction: column;
-    gap: 1.2rem;
-    margin-top: 1.5rem;
+.modal-body {
+    flex: 1;
 }
 
-#feedback-form textarea {
-    resize: vertical;
-    min-height: 90px;
-    border-radius: 0.7rem;
+/* ====== Form Elements ====== */
+.form-group {
+    margin-bottom: 1.5rem;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 0.5rem;
+    color: var(--text-primary);
+    font-weight: 500;
+    font-size: 1rem;
+}
+
+#feedback-form input[type="text"],
+#feedback-form input[type="email"] {
+    width: 100%;
+    padding: 0.8rem 1rem;
     border: 1.5px solid var(--border-color);
-    padding: 1rem;
-    font-size: 1.1rem;
+    border-radius: 0.7rem;
+    font-size: 1rem;
     background: var(--bg-primary);
     color: var(--text-primary);
-    transition: border-color 0.2s;
+    transition: border-color 0.2s, box-shadow 0.2s;
 }
 
+#feedback-form input:focus,
 #feedback-form textarea:focus {
     border-color: var(--lead);
     outline: none;
+    box-shadow: 0 0 0 3px rgba(242, 189, 18, 0.1);
+}
+
+/* ====== Rating Stars ====== */
+.rating {
+    display: flex;
+    gap: 0.5rem;
+    justify-content: center;
+    margin: 1rem 0;
+}
+
+.rating input {
+    display: none;
+}
+
+.rating label {
+    font-size: 2rem;
+    color: #ddd;
+    cursor: pointer;
+    transition: all 0.2s;
+    padding: 0.2rem;
+    border-radius: 0.3rem;
+}
+
+.rating input:checked ~ label,
+.rating label:hover,
+.rating label:hover ~ label {
+    color: #ffb400;
+    transform: scale(1.1);
+}
+
+.rating label:hover {
+    background: rgba(255, 180, 0, 0.1);
+}
+
+/* ====== Loading and Error States ====== */
+.loading-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(255, 255, 255, 0.9);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    z-index: 10;
+    border-radius: inherit;
+    backdrop-filter: blur(2px);
+}
+
+.loading-spinner {
+    width: 40px;
+    height: 40px;
+    border: 4px solid var(--border-color);
+    border-top: 4px solid var(--gold-finger);
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+    margin-bottom: 1rem;
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+.loading-text {
+    color: var(--text-secondary);
+    font-size: 0.9rem;
+    font-weight: 500;
+}
+
+.field-error {
+    color: #e74c3c;
+    font-size: 0.85rem;
+    margin-top: 0.3rem;
+    display: block;
+}
+
+.retry-btn {
+    background: var(--lead);
+    color: white;
+    border: none;
+    border-radius: 0.5rem;
+    padding: 0.6rem 1.2rem;
+    font-size: 0.9rem;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.2s;
+    margin-top: 0.5rem;
+}
+
+.retry-btn:hover {
+    background: var(--gold-finger);
+    transform: translateY(-1px);
+}
+
+/* ====== Toast Notifications ====== */
+.toast {
+    position: fixed;
+    top: 2rem;
+    right: -400px;
+    background: var(--gold-finger);
+    color: var(--text-primary);
+    border-radius: 0.8rem;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+    padding: 1rem 1.5rem;
+    z-index: 3000;
+    opacity: 0;
+    pointer-events: none;
+    transition: all 0.4s cubic-bezier(.68,-0.55,.27,1.55);
+    max-width: 90vw;
+}
+
+.toast.show {
+    right: 2rem;
+    opacity: 1;
+    pointer-events: auto;
+}
+
+.toast-content {
+    display: flex;
+    align-items: center;
+    gap: 0.8rem;
+}
+
+.toast-icon {
+    font-size: 1.3rem;
+    flex-shrink: 0;
+}
+
+.toast-message {
+    font-weight: 500;
+    font-size: 1rem;
 }
 
 .submit-btn {

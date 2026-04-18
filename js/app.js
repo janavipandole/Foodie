@@ -1,13 +1,53 @@
-// ===== SWIPER =====
-// FIX: Check if Swiper exists before initializing to prevent errors on pages without it (like popular.html)
-if (typeof Swiper !== 'undefined') {
-    var swiper = new Swiper(".mySwiper", {
-        loop: true,
-        navigation: {
-            nextEl: ".fa-arrow-right",
-            prevEl: ".fa-arrow-left",
-        },
-    });
+// ===== ERROR HANDLING IMPORTS =====
+const {
+  safeFetch,
+  retry,
+  NetworkError,
+  showErrorToast,
+  showSuccessToast,
+  errorLogger,
+  safeLocalStorage
+} = window.FoodieErrorHandler || {};
+
+// ===== LOADING STATE MANAGEMENT =====
+let loadingStates = new Map();
+
+function setLoadingState(element, isLoading, message = 'Loading...') {
+  if (!element) return;
+
+  const existingLoader = element.querySelector('.loading-overlay');
+  if (isLoading) {
+    if (!existingLoader) {
+      const loader = document.createElement('div');
+      loader.className = 'loading-overlay';
+      loader.innerHTML = `
+        <div class="loading-spinner"></div>
+        <span class="loading-text">${message}</span>
+      `;
+      element.style.position = 'relative';
+      element.appendChild(loader);
+    }
+    element.classList.add('loading');
+  } else {
+    if (existingLoader) {
+      existingLoader.remove();
+    }
+    element.classList.remove('loading');
+  }
+}
+
+function showRetryButton(container, retryFn, message = 'Retry') {
+  const existingRetry = container.querySelector('.retry-btn');
+  if (existingRetry) existingRetry.remove();
+
+  const retryBtn = document.createElement('button');
+  retryBtn.textContent = message;
+  retryBtn.className = 'retry-btn';
+  retryBtn.onclick = () => {
+    retryBtn.remove();
+    retryFn();
+  };
+  container.appendChild(retryBtn);
 }
 
 // ===== ELEMENT SELECTORS =====
@@ -732,58 +772,87 @@ const loadProducts = async (retryCount = 0) => {
         showSkeletonCards();
         showSkeletonCartItems();
 
-        const pathname = window.location.pathname;
-        let productsPath;
-        const isUsingServer = pathname.startsWith('/') || window.location.protocol === 'http:' || window.location.protocol === 'https:';
-        
-        if (isUsingServer) {
-            productsPath = '/products.json';
-        } else if (pathname.includes('/html/')) {
-            productsPath = '../products.json';
-        } else {
-            productsPath = '../products.json';
-        }
-        
-        // Try the primary path first
-        let res;
+        // Show loading state
+        const container = document.querySelector('.menu-container') || document.querySelector('.popular-container') || document.body;
+        setLoadingState(container, true, 'Loading menu...');
+
+        // Try the primary path first with retry mechanism
+        let data;
         try {
-            res = await fetch(productsPath);
-        } catch (err) {
-            res = null;
-        }
-        
-        // If that fails, try alternate paths
-        if (!res || !res.ok) {
-            const alternatePaths = isUsingServer 
-                ? ['/products.json', '../products.json', './products.json']
-                : ['../products.json', '/products.json', './products.json'];
-            
-            let found = false;
-            let lastError = null;
-            
-            for (const altPath of alternatePaths) {
-                if (altPath === productsPath && res) continue; // Skip the one we already tried
+            data = await retry(async () => {
+                let res;
                 try {
-                    const altRes = await fetch(altPath);
-                    if (altRes.ok) {
-                        res = altRes;
-                        productsPath = altPath;
-                        found = true;
-                        break;
-                    }
+                    res = await fetch(productsPath);
                 } catch (err) {
-                    lastError = err;
-                    continue;
+                    res = null;
                 }
+
+                // If that fails, try alternate paths
+                if (!res || !res.ok) {
+                    const alternatePaths = isUsingServer
+                        ? ['/products.json', '../products.json', './products.json']
+                        : ['../products.json', '/products.json', './products.json'];
+
+                    let found = false;
+                    let lastError = null;
+
+                    for (const altPath of alternatePaths) {
+                        if (altPath === productsPath && res) continue; // Skip the one we already tried
+                        try {
+                            const altRes = await fetch(altPath);
+                            if (altRes.ok) {
+                                res = altRes;
+                                productsPath = altPath;
+                                found = true;
+                                break;
+                            }
+                        } catch (err) {
+                            lastError = err;
+                            continue;
+                        }
+                    }
+
+                    if (!found || !res || !res.ok) {
+                        const errorDetails = lastError ? lastError.message : (res ? `HTTP ${res.status}: ${res.statusText}` : 'Network error');
+                        throw new NetworkError(`Failed to load products.json. ${errorDetails}. Current URL: ${window.location.href}. Make sure you're accessing via http://localhost:8000/html/menu.html (not file://)`);
+                    }
+                }
+
+                return await res.json();
+            }, 3, 1000); // 3 retries with 1s delay
+
+        } catch (error) {
+            setLoadingState(container, false);
+
+            // Log the error
+            errorLogger.log(error, {
+                operation: 'loadProducts',
+                url: window.location.href,
+                productsPath
+            });
+
+            // Show user-friendly error message
+            const errorMessage = 'We\'re having trouble loading the menu right now. Please check your connection and try again.';
+
+            // Try to show error in a user-friendly way
+            const menuContainer = document.querySelector('.menu-container');
+            if (menuContainer) {
+                menuContainer.innerHTML = `
+                    <div class="error-state">
+                        <div class="error-icon">⚠️</div>
+                        <h3>Unable to Load Menu</h3>
+                        <p>${errorMessage}</p>
+                        <button class="retry-btn" onclick="loadProducts()">Retry</button>
+                    </div>
+                `;
+            } else {
+                showErrorToast(errorMessage);
             }
-            
-            if (!found || !res || !res.ok) {
-                const errorDetails = lastError ? lastError.message : (res ? `HTTP ${res.status}: ${res.statusText}` : 'Network error');
-                throw new Error(`Failed to load products.json. ${errorDetails}. Current URL: ${window.location.href}. Make sure you're accessing via http://localhost:8000/html/menu.html (not file://)`);
-            }
+
+            return; // Exit early on error
         }
-        
-        const data = await res.json();
+
+        setLoadingState(container, false);
         productList = data;
         showCards(productList);
         restoreCartFromStorage();

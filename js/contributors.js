@@ -24,27 +24,83 @@ document.addEventListener('DOMContentLoaded', () => {
     setupEventListeners();
 });
 
+// ===== LOADING STATE MANAGEMENT =====
+function setLoadingState(element, isLoading, message = 'Loading...') {
+    if (!element) return;
+
+    const existingLoader = element.querySelector('.loading-overlay');
+    if (isLoading) {
+        if (!existingLoader) {
+            const loader = document.createElement('div');
+            loader.className = 'loading-overlay';
+            loader.innerHTML = `
+                <div class="loading-spinner"></div>
+                <span class="loading-text">${message}</span>
+            `;
+            element.style.position = 'relative';
+            element.appendChild(loader);
+        }
+        element.classList.add('loading');
+    } else {
+        if (existingLoader) {
+            existingLoader.remove();
+        }
+        element.classList.remove('loading');
+    }
+}
+
+function showRetryButton(container, retryFn, message = 'Retry') {
+    const existingRetry = container.querySelector('.retry-btn');
+    if (existingRetry) existingRetry.remove();
+
+    const retryBtn = document.createElement('button');
+    retryBtn.textContent = message;
+    retryBtn.className = 'retry-btn';
+    retryBtn.onclick = () => {
+        retryBtn.remove();
+        retryFn();
+    };
+    container.appendChild(retryBtn);
+}
+
 // 1. Data Fetching & Initialization
 async function initData() {
     const grid = document.getElementById('contributorsList');
     const errorMessage = document.getElementById('errorMessage');
-    
+
+    // Import error handling utilities
+    const {
+        retry,
+        NetworkError,
+        showErrorToast,
+        errorLogger
+    } = window.FoodieErrorHandler || {};
+
     try {
         // Show loading
+        setLoadingState(document.body, true, 'Loading contributors...');
         document.getElementById('spinner').style.display = 'flex';
         if(grid) grid.innerHTML = '';
         if(errorMessage) errorMessage.innerText = '';
 
-        // 1. Fetch Repo Info & Contributors List (Parallel)
-        const [repoRes, contributorsRes] = await Promise.all([
-            fetch(API_BASE),
-            fetch(`${API_BASE}/contributors?per_page=100`)
+        // 1. Fetch Repo Info & Contributors List (Parallel) with retry
+        const [repoData, rawContributors] = await Promise.all([
+            retry(async () => {
+                const response = await fetch(API_BASE);
+                if (!response.ok) {
+                    throw new NetworkError(`Failed to fetch repo info: HTTP ${response.status}`);
+                }
+                return await response.json();
+            }, 2, 1000),
+
+            retry(async () => {
+                const response = await fetch(`${API_BASE}/contributors?per_page=100`);
+                if (!response.ok) {
+                    throw new NetworkError(`Failed to fetch contributors: HTTP ${response.status}`);
+                }
+                return await response.json();
+            }, 2, 1000)
         ]);
-
-        if (!repoRes.ok || !contributorsRes.ok) throw new Error("API Limit Exceeded or Network Error");
-
-        const repoData = await repoRes.json();
-        const rawContributors = await contributorsRes.json();
 
         // 2. Fetch Pull Requests (To calculate points based on labels)
         // We fetch "all" states to credit merged PRs.
@@ -52,11 +108,28 @@ async function initData() {
 
         // 3. Process the data
         processData(repoData, rawContributors, pullsData);
+        setLoadingState(document.body, false);
 
     } catch (error) {
-        console.error('Error initializing data:', error);
+        setLoadingState(document.body, false);
         document.getElementById('spinner').style.display = 'none';
-        if(errorMessage) errorMessage.innerHTML = `<i class="fa-solid fa-triangle-exclamation"></i> Failed to load data. API limit may be exceeded.`;
+
+        // Log the error
+        errorLogger.log(error, { operation: 'initData' });
+
+        if(errorMessage) {
+            errorMessage.innerHTML = `
+                <div class="error-state">
+                    <div class="error-icon">⚠️</div>
+                    <h3>Failed to Load Contributors</h3>
+                    <p>Unable to load contributor data. This might be due to API rate limits or network issues.</p>
+                    <button class="retry-btn" onclick="initializeData()">Retry</button>
+                </div>
+            `;
+        }
+
+        // Show toast notification
+        showErrorToast('Failed to load contributors. Please try again.');
     }
 }
 
@@ -64,16 +137,33 @@ async function initData() {
 async function fetchAllPulls() {
     let pulls = [];
     let page = 1;
+
+    // Import error handling utilities
+    const {
+        retry,
+        NetworkError,
+        errorLogger
+    } = window.FoodieErrorHandler || {};
+
     // Fetching top 300 recent PRs. Increase page limit if needed, but be wary of API limits.
-    while (page <= 3) { 
+    while (page <= 3) {
         try {
-            const res = await fetch(`${API_BASE}/pulls?state=all&per_page=100&page=${page}`);
-            if (!res.ok) break;
-            const data = await res.json();
+            const data = await retry(async () => {
+                const response = await fetch(`${API_BASE}/pulls?state=all&per_page=100&page=${page}`);
+                if (!response.ok) {
+                    throw new NetworkError(`Failed to fetch PRs page ${page}: HTTP ${response.status}`);
+                }
+                return await response.json();
+            }, 1, 500); // 1 retry with 500ms delay for API rate limits
+
             if (!data.length) break;
             pulls = pulls.concat(data);
             page++;
-        } catch (e) { break; }
+        } catch (error) {
+            errorLogger.log(error, { operation: 'fetchAllPulls', page });
+            console.warn(`Failed to fetch PRs page ${page}:`, error.message);
+            break; // Stop fetching on error to avoid rate limit issues
+        }
     }
     return pulls;
 }
@@ -343,13 +433,25 @@ function safeSetText(id, text) {
 
 // 7. Recent Activity
 async function fetchRecentActivity() {
+    const container = document.getElementById("timelineContent");
+    if (!container) return;
+
+    // Import error handling utilities
+    const {
+        retry,
+        NetworkError,
+        errorLogger
+    } = window.FoodieErrorHandler || {};
+
     try {
-        const response = await fetch(`${API_BASE}/commits?per_page=5`);
-        if(!response.ok) return;
-        const commits = await response.json();
-        const container = document.getElementById("timelineContent");
-        if (!container) return;
-        
+        const commits = await retry(async () => {
+            const response = await fetch(`${API_BASE}/commits?per_page=5`);
+            if (!response.ok) {
+                throw new NetworkError(`Failed to fetch recent commits: HTTP ${response.status}`);
+            }
+            return await response.json();
+        }, 1, 500); // 1 retry with 500ms delay
+
         container.innerHTML = commits.map(c => {
             const msg = c.commit.message.split('\n')[0];
             const author = c.commit.author.name;
@@ -362,5 +464,16 @@ async function fetchRecentActivity() {
                 </div>
             `;
         }).join('');
-    } catch (e) { console.error('Timeline error:', e); }
+
+    } catch (error) {
+        errorLogger.log(error, { operation: 'fetchRecentActivity' });
+        console.warn("Failed to fetch recent activity:", error.message);
+
+        container.innerHTML = `
+            <div class="timeline-item">
+                <p style="color: var(--text-secondary);">Unable to load recent activity</p>
+                <small style="color: var(--text-secondary);">Check back later</small>
+            </div>
+        `;
+    }
 }

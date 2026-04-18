@@ -1,6 +1,57 @@
 (function () {
   'use strict';
 
+  // Import error handling utilities
+  const {
+    safeFetch,
+    retry,
+    NetworkError,
+    showErrorToast,
+    showSuccessToast,
+    errorLogger
+  } = window.FoodieErrorHandler || {};
+
+  // ===== LOADING STATE MANAGEMENT =====
+  const loadingStates = new Map();
+
+  function setLoadingState(element, isLoading, message = 'Loading...') {
+    if (!element) return;
+
+    const existingLoader = element.querySelector('.loading-overlay');
+    if (isLoading) {
+      if (!existingLoader) {
+        const loader = document.createElement('div');
+        loader.className = 'loading-overlay';
+        loader.innerHTML = `
+          <div class="loading-spinner"></div>
+          <span class="loading-text">${message}</span>
+        `;
+        element.style.position = 'relative';
+        element.appendChild(loader);
+      }
+      element.classList.add('loading');
+    } else {
+      if (existingLoader) {
+        existingLoader.remove();
+      }
+      element.classList.remove('loading');
+    }
+  }
+
+  function showRetryButton(container, retryFn, message = 'Retry') {
+    const existingRetry = container.querySelector('.retry-btn');
+    if (existingRetry) existingRetry.remove();
+
+    const retryBtn = document.createElement('button');
+    retryBtn.textContent = message;
+    retryBtn.className = 'retry-btn';
+    retryBtn.onclick = () => {
+      retryBtn.remove();
+      retryFn();
+    };
+    container.appendChild(retryBtn);
+  }
+
   // ===== DARK MODE FUNCTIONALITY =====
   const themeToggleBtns = document.querySelectorAll('.theme-toggle');
   const navbar = document.querySelector('header');
@@ -179,31 +230,53 @@
         suggestionsEl.classList.remove('open');
         return;
       }
+
       try {
         if (currentController) currentController.abort();
         currentController = new AbortController();
+
         const url = `https://nominatim.openstreetmap.org/search?format=jsonv2&addressdetails=1&limit=8&dedupe=1&countrycodes=in&q=${encodeURIComponent(q)}`;
 
         // Show loading state
-        suggestionsEl.innerHTML = '<div class="loading">Searching cities...</div>';
+        setLoadingState(suggestionsEl, true, 'Searching cities...');
         suggestionsEl.classList.add('open');
 
-        const res = await fetch(url, { headers: { 'Accept-Language': 'en-IN,en' }, signal: currentController.signal });
-        if (!res.ok) throw new Error(`HTTP ${res.status}: ${res.statusText}`);
-        const data = await res.json();
+        // Use retry mechanism for network requests
+        const data = await retry(async () => {
+          const response = await fetch(url, {
+            headers: { 'Accept-Language': 'en-IN,en' },
+            signal: currentController.signal
+          });
+
+          if (!response.ok) {
+            throw new NetworkError(`Failed to search cities: HTTP ${response.status}`);
+          }
+
+          return await response.json();
+        }, 2, 500); // 2 retries with 500ms delay
+
+        setLoadingState(suggestionsEl, false);
         renderSuggestions(data || [], q);
+
       } catch (error) {
+        setLoadingState(suggestionsEl, false);
+
         if (error.name === 'AbortError') return;
-        console.error('City search error:', error);
+
+        // Log the error
+        errorLogger.log(error, { operation: 'citySearch', query: q });
+
+        // Show user-friendly error message
         suggestionsEl.innerHTML = '<div class="error">Unable to search cities. Please check your connection and try again.</div>';
         suggestionsEl.classList.add('open');
+
+        // Add retry button after a short delay
         setTimeout(() => {
-          const retryBtn = document.createElement('button');
-          retryBtn.textContent = 'Retry';
-          retryBtn.className = 'retry-btn';
-          retryBtn.onclick = () => debouncedSearch(q);
-          suggestionsEl.appendChild(retryBtn);
+          showRetryButton(suggestionsEl, () => debouncedSearch(q));
         }, 1000);
+
+        // Show toast notification
+        showErrorToast('City search failed. Please try again.');
       }
     }, 250);
 
@@ -284,9 +357,15 @@
       try {
         setError('Validating pincode...');
 
-        const res = await fetch(`https://api.postalpincode.in/pincode/${pin}`);
-        if (!res.ok) throw new Error(`HTTP ${res.status}: ${res.statusText}`);
-        const data = await res.json();
+        // Use retry mechanism for PIN validation
+        const data = await retry(async () => {
+          const response = await fetch(`https://api.postalpincode.in/pincode/${pin}`);
+          if (!response.ok) {
+            throw new NetworkError(`Failed to validate PIN: HTTP ${response.status}`);
+          }
+          return await response.json();
+        }, 2, 1000); // 2 retries with 1s delay
+
         if (!Array.isArray(data) || !data[0] || data[0].Status !== 'Success') { setError('Pincode not found'); return; }
         const postOffices = data[0].PostOffice || [];
         if (postOffices.length === 0) { setError('Pincode not found'); return; }
@@ -308,20 +387,22 @@
 
         clearError();
         window.__lastPinStatus = 'ok';
+
+        // Show success feedback
+        showSuccessToast('Pincode validated successfully');
+
       } catch (error) {
-        console.error('Pincode validation error:', error);
+        // Log the error
+        errorLogger.log(error, { operation: 'pinValidation', pincode: pin });
+
         setError('Unable to validate pincode. Please check your connection and try again.');
         const group = zipInput.closest('.form-group');
         if (group) {
-          const retryBtn = document.createElement('button');
-          retryBtn.textContent = 'Retry';
-          retryBtn.className = 'retry-btn';
-          retryBtn.onclick = () => {
-            retryBtn.remove();
-            lookupPin(pin);
-          };
-          group.appendChild(retryBtn);
+          showRetryButton(group, () => lookupPin(pin), 'Retry Validation');
         }
+
+        // Show toast notification
+        showErrorToast('PIN validation failed. Please try again.');
       }
     }, 350);
 

@@ -6,170 +6,9 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Feedback - Foodie</title>
   <link rel="icon" href="../imgs/favicon.webp" type="image/webp" />
+  <link rel="stylesheet" href="../css/style.css">
+  <link rel="stylesheet" href="../css/feedback.css">
   <link rel="stylesheet" href="../css/cursor.css">
-
-  <style>
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-      font-family: 'Poppins', sans-serif;
-    }
-
-    body {
-      background-color: #f9f9fb;
-      color: #333;
-    }
-
-    /* ===== HERO ===== */
-    .hero {
-      text-align: center;
-      padding: 4rem 1rem;
-      background: linear-gradient(135deg, #ebce6e, #F2BD12);
-      color: #fff;
-      border-bottom-left-radius: 50px;
-      border-bottom-right-radius: 50px;
-    }
-
-    .hero h1 {
-      font-size: 2.5rem;
-      margin-bottom: 0.5rem;
-    }
-
-    .highlight {
-      color: #ffeb3b;
-    }
-
-    .hero p {
-      font-size: 1.1rem;
-      opacity: 0.9;
-    }
-
-    /* ===== FEEDBACK SECTION ===== */
-    .feedback-container {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-      gap: 2rem;
-      padding: 3rem 2rem;
-      max-width: 1200px;
-      margin: auto;
-    }
-
-    .feedback-card {
-      background: #fff;
-      padding: 2rem;
-      border-radius: 20px;
-      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
-      transition: transform 0.3s ease, box-shadow 0.3s ease;
-    }
-
-    .feedback-card:hover {
-      transform: translateY(-6px);
-      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.12);
-    }
-
-    .feedback-card h2 {
-      color: #F2BD12;
-      margin-bottom: 0.5rem;
-    }
-
-    .feedback-card p {
-      color: #666;
-      margin-bottom: 1.5rem;
-    }
-
-    /* ===== FORM STYLING ===== */
-    form {
-      display: flex;
-      flex-direction: column;
-      gap: 1rem;
-    }
-
-    input[type="text"],
-    input[type="email"],
-    textarea {
-      padding: 0.8rem 1rem;
-      border: 1px solid #ddd;
-      border-radius: 10px;
-      font-size: 0.95rem;
-      transition: border 0.3s, box-shadow 0.3s;
-      background: #f8f8f8;
-    }
-
-    input:focus,
-    textarea:focus {
-      border-color: #F2BD12;
-      box-shadow: 0 0 0 4px rgba(0, 157, 255, 0.15);
-      background: #fff;
-      outline: none;
-    }
-
-    textarea {
-      resize: vertical;
-      min-height: 100px;
-    }
-
-    .rating {
-      display: flex;
-      gap: 0.4rem;
-    }
-
-    .rating input {
-      display: none;
-    }
-
-    .rating label {
-      font-size: 1.5rem;
-      color: #ccc;
-      cursor: pointer;
-      transition: color 0.2s;
-    }
-
-    .rating input:checked~label,
-    .rating label:hover,
-    .rating label:hover~label {
-      color: #ffb400;
-    }
-
-    .submit-btn {
-      background: #F2BD12;
-      color: white;
-      border: none;
-      padding: 0.8rem 1rem;
-      border-radius: 10px;
-      cursor: pointer;
-      font-weight: 500;
-      transition: all 0.3s ease;
-    }
-
-    .submit-btn:hover {
-      background: #F2BD12;
-      transform: translateY(-2px);
-      box-shadow: 0 4px 10px #c7a841
-    }
-
-    /* ===== FOOTER ===== */
-    footer {
-      text-align: center;
-      padding: 2rem;
-      background: #F2BD12;
-      color: #fff;
-      font-size: 0.9rem;
-      border-top-left-radius: 40px;
-      border-top-right-radius: 40px;
-      margin-top: 3rem;
-    }
-
-    @media (max-width: 768px) {
-      .hero h1 {
-        font-size: 2rem;
-      }
-
-      .feedback-container {
-        padding: 2rem 1rem;
-      }
-    }
-  </style>
 </head>
 
 <body>
@@ -254,18 +93,56 @@
     <p>&copy; 2025 Foodie. All Rights Reserved.</p>
   </footer>
 
+  <!-- Feedback Modal -->
+  <div id="modal-overlay" class="modal-overlay"></div>
+  <div id="feedback-modal" class="feedback-modal">
+    <div class="modal-header">
+      <h2 id="modal-title">Feedback</h2>
+      <button id="close-modal" class="close-btn" aria-label="Close feedback modal">&times;</button>
+    </div>
+    <div class="modal-body">
+      <form id="feedback-form" action="/api/feedback" method="POST">
+        <input type="hidden" id="modal-category" name="category" value="">
+
+        <div class="form-group">
+          <label for="feedback-name">Name *</label>
+          <input type="text" id="feedback-name" name="name" placeholder="Your Name" required>
+        </div>
+
+        <div class="form-group">
+          <label for="feedback-email">Email *</label>
+          <input type="email" id="feedback-email" name="email" placeholder="your.email@example.com" required>
+        </div>
+
+        <div class="form-group">
+          <label>Rating *</label>
+          <div class="rating">
+            <input type="radio" id="star5" name="rating" value="5"><label for="star5" title="5 stars">★</label>
+            <input type="radio" id="star4" name="rating" value="4"><label for="star4" title="4 stars">★</label>
+            <input type="radio" id="star3" name="rating" value="3"><label for="star3" title="3 stars">★</label>
+            <input type="radio" id="star2" name="rating" value="2"><label for="star2" title="2 stars">★</label>
+            <input type="radio" id="star1" name="rating" value="1"><label for="star1" title="1 star">★</label>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="feedback-text">Your Feedback *</label>
+          <textarea id="feedback-text" name="feedback" placeholder="Please share your thoughts, suggestions, or any issues you've experienced..." required minlength="10"></textarea>
+        </div>
+
+        <button type="submit" class="submit-btn">Submit Feedback</button>
+      </form>
+    </div>
+  </div>
+
+  <!-- Success Toast -->
+  <div id="success-toast" class="toast">
+    <div class="toast-content">
+      <span class="toast-icon">✅</span>
+      <span class="toast-message">Thank you for your feedback!</span>
+    </div>
+  </div>
+
   <script src="../js/cursor.js"></script>
-
-  <script>
-
-    document.querySelectorAll("form").forEach(form => {
-      form.addEventListener("submit", (e) => {
-        e.preventDefault();
-        alert("Thank you for your feedback! 💬");
-        form.reset();
-      });
-    });
-  </script>
-</body>
-
-</html>
+  <script src="../js/error-handler.js"></script>
+  <script src="../js/feedback.js"></script>
