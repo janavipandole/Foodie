@@ -53,6 +53,31 @@ class I18n {
                 }
             }
 
+            // Load primary language with retry
+            this.translations = await retry(async () => {
+                const response = await fetch(`${basePath}${lang}.json`);
+                if (!response.ok) {
+                    throw new NetworkError(`Failed to load ${lang}.json: HTTP ${response.status}`);
+                }
+                return await response.json();
+            }, 2, 500); // 2 retries with 500ms delay
+
+            // Load English fallback if needed
+            if (lang !== "en" && Object.keys(this.fallbackTranslations).length === 0) {
+                try {
+                    this.fallbackTranslations = await retry(async () => {
+                        const fallbackResponse = await fetch(`${basePath}en.json`);
+                        if (!fallbackResponse.ok) {
+                            throw new NetworkError(`Failed to load en.json fallback: HTTP ${fallbackResponse.status}`);
+                        }
+                        return await fallbackResponse.json();
+                    }, 2, 500);
+                } catch (fallbackError) {
+                    errorLogger.log(fallbackError, { operation: 'loadFallbackTranslations', lang });
+                    console.warn("Could not load English fallback translations:", fallbackError.message);
+                }
+            }
+
         } catch (err) {
             errorLogger.log(err, { operation: 'loadTranslations', lang });
 

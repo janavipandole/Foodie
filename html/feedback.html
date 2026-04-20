@@ -14,19 +14,37 @@
 <body>
 
   <section class="hero">
-    <h1>Give Your <span class="highlight">Feedback</span></h1>
-    <p>We would love to hear your thoughts about our services.</p>
+    <div class="hero-content">
+      <span class="hero-badge">Your Opinion Matters</span>
+      <h1>Give Your <span class="highlight">Feedback</span></h1>
+      <p>We would love to hear your thoughts about our services and overall experience.</p>
+      <div class="feedback-stats">
+        <div class="stat-box">
+          <h3>10K+</h3>
+          <p>Happy Customers</p>
+        </div>
+        <div class="stat-box">
+          <h3>4.8★</h3>
+          <p>Average Rating</p>
+        </div>
+        <div class="stat-box">
+          <h3>24/7</h3>
+          <p>Customer Support</p>
+        </div>
+      </div>
+    </div>
   </section>
 
 
   <section class="feedback-container">
 
     <!-- Website Feedback -->
-    <div class="feedback-card">
+     <div class="feedback-card" tabindex="0" role="button" aria-label="Open Website Feedback Form">
+      <div class="card-icon">🌐</div>
       <h2>Website Feedback</h2>
-      <p>Tell us what you think about our website and navigation.</p>
-
-      <form id="website-feedback-form">
+      <p>Tell us what you think about our website design, speed, and navigation.</p>
+      <button type="button" class="open-feedback-btn">Give Feedback</button>
+    </div>
         <input type="text" placeholder="Your Name" required>
         <input type="email" placeholder="Your Email" required>
 
@@ -44,9 +62,12 @@
     </div>
 
     <!-- App Feedback -->
-    <div class="feedback-card">
+    <div class="feedback-card" tabindex="0" role="button" aria-label="Open App Feedback Form">
+      <div class="card-icon">📱</div>
       <h2>App Feedback</h2>
-      <p>Share your experience with our mobile application.</p>
+      <p>Share your experience with our mobile application and features.</p>
+      <button type="button" class="open-feedback-btn">Give Feedback</button>
+    </div>
 
       <form id="app-feedback-form">
         <input type="text" placeholder="Your Name" required>
@@ -66,9 +87,12 @@
     </div>
 
     <!-- Service Feedback -->
-    <div class="feedback-card">
+<div class="feedback-card" tabindex="0" role="button" aria-label="Open Service Feedback Form">
+      <div class="card-icon">🚚</div>
       <h2>Service Feedback</h2>
-      <p>Let us know how we can improve food delivery and support.</p>
+      <p>Help us improve food delivery, customer support, and service quality.</p>
+      <button type="button" class="open-feedback-btn">Give Feedback</button>
+    </div>
 
       <form id="service-feedback-form">
         <input type="text" placeholder="Your Name" required>
@@ -125,6 +149,21 @@
           </div>
         </div>
 
+        <div class="feedback-stats">
+  <div class="stat-box">
+    <h3>10K+</h3>
+    <p>Happy Customers</p>
+  </div>
+  <div class="stat-box">
+    <h3>4.8★</h3>
+    <p>Average Rating</p>
+  </div>
+  <div class="stat-box">
+    <h3>24/7</h3>
+    <p>Customer Support</p>
+  </div>
+</div>
+
         <div class="form-group">
           <label for="feedback-text">Your Feedback *</label>
           <textarea id="feedback-text" name="feedback" placeholder="Please share your thoughts, suggestions, or any issues you've experienced..." required minlength="10"></textarea>
@@ -143,6 +182,23 @@
     </div>
   </div>
 
+  <footer class="feedback-footer">
+    <div class="footer-content">
+      <h3>Foodie</h3>
+      <p>Thank you for helping us improve your experience.</p>
+
+      <div class="footer-links">
+        <a href="privacy.html">Privacy Policy</a>
+        <a href="terms.html">Terms of Service</a>
+        <a href="contact.html">Contact Us</a>
+      </div>
+
+      <p class="copyright">© 2025 Foodie. All Rights Reserved.</p>
+    </div>
+  </footer>
+
   <script src="../js/cursor.js"></script>
   <script src="../js/error-handler.js"></script>
   <script src="../js/feedback.js"></script>
+  </body>
+  </html>
