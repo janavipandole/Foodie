@@ -53,38 +53,6 @@ hamburger.addEventListener('click', (e) => {
   mobileMenu.classList.toggle('mobile-menu-active');
 });
 
-// ===== CUSTOM LANGUAGE SELECT =====
-const customSelect = document.getElementById('language-custom-select');
-const selected = customSelect.querySelector('.selected');
-const optionsList = customSelect.querySelector('.options');
-const options = customSelect.querySelectorAll('.options li');
-
-selected.addEventListener('click', () => {
-  customSelect.classList.toggle('open');
-  const isOpen = customSelect.classList.contains('open');
-  selected.setAttribute('aria-expanded', isOpen);
-});
-
-options.forEach(option => {
-  option.addEventListener('click', () => {
-    selected.textContent = option.textContent;
-    customSelect.classList.remove('open');
-    selected.setAttribute('aria-expanded', 'false');
-    
-    // Update all options' aria-selected
-    options.forEach(opt => opt.setAttribute('aria-selected', 'false'));
-    option.setAttribute('aria-selected', 'true');
-  });
-});
-
-// Close dropdown when clicking outside
-document.addEventListener('click', (e) => {
-  if (!customSelect.contains(e.target)) {
-    customSelect.classList.remove('open');
-    selected.setAttribute('aria-expanded', 'false');
-  }
-});
-
 // ===== BACK TO TOP BUTTON =====
 const backToTop = document.querySelector('.back-to-top');
 

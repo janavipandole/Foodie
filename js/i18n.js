@@ -3,6 +3,7 @@ class I18n {
     constructor() {
         this.currentLang = localStorage.getItem("foodie:lang") || "en";
         this.translations = {};
+        this.fallbackTranslations = {};
 
         document.addEventListener("DOMContentLoaded", () => this.init());
     }
@@ -13,25 +14,84 @@ class I18n {
         this.initLanguageSelector();
     }
 
-    // Corrected translation path + optimized fallback handling
+    // Corrected translation path + optimized fallback handling with error handling
     async loadTranslations(lang) {
+        // Import error handling utilities
+        const {
+            retry,
+            NetworkError,
+            showErrorToast,
+            errorLogger
+        } = window.FoodieErrorHandler || {};
+
         try {
             const isInsideHTML = window.location.pathname.includes("/html/");
-        const basePath = isInsideHTML ? "../locales/" : "./locales/";
-        const response = await fetch(`${basePath}${lang}.json`);
+            const basePath = isInsideHTML ? "../locales/" : "./locales/";
 
+            // Load primary language with retry
+            this.translations = await retry(async () => {
+                const response = await fetch(`${basePath}${lang}.json`);
+                if (!response.ok) {
+                    throw new NetworkError(`Failed to load ${lang}.json: HTTP ${response.status}`);
+                }
+                return await response.json();
+            }, 2, 500); // 2 retries with 500ms delay
 
-            if (!response.ok) {
-                throw new Error(`Could not load: ${lang}.json`);
+            // Load English fallback if needed
+            if (lang !== "en" && Object.keys(this.fallbackTranslations).length === 0) {
+                try {
+                    this.fallbackTranslations = await retry(async () => {
+                        const fallbackResponse = await fetch(`${basePath}en.json`);
+                        if (!fallbackResponse.ok) {
+                            throw new NetworkError(`Failed to load en.json fallback: HTTP ${fallbackResponse.status}`);
+                        }
+                        return await fallbackResponse.json();
+                    }, 2, 500);
+                } catch (fallbackError) {
+                    errorLogger.log(fallbackError, { operation: 'loadFallbackTranslations', lang });
+                    console.warn("Could not load English fallback translations:", fallbackError.message);
+                }
             }
 
-            this.translations = await response.json();
+            // Load primary language with retry
+            this.translations = await retry(async () => {
+                const response = await fetch(`${basePath}${lang}.json`);
+                if (!response.ok) {
+                    throw new NetworkError(`Failed to load ${lang}.json: HTTP ${response.status}`);
+                }
+                return await response.json();
+            }, 2, 500); // 2 retries with 500ms delay
+
+            // Load English fallback if needed
+            if (lang !== "en" && Object.keys(this.fallbackTranslations).length === 0) {
+                try {
+                    this.fallbackTranslations = await retry(async () => {
+                        const fallbackResponse = await fetch(`${basePath}en.json`);
+                        if (!fallbackResponse.ok) {
+                            throw new NetworkError(`Failed to load en.json fallback: HTTP ${fallbackResponse.status}`);
+                        }
+                        return await fallbackResponse.json();
+                    }, 2, 500);
+                } catch (fallbackError) {
+                    errorLogger.log(fallbackError, { operation: 'loadFallbackTranslations', lang });
+                    console.warn("Could not load English fallback translations:", fallbackError.message);
+                }
+            }
+
         } catch (err) {
+            errorLogger.log(err, { operation: 'loadTranslations', lang });
+
             console.error("Translation load error:", err);
 
             // Fallback to EN if other language fails
             if (lang !== "en") {
-                await this.loadTranslations("en");
+                try {
+                    await this.loadTranslations("en");
+                } catch (fallbackErr) {
+                    errorLogger.log(fallbackErr, { operation: 'loadFallbackTranslations', fallbackLang: 'en' });
+                    console.error("Critical: Could not load any translations:", fallbackErr);
+                    showErrorToast('Failed to load language translations. Some text may appear in English.');
+                }
             }
         }
     }
@@ -50,8 +110,9 @@ class I18n {
 
     // Safe key lookup with fallback
     t(key, fallback = "") {
-        return key.split(".").reduce((obj, k) => obj?.[k], this.translations) 
-            || fallback 
+        return key.split(".").reduce((obj, k) => obj?.[k], this.translations)
+            || key.split(".").reduce((obj, k) => obj?.[k], this.fallbackTranslations)
+            || fallback
             || key;
     }
 

@@ -16,6 +16,8 @@
 
 <img src="https://github.com/Mayur-Pagote/README_Design_Kit/blob/730d340c8008758ac291ebc555f818f851feda0f/Assets/RGB%20Line%20Thick.gif" width="100%" />
 
+<img src="(image.png)>
+
 ## 🧁 Overview
 
 **Foodie** is a sleek, **responsive food delivery web app** built using **HTML5**, **CSS**, and **JavaScript**.
@@ -37,6 +39,8 @@ Designed for performance, accessibility, and user delight — it offers an effor
 <img src="https://github.com/Mayur-Pagote/README_Design_Kit/blob/730d340c8008758ac291ebc555f818f851feda0f/Assets/RGB%20Line%20Thick.gif" width="100%" />
 
 ## ✨ Key Features
+
+✅ **Favorite Recipes** — Bookmark your favorite recipes effortlessly with the ⭐ button. Browse them all in your tailored "My Favorites" page. Saved securely using localStorage.
 
 ✅ **Fully Responsive** — Works seamlessly on mobile, tablet, and desktop.
 💡 **Modern UI/UX** — Minimalist design with smooth animations and intuitive navigation.
@@ -126,6 +130,9 @@ xdg-open html/index.html
 
 <img src="https://github.com/Mayur-Pagote/README_Design_Kit/blob/730d340c8008758ac291ebc555f818f851feda0f/Assets/RGB%20Line%20Thick.gif" width="100%" />
 
+
+<img src="./imgs/image.png" alt="Homepage Preview" width="800"/>
+
 ## 🧩 Chrome Extension
 
 Load the extension for local testing:
@@ -170,6 +177,53 @@ Insert the following script inside the <head> section of your main HTML file (e.
 * You should see your visit appear within seconds 🎯
 
 
+## 🗺️ Google Maps Places Setup (Nearby Top Rated Restaurants)
+
+The homepage now supports live nearby restaurant discovery using:
+
+* Google Maps JavaScript API
+* Google Places API
+
+### 1️⃣ Enable APIs
+
+In Google Cloud Console, enable both APIs for your project:
+
+* Maps JavaScript API
+* Places API
+
+### 2️⃣ Create an API key
+
+Create a browser API key and add referrer restrictions for your domain(s).
+
+### 3️⃣ Configure the API key in Foodie
+
+Use either option below:
+
+* Option A: Add this script before `../js/nearby-restaurants-home.js` in `html/index.html`
+
+```html
+<script>
+   window.FOODIE_CONFIG = {
+      googleMapsApiKey: "YOUR_GOOGLE_MAPS_API_KEY"
+   };
+</script>
+```
+
+* Option B: Set it in browser localStorage (good for local testing)
+
+```js
+localStorage.setItem("foodie_google_maps_api_key", "YOUR_GOOGLE_MAPS_API_KEY");
+```
+
+### 4️⃣ Verify feature behavior
+
+* Open the homepage (`html/index.html`)
+* Allow location permission when prompted
+* You should see:
+   * Nearby top-rated restaurant markers on map
+   * Ranked list with name, rating, distance, and open/closed status
+
+
 ## 🚢 Deployment (GitHub Pages)
 
 This site’s entry file is at `html/index.html`. To use GitHub Pages:
@@ -179,6 +233,14 @@ This site’s entry file is at `html/index.html`. To use GitHub Pages:
 
 <img src="https://github.com/Mayur-Pagote/README_Design_Kit/blob/730d340c8008758ac291ebc555f818f851feda0f/Assets/RGB%20Line%20Thick.gif" width="100%" />
 
+
+## Steps to Deploy
+* Push your project to GitHub
+* Open the repository settings
+* Navigate to Pages
+* Select the desired branch
+* Save the settings
+* Your site will be published automatically
 
 ## 🧪 Command for Running Tests
 
@@ -246,6 +308,19 @@ Whether it’s bug fixes, new features, or improving documentation — every con
 📘 For more details, see the [CONTRIBUTING.md](./CONTRIBUTING.md) file.
 
 <img src="https://github.com/Mayur-Pagote/README_Design_Kit/blob/730d340c8008758ac291ebc555f818f851feda0f/Assets/RGB%20Line%20Thick.gif" width="100%" />
+
+
+## Future Improvements
+
+Some potential enhancements for Foodie include:
+
+* User authentication and login system
+* Wishlist and favorite items feature
+* Backend integration for real orders
+* Dark mode support
+* Search and filter functionality
+* Multi-language support
+* Payment gateway integration
 
 ## 🏆 NSoC 2026 Project Selection
 

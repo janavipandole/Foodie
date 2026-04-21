@@ -11,7 +11,8 @@
     "darkMode": "डार्क मोड",
     "lightMode": "लाइट मोड",
     "signIn": "साइन इन",
-    "cart": "कार्ट"
+    "cart": "कार्ट",
+    "favorites": "पसंदीदा"
   },
   "hero": {
     "title": "अपना स्वादिष्ट खाना आनंद लें",
@@ -52,19 +53,18 @@
     "installButton": "एप्लिकेशन इंस्टॉल करें"
   },
   "qr": {
-  "scan": "डाउनलोड करने के लिए स्कैन करें",
-  "quickAccess": "हमारे मोबाइल ऐप तक त्वरित पहुंच",
-  "instruction": "क्यूआर कोड पर कैमरा पॉइंट करें",
-  "orDownload": "या यहां से डाउनलोड करें:",
-  "appStoreSmall": "डाउनलोड करें",
-  "appStoreLarge": "ऐप स्टोर",
-  "googlePlaySmall": "पाएं",
-  "googlePlayLarge": "गूगल प्ले",
-  "users": "सक्रिय उपयोगकर्ता",
-  "rating": "ऐप रेटिंग",
-  "downloads": "डाउनलोड"
-}
-,
+    "scan": "डाउनलोड करने के लिए स्कैन करें",
+    "quickAccess": "हमारे मोबाइल ऐप तक त्वरित पहुंच",
+    "instruction": "क्यूआर कोड पर कैमरा पॉइंट करें",
+    "orDownload": "या यहां से डाउनलोड करें:",
+    "appStoreSmall": "डाउनलोड करें",
+    "appStoreLarge": "ऐप स्टोर",
+    "googlePlaySmall": "पाएं",
+    "googlePlayLarge": "गूगल प्ले",
+    "users": "सक्रिय उपयोगकर्ता",
+    "rating": "ऐप रेटिंग",
+    "downloads": "डाउनलोड"
+  },
   "newsletter": {
     "sectionTitle": "हमारी सदस्यता",
     "mainTitle": "हमारे न्यूज़लेटर की सदस्यता लें",
@@ -126,7 +126,11 @@
   "languages": {
     "english": "English",
     "hindi": "हिंदी",
-    "kannada": "ಕನ್ನಡ"
+    "kannada": "ಕನ್ನಡ",
+    "marathi": "मराठी",
+    "marathi": "मराठी"
+    "kannada": "कನ್ನಡ",
+    "chinese": "中文"
   },
   "aboutUs": {
     "hero": {

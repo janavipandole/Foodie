@@ -71,11 +71,12 @@
             <a href="index.html" class="logo">Foodie.</a>
 
             <ul class="navList flex gap-3 between">
-                <li><a class="active" href="./index.html#home" data-i18n=".home">Home</a></li>
-                <li><a href="./menu.html" data-i18n=".menu">Menu</a></li>
-                <li><a href="./aboutUs.html" data-i18n=".about">About Us</a></li>
-                <li><a href="./contactUs.html" data-i18n=".contact">Contact Us</a></li>
-                <li><a href="nearbyres.html" data-i18n=".nearby">Nearby Restaurants</a></li>
+                <li><a class="active" href="./index.html#home" data-i18n="nav.home">Home</a></li>
+                <li><a href="./menu.html" data-i18n="nav.menu">Menu</a></li>
+                <li><a href="./my-favorites.html" data-i18n="nav.favorites">&#x2B50; Favorites</a></li>
+                <li><a href="./aboutUs.html" data-i18n="nav.about">About Us</a></li>
+                <li><a href="./contactUs.html" data-i18n="nav.contact">Contact Us</a></li>
+                <li><a href="nearbyres.html" data-i18n="nav.nearby">Nearby Restaurants</a></li>
             </ul>
             <div class="desktop-action flex gap-2">
                 <div class="custom-select" id="language-custom-select">
@@ -87,6 +88,9 @@
                         <li data-value="en" role="option" aria-selected="true">English</li>
                         <li data-value="hi" role="option">हिंदी</li>
                         <li data-value="kn" role="option">ಕನ್ನಡ</li>
+                        <li data-value="as" role="option">অসমীয়া</li>
+                        <li data-value="ch" role="option">中文</li>
+                        <li data-value="ja" role="option">日本語</li>
                     </ul>
                 </div>
 
@@ -117,11 +121,12 @@
 
 
             <ul class="mobile-menu">
-                <li><a class="active" href="./index.html#home" data-i18n="home">Home</a></li>
-                <li><a href="./menu.html" data-i18n="menu">Menu</a></li>
-                <li><a href="./aboutUs.html" data-i18n="about">About Us</a></li>
-                <li><a href="./contactUs.html" data-i18n="contact">Contact Us</a></li>
-                <li><a href="nearbyres.html" data-i18n="nearby">Nearby Restaurants</a></li>
+                <li><a class="active" href="./index.html#home" data-i18n="nav.home">Home</a></li>
+                <li><a href="./menu.html" data-i18n="nav.menu">Menu</a></li>
+                <li><a href="./my-favorites.html" data-i18n="nav.favorites">&#x2B50; Favorites</a></li>
+                <li><a href="./aboutUs.html" data-i18n="nav.about">About Us</a></li>
+                <li><a href="./contactUs.html" data-i18n="nav.contact">Contact Us</a></li>
+                <li><a href="nearbyres.html" data-i18n="nav.nearby">Nearby Restaurants</a></li>
                 <form class="navbar-search" action="#" method="get">
                     <input type="text" name="search" id="navbar-search" placeholder="Search your food ...">
                     <button type="submit" id="navbar-search-btn" aria-label="Search">
@@ -170,7 +175,8 @@
                     </div>
                 </div>
                 <div class="image-container" data-aos="fade-left">
-                    <img src="../imgs/delivery-boy.webp" alt="Delivery boy delivering food" class="pizza-boy">
+                    <span class="pizza-pause-zone" aria-hidden="true"></span>
+                    <img src="../imgs/pizza.webp" alt="Delicious wood-fired pizza with fresh toppings" class="pizza-boy">
                 </div>
             </div>
         </section>
@@ -205,6 +211,37 @@
                         </div>
                         <h3 data-i18n="services.bestQuality.title">Best quality</h3>
                         <p data-i18n="services.bestQuality.description">Not only fast, for us quality is number one.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="nearby-live" class="nearby-live-section">
+            <div class="wrapper p-top" data-aos="fade-up">
+                <div class="text-center">
+                    <h5>Nearby Picks</h5>
+                    <h2>Top Rated Restaurants Near You</h2>
+                    <p class="para m-auto nearby-live-intro">Allow location access to discover the highest rated
+                        restaurants around you in real time using Google Places data.</p>
+                </div>
+
+                <div class="nearby-live-panel">
+                    <div class="nearby-live-controls">
+                        <p id="nearbyStatus" class="nearby-live-status status-info" role="status" aria-live="polite">
+                            Waiting to load nearby restaurants...
+                        </p>
+                        <button id="retryNearbySearch" class="btn nearby-retry-btn" type="button">Retry
+                            Location</button>
+                    </div>
+
+                    <div class="nearby-live-layout">
+                        <div id="nearbyRestaurantsMap" class="nearby-live-map"
+                            aria-label="Map showing top rated nearby restaurants"></div>
+
+                        <div class="nearby-live-list-wrap">
+                            <h3 class="nearby-live-list-title">Top Rated Nearby</h3>
+                            <ul id="nearbyRestaurantsList" class="nearby-live-list" aria-live="polite"></ul>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -421,6 +458,7 @@
     <script src="../js/footer.js"></script>
     <script src="../js/i18n.js"></script>
     <script src="../js/app.js"></script>
+    <script src="../js/nearby-restaurants-home.js"></script>
     <script src="../js/cursor.js"></script>
     <script>
         // Prevent navigation when offline

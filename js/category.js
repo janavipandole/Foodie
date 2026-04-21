@@ -12,24 +12,89 @@ document.addEventListener('DOMContentLoaded', () => {
     loadCategories();
 });
 
+// ===== LOADING STATE MANAGEMENT =====
+function setLoadingState(element, isLoading, message = 'Loading...') {
+    if (!element) return;
+
+    const existingLoader = element.querySelector('.loading-overlay');
+    if (isLoading) {
+        if (!existingLoader) {
+            const loader = document.createElement('div');
+            loader.className = 'loading-overlay';
+            loader.innerHTML = `
+                <div class="loading-spinner"></div>
+                <span class="loading-text">${message}</span>
+            `;
+            element.style.position = 'relative';
+            element.appendChild(loader);
+        }
+        element.classList.add('loading');
+    } else {
+        if (existingLoader) {
+            existingLoader.remove();
+        }
+        element.classList.remove('loading');
+    }
+}
+
+function showRetryButton(container, retryFn, message = 'Retry') {
+    const existingRetry = container.querySelector('.retry-btn');
+    if (existingRetry) existingRetry.remove();
+
+    const retryBtn = document.createElement('button');
+    retryBtn.textContent = message;
+    retryBtn.className = 'retry-btn';
+    retryBtn.onclick = () => {
+        retryBtn.remove();
+        retryFn();
+    };
+    container.appendChild(retryBtn);
+}
+
 async function loadCategories() {
     const container = document.getElementById('categoryContainer');
-    const productsUrl = '../products.json';
+
+    // Import error handling utilities
+    const {
+        retry,
+        NetworkError,
+        showErrorToast,
+        errorLogger
+    } = window.FoodieErrorHandler || {};
 
     try {
-        const response = await fetch(productsUrl);
-        if (!response.ok) throw new Error('Failed to fetch products');
-        
-        const products = await response.json();
+        setLoadingState(container, true, 'Loading cuisines...');
+
+        // Use retry mechanism for fetching products
+        const products = await retry(async () => {
+            const response = await fetch('../products.json');
+            if (!response.ok) {
+                throw new NetworkError(`Failed to fetch products: HTTP ${response.status}`);
+            }
+            return await response.json();
+        }, 3, 1000); // 3 retries with 1s delay
+
+        setLoadingState(container, false);
         renderCategories(products, container);
+
     } catch (error) {
-        console.error('Error loading categories:', error);
+        setLoadingState(container, false);
+
+        // Log the error
+        errorLogger.log(error, { operation: 'loadCategories' });
+
+        // Show user-friendly error message
         container.innerHTML = `
-            <div style="text-align:center; grid-column: 1/-1; color: var(--text-secondary);">
-                <i class="fa-solid fa-circle-exclamation" style="font-size: 2rem; margin-bottom: 1rem;"></i>
-                <p>Unable to load cuisines at this time.</p>
+            <div class="error-state" style="grid-column: 1/-1;">
+                <div class="error-icon">⚠️</div>
+                <h3>Unable to Load Cuisines</h3>
+                <p>We're having trouble loading the cuisine categories right now. Please check your connection and try again.</p>
+                <button class="retry-btn" onclick="loadCategories()">Retry</button>
             </div>
         `;
+
+        // Show toast notification
+        showErrorToast('Failed to load cuisines. Please try again.');
     }
 }
 

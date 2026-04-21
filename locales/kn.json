@@ -11,7 +11,8 @@
     "darkMode": "ಡಾರ್ಕ್ ಮೋಡ್",
     "lightMode": "ಲೈಟ್ ಮೋಡ್",
     "signIn": "ಸೈನ್ ಇನ್",
-    "cart": "ಕಾರ್ಟ್"
+    "cart": "ಕಾರ್ಟ್",
+    "favorites": "ಮೆಚ್ಚಿನವುಗಳು"
   },
   "hero": {
     "title": "ನಿಮ್ಮ ಸ್ವಾದಿಷ್ಟವಾದ",
@@ -125,7 +126,10 @@
   "languages": {
     "english": "English",
     "hindi": "हिंदी",
-    "kannada": "ಕನ್ನಡ"
+    "kannada": "ಕನ್ನಡ",
+    "marathi": "मराठी",
+    "marathi": "मराठी"
+    "chinese": "中文"
   },
   "aboutUs": {
     "hero": {
