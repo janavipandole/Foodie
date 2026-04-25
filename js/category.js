@@ -54,25 +54,12 @@ function showRetryButton(container, retryFn, message = 'Retry') {
 async function loadCategories() {
     const container = document.getElementById('categoryContainer');
 
-    // Import error handling utilities
-    const {
-        retry,
-        NetworkError,
-        showErrorToast,
-        errorLogger
-    } = window.FoodieErrorHandler || {};
-
     try {
         setLoadingState(container, true, 'Loading cuisines...');
 
-        // Use retry mechanism for fetching products
-        const products = await retry(async () => {
-            const response = await fetch('../products.json');
-            if (!response.ok) {
-                throw new NetworkError(`Failed to fetch products: HTTP ${response.status}`);
-            }
-            return await response.json();
-        }, 3, 1000); // 3 retries with 1s delay
+        const response = await fetch('../products.json');
+        if (!response.ok) throw new Error(`HTTP ${response.status}`);
+        const products = await response.json();
 
         setLoadingState(container, false);
         renderCategories(products, container);
@@ -80,8 +67,6 @@ async function loadCategories() {
     } catch (error) {
         setLoadingState(container, false);
 
-        // Log the error
-        errorLogger.log(error, { operation: 'loadCategories' });
 
         // Show user-friendly error message
         container.innerHTML = `
@@ -92,9 +77,6 @@ async function loadCategories() {
                 <button class="retry-btn" onclick="loadCategories()">Retry</button>
             </div>
         `;
-
-        // Show toast notification
-        showErrorToast('Failed to load cuisines. Please try again.');
     }
 }
 
