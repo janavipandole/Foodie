@@ -6,8 +6,7 @@ body {
     color: var(--text-primary);
     font-family: "Roboto Condensed", sans-serif;
     margin: 0;
-    padding-top: 12vh; /* adjust for navbar space */
-    padding-bottom: 5.5rem; /* space for fixed footer */
+    padding-top: 12vh;
 }
 
 /* ====== Hero Section ====== */
@@ -501,19 +500,15 @@ body {
     margin: -1px;
 }
 
-/* ====== Fixed Footer ====== */
+/* ====== Footer ====== */
 footer {
-    position: fixed;
-    left: 0; right: 0; bottom: 0;
     margin: 0;
     border-top: 1px solid var(--border-color);
     background-color: var(--bg-secondary);
     text-align: center;
     padding: 1.2rem 0;
     color: var(--text-secondary);
-    z-index: 900;
     font-size: 1rem;
-    box-shadow: 0 -2px 12px var(--shadow);
 }
 
 .card-list {

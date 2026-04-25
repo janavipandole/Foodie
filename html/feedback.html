@@ -9,7 +9,6 @@
   <link rel="stylesheet" href="../css/style.css">
   <link rel="stylesheet" href="../css/feedback.css">
   <link rel="stylesheet" href="../css/cursor.css">
-  <link rel="stylesheet" href="../css/style.css">
   <style>
     * {
       margin: 0;
@@ -22,83 +21,6 @@
       background-color: #f9f9fb;
       color: #333;
     }
-      <body>
-    <header>
-        <nav class="navbar flex between wrapper">
-            <a href="index.html" class="logo">Foodie.</a>
-            <ul class="navList flex gap-3 between">
-               <li><a href="../index.html">Home</a></li>
-                <li><a href="./menu.html" data-i18n=".menu">Menu</a></li>
-                <li><a href="./aboutUs.html" data-i18n=".about">About Us</a></li>
-                <li><a href="./contactUs.html" data-i18n=".contact">Contact Us</a></li>
-                <li><a href="nearbyres.html" data-i18n=".nearby">Nearby Restaurants</a></li>
-                <li><a href="feedback.html" class="active">Feedback</a></li>
-            </ul>
-               <div class="desktop-action flex gap-2">
-                <div class="custom-select" id="language-custom-select">
-                    <div class="selected" tabindex="0" aria-haspopup="listbox" aria-expanded="false"
-                        aria-labelledby="language-custom-select">
-                        English
-                    </div>
-                    <ul class="options" role="listbox" tabindex="-1">
-                        <li data-value="en" role="option" aria-selected="true">English</li>
-                        <li data-value="hi" role="option">हिंदी</li>
-                        <li data-value="kn" role="option">ಕನ್ನಡ</li>
-                    </ul>
-                </div>
-
-                <form class="navbar-search" action="#" method="get">
-                    <input type="text" id="navbar-search" placeholder="Search your food ..."
-                        data-i18n-placeholder="nav.searchPlaceholder" />
-                    <button type="submit" id="navbar-search-btn" aria-label="Search">
-                        <i class="fa-solid fa-magnifying-glass"></i>
-                    </button>
-                </form>
-
-                <button class="desktop-action theme-toggle" aria-label="Toggle dark mode">
-                    <i class="fa-solid fa-moon"></i>
-                </button>
-
-                <a href="./checkout.html" class="cart-icon">
-                    <i class="fa-solid fa-bag-shopping"></i>
-                    <span class="cart-value">0</span>
-                </a>
-
-                <a href="./signup.html" class="btn" data-i18n=".signIn">
-                    Sign in&nbsp;<i class="fa-solid fa-arrow-right-from-bracket"></i>
-                </a>
-
-
-                <a href="#" class="hamberger"><i class="fa-solid fa-bars"></i></a>
-            </div>
-
-
-            <ul class="mobile-menu">
-                <li><a href="../index.html">Home</a></li>
-                <li><a href="./menu.html" data-i18n="menu">Menu</a></li>
-                <li><a href="./aboutUs.html" data-i18n="about">About Us</a></li>
-                <li><a href="./contactUs.html" data-i18n="contact">Contact Us</a></li>
-                <li><a href="nearbyres.html" data-i18n="nearby">Nearby Restaurants</a></li>
-                <li><a href="feedback.html" class="active">Feedback</a></li>
-                <form class="navbar-search" action="#" method="get">
-                    <input type="text" name="search" id="navbar-search" placeholder="Search your food ...">
-                    <button type="submit" id="navbar-search-btn" aria-label="Search">
-                        <i class="fa-solid fa-magnifying-glass"></i>
-                    </button>
-                </form>
-                <li>
-                    <button class="theme-toggle mobile-theme-toggle" aria-label="Toggle dark mode">
-                        <i class="fa-solid fa-moon"></i><span>Dark Mode</span>
-                    </button>
-                </li>
-                <li>
-                    <a href="./signup.html" class="btn">
-                        Sign in&nbsp;<i class="fa-solid fa-arrow-right-from-bracket"></i>
-                    </a>
-                </li>
-            </ul>
-        </nav>
-    </header>
 
     /* ===== HERO ===== */
     .hero {
@@ -229,14 +151,12 @@
 
     /* ===== FOOTER ===== */
     footer {
-      text-align: center;
-      padding: 2rem;
       background: #F2BD12;
       color: #fff;
-      font-size: 0.9rem;
-      border-top-left-radius: 40px;
-      border-top-right-radius: 40px;
-      margin-top: 3rem;
+    }
+
+    .footer-container {
+      margin-top: 0 !important;
     }
 
     @media (max-width: 768px) {
@@ -276,18 +196,17 @@
   </section>
 
 
+  <main>
   <section class="feedback-container">
 
     <!-- Website Feedback -->
-     <div class="feedback-card" tabindex="0" role="button" aria-label="Open Website Feedback Form">
+    <div class="feedback-card">
       <div class="card-icon">🌐</div>
       <h2>Website Feedback</h2>
       <p>Tell us what you think about our website design, speed, and navigation.</p>
-      <button type="button" class="open-feedback-btn">Give Feedback</button>
-    </div>
+      <form id="web-feedback-form">
         <input type="text" placeholder="Your Name" required>
         <input type="email" placeholder="Your Email" required>
-
         <div class="rating">
           <input type="radio" id="web-star5" name="web-rating" value="5"><label for="web-star5">★</label>
           <input type="radio" id="web-star4" name="web-rating" value="4"><label for="web-star4">★</label>
@@ -295,24 +214,19 @@
           <input type="radio" id="web-star2" name="web-rating" value="2"><label for="web-star2">★</label>
           <input type="radio" id="web-star1" name="web-rating" value="1"><label for="web-star1">★</label>
         </div>
-
         <textarea placeholder="Your feedback..." required></textarea>
         <button type="submit" class="submit-btn">Submit Feedback</button>
       </form>
     </div>
 
     <!-- App Feedback -->
-    <div class="feedback-card" tabindex="0" role="button" aria-label="Open App Feedback Form">
+    <div class="feedback-card">
       <div class="card-icon">📱</div>
       <h2>App Feedback</h2>
       <p>Share your experience with our mobile application and features.</p>
-      <button type="button" class="open-feedback-btn">Give Feedback</button>
-    </div>
-
       <form id="app-feedback-form">
         <input type="text" placeholder="Your Name" required>
         <input type="email" placeholder="Your Email" required>
-
         <div class="rating">
           <input type="radio" id="app-star5" name="app-rating" value="5"><label for="app-star5">★</label>
           <input type="radio" id="app-star4" name="app-rating" value="4"><label for="app-star4">★</label>
@@ -320,24 +234,19 @@
           <input type="radio" id="app-star2" name="app-rating" value="2"><label for="app-star2">★</label>
           <input type="radio" id="app-star1" name="app-rating" value="1"><label for="app-star1">★</label>
         </div>
-
         <textarea placeholder="Your feedback..." required></textarea>
         <button type="submit" class="submit-btn">Submit Feedback</button>
       </form>
     </div>
 
     <!-- Service Feedback -->
-<div class="feedback-card" tabindex="0" role="button" aria-label="Open Service Feedback Form">
+    <div class="feedback-card">
       <div class="card-icon">🚚</div>
       <h2>Service Feedback</h2>
       <p>Help us improve food delivery, customer support, and service quality.</p>
-      <button type="button" class="open-feedback-btn">Give Feedback</button>
-    </div>
-
       <form id="service-feedback-form">
         <input type="text" placeholder="Your Name" required>
         <input type="email" placeholder="Your Email" required>
-
         <div class="rating">
           <input type="radio" id="service-star5" name="service-rating" value="5"><label for="service-star5">★</label>
           <input type="radio" id="service-star4" name="service-rating" value="4"><label for="service-star4">★</label>
@@ -345,17 +254,12 @@
           <input type="radio" id="service-star2" name="service-rating" value="2"><label for="service-star2">★</label>
           <input type="radio" id="service-star1" name="service-rating" value="1"><label for="service-star1">★</label>
         </div>
-
         <textarea placeholder="Your feedback..." required></textarea>
         <button type="submit" class="submit-btn">Submit Feedback</button>
       </form>
     </div>
   </section>
-
-  <!-- Footer -->
-  <footer>
-    <p>&copy; 2025 Foodie. All Rights Reserved.</p>
-  </footer>
+  </main>
 
   <!-- Feedback Modal -->
   <div id="modal-overlay" class="modal-overlay"></div>
@@ -421,5 +325,9 @@
       <span class="toast-message">Thank you for your feedback!</span>
     </div>
   </div>
+
+  <!-- Footer -->
+  <footer id="contacts" data-aos="fade-up"></footer>
+  <script src="../js/footer.js"></script>
 
 </html>
