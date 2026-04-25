@@ -204,7 +204,7 @@
     "name": "Butter Chicken Masala",
     "type": "non-veg",
     "price": "250",
-    "image": "../imgs/butter-chicken.webp",
+    "image": "../imgs/biryani.webp",
     "description": "Tender chicken cooked in rich, creamy tomato-based curry with aromatic spices.",
     "rating": 4.8,
     "cuisine": "Indian"
@@ -214,7 +214,7 @@
     "name": "Paneer Butter Masala",
     "type": "veg",
     "price": "220",
-    "image": "../imgs/paneer-butter-masala.webp",
+    "image": "../imgs/panner-tikka.webp",
     "description": "Soft paneer cubes simmered in a velvety, spiced tomato gravy.",
     "rating": 4.6,
     "cuisine": "Indian"
@@ -224,7 +224,7 @@
     "name": "Chili Chicken Dry",
     "type": "non-veg",
     "price": "180",
-    "image": "../imgs/chili-chicken.webp",
+    "image": "../imgs/fried-chicken.webp",
     "description": "Crispy chicken tossed with bell peppers, onions, and spicy Indo-Chinese sauce.",
     "rating": 4.7,
     "cuisine": "Chinese"
@@ -234,7 +234,7 @@
     "name": "Schezwan Fried Rice",
     "type": "veg",
     "price": "150",
-    "image": "../imgs/schezwan-fried-rice.webp",
+    "image": "../imgs/thai-basil-noodles.webp",
     "description": "Wok-tossed rice with vegetables and spicy schezwan sauce.",
     "rating": 4.4,
     "cuisine": "Chinese"
@@ -244,7 +244,7 @@
     "name": "Chicken Manchurian",
     "type": "non-veg",
     "price": "190",
-    "image": "../imgs/chicken-manchurian.webp",
+    "image": "../imgs/dim-sum.webp",
     "description": "Golden fried chicken balls in sweet and spicy Manchurian sauce.",
     "rating": 4.5,
     "cuisine": "Chinese"
@@ -254,7 +254,7 @@
     "name": "Pesto Pasta Primavera",
     "type": "veg",
     "price": "240",
-    "image": "../imgs/pesto-pasta.webp",
+    "image": "../imgs/spaghetti.webp",
     "description": "Fresh pasta with basil pesto, seasonal vegetables, and parmesan cheese.",
     "rating": 4.6,
     "cuisine": "Italian"
@@ -264,7 +264,7 @@
     "name": "Carbonara Pasta",
     "type": "non-veg",
     "price": "260",
-    "image": "../imgs/carbonara.webp",
+    "image": "../imgs/lasagna.webp",
     "description": "Creamy pasta with pancetta, eggs, parmesan, and black pepper.",
     "rating": 4.7,
     "cuisine": "Italian"
@@ -274,7 +274,7 @@
     "name": "Chicken Quesadilla",
     "type": "non-veg",
     "price": "180",
-    "image": "../imgs/quesadilla.webp",
+    "image": "../imgs/tacos.webp",
     "description": "Grilled tortilla filled with chicken, cheese, and vegetables.",
     "rating": 4.3,
     "cuisine": "Mexican"
@@ -284,7 +284,7 @@
     "name": "Fish Tacos",
     "type": "non-veg",
     "price": "220",
-    "image": "../imgs/fish-tacos.webp",
+    "image": "../imgs/salmon.webp",
     "description": "Crispy battered fish in soft tortillas with cabbage slaw and lime crema.",
     "rating": 4.5,
     "cuisine": "Mexican"
@@ -294,7 +294,7 @@
     "name": "California Roll",
     "type": "non-veg",
     "price": "320",
-    "image": "../imgs/california-roll.webp",
+    "image": "../imgs/sushi.webp",
     "description": "Crab, avocado, and cucumber rolled in seasoned rice with nori.",
     "rating": 4.6,
     "cuisine": "Japanese"
@@ -304,7 +304,7 @@
     "name": "Teriyaki Chicken Bowl",
     "type": "non-veg",
     "price": "240",
-    "image": "../imgs/teriyaki-chicken.webp",
+    "image": "../imgs/fried-chicken.webp",
     "description": "Grilled chicken glazed with teriyaki sauce over steamed rice with vegetables.",
     "rating": 4.4,
     "cuisine": "Japanese"
@@ -314,7 +314,7 @@
     "name": "Pad Thai Noodles",
     "type": "non-veg",
     "price": "190",
-    "image": "../imgs/pad-thai.webp",
+    "image": "../imgs/thai-basil-noodles.webp",
     "description": "Stir-fried rice noodles with shrimp, tofu, bean sprouts, and tamarind sauce.",
     "rating": 4.5,
     "cuisine": "Thai"
@@ -324,7 +324,7 @@
     "name": "Green Curry Chicken",
     "type": "non-veg",
     "price": "230",
-    "image": "../imgs/green-curry.webp",
+    "image": "../imgs/salmon.webp",
     "description": "Tender chicken in coconut-based green curry with Thai basil and vegetables.",
     "rating": 4.7,
     "cuisine": "Thai"
@@ -334,7 +334,7 @@
     "name": "Falafel Wrap",
     "type": "veg",
     "price": "140",
-    "image": "../imgs/falafel-wrap.webp",
+    "image": "../imgs/sandwich.webp",
     "description": "Crispy falafel balls with hummus, veggies, and tahini sauce in pita bread.",
     "rating": 4.3,
     "cuisine": "Middle Eastern"
@@ -344,7 +344,7 @@
     "name": "Chicken Shawarma",
     "type": "non-veg",
     "price": "200",
-    "image": "../imgs/shawarma.webp",
+    "image": "../imgs/chicken-roll.webp",
     "description": "Marinated chicken roasted on a spit, served with garlic sauce and pita.",
     "rating": 4.6,
     "cuisine": "Middle Eastern"
@@ -354,7 +354,7 @@
     "name": "French Onion Soup",
     "type": "veg",
     "price": "160",
-    "image": "../imgs/french-onion-soup.webp",
+    "image": "../imgs/pho.webp",
     "description": "Rich beef broth with caramelized onions, topped with toasted bread and melted cheese.",
     "rating": 4.4,
     "cuisine": "French"
@@ -364,7 +364,7 @@
     "name": "Ratatouille",
     "type": "veg",
     "price": "180",
-    "image": "../imgs/ratatouille.webp",
+    "image": "../imgs/panner-tikka.webp",
     "description": "Provençal vegetable stew with eggplant, zucchini, tomatoes, and herbs.",
     "rating": 4.2,
     "cuisine": "French"
@@ -374,7 +374,7 @@
     "name": "Kimchi Fried Rice",
     "type": "veg",
     "price": "170",
-    "image": "../imgs/kimchi-fried-rice.webp",
+    "image": "../imgs/thai-basil-noodles.webp",
     "description": "Spicy kimchi stir-fried with rice, vegetables, and a fried egg.",
     "rating": 4.5,
     "cuisine": "Korean"
@@ -384,7 +384,7 @@
     "name": "Bulgogi Beef Bowl",
     "type": "non-veg",
     "price": "280",
-    "image": "../imgs/bulgogi.webp",
+    "image": "../imgs/biryani.webp",
     "description": "Sweet and savory marinated beef with steamed rice and vegetables.",
     "rating": 4.7,
     "cuisine": "Korean"
@@ -394,7 +394,7 @@
     "name": "Tiramisu",
     "type": "veg",
     "price": "120",
-    "image": "../imgs/tiramisu.webp",
+    "image": "../imgs/chocolate-lava-cake.webp",
     "description": "Classic Italian dessert with coffee-soaked ladyfingers and mascarpone cream.",
     "rating": 4.8,
     "cuisine": "Italian"
@@ -404,7 +404,7 @@
     "name": "Cheesecake",
     "type": "veg",
     "price": "100",
-    "image": "../imgs/cheesecake.webp",
+    "image": "../imgs/chocolate-lava-cake.webp",
     "description": "Creamy New York style cheesecake with berry compote topping.",
     "rating": 4.6,
     "cuisine": "American"
@@ -414,7 +414,7 @@
     "name": "Mojito",
     "type": "veg",
     "price": "80",
-    "image": "../imgs/mojito.webp",
+    "image": "../imgs/mango-smoothie.webp",
     "description": "Refreshing cocktail with white rum, lime, mint, and soda water.",
     "rating": 4.4,
     "cuisine": "American"
@@ -424,7 +424,7 @@
     "name": "Iced Coffee",
     "type": "veg",
     "price": "60",
-    "image": "../imgs/iced-coffee.webp",
+    "image": "../imgs/mango-smoothie.webp",
     "description": "Chilled coffee with milk and ice, perfect for hot days.",
     "rating": 4.2,
     "cuisine": "American"
@@ -434,7 +434,7 @@
     "name": "Masala Dosa",
     "type": "veg",
     "price": "90",
-    "image": "../imgs/masala-dosa.webp",
+    "image": "../imgs/panner-tikka.webp",
     "description": "Crispy fermented crepe filled with spiced potato filling and chutneys.",
     "rating": 4.7,
     "cuisine": "Indian"
@@ -444,7 +444,7 @@
     "name": "Idli Sambar",
     "type": "veg",
     "price": "70",
-    "image": "../imgs/idli-sambar.webp",
+    "image": "../imgs/panner-tikka.webp",
     "description": "Steamed rice cakes served with lentil stew and coconut chutney.",
     "rating": 4.3,
     "cuisine": "Indian"
@@ -454,7 +454,7 @@
     "name": "Chicken Caesar Salad",
     "type": "non-veg",
     "price": "190",
-    "image": "../imgs/caesar-salad.webp",
+    "image": "../imgs/greek-salad.webp",
     "description": "Crisp romaine lettuce with grilled chicken, parmesan, and Caesar dressing.",
     "rating": 4.5,
     "cuisine": "American"
@@ -464,7 +464,7 @@
     "name": "Vegetable Biryani",
     "type": "veg",
     "price": "180",
-    "image": "../imgs/veg-biryani.webp",
+    "image": "../imgs/biryani.webp",
     "description": "Fragrant basmati rice cooked with mixed vegetables and aromatic spices.",
     "rating": 4.4,
     "cuisine": "Indian"
@@ -474,7 +474,7 @@
     "name": "Egg Fried Rice",
     "type": "non-veg",
     "price": "130",
-    "image": "../imgs/egg-fried-rice.webp",
+    "image": "../imgs/spring-roll.webp",
     "description": "Wok-tossed rice with scrambled eggs, vegetables, and soy sauce.",
     "rating": 4.2,
     "cuisine": "Chinese"
@@ -484,7 +484,7 @@
     "name": "Margherita Pizza",
     "type": "veg",
     "price": "250",
-    "image": "../imgs/margherita-pizza.webp",
+    "image": "../imgs/pizza.webp",
     "description": "Wood-fired pizza with tomato sauce, fresh mozzarella, and basil leaves.",
     "rating": 4.6,
     "cuisine": "Italian"

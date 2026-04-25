@@ -6,8 +6,9 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Feedback - Foodie</title>
   <link rel="icon" href="../imgs/favicon.webp" type="image/webp" />
+  <link rel="stylesheet" href="../css/style.css">
+  <link rel="stylesheet" href="../css/feedback.css">
   <link rel="stylesheet" href="../css/cursor.css">
-
   <style>
     * {
       margin: 0;
@@ -150,14 +151,12 @@
 
     /* ===== FOOTER ===== */
     footer {
-      text-align: center;
-      padding: 2rem;
       background: #F2BD12;
       color: #fff;
-      font-size: 0.9rem;
-      border-top-left-radius: 40px;
-      border-top-right-radius: 40px;
-      margin-top: 3rem;
+    }
+
+    .footer-container {
+      margin-top: 0 !important;
     }
 
     @media (max-width: 768px) {
@@ -175,22 +174,39 @@
 <body>
 
   <section class="hero">
-    <h1>Give Your <span class="highlight">Feedback</span></h1>
-    <p>We would love to hear your thoughts about our services.</p>
+    <div class="hero-content">
+      <span class="hero-badge">Your Opinion Matters</span>
+      <h1>Give Your <span class="highlight">Feedback</span></h1>
+      <p>We would love to hear your thoughts about our services and overall experience.</p>
+      <div class="feedback-stats">
+        <div class="stat-box">
+          <h3>10K+</h3>
+          <p>Happy Customers</p>
+        </div>
+        <div class="stat-box">
+          <h3>4.8★</h3>
+          <p>Average Rating</p>
+        </div>
+        <div class="stat-box">
+          <h3>24/7</h3>
+          <p>Customer Support</p>
+        </div>
+      </div>
+    </div>
   </section>
 
 
+  <main>
   <section class="feedback-container">
 
     <!-- Website Feedback -->
     <div class="feedback-card">
+      <div class="card-icon">🌐</div>
       <h2>Website Feedback</h2>
-      <p>Tell us what you think about our website and navigation.</p>
-
-      <form id="website-feedback-form">
+      <p>Tell us what you think about our website design, speed, and navigation.</p>
+      <form id="web-feedback-form">
         <input type="text" placeholder="Your Name" required>
         <input type="email" placeholder="Your Email" required>
-
         <div class="rating">
           <input type="radio" id="web-star5" name="web-rating" value="5"><label for="web-star5">★</label>
           <input type="radio" id="web-star4" name="web-rating" value="4"><label for="web-star4">★</label>
@@ -198,7 +214,6 @@
           <input type="radio" id="web-star2" name="web-rating" value="2"><label for="web-star2">★</label>
           <input type="radio" id="web-star1" name="web-rating" value="1"><label for="web-star1">★</label>
         </div>
-
         <textarea placeholder="Your feedback..." required></textarea>
         <button type="submit" class="submit-btn">Submit Feedback</button>
       </form>
@@ -206,13 +221,12 @@
 
     <!-- App Feedback -->
     <div class="feedback-card">
+      <div class="card-icon">📱</div>
       <h2>App Feedback</h2>
-      <p>Share your experience with our mobile application.</p>
-
+      <p>Share your experience with our mobile application and features.</p>
       <form id="app-feedback-form">
         <input type="text" placeholder="Your Name" required>
         <input type="email" placeholder="Your Email" required>
-
         <div class="rating">
           <input type="radio" id="app-star5" name="app-rating" value="5"><label for="app-star5">★</label>
           <input type="radio" id="app-star4" name="app-rating" value="4"><label for="app-star4">★</label>
@@ -220,7 +234,6 @@
           <input type="radio" id="app-star2" name="app-rating" value="2"><label for="app-star2">★</label>
           <input type="radio" id="app-star1" name="app-rating" value="1"><label for="app-star1">★</label>
         </div>
-
         <textarea placeholder="Your feedback..." required></textarea>
         <button type="submit" class="submit-btn">Submit Feedback</button>
       </form>
@@ -228,13 +241,12 @@
 
     <!-- Service Feedback -->
     <div class="feedback-card">
+      <div class="card-icon">🚚</div>
       <h2>Service Feedback</h2>
-      <p>Let us know how we can improve food delivery and support.</p>
-
+      <p>Help us improve food delivery, customer support, and service quality.</p>
       <form id="service-feedback-form">
         <input type="text" placeholder="Your Name" required>
         <input type="email" placeholder="Your Email" required>
-
         <div class="rating">
           <input type="radio" id="service-star5" name="service-rating" value="5"><label for="service-star5">★</label>
           <input type="radio" id="service-star4" name="service-rating" value="4"><label for="service-star4">★</label>
@@ -242,30 +254,80 @@
           <input type="radio" id="service-star2" name="service-rating" value="2"><label for="service-star2">★</label>
           <input type="radio" id="service-star1" name="service-rating" value="1"><label for="service-star1">★</label>
         </div>
-
         <textarea placeholder="Your feedback..." required></textarea>
         <button type="submit" class="submit-btn">Submit Feedback</button>
       </form>
     </div>
   </section>
+  </main>
+
+  <!-- Feedback Modal -->
+  <div id="modal-overlay" class="modal-overlay"></div>
+  <div id="feedback-modal" class="feedback-modal">
+    <div class="modal-header">
+      <h2 id="modal-title">Feedback</h2>
+      <button id="close-modal" class="close-btn" aria-label="Close feedback modal">&times;</button>
+    </div>
+    <div class="modal-body">
+      <form id="feedback-form" action="/api/feedback" method="POST">
+        <input type="hidden" id="modal-category" name="category" value="">
+
+        <div class="form-group">
+          <label for="feedback-name">Name *</label>
+          <input type="text" id="feedback-name" name="name" placeholder="Your Name" required>
+        </div>
+
+        <div class="form-group">
+          <label for="feedback-email">Email *</label>
+          <input type="email" id="feedback-email" name="email" placeholder="your.email@example.com" required>
+        </div>
+
+        <div class="form-group">
+          <label>Rating *</label>
+          <div class="rating">
+            <input type="radio" id="star5" name="rating" value="5"><label for="star5" title="5 stars">★</label>
+            <input type="radio" id="star4" name="rating" value="4"><label for="star4" title="4 stars">★</label>
+            <input type="radio" id="star3" name="rating" value="3"><label for="star3" title="3 stars">★</label>
+            <input type="radio" id="star2" name="rating" value="2"><label for="star2" title="2 stars">★</label>
+            <input type="radio" id="star1" name="rating" value="1"><label for="star1" title="1 star">★</label>
+          </div>
+        </div>
+
+        <div class="feedback-stats">
+  <div class="stat-box">
+    <h3>10K+</h3>
+    <p>Happy Customers</p>
+  </div>
+  <div class="stat-box">
+    <h3>4.8★</h3>
+    <p>Average Rating</p>
+  </div>
+  <div class="stat-box">
+    <h3>24/7</h3>
+    <p>Customer Support</p>
+  </div>
+</div>
+
+        <div class="form-group">
+          <label for="feedback-text">Your Feedback *</label>
+          <textarea id="feedback-text" name="feedback" placeholder="Please share your thoughts, suggestions, or any issues you've experienced..." required minlength="10"></textarea>
+        </div>
+
+        <button type="submit" class="submit-btn">Submit Feedback</button>
+      </form>
+    </div>
+  </div>
+
+  <!-- Success Toast -->
+  <div id="success-toast" class="toast">
+    <div class="toast-content">
+      <span class="toast-icon">✅</span>
+      <span class="toast-message">Thank you for your feedback!</span>
+    </div>
+  </div>
 
   <!-- Footer -->
-  <footer>
-    <p>&copy; 2025 Foodie. All Rights Reserved.</p>
-  </footer>
-
-  <script src="../js/cursor.js"></script>
-
-  <script>
-
-    document.querySelectorAll("form").forEach(form => {
-      form.addEventListener("submit", (e) => {
-        e.preventDefault();
-        alert("Thank you for your feedback! 💬");
-        form.reset();
-      });
-    });
-  </script>
-</body>
+  <footer id="contacts" data-aos="fade-up"></footer>
+  <script src="../js/footer.js"></script>
 
 </html>

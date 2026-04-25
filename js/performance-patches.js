@@ -160,7 +160,7 @@ const createCardElement = (product) => {
             <button class="favorite-btn ${isFav ? 'active' : ''}" 
                     data-id="${product.id}"
                     aria-label="Add to favorites">
-                <i class="fa-${isFav ? 'solid' : 'regular'} fa-heart"></i>
+                <i class="fa-${isFav ? 'solid' : 'regular'} fa-star"></i>
             </button>
         </div>
         <div class="card-detail">

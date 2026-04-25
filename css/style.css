@@ -509,6 +509,7 @@
     }
 
     .image-container {
+        position: relative;
         width: 600px;
         height: 600px;
         border-radius: 30px;
@@ -517,16 +518,43 @@
     }
 
     .pizza-boy {
+        position: relative;
+        z-index: 1;
         width: 100%;
         height: 100%;
         border-radius: 30px;
-        transition: transform 1s ease;
-        transform-style: preserve-3d;
+        animation: pizzaSlowSpin 24s linear infinite;
+        transform-origin: center center;
     }
 
-    /* On hover, rotate halfway */
-    .image-container:hover .pizza-boy {
-        transform: rotateY(180deg);
+    .pizza-pause-zone {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        width: 72%;
+        height: 72%;
+        border-radius: 50%;
+        transform: translate(-50%, -50%);
+        z-index: 2;
+    }
+
+    .pizza-pause-zone:hover ~ .pizza-boy {
+        animation-play-state: paused;
+    }
+
+    @keyframes pizzaSlowSpin {
+        from {
+            transform: rotate(0deg);
+        }
+        to {
+            transform: rotate(360deg);
+        }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+        .pizza-boy {
+            animation: none;
+        }
     }
 
 
@@ -2231,4 +2259,263 @@
 .card-back h3 {
   margin-bottom: 1rem;
   color: var(--primary-color);
+}
+
+/* === Homepage Live Nearby Restaurants (Google Maps) === */
+.nearby-live-intro {
+    max-width: 760px;
+}
+
+.nearby-live-panel {
+    margin-top: 1.8rem;
+    padding: 1.4rem;
+    border: 1px solid var(--border-color);
+    border-radius: 1.25rem;
+    background: var(--bg-secondary);
+    box-shadow: 0 8px 28px rgba(0, 0, 0, 0.08);
+}
+
+.nearby-live-controls {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+    flex-wrap: wrap;
+}
+
+.nearby-live-status {
+    margin: 0;
+    font-weight: 600;
+    padding: 0.7rem 1rem;
+    border-radius: 0.75rem;
+    border: 1px solid transparent;
+}
+
+.nearby-live-status.status-info {
+    color: #24507a;
+    background: #e9f4ff;
+    border-color: #bfdfff;
+}
+
+.nearby-live-status.status-success {
+    color: #1c6238;
+    background: #e9f8ef;
+    border-color: #b4e4c7;
+}
+
+.nearby-live-status.status-warning {
+    color: #7f5306;
+    background: #fff8e8;
+    border-color: #f7d588;
+}
+
+.nearby-live-status.status-error {
+    color: #8a2424;
+    background: #fdecec;
+    border-color: #f2b6b6;
+}
+
+[data-theme="dark"] .nearby-live-status.status-info {
+    color: #bfdfff;
+    background: #13283b;
+    border-color: #24507a;
+}
+
+[data-theme="dark"] .nearby-live-status.status-success {
+    color: #b8e9c8;
+    background: #183626;
+    border-color: #256d45;
+}
+
+[data-theme="dark"] .nearby-live-status.status-warning {
+    color: #ffe09c;
+    background: #3a2a0f;
+    border-color: #7f5306;
+}
+
+[data-theme="dark"] .nearby-live-status.status-error {
+    color: #ffd0d0;
+    background: #3d1717;
+    border-color: #8a2424;
+}
+
+.nearby-retry-btn {
+    margin-top: 0;
+}
+
+.nearby-live-layout {
+    margin-top: 1.2rem;
+    display: grid;
+    grid-template-columns: 1.45fr 1fr;
+    gap: 1.2rem;
+    align-items: start;
+}
+
+.nearby-live-map {
+    width: 100%;
+    min-height: 420px;
+    border-radius: 1rem;
+    border: 1px solid var(--border-color);
+    background: linear-gradient(140deg, #f2f8ff 0%, #f6f6f6 100%);
+    overflow: hidden;
+}
+
+[data-theme="dark"] .nearby-live-map {
+    background: linear-gradient(140deg, #1f2733 0%, #2a2a2a 100%);
+}
+
+.nearby-live-list-wrap {
+    border: 1px solid var(--border-color);
+    border-radius: 1rem;
+    padding: 1rem;
+    background: var(--bg-primary);
+    min-height: 420px;
+}
+
+.nearby-live-list-title {
+    margin: 0 0 0.8rem;
+    font-size: 1.2rem;
+}
+
+.nearby-live-list {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 0.7rem;
+    max-height: 350px;
+    overflow: auto;
+    scrollbar-width: thin;
+}
+
+.nearby-live-item {
+    border: 1px solid var(--border-color);
+    border-radius: 0.9rem;
+    padding: 0.85rem;
+    background: var(--bg-secondary);
+}
+
+.nearby-live-item-head {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 0.6rem;
+}
+
+.nearby-live-item h4 {
+    font-size: 1rem;
+    margin: 0;
+    color: var(--text-primary);
+}
+
+.nearby-live-rating {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.3rem;
+    font-weight: 700;
+    color: var(--gold-finger);
+    white-space: nowrap;
+}
+
+.nearby-live-stars {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.1rem;
+    font-size: 0.85rem;
+}
+
+.nearby-live-stars .is-empty {
+    color: #c9c9c9;
+}
+
+[data-theme="dark"] .nearby-live-stars .is-empty {
+    color: #6b6b6b;
+}
+
+.nearby-live-address {
+    margin: 0.45rem 0;
+    font-size: 0.9rem;
+    color: var(--text-secondary);
+}
+
+.nearby-live-meta {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 0.65rem;
+    font-size: 0.86rem;
+    color: var(--text-secondary);
+}
+
+.nearby-live-open {
+    color: var(--success);
+    font-weight: 700;
+}
+
+.nearby-live-closed {
+    color: var(--error);
+    font-weight: 700;
+}
+
+.nearby-live-unknown {
+    color: var(--text-secondary);
+    font-weight: 700;
+}
+
+.nearby-live-empty {
+    list-style: none;
+    border: 1px dashed var(--border-color);
+    border-radius: 0.9rem;
+    padding: 1rem;
+    text-align: center;
+    background: var(--bg-secondary);
+    color: var(--text-secondary);
+}
+
+.nearby-map-info h4 {
+    margin: 0 0 0.3rem;
+    font-size: 1rem;
+}
+
+.nearby-map-info p {
+    margin: 0.12rem 0;
+    font-size: 0.88rem;
+}
+
+@media (max-width: 980px) {
+    .nearby-live-layout {
+        grid-template-columns: 1fr;
+    }
+
+    .nearby-live-map,
+    .nearby-live-list-wrap {
+        min-height: 360px;
+    }
+
+    .nearby-live-list {
+        max-height: 290px;
+    }
+}
+
+@media (max-width: 640px) {
+    .nearby-live-panel {
+        padding: 1rem;
+    }
+
+    .nearby-live-controls {
+        align-items: stretch;
+    }
+
+    .nearby-retry-btn {
+        width: 100%;
+    }
+
+    .nearby-live-map {
+        min-height: 300px;
+    }
+
+    .nearby-live-item-head {
+        flex-direction: column;
+    }
 }

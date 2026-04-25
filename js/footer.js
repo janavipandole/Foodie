@@ -50,23 +50,54 @@ function loadFooter() {
                 </ul>
 
                 <ul class="footer-wrapper">
-                    <li>
-                        <h4 data-i18n="footer.support">Support</h4>
-                    </li>
-                    <li class="mt-one"><a href="../html/signup.html" class="footer-link"
-                            data-i18n="footer.account">Account</a></li>
-                    <li class="mt-one"><a href="../html/supportCenter.html" class="footer-link"
-                            data-i18n="footer.supportCenter"> Support center </a>
-                    </li>
-                    <li class="mt-one"><a href="../html/feedback.html" class="footer-link" data-i18n="footer.feedback">
-                            Feedback</a></li>
-                    <li class="mt-one"><a href="../html/contactUs.html" class="footer-link"
-                            data-i18n="footer.contactUs">Contact Us</a></li>
-                    <li class="mt-one"><a href="../html/contributors.html" class="footer-link"
-                            data-i18n="Contribution"> Contributors</a></li>
-                </ul>
-            </div>
-        </div>
+    <li>
+        <h4 data-i18n="footer.support">Support</h4>
+    </li>
+
+    <li class="mt-one">
+        <a href="../html/signup.html" class="footer-link" data-i18n="footer.account">
+            Account
+        </a>
+    </li>
+
+    <li class="mt-one">
+        <a href="../html/supportCenter.html" class="footer-link" data-i18n="footer.supportCenter">
+            Support center
+        </a>
+    </li>
+
+    <li class="mt-one">
+        <a href="../html/privacy-policy.html" class="footer-link">
+            Privacy Policy
+        </a>
+    </li>
+
+    <li class="mt-one">
+        <a href="../html/terms-of-service.html" class="footer-link">
+            Terms of Service
+        </a>
+    </li>
+
+    <li class="mt-one">
+        <a href="../html/feedback.html" class="footer-link" data-i18n="footer.feedback">
+            Feedback
+        </a>
+    </li>
+
+    <li class="mt-one">
+        <a href="../html/contactUs.html" class="footer-link" data-i18n="footer.contactUs">
+            Contact Us
+        </a>
+    </li>
+
+    <li class="mt-one">
+        <a href="../html/contributors.html" class="footer-link" data-i18n="Contribution">
+            Contributors
+        </a>
+    </li>
+</ul>
+</div>
+</div>
     `;
 
     const footerElement = document.getElementById('contacts');

@@ -1,0 +1,134 @@
+{
+  "nav": {
+    "home": "ホーム",
+    "services": "サービス",
+    "menu": "メニュー",
+    "about": "私たちについて",
+    "contact": "お問い合わせ",
+    "nearby": "近くのレストラン",
+    "rideWithUs": "私たちと一緒に配達する",
+    "searchPlaceholder": "食べ物を検索 ...",
+    "darkMode": "ダークモード",
+    "lightMode": "ライトモード",
+    "signIn": "サインイン",
+    "cart": "カート"
+  },
+  "hero": {
+    "title": "おいしい",
+    "highlight": "料理を楽しもう",
+    "subtitle": "私たちは迅速な配達であなたのお腹を満たします",
+    "orderNow": "今すぐ注文"
+  },
+  "services": {
+    "sectionTitle": "私たちのサービス",
+    "mainTitle": "どのように機能しますか？",
+    "easyOrder": {
+      "title": "簡単注文",
+      "description": "料理を注文するのに必要なのは数ステップだけです。"
+    },
+    "fastDelivery": {
+      "title": "迅速な配達",
+      "description": "常に時間通り、さらに速く配達します。"
+    },
+    "bestQuality": {
+      "title": "最高品質",
+      "description": "速さだけでなく、品質を最優先にしています。"
+    }
+  },
+  "reviews": {
+    "sectionTitle": "レビュー",
+    "mainTitle": "お客様の声",
+    "deepakName": "ディーパク・クマール",
+    "deepakReview": "Foodie は最高です！おいしい料理がたくさんあり、特に配達が速いです。ぜひおすすめします。",
+    "priyaName": "プリヤ・ライ",
+    "priyaReview": "新鮮な食材、創造的なメニュー、温かいサービスがこの場所を特別なものにしています。普段の食事にも特別な夜にもぴったりです。",
+    "anjaliName": "アンジャリ・ジョシ",
+    "anjaliReview": "素晴らしい時間を過ごしました！料理は美味しく、雰囲気は温かく、スタッフも親切でした。また来たいです。"
+  },
+  "app": {
+    "sectionTitle": "私たちのアプリ",
+    "mainTitle": "簡単に料理を注文する方法",
+    "description": "探す。見つける。いつでもどこでもすぐに受け取る。",
+    "installButton": "アプリをインストール"
+  },
+  "qr": {
+    "scan": "ダウンロードするにはスキャン",
+    "quickAccess": "モバイルアプリへ素早くアクセス",
+    "instruction": "カメラを QR コードに向けてください",
+    "orDownload": "またはこちらからダウンロード：",
+    "appStoreSmall": "ダウンロード",
+    "appStoreLarge": "App Store で",
+    "googlePlaySmall": "入手",
+    "googlePlayLarge": "Google Play で",
+    "users": "アクティブユーザー",
+    "rating": "アプリ評価",
+    "downloads": "ダウンロード数"
+  },
+  "newsletter": {
+    "sectionTitle": "購読",
+    "mainTitle": "ニュースレターを購読する",
+    "description": "毎日の更新情報を受け取るためにメールアドレスを入力してください。",
+    "placeholder": "メールアドレスを入力してください",
+    "subscribeButton": "購読する"
+  },
+  "footer": {
+    "ourMenu": "私たちのメニュー",
+    "special": "特別",
+    "popular": "人気",
+    "category": "カテゴリー",
+    "company": "会社",
+    "whyFoodie": "なぜ Foodie なのか",
+    "partnerWithUs": "私たちと提携する",
+    "aboutUs": "私たちについて",
+    "faq": "FAQ",
+    "support": "サポート",
+    "account": "アカウント",
+    "supportCenter": "サポートセンター",
+    "feedback": "フィードバック",
+    "contactUs": "お問い合わせ",
+    "description": "私たちは迅速な配達であなたのお腹を満たします",
+    "rideWithUs": "私たちと一緒に配達する"
+  },
+  "cart": {
+    "yourCart": "あなたのカート",
+    "empty": "カートは空です！",
+    "total": "合計",
+    "close": "閉じる",
+    "checkout": "チェックアウト"
+  },
+  "toasts": {
+    "addedToCart": "カートに追加しました",
+    "addedAnother": "さらに追加しました"
+  },
+  "menu": {
+    "ourMenu": "私たちのメニュー",
+    "mostPopular": "最も人気",
+    "searchPlaceholder": "お気に入りの料理を検索...",
+    "allPrices": "すべての価格",
+    "below100": "₹100 未満",
+    "midRange": "₹100 - ₹200",
+    "above200": "₹200 以上",
+    "favorites": "お気に入り",
+    "veg": "ベジタリアン",
+    "nonVeg": "非ベジタリアン",
+    "all": "すべて"
+  },
+  "modal": {
+    "addToCart": "カートに追加",
+    "viewCart": "カートを見る"
+  },
+  "errors": {
+    "noItems": "おっと！利用可能な商品がありません。",
+    "loadError": "商品を読み込めません。接続を確認して再試行してください。",
+    "retry": "再試行"
+  },
+  "languages": {
+    "english": "English",
+    "hindi": "हिंदी",
+    "kannada": "ಕನ್ನಡ",
+    "bengali": "বাংলা",
+    "chinese": "中文",
+    "marathi": "मराठी",
+    "japanese": "日本語"
+  }
+}

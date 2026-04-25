@@ -72,8 +72,6 @@
             <li data-value="en" role="option" aria-selected="true">English</li>
             <li data-value="hi" role="option">हिंदी</li>
             <li data-value="kn" role="option">ಕನ್ನಡ</li>
-            <li data-value="mr" role="option">मराठी</li>
-            <li data-value="bn" role="option">বাংলা</li>
           </ul>
         </div>
 
@@ -142,8 +140,8 @@
     <section id="menu">
       <div class="wrapper mt-4 text-center">
         <div class="text-center">
-          <h5 data-i18n="menu.ourMenu">Our menu</h5>
-          <h2 data-i18n="menu.mostPopular">The Most Popular</h2>
+          <h5>Your Picks</h5>
+          <h2>My Favorites</h2>
         </div>
 
         <!-- Filter Bar -->
@@ -183,8 +181,7 @@
               <li data-value="below3">Below 3.0</li>
             </ul>
           </div>
-          <button id="favToggle" class="fav-toggle" aria-pressed="false" aria-label="Show favorites only">❤
-            Favorites</button>
+          <!-- Removing fav toggle since this page is for favorites --> 
           <button id="filterVeg" class="veg-nonveg-btn">Veg</button>
           <button id="filterNonVeg" class="veg-nonveg-btn">Non-Veg</button>
           <button id="filterAll" class="veg-nonveg-btn">All</button>
@@ -443,9 +440,7 @@
   <div class="toast-container"></div>
 
   <!-- App JS -->
-  <script src="../js/error-handler.js"></script>
   <script src="../js/i18n.js"></script>
-  <script src="../js/language-dropdown.js"></script>
   <script src="../js/app.js"></script>
   <script src="../js/footer.js"></script>
   <script src="../js/cursor.js"></script>

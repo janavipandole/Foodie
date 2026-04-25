@@ -16,25 +16,32 @@
     })();
   </script>
 
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css" integrity="sha512-2SwdPD6INVrV/lHTZbO2nodKhrnDdJK9/kg2XD1r9uGqPo1cUbujc+IYdlYdEErWNu69gVcYgdxlmVmzTWnetw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
   <link rel="icon" href="../imgs/favicon.webp" type="image/webp" />
   <style>
     :root {
       --bg: #fffdf7;
+      --tabbg: #E0DDCC;
       --text: #1e1e1e;
-      --accent: #f4b400;
+      --accent: #E8AE31;
       --accent-light: #fff4c4;
-      --muted: #6b6b6b;
+      --muted: #0D0C0C;
+      --subcolor: #f3e6b3;
       --card: #ffffff;
-      --header-bg: #fff6d8;
+      --cardhover: #f9764a;
+      --icon-color: #fff;
+      --header-bg: #FAF1CD;
     }
 
     [data-theme="dark"] {
       --bg: #1a1a1a;
       --text: #f8fafc;
-      --accent: #fbbc04;
+      --accent: #FFBF36;
       --accent-light: #3b3b3b;
       --muted: #a1a1aa;
+      --subtext: #383838;
       --card: #262626;
+      --icon-color: #1a1a1a;
       --header-bg: #333333;
     }
 
@@ -56,7 +63,8 @@
       background: var(--header-bg);
       border-bottom-left-radius: 40px;
       border-bottom-right-radius: 40px;
-      box-shadow: 0 5px 18px rgba(0, 0, 0, 0.05);
+      box-shadow: 0 5px 18px rgba(0, 0, 0, 0.30);
+      border-bottom: 10px solid var(--subcolor);
     }
 
     header h1 {
@@ -69,6 +77,10 @@
       color: var(--muted);
       font-size: 1.1rem;
       margin: 0;
+    }
+
+    [data-theme="dark"] header p {
+    color: var(--subcolor);
     }
 
     main {
@@ -88,13 +100,14 @@
     }
 
     .faq-item:last-child {
-      margin-bottom: 60px;
+      margin-bottom: 90px;
       /* More space before footer */
     }
 
     .faq-item:hover {
       transform: translateY(-3px) scale(1.01);
-      box-shadow: 0 10px 24px rgba(0, 0, 0, 0.08);
+      box-shadow: 0 10px 24px rgba(0, 0, 0, 0.04);
+      background: var(--cardhover);
     }
 
     .faq-question {
@@ -131,7 +144,16 @@
       transition: background 0.2s, color 0.2s, transform 0.2s;
     }
 
-    .faq-question:hover .faq-icon,
+    .faq-question:hover {
+      background-color: var(--cardhover);
+      border-bottom: 6px solid #FFAD8F;
+    } 
+
+    .faq-item.active .faq-question {
+      background-color: var(--cardhover);
+    }
+    
+    .faq-icon,
     .faq-item.active .faq-question .faq-icon {
       background: #fff;
       color: var(--accent);
@@ -144,21 +166,25 @@
       color: var(--accent);
       margin-left: 18px;
       display: inline-block;
-      transition: transform 0.2s, color 0.2s;
+      transition: transform 0.2s ease, color 0.2s ease;
+    }
+
+    .faq-question:hover::after {
+      color: #fff;                
     }
 
     .faq-item.active .faq-question::after {
-      content: '–';
-      color: var(--text);
+      transform: rotate(-45deg);
+      color: #fff;
     }
 
     .faq-answer {
       display: none;
       padding: 18px 28px;
-      color: var(--muted);
+      color: var(--subtext);
       font-size: 1.01rem;
       line-height: 1.7;
-      background: var(--bg);
+      background: var(--tabbg);
     }
 
     .faq-item.active .faq-answer {
@@ -192,6 +218,10 @@
       transition: background 0.3s ease;
     }
 
+    #themeToggle i {
+      color: var(--icon-color);
+    }
+
     #themeToggle:hover {
       background: #f59e0b;
     }
@@ -200,7 +230,11 @@
 
 <body data-theme="light">
 
-  <button id="themeToggle">🌙</button>
+  <button id="themeToggle">
+    /* light and dark mode icon */
+    <i class="fa-solid fa-sun"></i>
+    <i class="fa-solid fa-moon"></i>
+  </button>
   <header>
     <h1>Frequently Asked Questions</h1>
     <p>Find answers to common questions about Foodie services, menu, and orders.</p>
@@ -208,31 +242,31 @@
 
   <main>
     <div class="faq-item">
-      <div class="faq-question">How can I place an order?</div>
+      <div class="faq-question" tabindex="0">How can I place an order?</div>
       <div class="faq-answer">You can place an order directly through our website by browsing the menu, selecting your
         dishes, and proceeding to checkout. You can also order via our mobile app.</div>
     </div>
 
     <div class="faq-item">
-      <div class="faq-question">Do you offer home delivery?</div>
+      <div class="faq-question" tabindex="0">Do you offer home delivery?</div>
       <div class="faq-answer">Yes! We provide quick and safe home delivery services in all major cities. Delivery time
         may vary based on your location and order size.</div>
     </div>
 
     <div class="faq-item">
-      <div class="faq-question">Can I customize my order?</div>
+      <div class="faq-question" tabindex="0">Can I customize my order?</div>
       <div class="faq-answer">Absolutely. You can add special instructions while placing your order to customize spice
         levels, portion sizes, or toppings.</div>
     </div>
 
     <div class="faq-item">
-      <div class="faq-question">What payment methods do you accept?</div>
+      <div class="faq-question" tabindex="0">What payment methods do you accept?</div>
       <div class="faq-answer">We accept all major debit and credit cards, UPI, Paytm, and cash on delivery for
         convenience.</div>
     </div>
 
     <div class="faq-item">
-      <div class="faq-question">How do I report an issue with my order?</div>
+      <div class="faq-question" tabindex="0">How do I report an issue with my order?</div>
       <div class="faq-answer">If there’s any issue with your order, please contact our support team through the Help
         section or email us at support@foodie.com. We’ll resolve it quickly.</div>
     </div>
@@ -252,21 +286,44 @@
     // Initial theme setting is now handled by the inline script in the head.
     // This script only updates the button text based on the current theme.
     const currentTheme = document.documentElement.getAttribute('data-theme');
-    toggleBtn.textContent = currentTheme === 'dark' ? '☀️' : '🌙';
+    toggleBtn.innerHTML = currentTheme === 'dark' ? 
+    '<i class="fa-solid fa-sun"></i>'
+  : '<i class="fa-solid fa-moon"></i>';
 
     toggleBtn.addEventListener('click', () => {
       const current = document.documentElement.getAttribute('data-theme');
       const newTheme = current === 'light' ? 'dark' : 'light';
       document.documentElement.setAttribute('data-theme', newTheme);
       localStorage.setItem('theme', newTheme);
-      toggleBtn.textContent = newTheme === 'dark' ? '☀️' : '🌙';
+      toggleBtn.innerHTML = newTheme === 'dark' ? 
+      '<i class="fa-solid fa-sun"></i>'
+    : '<i class="fa-solid fa-moon"></i>';
     });
 
+    const faqItems = document.querySelectorAll('.faq-item');
+
     document.querySelectorAll('.faq-question').forEach(q => {
-      q.addEventListener('click', () => {
-        q.parentElement.classList.toggle('active');
-      });
+    q.addEventListener('click', () => {
+    const currentItem = q.parentElement;
+
+    faqItems.forEach(item => {
+      if (item !== currentItem) {
+        item.classList.remove('active');
+      }
     });
+
+    currentItem.classList.toggle('active');
+    });
+  });
+
+    document.querySelectorAll('.faq-question').forEach(q => {
+      q.addEventListener('keydown', (e) => {
+    if (e.key === 'Enter' || e.key === ' ') {
+      e.preventDefault();
+      q.click(); 
+    }
+  });
+});
   </script>
 </body>
 

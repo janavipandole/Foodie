@@ -1,0 +1,133 @@
+{
+  "nav": {
+    "home": "首页",
+    "services": "服务",
+    "menu": "菜单",
+    "about": "关于我们",
+    "contact": "联系我们",
+    "nearby": "附近餐厅",
+    "rideWithUs": "加入我们配送",
+    "searchPlaceholder": "搜索您的食物 ...",
+    "darkMode": "深色模式",
+    "lightMode": "浅色模式",
+    "signIn": "登录",
+    "cart": "购物车"
+  },
+  "hero": {
+    "title": "享受您的美味",
+    "highlight": "美食",
+    "subtitle": "我们通过快速配送为您送上美味佳肴",
+    "orderNow": "立即下单"
+  },
+  "services": {
+    "sectionTitle": "我们的服务",
+    "mainTitle": "它是如何工作的？",
+    "easyOrder": {
+      "title": "轻松下单",
+      "description": "订购食物只需几个简单步骤。"
+    },
+    "fastDelivery": {
+      "title": "快速配送",
+      "description": "始终准时送达，而且更快。"
+    },
+    "bestQuality": {
+      "title": "最佳品质",
+      "description": "不仅速度快，我们更重视品质。"
+    }
+  },
+  "reviews": {
+    "sectionTitle": "我们的评价",
+    "mainTitle": "他们怎么说",
+    "deepakName": "迪帕克·库马尔",
+    "deepakReview": "Foodie 非常棒！不仅有很多美味食物，服务也非常优秀，尤其是快速配送。我强烈推荐 Foodie。",
+    "priyaName": "普里亚·拉伊",
+    "priyaReview": "新鲜的食材、创意菜单和热情服务让这里成为隐藏的宝藏。无论是普通晚餐还是特别夜晚都非常适合。真的是一个美食天堂！",
+    "anjaliName": "安贾利·乔希",
+    "anjaliReview": "我在这里度过了美好的时光！食物充满风味，氛围温馨舒适，员工也非常热情。每一道菜都令人满意——我一定会再来。"
+  },
+  "app": {
+    "sectionTitle": "我们的应用",
+    "mainTitle": "订购食物的简单方式",
+    "description": "浏览、发现、随时随地快速获取。",
+    "installButton": "安装应用"
+  },
+  "qr": {
+    "scan": "扫描下载",
+    "quickAccess": "快速访问我们的移动应用",
+    "instruction": "将相机对准二维码",
+    "orDownload": "或者从这里下载：",
+    "appStoreSmall": "下载",
+    "appStoreLarge": "来自 App Store",
+    "googlePlaySmall": "获取",
+    "googlePlayLarge": "来自 Google Play",
+    "users": "活跃用户",
+    "rating": "应用评分",
+    "downloads": "下载量"
+  },
+  "newsletter": {
+    "sectionTitle": "订阅我们",
+    "mainTitle": "订阅我们的新闻通讯",
+    "description": "输入您的电子邮件以接收我们的每日更新。",
+    "placeholder": "输入您的电子邮件地址",
+    "subscribeButton": "订阅"
+  },
+  "footer": {
+    "ourMenu": "我们的菜单",
+    "special": "特色",
+    "popular": "热门",
+    "category": "分类",
+    "company": "公司",
+    "whyFoodie": "为什么选择 Foodie",
+    "partnerWithUs": "与我们合作",
+    "aboutUs": "关于我们",
+    "faq": "常见问题",
+    "support": "支持",
+    "account": "账户",
+    "supportCenter": "支持中心",
+    "feedback": "反馈",
+    "contactUs": "联系我们",
+    "description": "我们通过快速配送为您送上美味佳肴",
+    "rideWithUs": "加入我们配送"
+  },
+  "cart": {
+    "yourCart": "您的购物车",
+    "empty": "您的购物车为空！",
+    "total": "总计",
+    "close": "关闭",
+    "checkout": "结账"
+  },
+  "toasts": {
+    "addedToCart": "已加入购物车",
+    "addedAnother": "又添加了一项"
+  },
+  "menu": {
+    "ourMenu": "我们的菜单",
+    "mostPopular": "最受欢迎",
+    "searchPlaceholder": "搜索您喜欢的菜品...",
+    "allPrices": "所有价格",
+    "below100": "低于 ₹100",
+    "midRange": "₹100 - ₹200",
+    "above200": "高于 ₹200",
+    "favorites": "收藏",
+    "veg": "素食",
+    "nonVeg": "荤食",
+    "all": "全部"
+  },
+  "modal": {
+    "addToCart": "加入购物车",
+    "viewCart": "查看购物车"
+  },
+  "errors": {
+    "noItems": "哎呀！没有可用项目。",
+    "loadError": "无法加载产品。请检查您的连接并重试。",
+    "retry": "重试"
+  },
+  "languages": {
+    "english": "English",
+    "hindi": "हिंदी",
+    "kannada": "ಕನ್ನಡ",
+    "bengali": "বাংলা",
+    "chinese": "中文",
+    "marathi": "मराठी"
+  }
+}
