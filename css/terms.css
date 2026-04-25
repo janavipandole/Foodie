@@ -98,32 +98,6 @@ color: #ff6b35;
   background: #e85a28;
 }
 
-.footer {
-  background: #222;
-  color: #fff;
-  padding: 20px 0;
-}
-
-.footer-container {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  flex-wrap: wrap;
-  gap: 15px;
-}
-
-.footer-links {
-  display: flex;
-  gap: 15px;
-}
-
-.footer-links a {
-  color: #fff;
-  text-decoration: none;
-}
-.footer-links a:hover {
-  color: #ff6b35;
-}
 
 @media (max-width: 768px) {
   .nav-container,

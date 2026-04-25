@@ -5,8 +5,22 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Terms of Service | Foodie</title>
 
-  <link rel="stylesheet" href="../css/base/style.css" />
+  <link rel="stylesheet" href="../css/style.css" />
   <link rel="stylesheet" href="../css/terms.css" />
+
+  <link rel="icon" href="../imgs/favicon.webp" type="image/webp" />
+
+  
+    <link rel="stylesheet" href="../css/cursor.css">
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.0/css/all.min.css"
+        integrity="sha512-DxV+EoADOkOygM4IR9yXP8Sb2qwgidEmeqAEmDKIOfPRQZOWbXCzLC6vjbZyy0vPisbH2SyW27+ddLVCN+OMzQ=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
+
+    <link href="https://unpkg.com/aos@2.3.4/dist/aos.css" rel="stylesheet">
+
 </head>
 <body>
   <header class="navbar">
@@ -107,15 +121,29 @@
     </div>
   </main>
 
-  <footer class="footer">
-    <div class="container footer-container">
-      <p>© 2026 Foodie. All rights reserved.</p>
+  <footer id="contacts" data-aos="fade-up"></footer>
 
-      <div class="footer-links">
-        <a href="privacy-policy.html">Privacy Policy</a>
-        <a href="terms-of-service.html">Terms of Service</a>
-         </div>
-    </div>
-  </footer>
+   <!-- Footer loader -->
+  <script src="../js/footer.js"></script>
+
+   <!-- for translations -->
+  <script src="../js/i18n.js"></script>
+
+  <!-- App JS (dark mode, cart, etc.) -->
+  <script src="../js/app.js"></script>
+
+  <script src="../js/cursor.js"></script>
+
+  <!-- for footer fade-up animation -->
+  <script src="https://unpkg.com/aos@2.3.4/dist/aos.js"></script>
+  <script>
+    AOS.init({
+      duration: 1000,
+      easing: 'ease-out',
+      once: true,
+      offset: 100
+    });
+  </script>
+
 </body>
 </html>
