@@ -848,47 +848,26 @@ const loadProducts = async (retryCount = 0) => {
 
         setLoadingState(container, false);
         productList = data;
-        showCards(productList);
         restoreCartFromStorage();
-        setTimeout(() => {
-            const urlParams = new URLSearchParams(window.location.search);
-            let shouldApplyFilters = false;
+        
+        const urlParams = new URLSearchParams(window.location.search);
+        const searchQuery = urlParams.get('search');
+        const cuisineParam = urlParams.get('cuisine');
 
-            // 1. Handle Search Param (?search=...)
-            const searchQuery = urlParams.get('search');
-            if (searchQuery) {
-                const searchInput = document.getElementById('search');
-                if (searchInput) {
-                    searchInput.value = decodeURIComponent(searchQuery);
-                    shouldApplyFilters = true;
-                }
-            }
+        if (searchQuery && document.getElementById('search')) {
+            document.getElementById('search').value = decodeURIComponent(searchQuery);
+        }
+        if (cuisineParam) {
+            currentCuisineFilter = decodeURIComponent(cuisineParam);
+            if (cuisineSelected) cuisineSelected.textContent = decodeURIComponent(cuisineParam);
+        }
 
-            // 2. Handle Cuisine Param (?cuisine=...)
-            const cuisineParam = urlParams.get('cuisine');
-            if (cuisineParam) {
-                const decodedCuisine = decodeURIComponent(cuisineParam);
-                
-                // Update the global filter state variable
-                // (Assumes currentCuisineFilter is defined in the outer scope)
-                if (typeof currentCuisineFilter !== 'undefined') {
-                    currentCuisineFilter = decodedCuisine;
-                }
-
-                // Update the visual dropdown text to match the selected cuisine
-                // (Assumes cuisineSelected is defined in the outer scope)
-                if (typeof cuisineSelected !== 'undefined' && cuisineSelected) {
-                    cuisineSelected.textContent = decodedCuisine;
-                }
-                
-                shouldApplyFilters = true;
-            }
-
-            // Apply filters if either parameter was present
-            if (shouldApplyFilters) {
-                applyFilters();
-            }
-        }, 100);
+        if (searchQuery || cuisineParam) {
+            applyFilters();
+        } 
+        else {
+            showCards(productList);
+        }
     } catch (error) {
         console.error('Failed to load products:', error);
         
