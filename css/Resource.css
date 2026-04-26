@@ -1,0 +1,83 @@
+.resources-page {
+  padding: 60px 20px;
+  max-width: 1200px;
+  margin: auto;
+  font-family: "Poppins", sans-serif;
+}
+
+/* Hero */
+.resources-hero {
+  text-align: center;
+  margin-bottom: 40px;
+}
+
+.resources-hero h1 {
+  font-size: 2.5rem;
+  color: #2e7d32;
+}
+
+.resources-hero p {
+  color: #555;
+  margin-top: 10px;
+}
+
+/* Grid */
+.resources-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 24px;
+}
+
+/* Card */
+.resource-card {
+  background: #ffffff;
+  border-radius: 18px;
+  padding: 24px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+  transition: all 0.3s ease;
+  border: 1px solid #eee;
+}
+
+.resource-card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 14px 28px rgba(0,0,0,0.12);
+}
+
+.resource-card h2 {
+  color: #1b5e20;
+  margin-bottom: 10px;
+}
+
+.resource-card p {
+  color: #666;
+  font-size: 0.95rem;
+}
+
+/* List */
+.resource-card ul {
+  margin: 12px 0;
+  padding-left: 0;
+  list-style: none;
+}
+
+.resource-card li {
+  font-size: 0.9rem;
+  margin: 6px 0;
+  color: #444;
+}
+
+/* Button */
+.read-btn {
+  margin-top: 12px;
+  padding: 10px 14px;
+  border: none;
+  border-radius: 10px;
+  background: #2e7d32;
+  color: white;
+  cursor: pointer;
+  transition: background 0.3s ease;
+}
+
+.read-btn:hover {
+  background: #1b5e20;
+}

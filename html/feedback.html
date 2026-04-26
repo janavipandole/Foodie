@@ -4,9 +4,10 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Feedback - Foodie</title>
-
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
-
+  <link rel="icon" href="../imgs/favicon.webp" type="image/webp" />
+  <link rel="stylesheet" href="../css/style.css">
+  <link rel="stylesheet" href="../css/feedback.css">
+  <link rel="stylesheet" href="../css/cursor.css">
   <style>
     :root {
       --primary: #f59e0b;
@@ -181,13 +182,12 @@
 
     /* ===== FOOTER ===== */
     footer {
-      text-align: center;
-      padding: 1.5rem;
-      background: #f59e0b;
-      color: white;
-      margin-top: 2rem;
-      border-radius: 40px 40px 0 0;
-      font-size: 0.9rem;
+      background: #F2BD12;
+      color: #fff;
+    }
+
+    .footer-container {
+      margin-top: 0 !important;
     }
 
     /* ===== MOBILE ===== */
@@ -202,19 +202,38 @@
 <body>
 
   <section class="hero">
-    <h1>Share Your <span>Feedback</span></h1>
-    <p>Your opinion helps us improve 💛</p>
+    <div class="hero-content">
+      <span class="hero-badge">Your Opinion Matters</span>
+      <h1>Give Your <span class="highlight">Feedback</span></h1>
+      <p>We would love to hear your thoughts about our services and overall experience.</p>
+      <div class="feedback-stats">
+        <div class="stat-box">
+          <h3>10K+</h3>
+          <p>Happy Customers</p>
+        </div>
+        <div class="stat-box">
+          <h3>4.8★</h3>
+          <p>Average Rating</p>
+        </div>
+        <div class="stat-box">
+          <h3>24/7</h3>
+          <p>Customer Support</p>
+        </div>
+      </div>
+    </div>
   </section>
 
+
+  <main>
   <section class="feedback-container">
 
     <div class="feedback-card">
-      <h2>🌐 Website</h2>
-      <p>Feedback on UI & navigation</p>
-      <form>
+      <div class="card-icon">🌐</div>
+      <h2>Website Feedback</h2>
+      <p>Tell us what you think about our website design, speed, and navigation.</p>
+      <form id="web-feedback-form">
         <input type="text" placeholder="Your Name" required>
         <input type="email" placeholder="Your Email" required>
-
         <div class="rating">
           <input type="radio" name="web" id="w5" required><label for="w5">★</label>
           <input type="radio" name="web" id="w4"><label for="w4">★</label>
@@ -222,19 +241,18 @@
           <input type="radio" name="web" id="w2"><label for="w2">★</label>
           <input type="radio" name="web" id="w1"><label for="w1">★</label>
         </div>
-
-        <textarea placeholder="Write your feedback..." required></textarea>
-        <button class="submit-btn">Submit</button>
+        <textarea placeholder="Your feedback..." required></textarea>
+        <button type="submit" class="submit-btn">Submit Feedback</button>
       </form>
     </div>
 
     <div class="feedback-card">
-      <h2>📱 App</h2>
-      <p>Your mobile experience</p>
-      <form>
+      <div class="card-icon">📱</div>
+      <h2>App Feedback</h2>
+      <p>Share your experience with our mobile application and features.</p>
+      <form id="app-feedback-form">
         <input type="text" placeholder="Your Name" required>
         <input type="email" placeholder="Your Email" required>
-
         <div class="rating">
           <input type="radio" name="app" id="a5" required><label for="a5">★</label>
           <input type="radio" name="app" id="a4"><label for="a4">★</label>
@@ -242,19 +260,18 @@
           <input type="radio" name="app" id="a2"><label for="a2">★</label>
           <input type="radio" name="app" id="a1"><label for="a1">★</label>
         </div>
-
-        <textarea placeholder="Write your feedback..." required></textarea>
-        <button class="submit-btn">Submit</button>
+        <textarea placeholder="Your feedback..." required></textarea>
+        <button type="submit" class="submit-btn">Submit Feedback</button>
       </form>
     </div>
 
     <div class="feedback-card">
-      <h2>🚚 Service</h2>
-      <p>Delivery & support experience</p>
-      <form>
+      <div class="card-icon">🚚</div>
+      <h2>Service Feedback</h2>
+      <p>Help us improve food delivery, customer support, and service quality.</p>
+      <form id="service-feedback-form">
         <input type="text" placeholder="Your Name" required>
         <input type="email" placeholder="Your Email" required>
-
         <div class="rating">
           <input type="radio" name="service" id="s5" required><label for="s5">★</label>
           <input type="radio" name="service" id="s4"><label for="s4">★</label>
@@ -262,33 +279,81 @@
           <input type="radio" name="service" id="s2"><label for="s2">★</label>
           <input type="radio" name="service" id="s1"><label for="s1">★</label>
         </div>
-
-        <textarea placeholder="Write your feedback..." required></textarea>
-        <button class="submit-btn">Submit</button>
+        <textarea placeholder="Your feedback..." required></textarea>
+        <button type="submit" class="submit-btn">Submit Feedback</button>
       </form>
     </div>
 
   </section>
+  </main>
 
-  <div class="toast" id="toast">Feedback submitted successfully!</div>
+  <!-- Feedback Modal -->
+  <div id="modal-overlay" class="modal-overlay"></div>
+  <div id="feedback-modal" class="feedback-modal">
+    <div class="modal-header">
+      <h2 id="modal-title">Feedback</h2>
+      <button id="close-modal" class="close-btn" aria-label="Close feedback modal">&times;</button>
+    </div>
+    <div class="modal-body">
+      <form id="feedback-form" action="/api/feedback" method="POST">
+        <input type="hidden" id="modal-category" name="category" value="">
 
-  <footer>
-    <p>&copy; 2025 Foodie. All rights reserved.</p>
-  </footer>
+        <div class="form-group">
+          <label for="feedback-name">Name *</label>
+          <input type="text" id="feedback-name" name="name" placeholder="Your Name" required>
+        </div>
 
-  <script>
-    const forms = document.querySelectorAll("form");
-    const toast = document.getElementById("toast");
+        <div class="form-group">
+          <label for="feedback-email">Email *</label>
+          <input type="email" id="feedback-email" name="email" placeholder="your.email@example.com" required>
+        </div>
 
-    forms.forEach(form => {
-      form.addEventListener("submit", e => {
-        e.preventDefault();
-        toast.classList.add("show");
-        setTimeout(() => toast.classList.remove("show"), 2000);
-        form.reset();
-      });
-    });
-  </script>
+        <div class="form-group">
+          <label>Rating *</label>
+          <div class="rating">
+            <input type="radio" id="star5" name="rating" value="5"><label for="star5" title="5 stars">★</label>
+            <input type="radio" id="star4" name="rating" value="4"><label for="star4" title="4 stars">★</label>
+            <input type="radio" id="star3" name="rating" value="3"><label for="star3" title="3 stars">★</label>
+            <input type="radio" id="star2" name="rating" value="2"><label for="star2" title="2 stars">★</label>
+            <input type="radio" id="star1" name="rating" value="1"><label for="star1" title="1 star">★</label>
+          </div>
+        </div>
 
-</body>
+        <div class="feedback-stats">
+  <div class="stat-box">
+    <h3>10K+</h3>
+    <p>Happy Customers</p>
+  </div>
+  <div class="stat-box">
+    <h3>4.8★</h3>
+    <p>Average Rating</p>
+  </div>
+  <div class="stat-box">
+    <h3>24/7</h3>
+    <p>Customer Support</p>
+  </div>
+</div>
+
+        <div class="form-group">
+          <label for="feedback-text">Your Feedback *</label>
+          <textarea id="feedback-text" name="feedback" placeholder="Please share your thoughts, suggestions, or any issues you've experienced..." required minlength="10"></textarea>
+        </div>
+
+        <button type="submit" class="submit-btn">Submit Feedback</button>
+      </form>
+    </div>
+  </div>
+
+  <!-- Success Toast -->
+  <div id="success-toast" class="toast">
+    <div class="toast-content">
+      <span class="toast-icon">✅</span>
+      <span class="toast-message">Thank you for your feedback!</span>
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <footer id="contacts" data-aos="fade-up"></footer>
+  <script src="../js/footer.js"></script>
+
 </html>

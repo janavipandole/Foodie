@@ -11,7 +11,8 @@
     "darkMode": "Dark Mode",
     "lightMode": "Light Mode",
     "signIn": "Sign in",
-    "cart": "Cart"
+    "cart": "Cart",
+    "favorites": "Favorites"
   },
   "hero": {
     "title": "Enjoy Your Delicious",
@@ -52,18 +53,18 @@
     "installButton": "Install the app"
   },
   "qr": {
-  "scan": "Scan to Download",
-  "quickAccess": "Quick access to our mobile app",
-  "instruction": "Point your camera at the QR code",
-  "orDownload": "Or download from:",
-  "appStoreSmall": "Download on the",
-  "appStoreLarge": "App Store",
-  "googlePlaySmall": "Get it on",
-  "googlePlayLarge": "Google Play",
-  "users": "Active Users",
-  "rating": "App Rating",
-  "downloads": "Downloads"
-},
+    "scan": "Scan to Download",
+    "quickAccess": "Quick access to our mobile app",
+    "instruction": "Point your camera at the QR code",
+    "orDownload": "Or download from:",
+    "appStoreSmall": "Download on the",
+    "appStoreLarge": "App Store",
+    "googlePlaySmall": "Get it on",
+    "googlePlayLarge": "Google Play",
+    "users": "Active Users",
+    "rating": "App Rating",
+    "downloads": "Downloads"
+  },
   "newsletter": {
     "sectionTitle": "Our Subscribe",
     "mainTitle": "Subscribe to Our newsletter",
@@ -125,7 +126,9 @@
   "languages": {
     "english": "English",
     "hindi": "हिंदी",
-    "kannada": "ಕನ್ನಡ"
+    "kannada": "ಕನ್ನಡ",
+    "marathi": "मराठी"
+    "chinese": "中文"
   },
   "aboutUs": {
     "hero": {

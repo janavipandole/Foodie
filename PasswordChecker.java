@@ -1,6 +1,6 @@
 import java.util.Scanner;
 
-public class PasswordStrengthChecker {
+public class PasswordChecker {
 
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
