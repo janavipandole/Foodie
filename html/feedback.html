@@ -1,14 +1,22 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Feedback - Foodie</title>
-  <link rel="icon" href="../imgs/favicon.webp" type="image/webp" />
-  <link rel="stylesheet" href="../css/cursor.css">
+
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
 
   <style>
+    :root {
+      --primary: #f59e0b;
+      --primary-dark: #d97706;
+      --bg: #f8fafc;
+      --card: rgba(255,255,255,0.85);
+      --text: #1f2933;
+      --muted: #6b7280;
+    }
+
     * {
       margin: 0;
       padding: 0;
@@ -17,101 +25,103 @@
     }
 
     body {
-      background-color: #f9f9fb;
-      color: #333;
+      background: var(--bg);
+      color: var(--text);
     }
 
     /* ===== HERO ===== */
     .hero {
       text-align: center;
       padding: 4rem 1rem;
-      background: linear-gradient(135deg, #ebce6e, #F2BD12);
-      color: #fff;
-      border-bottom-left-radius: 50px;
-      border-bottom-right-radius: 50px;
+      background: linear-gradient(135deg, #fbbf24, #f59e0b);
+      color: white;
+      border-radius: 0 0 60px 60px;
     }
 
     .hero h1 {
-      font-size: 2.5rem;
-      margin-bottom: 0.5rem;
+      font-size: 2.6rem;
+      font-weight: 600;
     }
 
-    .highlight {
-      color: #ffeb3b;
+    .hero span {
+      color: #fff7ed;
     }
 
     .hero p {
-      font-size: 1.1rem;
+      margin-top: 0.5rem;
       opacity: 0.9;
     }
 
-    /* ===== FEEDBACK SECTION ===== */
+    /* ===== CONTAINER ===== */
     .feedback-container {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
       gap: 2rem;
-      padding: 3rem 2rem;
-      max-width: 1200px;
+      padding: 3rem 1.5rem;
+      max-width: 1100px;
       margin: auto;
     }
 
+    /* ===== CARD ===== */
     .feedback-card {
-      background: #fff;
-      padding: 2rem;
-      border-radius: 20px;
-      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
-      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      background: var(--card);
+      backdrop-filter: blur(10px);
+      border-radius: 18px;
+      padding: 1.8rem;
+      box-shadow: 0 8px 25px rgba(0,0,0,0.08);
+      transition: all 0.3s ease;
+      border: 1px solid rgba(255,255,255,0.4);
     }
 
     .feedback-card:hover {
       transform: translateY(-6px);
-      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.12);
+      box-shadow: 0 14px 35px rgba(0,0,0,0.12);
     }
 
     .feedback-card h2 {
-      color: #F2BD12;
-      margin-bottom: 0.5rem;
+      color: var(--primary-dark);
+      margin-bottom: 0.4rem;
+      font-size: 1.4rem;
     }
 
     .feedback-card p {
-      color: #666;
-      margin-bottom: 1.5rem;
+      color: var(--muted);
+      font-size: 0.95rem;
+      margin-bottom: 1.2rem;
     }
 
-    /* ===== FORM STYLING ===== */
+    /* ===== FORM ===== */
     form {
       display: flex;
       flex-direction: column;
-      gap: 1rem;
+      gap: 0.9rem;
     }
 
-    input[type="text"],
-    input[type="email"],
-    textarea {
-      padding: 0.8rem 1rem;
-      border: 1px solid #ddd;
+    input, textarea {
+      padding: 0.75rem 0.9rem;
       border-radius: 10px;
-      font-size: 0.95rem;
-      transition: border 0.3s, box-shadow 0.3s;
-      background: #f8f8f8;
+      border: 1px solid #e5e7eb;
+      font-size: 0.9rem;
+      background: #fff;
+      transition: all 0.25s ease;
     }
 
-    input:focus,
-    textarea:focus {
-      border-color: #F2BD12;
-      box-shadow: 0 0 0 4px rgba(0, 157, 255, 0.15);
-      background: #fff;
+    input:focus, textarea:focus {
+      border-color: var(--primary);
+      box-shadow: 0 0 0 3px rgba(245,158,11,0.2);
       outline: none;
     }
 
     textarea {
-      resize: vertical;
-      min-height: 100px;
+      min-height: 90px;
+      resize: none;
     }
 
+    /* ===== RATING ===== */
     .rating {
       display: flex;
-      gap: 0.4rem;
+      flex-direction: row-reverse;
+      gap: 0.3rem;
     }
 
     .rating input {
@@ -119,54 +129,71 @@
     }
 
     .rating label {
-      font-size: 1.5rem;
-      color: #ccc;
+      font-size: 1.4rem;
+      color: #d1d5db;
       cursor: pointer;
-      transition: color 0.2s;
+      transition: 0.2s;
     }
 
-    .rating input:checked~label,
+    .rating label:hover {
+      transform: scale(1.15);
+    }
+
+    .rating input:checked ~ label,
     .rating label:hover,
-    .rating label:hover~label {
-      color: #ffb400;
+    .rating label:hover ~ label {
+      color: #fbbf24;
     }
 
+    /* ===== BUTTON ===== */
     .submit-btn {
-      background: #F2BD12;
+      background: var(--primary);
       color: white;
       border: none;
-      padding: 0.8rem 1rem;
+      padding: 0.75rem;
       border-radius: 10px;
-      cursor: pointer;
       font-weight: 500;
-      transition: all 0.3s ease;
+      cursor: pointer;
+      transition: 0.25s;
     }
 
     .submit-btn:hover {
-      background: #F2BD12;
-      transform: translateY(-2px);
-      box-shadow: 0 4px 10px #c7a841
+      background: var(--primary-dark);
+      transform: translateY(-1px);
+    }
+
+    /* ===== TOAST ===== */
+    .toast {
+      position: fixed;
+      top: 20px;
+      right: -300px;
+      background: #16a34a;
+      color: white;
+      padding: 0.8rem 1.2rem;
+      border-radius: 8px;
+      font-size: 0.9rem;
+      transition: 0.4s;
+    }
+
+    .toast.show {
+      right: 20px;
     }
 
     /* ===== FOOTER ===== */
     footer {
       text-align: center;
-      padding: 2rem;
-      background: #F2BD12;
-      color: #fff;
+      padding: 1.5rem;
+      background: #f59e0b;
+      color: white;
+      margin-top: 2rem;
+      border-radius: 40px 40px 0 0;
       font-size: 0.9rem;
-      border-top-left-radius: 40px;
-      border-top-right-radius: 40px;
-      margin-top: 3rem;
     }
 
-    @media (max-width: 768px) {
+    /* ===== MOBILE ===== */
+    @media(max-width:768px){
       .hero h1 {
         font-size: 2rem;
-      }
-
-      .feedback-container {
-        padding: 2rem 1rem;
       }
     }
   </style>
@@ -175,97 +202,93 @@
 <body>
 
   <section class="hero">
-    <h1>Give Your <span class="highlight">Feedback</span></h1>
-    <p>We would love to hear your thoughts about our services.</p>
+    <h1>Share Your <span>Feedback</span></h1>
+    <p>Your opinion helps us improve 💛</p>
   </section>
-
 
   <section class="feedback-container">
 
-    <!-- Website Feedback -->
     <div class="feedback-card">
-      <h2>Website Feedback</h2>
-      <p>Tell us what you think about our website and navigation.</p>
-
-      <form id="website-feedback-form">
+      <h2>🌐 Website</h2>
+      <p>Feedback on UI & navigation</p>
+      <form>
         <input type="text" placeholder="Your Name" required>
         <input type="email" placeholder="Your Email" required>
 
         <div class="rating">
-          <input type="radio" id="web-star5" name="web-rating" value="5"><label for="web-star5">★</label>
-          <input type="radio" id="web-star4" name="web-rating" value="4"><label for="web-star4">★</label>
-          <input type="radio" id="web-star3" name="web-rating" value="3"><label for="web-star3">★</label>
-          <input type="radio" id="web-star2" name="web-rating" value="2"><label for="web-star2">★</label>
-          <input type="radio" id="web-star1" name="web-rating" value="1"><label for="web-star1">★</label>
+          <input type="radio" name="web" id="w5" required><label for="w5">★</label>
+          <input type="radio" name="web" id="w4"><label for="w4">★</label>
+          <input type="radio" name="web" id="w3"><label for="w3">★</label>
+          <input type="radio" name="web" id="w2"><label for="w2">★</label>
+          <input type="radio" name="web" id="w1"><label for="w1">★</label>
         </div>
 
-        <textarea placeholder="Your feedback..." required></textarea>
-        <button type="submit" class="submit-btn">Submit Feedback</button>
+        <textarea placeholder="Write your feedback..." required></textarea>
+        <button class="submit-btn">Submit</button>
       </form>
     </div>
 
-    <!-- App Feedback -->
     <div class="feedback-card">
-      <h2>App Feedback</h2>
-      <p>Share your experience with our mobile application.</p>
-
-      <form id="app-feedback-form">
+      <h2>📱 App</h2>
+      <p>Your mobile experience</p>
+      <form>
         <input type="text" placeholder="Your Name" required>
         <input type="email" placeholder="Your Email" required>
 
         <div class="rating">
-          <input type="radio" id="app-star5" name="app-rating" value="5"><label for="app-star5">★</label>
-          <input type="radio" id="app-star4" name="app-rating" value="4"><label for="app-star4">★</label>
-          <input type="radio" id="app-star3" name="app-rating" value="3"><label for="app-star3">★</label>
-          <input type="radio" id="app-star2" name="app-rating" value="2"><label for="app-star2">★</label>
-          <input type="radio" id="app-star1" name="app-rating" value="1"><label for="app-star1">★</label>
+          <input type="radio" name="app" id="a5" required><label for="a5">★</label>
+          <input type="radio" name="app" id="a4"><label for="a4">★</label>
+          <input type="radio" name="app" id="a3"><label for="a3">★</label>
+          <input type="radio" name="app" id="a2"><label for="a2">★</label>
+          <input type="radio" name="app" id="a1"><label for="a1">★</label>
         </div>
 
-        <textarea placeholder="Your feedback..." required></textarea>
-        <button type="submit" class="submit-btn">Submit Feedback</button>
+        <textarea placeholder="Write your feedback..." required></textarea>
+        <button class="submit-btn">Submit</button>
       </form>
     </div>
 
-    <!-- Service Feedback -->
     <div class="feedback-card">
-      <h2>Service Feedback</h2>
-      <p>Let us know how we can improve food delivery and support.</p>
-
-      <form id="service-feedback-form">
+      <h2>🚚 Service</h2>
+      <p>Delivery & support experience</p>
+      <form>
         <input type="text" placeholder="Your Name" required>
         <input type="email" placeholder="Your Email" required>
 
         <div class="rating">
-          <input type="radio" id="service-star5" name="service-rating" value="5"><label for="service-star5">★</label>
-          <input type="radio" id="service-star4" name="service-rating" value="4"><label for="service-star4">★</label>
-          <input type="radio" id="service-star3" name="service-rating" value="3"><label for="service-star3">★</label>
-          <input type="radio" id="service-star2" name="service-rating" value="2"><label for="service-star2">★</label>
-          <input type="radio" id="service-star1" name="service-rating" value="1"><label for="service-star1">★</label>
+          <input type="radio" name="service" id="s5" required><label for="s5">★</label>
+          <input type="radio" name="service" id="s4"><label for="s4">★</label>
+          <input type="radio" name="service" id="s3"><label for="s3">★</label>
+          <input type="radio" name="service" id="s2"><label for="s2">★</label>
+          <input type="radio" name="service" id="s1"><label for="s1">★</label>
         </div>
 
-        <textarea placeholder="Your feedback..." required></textarea>
-        <button type="submit" class="submit-btn">Submit Feedback</button>
+        <textarea placeholder="Write your feedback..." required></textarea>
+        <button class="submit-btn">Submit</button>
       </form>
     </div>
+
   </section>
 
-  <!-- Footer -->
+  <div class="toast" id="toast">Feedback submitted successfully!</div>
+
   <footer>
-    <p>&copy; 2025 Foodie. All Rights Reserved.</p>
+    <p>&copy; 2025 Foodie. All rights reserved.</p>
   </footer>
 
-  <script src="../js/cursor.js"></script>
-
   <script>
+    const forms = document.querySelectorAll("form");
+    const toast = document.getElementById("toast");
 
-    document.querySelectorAll("form").forEach(form => {
-      form.addEventListener("submit", (e) => {
+    forms.forEach(form => {
+      form.addEventListener("submit", e => {
         e.preventDefault();
-        alert("Thank you for your feedback! 💬");
+        toast.classList.add("show");
+        setTimeout(() => toast.classList.remove("show"), 2000);
         form.reset();
       });
     });
   </script>
-</body>
 
+</body>
 </html>
