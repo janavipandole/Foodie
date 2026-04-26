@@ -1,0 +1,55 @@
+name: Auto Label Issues (NSoC'26)
+
+on:
+  issues:
+    types: [opened]
+
+permissions:
+  issues: write
+
+jobs:
+  add-nsoc-label:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Ensure label exists
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const labelName = "NSoC'26";
+            const labelColor = "1D76DB";
+            const labelDescription = "Issue opened for Nexus Spring of Code 2026";
+
+            try {
+              await github.rest.issues.getLabel({
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                name: labelName,
+              });
+              core.info(`Label '${labelName}' already exists.`);
+            } catch (error) {
+              if (error.status === 404) {
+                await github.rest.issues.createLabel({
+                  owner: context.repo.owner,
+                  repo: context.repo.repo,
+                  name: labelName,
+                  color: labelColor,
+                  description: labelDescription,
+                });
+                core.info(`Created label '${labelName}'.`);
+              } else {
+                throw error;
+              }
+            }
+
+      - name: Add NSoC label to new issue
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const labelName = "NSoC'26";
+            await github.rest.issues.addLabels({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              issue_number: context.payload.issue.number,
+              labels: [labelName],
+            });
+            core.info(`Added '${labelName}' to issue #${context.payload.issue.number}.`);
