@@ -315,3 +315,30 @@
 [data-theme="dark"] .order-delivery-info {
   background: var(--bg-color);
 }
+
+[data-theme="dark"] .status-delivered {
+  background: #1a3a25; color: #75c98a; 
+}
+
+[data-theme="dark"] .status-pending   { 
+  background: #3a2f00; color: #ffc94d; 
+}
+
+[data-theme="dark"] .status-cancelled { 
+  background: #3a0a0f; color: #f07070; 
+}
+
+[data-theme="dark"] .status-processing {
+  background: #003366;
+  color: #66b2ff;
+}
+
+[data-theme="dark"] .status-shipped {
+  background: #2a1a4a;
+  color: #c9a8f5;
+}
+
+[data-theme="dark"] .status-refunded {
+  background: #2a2a2a;
+  color: #b0b0b0;
+}
