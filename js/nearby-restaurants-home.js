@@ -302,12 +302,19 @@
 
         try {
             const apiKey = getMapsApiKey();
-            if (!apiKey) {
-                listElement.innerHTML = '<li class="nearby-live-empty">Google Maps API key is missing. Add your key to load nearby restaurants.</li>';
-                setStatus('Add FOODIE_CONFIG.googleMapsApiKey or set localStorage key foodie_google_maps_api_key.', 'error');
-                return;
-            }
-
+           if (!apiKey) {
+    mapElement.innerHTML = `
+        <div class="nearby-fallback-ui">
+            <i class="fa-solid fa-map-location-dot"></i>
+            <p>Location services are unavailable.</p>
+            <p class="nearby-fallback-hint">Please enable location or try again.</p>
+        </div>`;
+    listElement.innerHTML = '<li class="nearby-live-empty">No nearby restaurants found. Try enabling location.</li>';
+    setStatus('Location services are unavailable. Please enable location or try again.', 'warning');
+    retryButton.disabled = false;
+    retryButton.textContent = 'Retry Location';
+    return;
+}
             await loadGoogleMapsSdk(apiKey);
 
             let activeLocation = DEFAULT_LOCATION;

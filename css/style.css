@@ -2519,3 +2519,32 @@
         flex-direction: column;
     }
 }
+/* Nearby Fallback UI */
+.nearby-fallback-ui {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+    min-height: 200px;
+    gap: 12px;
+    color: #888;
+    text-align: center;
+    padding: 20px;
+}
+
+.nearby-fallback-ui i {
+    font-size: 48px;
+    color: #f4a261;
+}
+
+.nearby-fallback-ui p {
+    font-size: 16px;
+    font-weight: 500;
+    margin: 0;
+}
+
+.nearby-fallback-hint {
+    font-size: 13px !important;
+    color: #aaa;
+}
