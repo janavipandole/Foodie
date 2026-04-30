@@ -19,7 +19,14 @@ document.addEventListener('DOMContentLoaded', () => {
   updateThemeIcon(currentTheme);
 
   // Theme toggle click
+  let rotateTimeout = null;
   themeToggle.addEventListener('click', () => {
+    if (rotateTimeout) {
+      clearTimeout(rotateTimeout);
+      rotateTimeout = null;
+      themeIcon.classList.remove('rotate-icon');
+      html.classList.remove('theme-transition');
+    }
     html.classList.add('theme-transition');
 
     const activeTheme = html.getAttribute('data-theme');
