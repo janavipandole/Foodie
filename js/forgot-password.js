@@ -59,6 +59,7 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   });
   function updateThemeIcon(theme) {
+    if (!themeIcon) return;
     if (theme === 'dark') {
       themeIcon.classList.remove('fa-moon');
       themeIcon.classList.add('fa-sun');
@@ -66,6 +67,8 @@ document.addEventListener('DOMContentLoaded', () => {
       themeIcon.classList.remove('fa-sun');
       themeIcon.classList.add('fa-moon');
     }
+    themeToggle.setAttribute('aria-pressed', theme === 'dark');
+    themeToggle.setAttribute('aria-label', `Switch to ${theme === 'dark' ? 'light' : 'dark'} mode`);
   }
 
   /* =========================
