@@ -33,7 +33,11 @@ document.addEventListener('DOMContentLoaded', () => {
     const newTheme = activeTheme === 'light' ? 'dark' : 'light';
 
     html.setAttribute('data-theme', newTheme);
-    localStorage.setItem('theme', newTheme);
+    try {
+      localStorage.setItem('theme', newTheme);
+    } catch (err) {
+      console.warn('[themeToggle] Could not persist theme:', err);
+    }
     updateThemeIcon(newTheme);
 
     themeIcon.classList.add('rotate-icon');
