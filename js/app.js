@@ -162,7 +162,7 @@ if (qrCodeWrapper && qrCodeModal && qrModalCloseBtn && qrModalImgLarge && qrCode
 
 // ===== PRODUCTS & CART =====
 let productList = [];
-let addProduct = [];
+let addProduct = JSON.parse(localStorage.getItem("cart")) || [];
 
 // ===== FAVORITES (WISHLIST) =====
 const FAVORITES_STORAGE_KEY = 'foodie:favorites';
@@ -386,8 +386,36 @@ const decreaseQuantity = (product, card) => {
     }
 };
 
+function recreateCartItem(product) {
+        const price = parseFloat(product.price.replace(/[₹$]/g, ""));
+
+        const cartItem = document.createElement('div');
+       cartItem.classList.add('item');
+
+       cartItem.innerHTML = `
+           <div class="images-container">
+             <img src="${product.image}" />
+           </div>
+           <div class="detail">
+             <h4>${product.name}</h4>
+             <h4 class="item-total">₹${(product.quantity * price).toFixed(2)}</h4>
+    </div>
+    <div class="flex">
+      <a href="#" class="quantity-btn minus">-</a>
+      <h4 class="quantity-value">${product.quantity}</h4>
+      <a href="#" class="quantity-btn plus">+</a>
+    </div>
+  `;
+
+  cartList.appendChild(cartItem);
+}
+
 // ===== ADD TO CART =====
 const addToCart = (product, card) => {
+    function saveCart() {
+        localStorage.setItem("cart", JSON.stringify(addProduct));
+    };
+
     const price = parseFloat(product.price.replace(/[₹$]/g, ''));
     let existProduct = addProduct.find(item => item.id === product.id);
 
@@ -418,6 +446,7 @@ const addToCart = (product, card) => {
     cartList.appendChild(cartItem);
     updateTotalPrice();
     saveCart();
+};
 
     const plusBtn = cartItem.querySelector('.plus');
     const minusBtn = cartItem.querySelector('.minus');
@@ -450,11 +479,10 @@ const addToCart = (product, card) => {
             updateCardButton(card, product);
             saveCart();
         }
-    });
-    
+
     // Update the card button to show quantity selector
     updateCardButton(card, product);
-};
+});
 
 // ===== CHECKOUT =====
 const checkoutBtn = document.querySelector('.check-out');
@@ -1057,3 +1085,5 @@ const restoreCartFromStorage = () => {
         });
     }
 };
+window.addEventListener("load", () => { ... });
+    
