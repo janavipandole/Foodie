@@ -5,8 +5,10 @@ document.addEventListener('DOMContentLoaded', () => {
   ========================== */
 
   const themeToggle = document.getElementById('themeToggle');
+  if (!themeToggle) return;
   const html = document.documentElement;
   const themeIcon = themeToggle.querySelector('i');
+  if (!themeIcon) return;
 
   // Detect system theme
   const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
