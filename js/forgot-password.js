@@ -42,9 +42,10 @@ document.addEventListener('DOMContentLoaded', () => {
 
     themeIcon.classList.add('rotate-icon');
 
-    setTimeout(() => {
+    rotateTimeout = setTimeout(() => {
       html.classList.remove('theme-transition');
       themeIcon.classList.remove('rotate-icon');
+      rotateTimeout = null;
     }, 600);
   });
 
