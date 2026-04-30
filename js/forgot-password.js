@@ -51,6 +51,13 @@ document.addEventListener('DOMContentLoaded', () => {
     }, 600);
   });
 
+  window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', (e) => {
+    if (!localStorage.getItem('theme')) {
+      const newTheme = e.matches ? 'dark' : 'light';
+      html.setAttribute('data-theme', newTheme);
+      updateThemeIcon(newTheme);
+    }
+  });
   function updateThemeIcon(theme) {
     if (theme === 'dark') {
       themeIcon.classList.remove('fa-moon');
