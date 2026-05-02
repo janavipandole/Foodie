@@ -5,8 +5,10 @@ document.addEventListener('DOMContentLoaded', () => {
   ========================== */
 
   const themeToggle = document.getElementById('themeToggle');
+  if (!themeToggle) return;
   const html = document.documentElement;
   const themeIcon = themeToggle.querySelector('i');
+  if (!themeIcon) return;
 
   // Detect system theme
   const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
@@ -19,25 +21,45 @@ document.addEventListener('DOMContentLoaded', () => {
   updateThemeIcon(currentTheme);
 
   // Theme toggle click
+  let rotateTimeout = null;
   themeToggle.addEventListener('click', () => {
+    if (rotateTimeout) {
+      clearTimeout(rotateTimeout);
+      rotateTimeout = null;
+      themeIcon.classList.remove('rotate-icon');
+      html.classList.remove('theme-transition');
+    }
     html.classList.add('theme-transition');
 
     const activeTheme = html.getAttribute('data-theme');
     const newTheme = activeTheme === 'light' ? 'dark' : 'light';
 
     html.setAttribute('data-theme', newTheme);
-    localStorage.setItem('theme', newTheme);
+    try {
+      localStorage.setItem('theme', newTheme);
+    } catch (err) {
+      console.warn('[themeToggle] Could not persist theme:', err);
+    }
     updateThemeIcon(newTheme);
 
     themeIcon.classList.add('rotate-icon');
 
-    setTimeout(() => {
+    rotateTimeout = setTimeout(() => {
       html.classList.remove('theme-transition');
       themeIcon.classList.remove('rotate-icon');
+      rotateTimeout = null;
     }, 600);
   });
 
+  window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', (e) => {
+    if (!localStorage.getItem('theme')) {
+      const newTheme = e.matches ? 'dark' : 'light';
+      html.setAttribute('data-theme', newTheme);
+      updateThemeIcon(newTheme);
+    }
+  });
   function updateThemeIcon(theme) {
+    if (!themeIcon) return;
     if (theme === 'dark') {
       themeIcon.classList.remove('fa-moon');
       themeIcon.classList.add('fa-sun');
@@ -45,6 +67,8 @@ document.addEventListener('DOMContentLoaded', () => {
       themeIcon.classList.remove('fa-sun');
       themeIcon.classList.add('fa-moon');
     }
+    themeToggle.setAttribute('aria-pressed', theme === 'dark');
+    themeToggle.setAttribute('aria-label', `Switch to ${theme === 'dark' ? 'light' : 'dark'} mode`);
   }
 
   /* =========================
