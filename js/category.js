@@ -54,6 +54,9 @@ function showRetryButton(container, retryFn, message = 'Retry') {
 async function loadCategories() {
     const container = document.getElementById('categoryContainer');
 
+    //FIX: Prevent crash if container is missing
+    if (!container) return;
+
     try {
         setLoadingState(container, true, 'Loading cuisines...');
 
