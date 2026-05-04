@@ -54,7 +54,6 @@ const cartTotal = document.querySelector('.cart-total');
 const cartValue = document.querySelector('.cart-value');
 const hamburger = document.querySelector('.hamberger');
 const mobileMenu = document.querySelector('.mobile-menu');
-const bars = document.querySelector('.fa-bars');
 const backToTop = document.querySelector('.back-to-top');
 const themeToggles = document.querySelectorAll('.theme-toggle');
 
@@ -71,10 +70,13 @@ cartIcon?.addEventListener('click', () => {
     cartTab.classList.add("cart-tab-active");
 });
 closeBtn?.addEventListener('click', () => cartTab.classList.remove("cart-tab-active"));
-hamburger?.addEventListener('click', () => {
-    mobileMenu.classList.toggle("mobile-menu-active");
-    bars.classList.toggle("fa-xmark");
-    bars.classList.toggle("fa-bars");
+hamburger?.addEventListener('click', (e) => {
+    e.preventDefault();
+    mobileMenu?.classList.toggle("mobile-menu-active");
+
+    const menuIcon = hamburger.querySelector('i');
+    menuIcon?.classList.toggle("fa-xmark");
+    menuIcon?.classList.toggle("fa-bars");
 });
 
 window.addEventListener('scroll', () => {
