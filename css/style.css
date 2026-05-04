@@ -270,6 +270,7 @@
         display: flex;
         align-items: center;
         justify-content: space-between;
+        position: relative;
         padding: 0 3rem;
         background-color: transparent;
         box-shadow: none;
@@ -464,6 +465,11 @@
     .desktop-action .hamberger {
         font-size: 1.5rem;
         display: none;
+        cursor: pointer;
+    }
+
+    .desktop-action .hamberger i {
+        cursor: pointer;
     }
 
     .mobile-menu {
@@ -1052,7 +1058,8 @@
 
         /* HEADER STYLING */
         .navList,
-        .desktop-action .btn {
+        .desktop-action .btn,
+        .desktop-action .custom-select {
             display: none;
         }
 
@@ -1060,13 +1067,36 @@
             display: block;
         }
 
-        /* remove search Input from navbar */
-        .desktop-action .navbar-search{
-            display: none;
+        .desktop-action {
+            gap: 0.65rem;
         }
-        /* remove theme toggle btn */
-        .desktop-action .theme-toggle{
-            display: none;
+
+        .desktop-action .navbar-search {
+            display: inline-flex;
+            height: 2.4rem;
+            padding: 0.15rem;
+            border-radius: 0.85rem;
+        }
+
+        .desktop-action .navbar-search input[type="text"] {
+            width: 6.25rem;
+            padding: 0.4rem 0.55rem;
+            font-size: 0.85rem;
+        }
+
+        .desktop-action .theme-toggle {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 2.5rem;
+            height: 2.5rem;
+            padding: 0;
+            border-radius: 50%;
+        }
+
+        .desktop-action .cart-icon,
+        .desktop-action .hamberger {
+            flex-shrink: 0;
         }
 
         .mobile-menu {
@@ -1087,12 +1117,18 @@
             box-shadow:
                 var(--shadow-strong) 8px 8px 8px,
                 var(--shadow-strong) 8px 8px 8px inset;
+            z-index: 1001;
             transition: all 0.5s ease-in-out;
         }
 
         .mobile-menu-active {
             left: 50%;
             transform: translateX(-50%);
+        }
+
+        .mobile-menu .mobile-theme-toggle,
+        .mobile-menu .navbar-search {
+            display: none;
         }
 
         /* SECTION STYLING */
@@ -1160,6 +1196,20 @@
         header .wrapper,
         header .navbar.wrapper {
             padding-inline: 1.5rem !important;
+        }
+    }
+
+    @media screen and (max-width: 560px) {
+        .desktop-action {
+            gap: 0.45rem;
+        }
+
+        .desktop-action .navbar-search input[type="text"] {
+            width: 4.5rem;
+        }
+
+        .desktop-action .cart-icon {
+            transform: scale(0.95);
         }
     }
 

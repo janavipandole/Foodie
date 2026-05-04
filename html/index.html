@@ -44,58 +44,20 @@
 
 </head>
 
-<script>
-    document.addEventListener('DOMContentLoaded', function () {
-        const hamburger = document.querySelector('.hamberger');
-        const nav = document.querySelector('nav.navbar');
-        const mobileMenu = document.querySelector('.mobile-menu');
-
-        if (hamburger && nav && mobileMenu) {
-            hamburger.addEventListener('click', function (e) {
-                e.preventDefault();
-
-                // Toggle mobile menu visibility
-                mobileMenu.classList.toggle('active');
-
-                // Toggle the "menu-open" class on <nav> to control the search visibility
-                nav.classList.toggle('menu-open');
-            });
-        }
-    });
-</script>
-
-
 <body>
 <header>
     <nav class="navbar flex between wrapper">
-        <a href="index.html" class="logo">Foodie<span>.</span></a>
+        <a href="./index.html" class="logo">Foodie.</a>
 
-        <ul class="navList flex gap-2">
-            <li><a class="active" href="./index.html">Home</a></li>
-            <li><a href="./menu.html">Menu</a></li>
-            <li><a href="./aboutUs.html">About Us</a></li>
-            <li><a href="./contactUs.html">Contact Us</a></li>
-        </ul>
-
-        <div class="desktop-action flex gap-1 items-center">
-            
-            <div class="lang-box">
-                <span style="font-size: 14px; font-weight: 600;">EN</span>
-                <i class="fa-solid fa-chevron-down" style="font-size: 10px;"></i>
-            </div>
-    <header>
-        <nav class="navbar flex between wrapper">
-            <a href="index.html" class="logo">Foodie.</a>
-
-            <ul class="navList flex gap-3 between">
+        <ul class="navList flex gap-3 between">
                 <li><a class="active" href="./index.html#home" data-i18n="nav.home">Home</a></li>
                 <li><a href="./menu.html" data-i18n="nav.menu">Menu</a></li>
                 <li><a href="./my-favorites.html" data-i18n="nav.favorites">&#x2B50; Favorites</a></li>
                 <li><a href="./aboutUs.html" data-i18n="nav.about">About Us</a></li>
                 <li><a href="./contactUs.html" data-i18n="nav.contact">Contact Us</a></li>
-                <li><a href="nearbyres.html" data-i18n="nav.nearby">Nearby Restaurants</a></li>
-            </ul>
-            <div class="desktop-action flex gap-2">
+                <li><a href="./nearbyres.html" data-i18n="nav.nearby">Nearby Restaurants</a></li>
+        </ul>
+        <div class="desktop-action flex gap-2">
                 <div class="custom-select" id="language-custom-select">
                     <div class="selected" tabindex="0" aria-haspopup="listbox" aria-expanded="false"
                         aria-labelledby="language-custom-select">
@@ -113,7 +75,7 @@
                 </div>
 
                 <form class="navbar-search" action="#" method="get">
-                    <input type="text" id="navbar-search" placeholder="Search your food ..."
+                    <input type="text" name="search" id="navbar-search" placeholder="Search your food ..."
                         data-i18n-placeholder="nav.searchPlaceholder" />
                     <button type="submit" id="navbar-search-btn" aria-label="Search">
                         <i class="fa-solid fa-magnifying-glass"></i>
@@ -129,48 +91,41 @@
                     <span class="cart-value">0</span>
                 </a>
 
-            <div class="nav-search-container">
-                <input type="text" placeholder="Search...">
-                <i class="fa-solid fa-magnifying-glass"></i>
-            </div>
+                <a href="./signup.html" class="btn">
+                    Sign in&nbsp;<i class="fa-solid fa-arrow-right-from-bracket"></i>
+                </a>
 
-            <button class="theme-toggle nav-btn"><i class="fa-solid fa-moon"></i></button>
-
-            <a href="./checkout.html" class="cart-icon nav-btn">
-                <i class="fa-solid fa-bag-shopping"></i>
-                <span class="cart-count">0</span>
-            </a>
-
-            <a href="./signup.html" class="btn-primary">Sign In</a>
-
-            <div class="hamburger"><i class="fa-solid fa-bars"></i></div>
+                <a href="#" class="hamberger" aria-label="Open navigation menu">
+                    <i class="fa-solid fa-bars"></i>
+                </a>
         </div>
-    </nav>
-</header>
-            <ul class="mobile-menu">
-                <li><a class="active" href="./index.html#home" data-i18n="nav.home">Home</a></li>
-                <li><a href="./menu.html" data-i18n="nav.menu">Menu</a></li>
-                <li><a href="./my-favorites.html" data-i18n="nav.favorites">&#x2B50; Favorites</a></li>
-                <li><a href="./aboutUs.html" data-i18n="nav.about">About Us</a></li>
-                <li><a href="./contactUs.html" data-i18n="nav.contact">Contact Us</a></li>
-                <li><a href="nearbyres.html" data-i18n="nav.nearby">Nearby Restaurants</a></li>
+        <ul class="mobile-menu">
+            <li><a class="active" href="./index.html#home" data-i18n="nav.home">Home</a></li>
+            <li><a href="./menu.html" data-i18n="nav.menu">Menu</a></li>
+            <li><a href="./my-favorites.html" data-i18n="nav.favorites">&#x2B50; Favorites</a></li>
+            <li><a href="./aboutUs.html" data-i18n="nav.about">About Us</a></li>
+            <li><a href="./contactUs.html" data-i18n="nav.contact">Contact Us</a></li>
+            <li><a href="./nearbyres.html" data-i18n="nav.nearby">Nearby Restaurants</a></li>
+            <li>
                 <form class="navbar-search" action="#" method="get">
-                    <input type="text" name="search" id="navbar-search" placeholder="Search your food ...">
-                    <button type="submit" id="navbar-search-btn" aria-label="Search">
+                    <input type="text" name="search" id="navbar-search-mobile" placeholder="Search your food ..."
+                        data-i18n-placeholder="nav.searchPlaceholder">
+                    <button type="submit" id="navbar-search-btn-mobile" aria-label="Search">
                         <i class="fa-solid fa-magnifying-glass"></i>
                     </button>
                 </form>
-                <li>
-                    <button class="theme-toggle mobile-theme-toggle" aria-label="Toggle dark mode">
-                        <i class="fa-solid fa-moon"></i><span>Dark Mode</span>
-                    </button>
-                </li>
-                <li>
-                    <a href="./signup.html" class="btn">
-                        Sign in&nbsp;<i class="fa-solid fa-arrow-right-from-bracket"></i>
-                    </a>
-                </li>
-            </ul>
+            </li>
+            <li>
+                <button class="theme-toggle mobile-theme-toggle" aria-label="Toggle dark mode">
+                    <i class="fa-solid fa-moon"></i><span>Dark Mode</span>
+                </button>
+            </li>
+            <li>
+                <a href="./signup.html" class="btn">
+                    Sign in&nbsp;<i class="fa-solid fa-arrow-right-from-bracket"></i>
+                </a>
+            </li>
+        </ul>
         </nav>
     </header>
 
@@ -486,6 +441,26 @@
     <script src="../js/footer.js"></script>
     <script src="../js/i18n.js"></script>
     <script src="../js/app.js"></script>
+    <script>
+        (function () {
+            const hamburger = document.querySelector('.hamberger');
+            const mobileMenu = document.querySelector('.mobile-menu');
+
+            if (!hamburger || !mobileMenu) return;
+
+            const cleanHamburger = hamburger.cloneNode(true);
+            hamburger.replaceWith(cleanHamburger);
+
+            cleanHamburger.addEventListener('click', function (e) {
+                e.preventDefault();
+                mobileMenu.classList.toggle('mobile-menu-active');
+
+                const icon = cleanHamburger.querySelector('i');
+                icon?.classList.toggle('fa-xmark');
+                icon?.classList.toggle('fa-bars');
+            });
+        })();
+    </script>
     <script src="../js/nearby-restaurants-home.js"></script>
     <script src="../js/cursor.js"></script>
     <script>
