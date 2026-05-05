@@ -60,7 +60,7 @@ async function loadCategories() {
     try {
         setLoadingState(container, true, 'Loading cuisines...');
 
-        const response = await fetch('../products.json');
+        const response = await fetch('/products.json');
         if (!response.ok) throw new Error(`HTTP ${response.status}`);
         const products = await response.json();
 
