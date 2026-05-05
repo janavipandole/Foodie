@@ -2,12 +2,27 @@ document.addEventListener('DOMContentLoaded', () => {
     const partnerRegisterForm = document.getElementById('partnerRegisterForm');
 
     if (partnerRegisterForm) {
+
+         // --- Element references ---
+        const otpStep       = document.getElementById('otpStep');
+        const successStep   = document.getElementById('successStep');
+        const otpPhoneEl    = document.getElementById('otpPhone');
+        const otpInputs     = document.querySelectorAll('.otp-input');
+        const verifyOtpBtn  = document.getElementById('verifyOtpBtn');
+        const otpError      = document.getElementById('otpError');
+        const resendBtn     = document.getElementById('resendBtn');
+        const resendTimer   = document.getElementById('resendTimer');
+        const countdownEl   = document.getElementById('countdown');
+
+        let countdownInterval = null;
+        let generatedOtp = '';
+        // --- Step 1: submit → show OTP step ---
         partnerRegisterForm.addEventListener('submit', function(e) {
             e.preventDefault();
 
-            const name = document.getElementById('partnerName').value;
+            const name = document.getElementById('partnerName').value.trim();
             const city = document.getElementById('partnerCity').value;
-            const mobile = document.getElementById('partnerMobile').value;
+            const mobile = document.getElementById('partnerMobile').value.trim();
 
             if (!name || !city || !mobile) {
                 alert('Please fill in all required fields.');
@@ -21,28 +36,90 @@ document.addEventListener('DOMContentLoaded', () => {
                 return;
             }
 
-            alert(`Thank you, ${name}! Your registration for ${city} with mobile ${mobile} has been received. An OTP will be sent shortly.`);
-            
-            // In a real application, you would send this data to a backend
-            // fetch('/api/register-partner', {
-            //     method: 'POST',
-            //     headers: { 'Content-Type': 'application/json' },
-            //     body: JSON.stringify({ name, city, mobile })
-            // })
-            // .then(response => response.json())
-            // .then(data => {
-            //     if (data.success) {
-            //         alert('Registration successful! OTP sent.');
-            //     } else {
-            //         alert('Registration failed: ' + data.message);
-            //     }
-            // })
-            // .catch(error => {
-            //     console.error('Error:', error);
-            //     alert('An error occurred during registration.');
-            // });
+            // Generate mock OTP (replace with real API call)
+            generatedOtp = Math.floor(100000 + Math.random() * 900000).toString();
+            console.log('OTP (dev only):', generatedOtp); // remove before production
 
-            partnerRegisterForm.reset();
+            otpPhoneEl.textContent = mobile;
+            partnerRegisterForm.style.display = 'none';
+            otpStep.style.display = 'block';
+            startCountdown();
+            otpInputs[0].focus();
+        });
+
+        // --- OTP inputs: digit-only, auto-advance, backspace, paste ---
+        otpInputs.forEach((input, index) => {
+            input.addEventListener('input', () => {
+                input.value = input.value.replace(/\D/g, '');
+                if (input.value && index < otpInputs.length - 1) {
+                    otpInputs[index + 1].focus();
+                }
+            });
+
+            input.addEventListener('keydown', (e) => {
+                if (e.key === 'Backspace' && !input.value && index > 0) {
+                    otpInputs[index - 1].focus();
+                }
+            });
+
+            input.addEventListener('paste', (e) => {
+                e.preventDefault();
+                const pasted = e.clipboardData.getData('text').replace(/\D/g, '').slice(0, 6);
+                pasted.split('').forEach((char, i) => {
+                    if (otpInputs[i]) otpInputs[i].value = char;
+                });
+                const lastFilled = Math.min(pasted.length, otpInputs.length - 1);
+                otpInputs[lastFilled].focus();
+            });
+        });
+
+        // --- Step 2: verify OTP ---
+        verifyOtpBtn.addEventListener('click', () => {
+            const entered = Array.from(otpInputs).map(i => i.value).join('');
+            if (entered.length < 6) {
+                otpError.textContent = 'Please enter all 6 digits.';
+                otpError.style.display = 'block';
+                return;
+            }
+            if (entered === generatedOtp) {
+                clearInterval(countdownInterval);
+                otpStep.style.display = 'none';
+                successStep.style.display = 'block';
+            } else {
+                otpError.textContent = 'Incorrect OTP. Please try again.';
+                otpError.style.display = 'block';
+                otpInputs.forEach(i => i.value = '');
+                otpInputs[0].focus();
+            }
+        });
+
+        // --- Countdown timer ---
+        function startCountdown() {
+            let seconds = 30;
+            countdownEl.textContent = seconds;
+            resendBtn.style.display = 'none';
+            resendTimer.style.display = 'inline';
+            otpError.style.display = 'none';
+
+            clearInterval(countdownInterval);
+            countdownInterval = setInterval(() => {
+                seconds--;
+                countdownEl.textContent = seconds;
+                if (seconds <= 0) {
+                    clearInterval(countdownInterval);
+                    resendTimer.style.display = 'none';
+                    resendBtn.style.display = 'inline';
+                }
+            }, 1000);
+        }
+
+        // --- Resend OTP ---
+        resendBtn.addEventListener('click', () => {
+            generatedOtp = Math.floor(100000 + Math.random() * 900000).toString();
+            console.log('Resent OTP (dev only):', generatedOtp); // remove before production
+            otpInputs.forEach(i => i.value = '');
+            otpInputs[0].focus();
+            startCountdown();
         });
     }
 
