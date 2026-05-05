@@ -114,8 +114,37 @@
                 <input type="tel" id="partnerMobile" placeholder="+91 12345 67890"
                   pattern="[0-9]{10}" title="Enter a valid 10-digit mobile number" required />
               </div>
-              <button type="submit" class="btn get-otp-btn">Get OTP</button>
+              <button type="submit" class="btn get-otp-btn" id="getOtpBtn">Get OTP</button>
             </form>
+            <!-- Step 2: OTP Verification -->
+            <div id="otpStep" style="display:none;">
+              <p style="font-size:0.95rem; margin-bottom:1rem;">
+                OTP sent to <strong id="otpPhone"></strong>
+              </p>
+              <div class="otp-boxes">
+                <input class="otp-input" type="text" maxlength="1" inputmode="numeric" />
+                <input class="otp-input" type="text" maxlength="1" inputmode="numeric" />
+                <input class="otp-input" type="text" maxlength="1" inputmode="numeric" />
+                <input class="otp-input" type="text" maxlength="1" inputmode="numeric" />
+                <input class="otp-input" type="text" maxlength="1" inputmode="numeric" />
+                <input class="otp-input" type="text" maxlength="1" inputmode="numeric" />
+              </div>
+              <p id="otpError" class="otp-error" style="display:none;">
+                Incorrect OTP. Please try again.
+              </p>
+              <button class="btn get-otp-btn" id="verifyOtpBtn">Verify OTP</button>
+              <p class="resend-row">
+                <span id="resendTimer">Resend OTP in <strong id="countdown">30</strong>s</span>
+                <button id="resendBtn" class="resend-btn" style="display:none;">Resend OTP</button>
+              </p>
+            </div>
+
+            <!-- Step 3: Success -->
+            <div id="successStep" style="display:none; text-align:center; padding:1.5rem 0;">
+              <i class="fa-solid fa-circle-check" style="font-size:3rem; color:var(--gold-finger);"></i>
+              <h4 style="margin-top:1rem; font-size:1.4rem; color:var(--text-primary);">You're registered!</h4>
+              <p style="color:var(--text-secondary); font-size:0.95rem;">Our team will contact you shortly.</p>
+            </div>
           </div>
         </div>
       </div>
