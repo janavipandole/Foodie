@@ -122,7 +122,10 @@ function renderCategories(products, container) {
 
         card.innerHTML = `
             <div class="category-image-container">
-                <img src="${cat.image}" alt="${cat.name} Cuisine" loading="lazy">
+                <img src="${cat.image || '/images/fallback.jpg'}" 
+                    alt="${cat.name} Cuisine" 
+                    loading="lazy"
+                    onerror="this.src='/images/fallback.jpg'">
             </div>
             <div class="category-info">
                 <h2>${cat.name}</h2>
