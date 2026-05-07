@@ -957,34 +957,78 @@ const loadProducts = async (retryCount = 0) => {
 
 loadProducts();
 
-const CART_STORAGE_KEY = 'foodie:cart';
+
+// ===== USER BASED CART STORAGE SYSTEM =====
+// Get currently logged in user
+function getLoggedInUser(){
+    return JSON.parse(
+        localStorage.getItem("loggedInUser")
+    );
+}
+// Decide which cart key to use
+// Guest user -> foodie:cart
+// Logged user-> email@gmail.com
+function getCartKey(){
+    const user = getLoggedInUser();
+    // If user logged in
+    if (user && user.email){
+        return `foodie_cart_${user.email}`;
+    }
+    // Guest user cart
+    return "foodie:cart";
+}
+// ===== LOAD CART FROM LOCAL STORAGE =====
 const loadCart = () => {
     try {
-        const raw = localStorage.getItem(CART_STORAGE_KEY) || '[]';
+        // Get correct cart key
+        const cartKey = getCartKey();
+        const raw = localStorage.getItem(cartKey) || '[]';
+            
         const arr = JSON.parse(raw);
+
+        // Safety check
         return Array.isArray(arr) ? arr : [];
-    } catch (_) { return []; }
+    }catch (_){
+        return [];
+    }
 };
+
+// ===== SAVE CART TO LOCAL STORAGE =====
 const saveCart = () => {
     try {
-        // Persist full product objects (id, name, price, image, quantity)
+        // Store all cart products
         const arr = addProduct.map(p => ({
             id: p.id,
             name: p.name,
             price: p.price,
             image: p.image,
             quantity: p.quantity || 1
+
         }));
-        localStorage.setItem(CART_STORAGE_KEY, JSON.stringify(arr));
-        // Keep sessionStorage.checkoutCart in sync so direct navigation to checkout
-        // (which prefers sessionStorage) reflects the current cart state.
-        if (arr.length > 0) {
-            try { sessionStorage.setItem('checkoutCart', JSON.stringify(arr)); } catch (_) {}
-        } else {
-            try { sessionStorage.removeItem('checkoutCart'); } catch (_) {}
+        // Save in correct cart
+        localStorage.setItem(
+            getCartKey(),
+            JSON.stringify(arr)
+
+        );
+        // Also save checkout data
+        if(arr.length > 0){
+            try {
+                sessionStorage.setItem(
+                    'checkoutCart',
+                    JSON.stringify(arr)
+                );
+            } catch (_) {}
+        }else{
+            try{
+                sessionStorage.removeItem(
+                    'checkoutCart'
+                );
+            } catch (_) {}
         }
     } catch (_) {}
 };
+
 const restoreCartFromStorage = () => {
     if (cartList) cartList.innerHTML = '';
     const saved = loadCart();
