@@ -448,7 +448,6 @@ const addToCart = (product, card) => {
     cartList.appendChild(cartItem);
     updateTotalPrice();
     saveCart();
-};
 
     const plusBtn = cartItem.querySelector('.plus');
     const minusBtn = cartItem.querySelector('.minus');
@@ -485,6 +484,7 @@ const addToCart = (product, card) => {
     // Update the card button to show quantity selector
     updateCardButton(card, product);
 });
+};
 
 // ===== CHECKOUT =====
 const checkoutBtn = document.querySelector('.check-out');
@@ -1087,5 +1087,4 @@ const restoreCartFromStorage = () => {
         });
     }
 };
-window.addEventListener("load", () => { ... });
     
