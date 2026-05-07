@@ -522,7 +522,7 @@ const showCards = list => {
         const favActive = isFavorite(product.id);
        card.innerHTML = `
     <button class="fav-btn${favActive ? ' active' : ''}" aria-label="Toggle favorite" aria-pressed="${favActive}" title="${favActive ? 'Remove from favorites' : 'Add to favorites'}">
-       <i class="${favActive ? 'fa-solid' : 'fa-regular'} fa-star"></i>
+       <i class="${favActive ? 'fa-solid' : 'fa-regular'} fa-heart"${favActive ? ' style="color: #ff4444;"' : ''}></i>
     </button>
     <div class="card-image"><img src="${product.image}" alt="${product.name}"></div>
     
@@ -558,6 +558,7 @@ const showCards = list => {
             if (icon) {
                 icon.classList.toggle('fa-solid', nowActive);
                 icon.classList.toggle('fa-regular', !nowActive);
+                icon.style.color = nowActive ? '#ff4444' : '';
             }
         });
         cardList.appendChild(card);
@@ -571,7 +572,7 @@ const options = priceSelector?.querySelectorAll('.options li');
 let currentPriceFilter = 'all';
 let currentCuisineFilter = 'all';
 let currentRatingFilter = 'all';
-let favoritesOnly = window.location.pathname.includes('my-favorites.html');
+let favoritesOnly = window.location.pathname.includes('favorites.html');
 
 selected?.addEventListener('click', () => priceSelector.classList.toggle('open'));
 options?.forEach(opt => {
