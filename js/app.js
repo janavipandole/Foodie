@@ -54,7 +54,6 @@ const cartTotal = document.querySelector('.cart-total');
 const cartValue = document.querySelector('.cart-value');
 const hamburger = document.querySelector('.hamberger');
 const mobileMenu = document.querySelector('.mobile-menu');
-const bars = document.querySelector('.fa-bars');
 const backToTop = document.querySelector('.back-to-top');
 const themeToggles = document.querySelectorAll('.theme-toggle');
 
@@ -71,10 +70,13 @@ cartIcon?.addEventListener('click', () => {
     cartTab.classList.add("cart-tab-active");
 });
 closeBtn?.addEventListener('click', () => cartTab.classList.remove("cart-tab-active"));
-hamburger?.addEventListener('click', () => {
-    mobileMenu.classList.toggle("mobile-menu-active");
-    bars.classList.toggle("fa-xmark");
-    bars.classList.toggle("fa-bars");
+hamburger?.addEventListener('click', (e) => {
+    e.preventDefault();
+    mobileMenu?.classList.toggle("mobile-menu-active");
+
+    const menuIcon = hamburger.querySelector('i');
+    menuIcon?.classList.toggle("fa-xmark");
+    menuIcon?.classList.toggle("fa-bars");
 });
 
 window.addEventListener('scroll', () => {
@@ -162,7 +164,7 @@ if (qrCodeWrapper && qrCodeModal && qrModalCloseBtn && qrModalImgLarge && qrCode
 
 // ===== PRODUCTS & CART =====
 let productList = [];
-let addProduct = [];
+let addProduct = JSON.parse(localStorage.getItem("cart")) || [];
 
 // ===== FAVORITES (WISHLIST) =====
 const FAVORITES_STORAGE_KEY = 'foodie:favorites';
@@ -386,8 +388,36 @@ const decreaseQuantity = (product, card) => {
     }
 };
 
+function recreateCartItem(product) {
+        const price = parseFloat(product.price.replace(/[₹$]/g, ""));
+
+        const cartItem = document.createElement('div');
+       cartItem.classList.add('item');
+
+       cartItem.innerHTML = `
+           <div class="images-container">
+             <img src="${product.image}" />
+           </div>
+           <div class="detail">
+             <h4>${product.name}</h4>
+             <h4 class="item-total">₹${(product.quantity * price).toFixed(2)}</h4>
+    </div>
+    <div class="flex">
+      <a href="#" class="quantity-btn minus">-</a>
+      <h4 class="quantity-value">${product.quantity}</h4>
+      <a href="#" class="quantity-btn plus">+</a>
+    </div>
+  `;
+
+  cartList.appendChild(cartItem);
+}
+
 // ===== ADD TO CART =====
 const addToCart = (product, card) => {
+    function saveCart() {
+        localStorage.setItem("cart", JSON.stringify(addProduct));
+    };
+
     const price = parseFloat(product.price.replace(/[₹$]/g, ''));
     let existProduct = addProduct.find(item => item.id === product.id);
 
@@ -450,10 +480,10 @@ const addToCart = (product, card) => {
             updateCardButton(card, product);
             saveCart();
         }
-    });
-    
+
     // Update the card button to show quantity selector
     updateCardButton(card, product);
+});
 };
 
 // ===== CHECKOUT =====
@@ -1058,3 +1088,4 @@ const restoreCartFromStorage = () => {
         });
     }
 };
+    

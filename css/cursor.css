@@ -81,3 +81,18 @@
 * {
   cursor: auto !important;
 }
+
+a,
+button,
+[role="button"],
+input[type="submit"],
+input[type="button"],
+.hamberger,
+.hamberger i,
+.clickable,
+.card,
+[onclick],
+.region-card,
+.cta-btn {
+  cursor: pointer !important;
+}
