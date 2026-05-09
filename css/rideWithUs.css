@@ -396,3 +396,62 @@
     background: var(--bg-secondary);
     box-shadow: 0 8px 20px rgba(0, 0, 0, 0.4);
 }
+
+/* ===== OTP Step Styles ===== */
+.otp-boxes {
+    display: flex;
+    gap: 0.6rem;
+    justify-content: center;
+    margin-bottom: 1rem;
+}
+
+.otp-input {
+    width: 2.8rem;
+    height: 3rem;
+    text-align: center;
+    font-size: 1.4rem;
+    font-weight: 600;
+    border: 1.5px solid var(--border-color);
+    border-radius: 0.6rem;
+    background-color: var(--bg-primary);
+    color: var(--text-primary);
+    outline: none;
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.otp-input:focus {
+    border-color: var(--gold-finger);
+    box-shadow: 0 0 6px rgba(242, 189, 18, 0.3);
+}
+
+.otp-error {
+    color: #e53935;
+    font-size: 0.875rem;
+    margin-bottom: 0.75rem;
+}
+
+.resend-row {
+    margin-top: 1rem;
+    font-size: 0.875rem;
+    color: var(--text-secondary);
+}
+
+.resend-btn {
+    background: none;
+    border: none;
+    color: var(--gold-finger);
+    font-size: 0.875rem;
+    font-weight: 600;
+    cursor: pointer;
+    padding: 0;
+    text-decoration: underline;
+}
+
+.resend-btn:hover {
+    opacity: 0.8;
+}
+
+#verifyOtpBtn {
+    width: 100%;
+    margin-top: 0.5rem;
+}

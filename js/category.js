@@ -54,10 +54,13 @@ function showRetryButton(container, retryFn, message = 'Retry') {
 async function loadCategories() {
     const container = document.getElementById('categoryContainer');
 
+    //FIX: Prevent crash if container is missing
+    if (!container) return;
+
     try {
         setLoadingState(container, true, 'Loading cuisines...');
 
-        const response = await fetch('../products.json');
+        const response = await fetch('/products.json');
         if (!response.ok) throw new Error(`HTTP ${response.status}`);
         const products = await response.json();
 
@@ -119,7 +122,10 @@ function renderCategories(products, container) {
 
         card.innerHTML = `
             <div class="category-image-container">
-                <img src="${cat.image}" alt="${cat.name} Cuisine" loading="lazy">
+                <img src="${cat.image || '/images/fallback.jpg'}" 
+                    alt="${cat.name} Cuisine" 
+                    loading="lazy"
+                    onerror="this.src='/images/fallback.jpg'">
             </div>
             <div class="category-info">
                 <h2>${cat.name}</h2>
