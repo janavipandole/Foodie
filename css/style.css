@@ -228,6 +228,20 @@
         width: 150px !important; /* reduce width */
     }
 
+    /* Responsive fix: allow navbar to wrap and reduce header padding to avoid horizontal overflow */
+    @media (max-width: 768px) {
+        header .wrapper,
+        header .navbar.wrapper {
+            padding-inline: 1rem !important;
+        }
+        .navbar {
+            flex-wrap: wrap !important;
+        }
+        .navbar-search input {
+            width: 100px !important;
+        }
+    }
+
     .custom-select {
         width: 110px !important; /* language select shorter */
     }
