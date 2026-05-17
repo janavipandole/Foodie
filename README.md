@@ -98,6 +98,12 @@ Foodie/
 
 Follow these steps to run **Foodie** locally on your system 👇
 
+### Prerequisites
+
+- [Node.js](https://nodejs.org/) installed (optional — only required for running tests or using `live-server`/npm tools).
+- A modern web browser (Chrome, Firefox, Edge, Safari).
+- (Optional) VS Code with the _Live Server_ extension for rapid development.
+
 ### 1️⃣ Clone the Repository
 
 ```bash
@@ -110,9 +116,32 @@ git clone https://github.com/janavipandole/Foodie.git
 cd Foodie
 ```
 
-### 3️⃣ Open in Your Browser
+### 3️⃣ Recommended: Serve with a Local HTTP Server (best for JS features)
 
-Simply open the `html/index.html` file in your browser:
+Opening `html/index.html` directly in the browser works, but some features (AJAX, module imports, geolocation in some browsers) behave better when served over HTTP. Choose one of the options below:
+
+- Using VS Code Live Server (recommended):
+
+   - Install the **Live Server** extension.
+   - Right‑click `html/index.html` → **Open with Live Server**.
+
+- Using Node (http-server):
+
+   ```bash
+   npm install -g http-server
+   http-server html -o
+   ```
+
+- Using Python (built‑in simple server):
+
+   ```bash
+   # Python 3
+   cd html
+   python -m http.server 8000
+   # then open http://localhost:8000
+   ```
+
+If you prefer, you can still open the file directly:
 
 ```bash
 # Windows (PowerShell or CMD)
@@ -124,10 +153,6 @@ open html/index.html
 # Linux
 xdg-open html/index.html
 ```
-
-> Or, use **Live Server** in VS Code:
->
-> - In VS Code, right‑click `html/index.html` → “Open with Live Server”
 
 <img src="https://github.com/Mayur-Pagote/README_Design_Kit/blob/730d340c8008758ac291ebc555f818f851feda0f/Assets/RGB%20Line%20Thick.gif" width="100%" />
 

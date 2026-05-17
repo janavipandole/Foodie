@@ -213,13 +213,13 @@
           <div class="promo-code-section">
             <h4>Have a Promo Code?</h4>
             <div class="promo-input-group">
-              <input type="text" id="promoCode" placeholder="Enter promo code" maxlength="20">
-              <button id="applyPromoBtn" class="apply-promo-btn">Apply</button>
+              <input type="text" id="promoCode" placeholder="Enter promo code" maxlength="20" aria-label="Promo code input">
+              <button id="applyPromoBtn" class="apply-promo-btn" aria-label="Apply promo code">Apply</button>
             </div>
             <div id="promoError" class="promo-error"></div>
-            <div id="appliedPromo" class="applied-promo" style="display: none;">
+              <div id="appliedPromo" class="applied-promo" style="display: none;">
               <span id="appliedPromoText"></span>
-              <button id="removePromoBtn" class="remove-promo-btn">Remove</button>
+              <button id="removePromoBtn" class="remove-promo-btn" aria-label="Remove promo code">Remove</button>
             </div>
           </div>
 
@@ -242,7 +242,7 @@
             </div>
           </div>
 
-          <button class="place-order-btn" id="placeOrderBtn">
+          <button class="place-order-btn" id="placeOrderBtn" aria-label="Place order">
             <i class="fa-solid fa-check"></i> Place Order
           </button>
         </div>
