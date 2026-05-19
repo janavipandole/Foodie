@@ -11,15 +11,19 @@
     "darkMode": "ダークモード",
     "lightMode": "ライトモード",
     "signIn": "サインイン",
-    "cart": "カート"
+    "cart": "カート",
+    "favorites": "お気に入り",
+    "orderHistory": "注文履歴"
   },
+
   "hero": {
-    "title": "おいしい",
-    "highlight": "料理を楽しもう",
+    "title": "おいしい料理を",
+    "highlight": "楽しもう",
     "subtitle": "私たちは迅速な配達であなたのお腹を満たします",
     "orderNow": "今すぐ注文",
-    "viewPopular": "View Popular"
+    "viewPopular": "人気を見る"
   },
+
   "services": {
     "sectionTitle": "私たちのサービス",
     "mainTitle": "どのように機能しますか？",
@@ -36,6 +40,7 @@
       "description": "速さだけでなく、品質を最優先にしています。"
     }
   },
+
   "reviews": {
     "sectionTitle": "レビュー",
     "mainTitle": "お客様の声",
@@ -46,12 +51,14 @@
     "anjaliName": "アンジャリ・ジョシ",
     "anjaliReview": "素晴らしい時間を過ごしました！料理は美味しく、雰囲気は温かく、スタッフも親切でした。また来たいです。"
   },
+
   "app": {
     "sectionTitle": "私たちのアプリ",
     "mainTitle": "簡単に料理を注文する方法",
     "description": "探す。見つける。いつでもどこでもすぐに受け取る。",
     "installButton": "アプリをインストール"
   },
+
   "qr": {
     "scan": "ダウンロードするにはスキャン",
     "quickAccess": "モバイルアプリへ素早くアクセス",
@@ -65,14 +72,16 @@
     "rating": "アプリ評価",
     "downloads": "ダウンロード数"
   },
+
   "newsletter": {
     "sectionTitle": "購読",
     "mainTitle": "ニュースレターを購読する",
     "description": "毎日の更新情報を受け取るためにメールアドレスを入力してください。",
     "placeholder": "メールアドレスを入力してください",
     "subscribeButton": "購読する",
-    "success": "Thank you for subscribing!\nYou will receive updates at: {email}"
+    "success": "ご購読ありがとうございます！\n更新情報は次のメールアドレスに届きます: {email}"
   },
+
   "footer": {
     "ourMenu": "私たちのメニュー",
     "special": "特別",
@@ -91,6 +100,7 @@
     "description": "私たちは迅速な配達であなたのお腹を満たします",
     "rideWithUs": "私たちと一緒に配達する"
   },
+
   "cart": {
     "yourCart": "あなたのカート",
     "empty": "カートは空です！",
@@ -98,10 +108,12 @@
     "close": "閉じる",
     "checkout": "チェックアウト"
   },
+
   "toasts": {
     "addedToCart": "カートに追加しました",
     "addedAnother": "さらに追加しました"
   },
+
   "menu": {
     "ourMenu": "私たちのメニュー",
     "mostPopular": "最も人気",
@@ -115,119 +127,118 @@
     "nonVeg": "非ベジタリアン",
     "all": "すべて"
   },
+
   "modal": {
     "addToCart": "カートに追加",
     "viewCart": "カートを見る"
   },
+
   "errors": {
     "noItems": "おっと！利用可能な商品がありません。",
     "loadError": "商品を読み込めません。接続を確認して再試行してください。",
     "retry": "再試行",
-    "storage": "Storage error. Your data may not be saved.",
-    "network": "Network error. Please check your connection.",
-    "cart": "Cart error. Please try again.",
-    "unhandled": "An error occurred. Please refresh the page.",
-    "promiseRejected": "An error occurred. Please try again."
+    "storage": "ストレージエラー。データが保存されない可能性があります。",
+    "network": "ネットワークエラー。接続を確認してください。",
+    "cart": "カートエラー。もう一度お試しください。",
+    "unhandled": "エラーが発生しました。ページを更新してください。",
+    "promiseRejected": "エラーが発生しました。もう一度お試しください。"
   },
+
   "languages": {
     "english": "English",
     "hindi": "हिंदी",
     "kannada": "ಕನ್ನಡ",
     "marathi": "मराठी",
-    "chinese": "中文"
+    "chinese": "中文",
+    "japanese": "日本語"
   },
+
   "auth": {
-    "signupTagline": "Join Foodie today!",
-    "loginTagline": "Your favorite meals are just a click away.",
-    "guestLogin": "Enter as Guest",
-    "signInButton": "Sign In",
-    "userExists": "User with this email or phone already exists!",
-    "registrationSuccess": "Registration successful! Please login.",
-    "invalidCredentials": "Invalid email or password!",
-    "welcomeBack": "Welcome back, {name}!",
-    "googleLoginFailed": "Google Login failed. Please use regular login."
+    "signupTagline": "今すぐ Foodie に参加しましょう！",
+    "loginTagline": "お気に入りの食事はワンクリックで届きます。",
+    "guestLogin": "ゲストとして入る",
+    "signInButton": "サインイン",
+    "userExists": "このメールまたは電話番号のユーザーは既に存在します！",
+    "registrationSuccess": "登録が成功しました！ログインしてください。",
+    "invalidCredentials": "メールアドレスまたはパスワードが正しくありません！",
+    "welcomeBack": "お帰りなさい、{name} さん！",
+    "googleLoginFailed": "Google ログインに失敗しました。通常ログインを使用してください。"
   },
+
   "checkout": {
-    "zoneWarning": "Note: Your address is approximately {distance} km from Nashik. Delivery availability may vary.",
+    "zoneWarning": "注意: あなたの住所はナシックから約 {distance} km 離れています。配達可能エリアは異なる場合があります。",
     "citySearch": {
-      "error": "Unable to search cities. Please check your connection and try again.",
-      "failed": "City search failed. Please try again."
+      "error": "都市を検索できません。接続を確認して再試行してください。",
+      "failed": "都市検索に失敗しました。再試行してください。"
     },
     "pin": {
-      "invalidLength": "Pincode must be 6 digits",
-      "validating": "Validating pincode...",
-      "notFound": "Pincode not found",
-      "cityMismatch": "Pincode does not match selected city",
-      "validationSuccess": "Pincode validated successfully",
-      "validationNetworkFail": "Unable to validate pincode. Please check your connection and try again.",
-      "retryValidation": "Retry Validation",
-      "validationFailed": "PIN validation failed. Please try again."
+      "invalidLength": "郵便番号は6桁である必要があります",
+      "validating": "郵便番号を確認中...",
+      "notFound": "郵便番号が見つかりません",
+      "cityMismatch": "郵便番号が選択した都市と一致しません",
+      "validationSuccess": "郵便番号の確認に成功しました",
+      "validationNetworkFail": "郵便番号を確認できません。接続を確認してください。",
+      "retryValidation": "再確認",
+      "validationFailed": "郵便番号の確認に失敗しました。"
     },
     "payment": {
-      "onlyCard": "Currently only Card payment is integrated.",
-      "unavailable": "Payment system is not available. Please refresh the page."
+      "onlyCard": "現在はカード決済のみ利用可能です。",
+      "unavailable": "支払いシステムは現在利用できません。ページを更新してください。"
     },
     "phone": {
-      "invalid": "Enter valid Indian number",
-      "invalidFormat": "Please enter a valid phone number"
+      "invalid": "有効なインドの電話番号を入力してください",
+      "invalidFormat": "有効な電話番号を入力してください"
     }
   },
+
   "ride": {
     "form": {
-      "requiredFields": "Please fill in all required fields.",
-      "invalidMobile": "Please enter a valid 10-digit mobile number."
+      "requiredFields": "すべての必須項目を入力してください。",
+      "invalidMobile": "有効な10桁の携帯番号を入力してください。"
     },
     "otp": {
-      "required": "Please enter all 6 digits.",
-      "incorrect": "Incorrect OTP. Please try again."
+      "required": "6桁すべて入力してください。",
+      "incorrect": "OTP が正しくありません。再試行してください。"
     },
     "theme": {
-      "lightMode": "Light Mode ☀",
-      "darkMode": "Dark Mode 🌙"
+      "lightMode": "ライトモード ☀",
+      "darkMode": "ダークモード 🌙"
     }
   },
+
   "feedback": {
-    "submitting": "Submitting feedback...",
-    "success": "Thank you for your feedback! We appreciate your input.",
-    "submitFailed": "Failed to submit feedback. Please try again or contact support.",
-    "retryButton": "Retry Submission"
+    "submitting": "フィードバックを送信中...",
+    "success": "フィードバックありがとうございます！",
+    "submitFailed": "フィードバック送信に失敗しました。再試行してください。",
+    "retryButton": "再送信"
   },
+
   "partner": {
-    "submitFailedField": "Submission failed. Please check your connection and try again.",
-    "submitFailedToast": "Failed to submit partnership request. Please try again."
+    "submitFailedField": "送信に失敗しました。接続を確認して再試行してください。",
+    "submitFailedToast": "パートナー申請の送信に失敗しました。"
   },
+
   "forgotPassword": {
-    "invalidEmail": "Please enter a valid email address",
-    "resetLinkSent": "Reset link resent to {email}"
+    "invalidEmail": "有効なメールアドレスを入力してください",
+    "resetLinkSent": "リセットリンクを {email} に再送しました"
   },
+
   "contributors": {
-    "failedTitle": "Failed to Load Contributors",
-    "failedMessage": "Unable to load contributor data. This might be due to API rate limits or network issues.",
-    "retry": "Retry",
-    "failedToast": "Failed to load contributors. Please try again."
+    "failedTitle": "コントリビューターの読み込みに失敗しました",
+    "failedMessage": "コントリビューターデータを取得できませんでした。",
+    "retry": "再試行",
+    "failedToast": "コントリビューターの読み込みに失敗しました。"
   },
+
   "i18n": {
-    "loadFailed": "Failed to load language translations. Some text may appear in English."
+    "loadFailed": "翻訳の読み込みに失敗しました。一部のテキストは英語で表示される場合があります。"
   },
-  "nearby": {
-    "locationUnavailable": "Location services are unavailable.",
-    "locationUnavailableHint": "Please enable location or try again.",
-    "noLocation": "No nearby restaurants found. Try enabling location.",
-    "loadFailed": "Unable to load nearby restaurants right now. Please verify API key and internet connection.",
-    "apiFailed": "Google Maps request failed. Verify API key permissions for Maps JavaScript API and Places API.",
-    "requestingLocation": "Requesting your location permission...",
-    "locationFound": "Location found. Fetching top rated nearby restaurants...",
-    "defaultLocationWarning": "Location access unavailable. Showing top restaurants near default location.",
-    "showingTop": "Showing {count} top rated restaurants near you.",
-    "noRated": "No rated restaurants found in this area. Try retrying from a different location.",
-    "loading": "Loading...",
-    "noRatings": "No nearby restaurants with ratings were found in this area.",
-    "hoursUnavailable": "Hours unavailable",
-    "openNow": "Open now",
-    "closed": "Closed",
-    "addressUnavailable": "Address unavailable",
-    "restaurant": "Restaurant",
-    "ratingLabel": "Rating",
-    "youAreHere": "You are here"
+
+  "login": {
+    "heroTitle": "お帰りなさい！",
+    "heroSubtitle": "お気に入りの料理がワンクリックで届きます。"
+  },
+  "order": {
+  "history": "注文履歴"
   }
 }

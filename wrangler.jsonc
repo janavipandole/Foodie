@@ -6,7 +6,7 @@
     "enabled": true
   },
   "assets": {
-    "directory": "html"
+  "directory": "html"
   },
   "compatibility_flags": [
     "nodejs_compat"

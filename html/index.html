@@ -4,15 +4,40 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Foodie</title>
+
+    <title>Foodie - Fast Food Delivery</title>
 
     <meta name="description"
-        content="Experience fast, reliable food delivery with a personalized touch. Our app combines advanced algorithms with vibrant design to bring delicious meals right to your door.">
+        content="Experience fast, reliable food delivery with a personalized touch. Fresh meals delivered quickly to your doorstep.">
 
+    <meta name="keywords"
+        content="food delivery, online food order, pizza, burger, restaurants, foodie">
 
+    <meta name="author" content="Foodie Team">
+
+    <meta name="robots" content="index, follow">
+
+    <!-- Open Graph -->
+    <meta property="og:title" content="Foodie - Fast Food Delivery">
+    <meta property="og:description"
+        content="Order delicious meals online with fast delivery.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://foodie-app.vercel.app">
+
+    <meta property="og:image"
+        content="https://foodie-app.vercel.app/imgs/preview.webp">
+
+    <!-- Twitter -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Foodie - Fast Food Delivery">
+    <meta name="twitter:description"
+        content="Order delicious meals online with fast delivery.">
+    <meta name="twitter:image"
+        content="https://foodie-app.vercel.app/imgs/preview.webp">
+
+    <!-- Prevent theme flicker -->
     <script>
-        // Immediately apply saved theme to prevent FOUC
-        (function () {
+        (() => {
             const savedTheme = localStorage.getItem('theme');
             if (savedTheme === 'dark') {
                 document.documentElement.setAttribute('data-theme', 'dark');
@@ -20,45 +45,59 @@
         })();
     </script>
 
-    <link rel="icon" href="../imgs/favicon.webp" type="image/webp" />
+    <link rel="icon" href="../imgs/favicon.webp" type="image/webp">
 
-
-    <link rel="stylesheet" href="../css/style.css" />
+    <!-- CSS -->
+    <link rel="stylesheet" href="../css/style.css">
     <link rel="stylesheet" href="../css/cursor.css">
+    <link rel="stylesheet" href="../css/modern-design.css">
 
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.0/css/all.min.css"
-        integrity="sha512-DxV+EoADOkOygM4IR9yXP8Sb2qwgidEmeqAEmDKIOfPRQZOWbXCzLC6vjbZyy0vPisbH2SyW27+ddLVCN+OMzQ=="
-        crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <!-- Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;700&display=swap"
+        rel="stylesheet">
 
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
+    <!-- Font Awesome -->
+    <link rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.0/css/all.min.css"
+        crossorigin="anonymous"
+        referrerpolicy="no-referrer">
 
-    <link href="https://unpkg.com/aos@2.3.4/dist/aos.css" rel="stylesheet">
+    <!-- Swiper -->
+    <link rel="stylesheet"
+        href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css">
 
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"></script>
+    <!-- AOS -->
+    <link rel="stylesheet"
+        href="https://unpkg.com/aos@2.3.4/dist/aos.css">
+
+    <!-- Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-467CJES6R0"></script>
+
     <script>
-        window.dataLayer = window.dataLayer || [];
-        function gtag() { dataLayer.push(arguments); }
-        gtag('js', new Date());
-        gtag('config', 'G-XXXXXXXXXX');
-    </script>
+      window.dataLayer = window.dataLayer || [];
 
-  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="../css/modern-design.css">
+      function gtag() {
+        dataLayer.push(arguments);
+      }
+
+      gtag('js', new Date());
+      gtag('config', 'G-467CJES6R0');
+    </script>
 </head>
 
 <body>
-<header>
+    <header>
     <nav class="navbar flex between wrapper">
         <a href="./index.html" class="logo">Foodie.</a>
 
         <!-- DESKTOP MENU -->
         <ul class="navList flex gap-1 between">
             <li><a href="./index.html#home" data-i18n="nav.home">Home</a></li>
-            <li><a href="./menu.html" data-i18n="nav.menu">Menu</a></li>
+            <li><a href="/html/menu.html" data-i18n="nav.menu">Menu</a></li>
             <li><a href="./my-favorites.html" data-i18n="nav.favorites"><i class="fa-solid fa-star"></i> Favorites</a></li>
             <li><a href="./order-history.html" data-i18n="nav.orderHistory"><i class="fa-solid fa-clock-rotate-left"></i> Order History</a></li>
-            <li><a href="./aboutUs.html" data-i18n="nav.about">About Us</a></li>
-            <li><a href="./contactUs.html" data-i18n="nav.contact">Contact Us</a></li>
+            <li><a href="/html/aboutUs.html" data-i18n="nav.about">About Us</a></li>
+            <li><a href="/html/contactUs.html" data-i18n="nav.contact">Contact Us</a></li>
             <li><a href="./nearbyres.html" data-i18n="nav.nearby">Nearby</a></li>
         </ul>
 
@@ -79,7 +118,13 @@
 
             <!-- Search Input -->
             <form class="navbar-search" action="#" method="get">
-                <input type="text" name="search" id="navbar-search" placeholder="Search..." aria-label="Search menu items">
+                <input
+                    type="search"
+                    name="search"
+                    id="navbar-search"
+                    placeholder="Search food..."
+                    aria-label="Search menu items"
+                    autocomplete="off">
                 <button type="submit" id="navbar-search-btn" aria-label="Search">
                     <i class="fa-solid fa-magnifying-glass"></i>
                 </button>
@@ -91,27 +136,34 @@
             </button>
 
             <!-- Cart Icon -->
-            <a href="./checkout.html" class="cart-icon">
+            <a
+                href="./checkout.html"
+                class="cart-icon"
+                aria-label="Shopping cart">
                 <i class="fa-solid fa-bag-shopping"></i>
                 <span class="cart-value">0</span>
             </a>
 
             <!-- Sign-in button -->
-            <a href="./login.html" class="btn">
+            <a href="/html/login.html" class="btn">
                 <i class="fa-solid fa-user"></i>&nbsp;Sign in
             </a>
 
             <!-- Hamburger -->
-            <a href="#" class="hamberger"><i class="fa-solid fa-bars"></i></a>
+            <button
+                type="button"
+                class="hamberger"
+                aria-label="Open menu"
+                aria-expanded="false"><i class="fa-solid fa-bars"></i></button>
         </div>
 
         <!-- MOBILE MENU -->
         <ul class="mobile-menu">
             <li><a href="./index.html#home" data-i18n="nav.home">Home</a></li>
-            <li><a href="./menu.html" data-i18n="nav.menu">Menu</a></li>
+            <li><a href="/html/menu.html" data-i18n="nav.menu">Menu</a></li>
             <li><a href="./my-favorites.html" data-i18n="nav.favorites"><i class="fa-solid fa-star"></i> Favorites</a></li>
-            <li><a href="./aboutUs.html" data-i18n="nav.about">About Us</a></li>
-            <li><a href="./contactUs.html" data-i18n="nav.contact">Contact Us</a></li>
+            <li><a href="/html/aboutUs.html" data-i18n="nav.about">About Us</a></li>
+            <li><a href="/html/contactUs.html" data-i18n="nav.contact">Contact Us</a></li>
             <li><a href="./nearbyres.html" data-i18n="nav.nearby">Nearby</a></li>
             <li>
                 <button class="theme-toggle mobile-theme-toggle" aria-label="Toggle dark mode">
@@ -119,12 +171,13 @@
                 </button>
             </li>
             <li>
-                <a href="./login.html" class="btn">
+                <a href="/html/login.html" class="btn">
                     <i class="fa-solid fa-user"></i>&nbsp;Sign in
                 </a>
             </li>
         </ul>
-    </nav></header>
+    </nav>
+    </header>
 
     <div id="offlineMessage"
         style="display: none; max-width: 500px; margin: 40px auto; padding: 20px; text-align: center; background: #fff; border-radius: 8px; box-shadow: 0 2px 10px rgba(0,0,0,0.1); position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%); z-index: 1000;">
@@ -155,7 +208,7 @@
                     <p class="para" data-i18n="hero.subtitle">We will fill your tummy with delicious food with fast
                         delivery</p>
                     <div class="flex gap-2">
-                        <a href="./menu.html" class="place-order-btn btn" data-i18n="hero.orderNow">Order now</a>
+                        <a href="/html/menu.html" class="place-order-btn btn" data-i18n="hero.orderNow">Order now</a>
                         <a href="./popular.html" class="btn btn-secondary" style="background: transparent !important; border: 2px solid var(--gold-finger) !important; color: var(--text-primary) !important; display: flex; align-items: center; justify-content: center;" data-i18n="hero.viewPopular">View Popular</a>
                     </div>
                 </div>
@@ -224,7 +277,10 @@
 
                         <div class="nearby-live-list-wrap">
                             <h3 class="nearby-live-list-title" data-i18n="nearby.topRatedNearby">Top Rated Nearby</h3>
-                            <ul id="nearbyRestaurantsList" class="nearby-live-list" aria-live="polite" data-i18n="nearby.list"></ul>
+                            <ul id="nearbyRestaurantsList"
+                                class="nearby-live-list"
+                                aria-live="polite">
+                            </ul>
                         </div>
                     </div>
                 </div>
@@ -439,183 +495,156 @@
     </a>
 
     <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
-    <script src="../js/utils.js"></script>
-    <script src="../js/error-handler.js"></script>
-    <script src="../js/performance-patches.js"></script>
-    <script src="../js/footer.js"></script>
-    <script src="../js/i18n.js"></script>
-    <script src="../js/app.js"></script>
+
+    <script defer src="../js/utils.js"></script>
+    <script defer src="../js/error-handler.js"></script>
+    <script defer src="../js/performance-patches.js"></script>
+    <script defer src="../js/footer.js"></script>
+    <script defer src="../js/i18n.js"></script>
+    <script defer src="../js/app.js"></script>
+    <script defer src="../js/nearby-restaurants-home.js"></script>
+    <script defer src="../js/cursor.js"></script>
+    <script defer src="../js/newsletter.js"></script>
+    <script defer src="../js/reviews.js"></script>
+    <script defer src="../js/language-dropdown.js"></script>
+
+    <!-- Hamburger Menu -->
     <script>
-        (function () {
-            const hamburger = document.querySelector('.hamberger');
-            const mobileMenu = document.querySelector('.mobile-menu');
+    document.addEventListener("DOMContentLoaded", () => {
 
-            if (!hamburger || !mobileMenu) return;
+        const hamburger = document.querySelector(".hamberger");
+        const mobileMenu = document.querySelector(".mobile-menu");
 
-            const cleanHamburger = hamburger.cloneNode(true);
-            hamburger.replaceWith(cleanHamburger);
+        if (!hamburger || !mobileMenu) return;
 
-            cleanHamburger.addEventListener('click', function (e) {
-                e.preventDefault();
-                mobileMenu.classList.toggle('mobile-menu-active');
+        hamburger.addEventListener("click", () => {
 
-                const icon = cleanHamburger.querySelector('i');
-                icon?.classList.toggle('fa-xmark');
-                icon?.classList.toggle('fa-bars');
-            });
-        })();
-    </script>
-    <script src="../js/nearby-restaurants-home.js"></script>
-    <script src="../js/cursor.js"></script>
-    <script>
-        // Prevent navigation when offline
-        document.addEventListener('click', function (e) {
-            if (!navigator.onLine) {
-                const link = e.target.closest('a');
-                if (link) {
-                    e.preventDefault();
-                    const retryStatus = document.getElementById('retryStatus');
-                    if (retryStatus) {
-                        retryStatus.textContent = 'Cannot navigate while offline. Please check your connection.';
-                        retryStatus.style.animation = 'shake 0.5s ease-in-out';
-                        setTimeout(() => {
-                            retryStatus.style.animation = '';
-                        }, 500);
-                    }
-                }
-            }
+            mobileMenu.classList.toggle("mobile-menu-active");
+
+            const isOpen =
+                mobileMenu.classList.contains("mobile-menu-active");
+
+            hamburger.setAttribute("aria-expanded", isOpen);
+
+            const icon = hamburger.querySelector("i");
+
+            icon.classList.toggle("fa-bars");
+            icon.classList.toggle("fa-xmark");
         });
+    });
+    </script>
 
-        // Offline handling
-        function checkConnection() {
-            const offlineMessage = document.getElementById('offlineMessage');
-            const mainContent = document.querySelector('main');
+    <!-- Offline Handling -->
+    <script>
+    document.addEventListener("DOMContentLoaded", () => {
 
-            if (!navigator.onLine) {
-                if (offlineMessage) offlineMessage.style.display = 'block';
-                if (mainContent) mainContent.style.filter = 'blur(3px)';
+        const offlineMessage = document.getElementById("offlineMessage");
+        const mainContent = document.querySelector("main");
+        const retryButton = document.getElementById("retryButton");
+        const retryStatus = document.getElementById("retryStatus");
+
+        function updateConnectionUI() {
+
+            const isOnline = navigator.onLine;
+
+            if (offlineMessage) {
+                offlineMessage.style.display = isOnline ? "none" : "block";
+            }
+
+            if (mainContent) {
+                mainContent.style.filter = isOnline ? "none" : "blur(3px)";
+            }
+        }
+
+        window.addEventListener("online", updateConnectionUI);
+        window.addEventListener("offline", updateConnectionUI);
+
+        if (retryButton) {
+            retryButton.addEventListener("click", () => {
+
+                retryStatus.textContent = navigator.onLine
+                    ? "Connection restored."
+                    : "Still offline. Please check your internet.";
+
+                updateConnectionUI();
+            });
+        }
+
+        updateConnectionUI();
+    });
+    </script>
+
+    <!-- Back To Top -->
+    <script>
+    document.addEventListener("DOMContentLoaded", () => {
+
+        const backToTop = document.querySelector(".back-to-top");
+
+        if (!backToTop) return;
+
+        window.addEventListener("scroll", () => {
+
+            if (window.scrollY > 400) {
+                backToTop.classList.add("visible");
             } else {
-                if (offlineMessage) offlineMessage.style.display = 'none';
-                if (mainContent) mainContent.style.filter = 'none';
+                backToTop.classList.remove("visible");
             }
-        }
-
-        // Handle retry attempt
-        async function handleRetry(event) {
-            event.preventDefault();
-            const retryButton = document.getElementById('retryButton');
-            const retryStatus = document.getElementById('retryStatus');
-            const rotationAnimation = [
-                { transform: 'rotate(0deg)' },
-                { transform: 'rotate(360deg)' }
-            ];
-            const rotationTiming = {
-                duration: 1000,
-                iterations: 1
-            };
-
-            if (!navigator.onLine) {
-                retryButton.disabled = true;
-                const icon = retryButton.querySelector('i');
-                icon.classList.remove('fa-sync');
-                icon.classList.add('fa-spinner');
-                icon.animate(rotationAnimation, rotationTiming);
-                retryStatus.textContent = 'Checking connection...';
-
-                try {
-                    const testUrls = [
-                        'https://www.google.com/favicon.ico',
-                        'https://www.cloudflare.com/favicon.ico'
-                    ];
-
-                    const timeoutPromise = new Promise((_, reject) =>
-                        setTimeout(() => reject(new Error('timeout')), 3000)
-                    );
-
-                    for (const url of testUrls) {
-                        try {
-                            const fetchPromise = fetch(url, {
-                                mode: 'no-cors',
-                                cache: 'no-store'
-                            });
-                            await Promise.race([fetchPromise, timeoutPromise]);
-                            // If we get here, we're online
-                            checkConnection();
-                            return;
-                        } catch (e) {
-                            continue;
-                        }
-                    }
-                    throw new Error('offline');
-                } catch (error) {
-                    const icon = retryButton.querySelector('i');
-                    icon.classList.remove('fa-spinner');
-                    icon.classList.add('fa-sync');
-                    retryButton.disabled = false;
-                    retryStatus.textContent = 'Still offline. Please check your connection.';
-                    retryStatus.style.animation = 'shake 0.5s ease-in-out';
-                    setTimeout(() => {
-                        retryStatus.style.animation = '';
-                    }, 500);
-                }
-            }
-        }
-
-        // Initialize offline handling
-        checkConnection();
-        window.addEventListener('online', checkConnection);
-        window.addEventListener('offline', checkConnection);
-        document.getElementById('retryButton').addEventListener('click', handleRetry);
-
-        // Back to top functionality
-        (function () {
-            const backToTop = document.querySelector('.back-to-top');
-            if (!backToTop) return;
-            window.addEventListener('scroll', () => {
-                if (window.scrollY > 400) backToTop.classList.add('visible');
-                else backToTop.classList.remove('visible');
-            });
-            backToTop.addEventListener('click', e => {
-                e.preventDefault();
-                window.scrollTo({ top: 0, behavior: 'smooth' });
-            });
-        })();
-    </script>
-
-    <script src="https://unpkg.com/aos@2.3.4/dist/aos.js"></script>
-    <script>
-        AOS.init({
-            duration: 1000,     // Animation duration (1s)
-            easing: 'ease-out', // Smooth easing
-            once: true,         // Animate only once per element
-            offset: 100         // Offset from bottom before trigger
         });
+
+        backToTop.addEventListener("click", (e) => {
+
+            e.preventDefault();
+
+            window.scrollTo({
+                top: 0,
+                behavior: "smooth"
+            });
+        });
+    });
     </script>
 
-    <script src="../js/newsletter.js"></script>
-    <script src="../js/reviews.js"></script>
+    <!-- AOS -->
+    <script defer src="https://unpkg.com/aos@2.3.4/dist/aos.js"></script>
 
     <script>
-        (function () {
-            // Handle search form submission - redirect to menu.html with search query
-            const searchForms = document.querySelectorAll('.navbar-search');
+    window.addEventListener("DOMContentLoaded", () => {
 
-            searchForms.forEach(form => {
-                form.addEventListener('submit', function (e) {
-                    e.preventDefault();
-                    const searchInput = form.querySelector('input[name="search"]');
-                    const query = searchInput.value.trim();
+        AOS.init({
+            duration: 1000,
+            easing: "ease-out",
+            once: true,
+            offset: 100
+        });
 
-                    if (query) {
-                        window.location.href = `./menu.html?search=${encodeURIComponent(query)}`;
-                    } else {
-                        window.location.href = './menu.html';
-                    }
-                });
-            });
-        })();
+    });
     </script>
-    <script src="../js/language-dropdown.js"></script>
+
+    <!-- Search Redirect -->
+    <script>
+    document.addEventListener("DOMContentLoaded", () => {
+
+        const searchForms = document.querySelectorAll(".navbar-search");
+
+        searchForms.forEach((form) => {
+
+            form.addEventListener("submit", (e) => {
+
+                e.preventDefault();
+
+                const searchInput = form.querySelector('input[name="search"]');
+
+                const query = searchInput.value.trim();
+
+                if (query) {
+                    window.location.href =
+                        `/html/menu.html?search=${encodeURIComponent(query)}`;
+                } else {
+                    window.location.href = "/html/menu.html";
+                }
+            });
+        });
+    });
+    </script>
 </body>
 
 </html>

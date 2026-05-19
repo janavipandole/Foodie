@@ -12,7 +12,8 @@
     "lightMode": "লাইট মোড",
     "signIn": "সাইন ইন",
     "cart": "কার্ট",
-    "favorites": "পসंदीदा"
+    "favorites": "পছন্দের",
+    "orderHistory": "অর্ডার হিস্ট্রি"
   },
   "hero": {
     "title": "আপনার সুস্বাদু খাবার উপভোগ করুন",
@@ -72,7 +73,7 @@
     "description": "আমাদের সম্পর্কে প্রতিদিনের আপডেট পেতে আপনার ইমেইল নিচে লিখে সাবস্ক্রাইব করুন।",
     "placeholder": "আপনার ইমেইল ঠিকানা লিখুন",
     "subscribeButton": "সাবস্ক্রাইব করুন",
-    "success": "Thank you for subscribing!\nYou will receive updates at: {email}"
+    "success": "সাবস্ক্রাইব করার জন্য ধন্যবাদ!\nআপনি {email} এ আপডেট পাবেন"
   },
   "footer": {
     "ourMenu": "আমাদের মেনু",
@@ -124,11 +125,11 @@
     "noItems": "উফ! কোনো আইটেম পাওয়া যায়নি।",
     "loadError": "পণ্য লোড করা যাচ্ছে না। অনুগ্রহ করে আপনার সংযোগ পরীক্ষা করুন এবং আবার চেষ্টা করুন।",
     "retry": "আবার চেষ্টা করুন",
-    "storage": "Storage error. Your data may not be saved.",
-    "network": "Network error. Please check your connection.",
-    "cart": "Cart error. Please try again.",
-    "unhandled": "An error occurred. Please refresh the page.",
-    "promiseRejected": "An error occurred. Please try again."
+    "storage": "স্টোরেজ ত্রুটি। আপনার ডেটা সংরক্ষিত নাও হতে পারে।",
+    "network": "নেটওয়ার্ক ত্রুটি। অনুগ্রহ করে আপনার সংযোগ পরীক্ষা করুন।",
+    "cart": "কার্ট ত্রুটি। অনুগ্রহ করে আবার চেষ্টা করুন।",
+    "unhandled": "একটি ত্রুটি ঘটেছে। অনুগ্রহ করে পৃষ্ঠা রিফ্রেশ করুন।",
+    "promiseRejected": "একটি ত্রুটি ঘটেছে। অনুগ্রহ করে আবার চেষ্টা করুন।"
   },
   "languages": {
     "english": "English",
@@ -151,97 +152,106 @@
     }
   },
   "auth": {
-    "signupTagline": "Join Foodie today!",
-    "loginTagline": "Your favorite meals are just a click away.",
-    "guestLogin": "Enter as Guest",
-    "signInButton": "Sign In",
-    "userExists": "User with this email or phone already exists!",
-    "registrationSuccess": "Registration successful! Please login.",
-    "invalidCredentials": "Invalid email or password!",
-    "welcomeBack": "Welcome back, {name}!",
-    "googleLoginFailed": "Google Login failed. Please use regular login."
+    "signupTagline": "আজই ফুডিতে যোগ দিন!",
+    "loginTagline": "আপনার প্রিয় খাবার মাত্র এক ক্লিক দূরে।",
+    "guestLogin": "অতিথি হিসেবে প্রবেশ করুন",
+    "signInButton": "সাইন ইন",
+    "userExists": "এই ইমেইল বা ফোন নম্বরের ব্যবহারকারী ইতিমধ্যেই রয়েছে!",
+    "registrationSuccess": "নিবন্ধন সফল হয়েছে! অনুগ্রহ করে লগইন করুন।",
+    "invalidCredentials": "অবৈধ ইমেইল বা পাসওয়ার্ড!",
+    "welcomeBack": "আবার স্বাগতম, {name}!",
+    "googleLoginFailed": "গুগল লগইন ব্যর্থ হয়েছে। অনুগ্রহ করে সাধারণ লগইন ব্যবহার করুন।"
   },
   "checkout": {
-    "zoneWarning": "Note: Your address is approximately {distance} km from Nashik. Delivery availability may vary.",
+    "zoneWarning": "দ্রষ্টব্য: আপনার ঠিকানা নাসিক থেকে প্রায় {distance} কিমি দূরে। ডেলিভারি উপলভ্যতা পরিবর্তিত হতে পারে।",
     "citySearch": {
-      "error": "Unable to search cities. Please check your connection and try again.",
-      "failed": "City search failed. Please try again."
+      "error": "শহর অনুসন্ধান করা যাচ্ছে না। অনুগ্রহ করে আপনার সংযোগ পরীক্ষা করুন এবং আবার চেষ্টা করুন।",
+      "failed": "শহর অনুসন্ধান ব্যর্থ হয়েছে। অনুগ্রহ করে আবার চেষ্টা করুন।"
     },
     "pin": {
-      "invalidLength": "Pincode must be 6 digits",
-      "validating": "Validating pincode...",
-      "notFound": "Pincode not found",
-      "cityMismatch": "Pincode does not match selected city",
-      "validationSuccess": "Pincode validated successfully",
-      "validationNetworkFail": "Unable to validate pincode. Please check your connection and try again.",
-      "retryValidation": "Retry Validation",
-      "validationFailed": "PIN validation failed. Please try again."
+      "invalidLength": "পিনকোড অবশ্যই ৬ সংখ্যার হতে হবে",
+      "validating": "পিনকোড যাচাই করা হচ্ছে...",
+      "notFound": "পিনকোড পাওয়া যায়নি",
+      "cityMismatch": "পিনকোড নির্বাচিত শহরের সাথে মিলছে না",
+      "validationSuccess": "পিনকোড সফলভাবে যাচাই হয়েছে",
+      "validationNetworkFail": "পিনকোড যাচাই করা যাচ্ছে না। অনুগ্রহ করে আপনার সংযোগ পরীক্ষা করুন এবং আবার চেষ্টা করুন।",
+      "retryValidation": "পুনরায় যাচাই করুন",
+      "validationFailed": "পিন যাচাই ব্যর্থ হয়েছে। অনুগ্রহ করে আবার চেষ্টা করুন।"
     },
     "payment": {
-      "onlyCard": "Currently only Card payment is integrated.",
-      "unavailable": "Payment system is not available. Please refresh the page."
+      "onlyCard": "বর্তমানে শুধুমাত্র কার্ড পেমেন্ট উপলভ্য।",
+      "unavailable": "পেমেন্ট সিস্টেম উপলভ্য নয়। অনুগ্রহ করে পৃষ্ঠা রিফ্রেশ করুন।"
     },
     "phone": {
-      "invalid": "Enter valid Indian number",
-      "invalidFormat": "Please enter a valid phone number"
+      "invalid": "সঠিক ভারতীয় নম্বর লিখুন",
+      "invalidFormat": "অনুগ্রহ করে একটি সঠিক ফোন নম্বর লিখুন"
     }
   },
   "ride": {
     "form": {
-      "requiredFields": "Please fill in all required fields.",
-      "invalidMobile": "Please enter a valid 10-digit mobile number."
+      "requiredFields": "অনুগ্রহ করে সব প্রয়োজনীয় ঘর পূরণ করুন।",
+      "invalidMobile": "অনুগ্রহ করে একটি সঠিক ১০ সংখ্যার মোবাইল নম্বর লিখুন।"
     },
     "otp": {
-      "required": "Please enter all 6 digits.",
-      "incorrect": "Incorrect OTP. Please try again."
+      "required": "অনুগ্রহ করে সব ৬টি সংখ্যা লিখুন।",
+      "incorrect": "ভুল OTP। অনুগ্রহ করে আবার চেষ্টা করুন।"
     },
     "theme": {
-      "lightMode": "Light Mode ☀",
-      "darkMode": "Dark Mode 🌙"
+      "lightMode": "লাইট মোড ☀",
+      "darkMode": "ডার্ক মোড 🌙"
     }
   },
   "feedback": {
-    "submitting": "Submitting feedback...",
-    "success": "Thank you for your feedback! We appreciate your input.",
-    "submitFailed": "Failed to submit feedback. Please try again or contact support.",
-    "retryButton": "Retry Submission"
+    "submitting": "মতামত জমা দেওয়া হচ্ছে...",
+    "success": "আপনার মতামতের জন্য ধন্যবাদ! আমরা আপনার প্রতিক্রিয়াকে মূল্য দিই।",
+    "submitFailed": "মতামত জমা দিতে ব্যর্থ হয়েছে। অনুগ্রহ করে আবার চেষ্টা করুন অথবা সহায়তার সাথে যোগাযোগ করুন।",
+    "retryButton": "পুনরায় জমা দিন"
   },
   "partner": {
-    "submitFailedField": "Submission failed. Please check your connection and try again.",
-    "submitFailedToast": "Failed to submit partnership request. Please try again."
+    "submitFailedField": "জমা দেওয়া ব্যর্থ হয়েছে। অনুগ্রহ করে আপনার সংযোগ পরীক্ষা করুন এবং আবার চেষ্টা করুন।",
+    "submitFailedToast": "অংশীদারিত্বের অনুরোধ জমা দিতে ব্যর্থ হয়েছে। অনুগ্রহ করে আবার চেষ্টা করুন।"
   },
   "forgotPassword": {
-    "invalidEmail": "Please enter a valid email address",
-    "resetLinkSent": "Reset link resent to {email}"
+    "invalidEmail": "অনুগ্রহ করে একটি সঠিক ইমেইল ঠিকানা লিখুন",
+    "resetLinkSent": "{email} এ পুনরায় রিসেট লিঙ্ক পাঠানো হয়েছে"
   },
   "contributors": {
-    "failedTitle": "Failed to Load Contributors",
-    "failedMessage": "Unable to load contributor data. This might be due to API rate limits or network issues.",
-    "retry": "Retry",
-    "failedToast": "Failed to load contributors. Please try again."
+    "failedTitle": "অবদানকারীদের লোড করা যায়নি",
+    "failedMessage": "অবদানকারীদের তথ্য লোড করা যাচ্ছে না। এটি API সীমাবদ্ধতা বা নেটওয়ার্ক সমস্যার কারণে হতে পারে।",
+    "retry": "পুনরায় চেষ্টা করুন",
+    "failedToast": "অবদানকারীদের লোড করা যায়নি। অনুগ্রহ করে আবার চেষ্টা করুন।"
   },
   "i18n": {
-    "loadFailed": "Failed to load language translations. Some text may appear in English."
+    "loadFailed": "ভাষার অনুবাদ লোড করা যায়নি। কিছু লেখা ইংরেজিতে দেখা যেতে পারে।"
   },
   "nearby": {
-    "locationUnavailable": "Location services are unavailable.",
-    "locationUnavailableHint": "Please enable location or try again.",
-    "noLocation": "No nearby restaurants found. Try enabling location.",
-    "loadFailed": "Unable to load nearby restaurants right now. Please verify API key and internet connection.",
-    "apiFailed": "Google Maps request failed. Verify API key permissions for Maps JavaScript API and Places API.",
-    "requestingLocation": "Requesting your location permission...",
-    "locationFound": "Location found. Fetching top rated nearby restaurants...",
-    "defaultLocationWarning": "Location access unavailable. Showing top restaurants near default location.",
-    "showingTop": "Showing {count} top rated restaurants near you.",
-    "noRated": "No rated restaurants found in this area. Try retrying from a different location.",
-    "loading": "Loading...",
-    "noRatings": "No nearby restaurants with ratings were found in this area.",
-    "hoursUnavailable": "Hours unavailable",
-    "openNow": "Open now",
-    "closed": "Closed",
-    "addressUnavailable": "Address unavailable",
-    "restaurant": "Restaurant",
-    "ratingLabel": "Rating",
-    "youAreHere": "You are here"
+    "locationUnavailable": "লোকেশন সেবা উপলভ্য নয়।",
+    "locationUnavailableHint": "অনুগ্রহ করে লোকেশন সক্রিয় করুন অথবা পুনরায় চেষ্টা করুন।",
+    "noLocation": "নিকটস্থ কোনো রেস্টুরেন্ট পাওয়া যায়নি। অনুগ্রহ করে লোকেশন সক্রিয় করুন।",
+    "loadFailed": "এই মুহূর্তে নিকটস্থ রেস্টুরেন্ট লোড করা যাচ্ছে না। অনুগ্রহ করে API কী ও ইন্টারনেট সংযোগ পরীক্ষা করুন।",
+    "apiFailed": "গুগল ম্যাপস অনুরোধ ব্যর্থ হয়েছে। Maps JavaScript API এবং Places API-এর অনুমতি পরীক্ষা করুন।",
+    "requestingLocation": "আপনার লোকেশন অনুমতি অনুরোধ করা হচ্ছে...",
+    "locationFound": "লোকেশন পাওয়া গেছে। শীর্ষ রেটেড নিকটস্থ রেস্টুরেন্ট আনছি...",
+    "defaultLocationWarning": "লোকেশন অ্যাক্সেস পাওয়া যাচ্ছে না। ডিফল্ট অবস্থানের নিকটস্থ শীর্ষ রেস্টুরেন্ট দেখানো হচ্ছে।",
+    "showingTop": "আপনার নিকটস্থ {count}টি শীর্ষ রেটেড রেস্টুরেন্ট দেখানো হচ্ছে।",
+    "noRated": "এই এলাকায় কোনো রেটেড রেস্টুরেন্ট পাওয়া যায়নি। অন্য লোকেশন থেকে পুনরায় চেষ্টা করুন।",
+    "loading": "লোড হচ্ছে...",
+    "noRatings": "এই এলাকায় রেটিং সহ কোনো নিকটস্থ রেস্টুরেন্ট পাওয়া যায়নি।",
+    "hoursUnavailable": "ঘন্টার তথ্য পাওয়া যায়নি",
+    "openNow": "এখন খোলা",
+    "closed": "বন্ধ",
+    "addressUnavailable": "ঠিকানা পাওয়া যায়নি",
+    "restaurant": "রেস্টুরেন্ট",
+    "ratingLabel": "রেটিং",
+    "youAreHere": "আপনি এখানে আছেন"
+  },
+  "login": {
+    "heroTitle": "আবার স্বাগতম!",
+    "heroSubtitle": "আপনার প্রিয় খাবার মাত্র এক ক্লিক দূরে।",
+    "signInTitle": "সাইন ইন",
+    "signInSubtitle": "আবার স্বাগতম! অনুগ্রহ করে আপনার তথ্য লিখুন।",
+    "signInBtn": "সাইন ইন",
+    "emailLabel": "ইমেইল ঠিকানা",
+    "emailPlaceholder": "your@email.com"
   }
 }

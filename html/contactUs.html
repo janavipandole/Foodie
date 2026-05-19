@@ -16,6 +16,20 @@
         })();
     </script>
 
+    <!-- Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-467CJES6R0"></script>
+
+    <script>
+        window.dataLayer = window.dataLayer || [];
+
+        function gtag() {
+            dataLayer.push(arguments);
+        }
+
+        gtag('js', new Date());
+        gtag('config', 'G-467CJES6R0');
+    </script>
+
     <link rel="icon" href="../imgs/favicon.webp" type="image/webp" />
     <link rel="stylesheet" href="../css/style.css">
     <link rel="stylesheet" href="../css/contactUs.css">
@@ -35,11 +49,11 @@
         <!-- DESKTOP MENU -->
         <ul class="navList flex gap-1 between">
             <li><a href="./index.html#home" data-i18n="nav.home">Home</a></li>
-            <li><a href="./menu.html" data-i18n="nav.menu">Menu</a></li>
+            <li><a href="/html/menu.html" data-i18n="nav.menu">Menu</a></li>
             <li><a href="./my-favorites.html" data-i18n="nav.favorites"><i class="fa-solid fa-star"></i> Favorites</a></li>
             <li><a href="./order-history.html" data-i18n="nav.orderHistory"><i class="fa-solid fa-clock-rotate-left"></i> Order History</a></li>
-            <li><a href="./aboutUs.html" data-i18n="nav.about">About Us</a></li>
-            <li><a href="./contactUs.html" data-i18n="nav.contact">Contact Us</a></li>
+            <li><a href="/html/aboutUs.html" data-i18n="nav.about">About Us</a></li>
+            <li><a href="/html/contactUs.html" data-i18n="nav.contact">Contact Us</a></li>
             <li><a href="./nearbyres.html" data-i18n="nav.nearby">Nearby</a></li>
         </ul>
 
@@ -78,7 +92,7 @@
             </a>
 
             <!-- Sign-in button -->
-            <a href="./login.html" class="btn">
+            <a href="/html/login.html" class="btn">
                 <i class="fa-solid fa-user"></i>&nbsp;Sign in
             </a>
 
@@ -89,11 +103,11 @@
         <!-- MOBILE MENU -->
         <ul class="mobile-menu">
             <li><a href="./index.html#home" data-i18n="nav.home">Home</a></li>
-            <li><a href="./menu.html" data-i18n="nav.menu">Menu</a></li>
+            <li><a href="/html/menu.html" data-i18n="nav.menu">Menu</a></li>
             <li><a href="./my-favorites.html" data-i18n="nav.favorites"><i class="fa-solid fa-star"></i> Favorites</a></li>
             <li><a href="./order-history.html" data-i18n="nav.orderHistory"><i class="fa-solid fa-clock-rotate-left"></i> Order History</a></li>
-            <li><a href="./aboutUs.html" data-i18n="nav.about">About Us</a></li>
-            <li><a href="./contactUs.html" data-i18n="nav.contact">Contact Us</a></li>
+            <li><a href="/html/aboutUs.html" data-i18n="nav.about">About Us</a></li>
+            <li><a href="/html/contactUs.html" data-i18n="nav.contact">Contact Us</a></li>
             <li><a href="./nearbyres.html" data-i18n="nav.nearby">Nearby</a></li>
             <li>
                 <button class="theme-toggle mobile-theme-toggle" aria-label="Toggle dark mode">
@@ -101,7 +115,7 @@
                 </button>
             </li>
             <li>
-                <a href="./login.html" class="btn">
+                <a href="/html/login.html" class="btn">
                     <i class="fa-solid fa-user"></i>&nbsp;Sign in
                 </a>
             </li>
@@ -109,7 +123,10 @@
     </nav></header>
 
     <section class="hero">
-        <h1>Get in <span class="highlight">Touch</span></h1>
+        <h1>
+            <span data-i18n="contact.heroTitle">Get in</span>
+            <span class="highlight" data-i18n="contact.heroHighlight">Touch</span>
+        </h1>
         <p>Have questions or feedback? We'd love to hear from you. Our team is here to help!</p>
     </section>
 

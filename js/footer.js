@@ -42,7 +42,7 @@ function loadFooter() {
                             data-i18n="footer.partnerWithUs"> Partner with us</a>
                     </li>
                     <li class="mt-one"><a href="./rideWithUs.html" class="footer-link" data-i18n="footer.rideWithUs"> Ride With Us</a></li>
-                    <li class="mt-one"><a href="./aboutUs.html" class="footer-link" data-i18n="footer.aboutUs">
+                    <li class="mt-one"><a href="/html/aboutUs.html" class="footer-link" data-i18n="footer.aboutUs">
                             About us </a></li>
                     <li class="mt-one"><a href="./faq-page.html" class="footer-link" data-i18n="footer.faq"> FAQ's</a>
                     </li>
@@ -54,7 +54,7 @@ function loadFooter() {
     </li>
 
     <li class="mt-one">
-        <a href="./signup.html" class="footer-link" data-i18n="footer.account">
+        <a href="/html/signup.html" class="footer-link" data-i18n="footer.account">
             Account
         </a>
     </li>
@@ -84,7 +84,7 @@ function loadFooter() {
     </li>
 
     <li class="mt-one">
-        <a href="./contactUs.html" class="footer-link" data-i18n="footer.contactUs">
+        <a href="/html/contactUs.html" class="footer-link" data-i18n="footer.contactUs">
             Contact Us
         </a>
     </li>

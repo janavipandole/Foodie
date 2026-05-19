@@ -348,5 +348,17 @@
       "signUp": "Sign Up Now",
       "browseMenu": "Browse Menu"
     }
+  },
+  "login": {
+    "heroTitle": "Welcome Back!",
+    "heroSubtitle": "Your favorite meals are just a click away.",
+    "signInTitle": "Sign In",
+    "signInSubtitle": "Welcome back! Please enter your details.",
+    "signInBtn": "Sign In",
+    "emailLabel": "Email Address",
+    "emailPlaceholder": "your@email.com"
+  },
+  "order": {
+  "history": "Order History"
   }
 }

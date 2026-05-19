@@ -1,24 +1,26 @@
 {
   "nav": {
-    "home": "মূল পৃষ্ঠা",
+    "home": "হোম",
     "services": "সেৱাসমূহ",
     "menu": "মেনু",
     "about": "আমাৰ বিষয়ে",
     "contact": "যোগাযোগ কৰক",
-    "nearby": "ওচৰৰ ৰেষ্টুৰেণ্ট",
+    "nearby": "ওচৰৰ ৰেষ্টুৰেন্ট",
     "rideWithUs": "আমাৰ সৈতে ৰাইড কৰক",
     "searchPlaceholder": "আপোনাৰ খাদ্য বিচাৰক ...",
     "darkMode": "ডাৰ্ক মোড",
     "lightMode": "লাইট মোড",
     "signIn": "চাইন ইন",
-    "cart": "কাৰ্ট"
+    "cart": "কাৰ্ট",
+    "favorites": "পছন্দ",
+    "orderHistory": "অৰ্ডাৰ ইতিহাস"
   },
   "hero": {
     "title": "আপোনাৰ সুস্বাদু",
     "highlight": "খাদ্য উপভোগ কৰক",
     "subtitle": "আমি দ্ৰুত ডেলিভাৰীৰ সৈতে আপোনাৰ ভোক সুস্বাদু খাদ্যেৰে পূৰণ কৰোঁ",
     "orderNow": "এতিয়াই অৰ্ডাৰ কৰক",
-    "viewPopular": "View Popular"
+    "viewPopular": "জনপ্ৰিয় চাওক"
   },
   "services": {
     "sectionTitle": "আমাৰ সেৱাসমূহ",
@@ -36,6 +38,94 @@
       "description": "কেৱল গতি নহয়, আমাৰ বাবে গুণগত মান প্ৰথম।"
     }
   },
+  "reviews": {
+    "sectionTitle": "আমাৰ মূল্যায়ন",
+    "mainTitle": "তেওঁলোকে কি কয়",
+    "deepakName": "দীপক কুমাৰ",
+    "deepakReview": "Foodie উৎকৃষ্ট! বহুত সোৱাদযুক্ত আহাৰ আৰু দ্ৰুত সেৱা। মই এইটো সকলোৰে বাবে প্ৰস্তাৱ কৰোঁ।",
+    "priyaName": "প্ৰিয়া ৰায়",
+    "priyaReview": "তাজা উপাদান, সৃষ্টিশীল মেনু আৰু মৰমৰ সেৱাই ইয়াক এক গুপ্ত ৰত্ন বনাইছে।",
+    "anjaliName": "অঞ্জলি জোশী",
+    "anjaliReview": "মই ইয়াত এক উৎকৃষ্ট অভিজ্ঞতা লাভ কৰিলোঁ! খাদ্য স্বাদময় আৰু পৰিবেশ অতি মৰমৰ।"
+  },
+  "app": {
+    "sectionTitle": "আমাৰ এপ",
+    "mainTitle": "খাদ্য অৰ্ডাৰ কৰাৰ সহজ উপায়",
+    "description": "ব্ৰাউজ কৰক, আৱিষ্কাৰ কৰক, যিকোনো সময়তে সোনকালে পান।",
+    "installButton": "এপ ইন্সটল কৰক"
+  },
+  "qr": {
+    "scan": "স্কেন কৰি ডাউনলোড কৰক",
+    "quickAccess": "আমাৰ ম'বাইল এপলৈ দ্ৰুত প্ৰৱেশ",
+    "instruction": "কেমেৰাখনক QR কোডৰ ওপৰত ৰখা",
+    "orDownload": "অথবা ইয়াৰে ডাউনলোড কৰক:",
+    "appStoreSmall": "ডাউনলোড",
+    "appStoreLarge": "App Store ৰ পৰা",
+    "googlePlaySmall": "গ্ৰহণ কৰক",
+    "googlePlayLarge": "Google Play ৰ পৰা",
+    "users": "সক্ৰিয় ব্যৱহাৰকাৰী",
+    "rating": "এপৰ মূল্যায়ন",
+    "downloads": "ডাউনলোড"
+  },
+  "footer": {
+    "ourMenu": "আমাৰ মেনু",
+    "special": "বিশেষ",
+    "popular": "জনপ্ৰিয়",
+    "category": "শ্ৰেণী",
+    "company": "কোম্পানী",
+    "whyFoodie": "কিয় Foodie",
+    "partnerWithUs": "আমাৰ সৈতে অংশীদাৰ হ'ব",
+    "aboutUs": "আমাৰ বিষয়ে",
+    "faq": "সঘন প্ৰশ্ন",
+    "support": "সমৰ্থন",
+    "account": "একাউণ্ট",
+    "supportCenter": "সমৰ্থন কেন্দ্ৰ",
+    "feedback": "প্ৰতিক্ৰিয়া",
+    "contactUs": "যোগাযোগ কৰক",
+    "description": "আমি দ্ৰুত ডেলিভাৰী যোগে আপোনাক আনন্দিত কৰোঁ।",
+    "rideWithUs": "আমাৰ সৈতে ৰাইড কৰক"
+  },
+  "cart": {
+    "yourCart": "আপোনাৰ কাৰ্ট",
+    "empty": "আপোনাৰ কাৰ্ট খালী আছে!",
+    "total": "মুঠ",
+    "close": "বন্ধ কৰক",
+    "checkout": "চেকআউট"
+  },
+  "toasts": {
+    "addedToCart": "কাৰ্টত যোগ কৰা হৈছে",
+    "addedAnother": "আনটো বস্তু যোগ কৰা হৈছে"
+  },
+  "menu": {
+    "ourMenu": "আমাৰ মেনু",
+    "mostPopular": "সৰ্বাধিক জনপ্ৰিয়",
+    "searchPlaceholder": "আপোনাৰ পছন্দৰ খাদ্য অনুসন্ধান কৰক...",
+    "allPrices": "সকল মূল্য",
+    "below100": "₹100 ৰ তলত",
+    "midRange": "₹100 - ₹200",
+    "above200": "₹200ৰ ওপৰত",
+    "favorites": "পছন্দ",
+    "veg": "শাকাহাৰী",
+    "nonVeg": "মাংসাহাৰী",
+    "all": "সকলো"
+  },
+  "modal": {
+    "addToCart": "কাৰ্টত যোগ কৰক",
+    "viewCart": "কাৰ্ট চাওক"
+  },
+  "aboutUs": {
+    "hero": {
+      "title": "আমাৰ বিষয়ে",
+      "highlight": "Foodie",
+      "subtitle": "আপোনাৰ বিশ্বস্ত খাদ্য আৰু দ্ৰুত ডেলিভাৰী সঙ্গী"
+    },
+    "story": {
+      "title": "আমাৰ গল্প",
+      "para1": "Foodie 2022 ত স্থাপন কৰা হৈছিল, যাতে দ্ৰুত আৰু বিশ্বাসযোগ্য ডেলিভাৰীৰ জৰিয়তে খাদ্যপ্ৰেমীসকলক তেওঁলোকৰ প্ৰিয় ৰেষ্টুৰেণ্টসমূহৰ সৈতে সংযোগ কৰিব পাৰে।",
+      "para2": "আমি বিশ্বাস কৰোঁ যে সোৱাদযুক্ত খাদ্য সহজে আৰু যিকোনো সময়ত উপলব্ধ হ'ব লাগে। আমাৰ দলে প্ৰতিটো আদেশ উষ্ণ আৰু তাজাকৈ ডেলিভাৰী কৰিবলৈ কঠোৰ পৰিশ্রম কৰে।",
+      "para3": "Foodie ত, আমি কেৱল খাদ্য নহয়, আনন্দও ডেলিভাৰী কৰোঁ।"
+    }
+  },
   "languages": {
     "english": "English",
     "hindi": "हिंदी",
@@ -44,107 +134,124 @@
     "chinese": "中文"
   },
   "auth": {
-    "signupTagline": "Join Foodie today!",
-    "loginTagline": "Your favorite meals are just a click away.",
-    "guestLogin": "Enter as Guest",
-    "signInButton": "Sign In",
-    "userExists": "User with this email or phone already exists!",
-    "registrationSuccess": "Registration successful! Please login.",
-    "invalidCredentials": "Invalid email or password!",
-    "welcomeBack": "Welcome back, {name}!",
-    "googleLoginFailed": "Google Login failed. Please use regular login."
+    "signupTagline": "আজিয়েই Foodie ত যোগ দিয়ক!",
+    "loginTagline": "আপোনাৰ প্ৰিয় খাদ্য মাত্ৰ এটা ক্লিক দূৰত।",
+    "guestLogin": "অতিথি হিচাপে প্ৰৱেশ কৰক",
+    "signInButton": "চাইন ইন",
+    "userExists": "এই ইমেইল বা ফোন নম্বৰৰ ব্যৱহাৰকাৰী ইতিমধ্যে আছে!",
+    "registrationSuccess": "পঞ্জীয়ন সফল! অনুগ্ৰহ কৰি লগইন কৰক।",
+    "invalidCredentials": "অবৈধ ইমেইল বা পাছৱৰ্ড!",
+    "welcomeBack": "পুনৰ স্বাগতম, {name}!",
+    "googleLoginFailed": "Google লগইন বিফল হৈছে। অনুগ্ৰহ কৰি সাধাৰণ লগইন ব্যৱহাৰ কৰক।"
   },
   "checkout": {
-    "zoneWarning": "Note: Your address is approximately {distance} km from Nashik. Delivery availability may vary.",
+    "zoneWarning": "দৃষ্টি আকৰ্ষণ: আপোনাৰ ঠিকনা Nashik ৰ পৰা প্ৰায় {distance} কিমি দূৰত। ডেলিভাৰী সুবিধা ভিন্ন হ’ব পাৰে।",
     "citySearch": {
-      "error": "Unable to search cities. Please check your connection and try again.",
-      "failed": "City search failed. Please try again."
+      "error": "চহৰ সন্ধান কৰিব পৰা নগ'ল। সংযোগ পৰীক্ষা কৰি পুনৰ চেষ্টা কৰক।",
+      "failed": "চহৰ সন্ধান বিফল। পুনৰ চেষ্টা কৰক।"
     },
     "pin": {
-      "invalidLength": "Pincode must be 6 digits",
-      "validating": "Validating pincode...",
-      "notFound": "Pincode not found",
-      "cityMismatch": "Pincode does not match selected city",
-      "validationSuccess": "Pincode validated successfully",
-      "validationNetworkFail": "Unable to validate pincode. Please check your connection and try again.",
-      "retryValidation": "Retry Validation",
-      "validationFailed": "PIN validation failed. Please try again."
+      "invalidLength": "পিনকোড ৬ সংখ্যাৰ হ'ব লাগিব",
+      "validating": "পিনকোড যাচাই কৰা হৈছে...",
+      "notFound": "পিনকোড পোৱা নগ'ল",
+      "cityMismatch": "পিনকোড নিৰ্বাচিত চহৰৰ সৈতে মিল নাই",
+      "validationSuccess": "পিনকোড সফলভাৱে যাচাই হৈছে",
+      "validationNetworkFail": "পিনকোড যাচাই কৰিব পৰা নগ'ল। সংযোগ পৰীক্ষা কৰি পুনৰ চেষ্টা কৰক।",
+      "retryValidation": "পুনৰ যাচাই কৰক",
+      "validationFailed": "পিন যাচাই বিফল। পুনৰ চেষ্টা কৰক।"
     },
     "payment": {
-      "onlyCard": "Currently only Card payment is integrated.",
-      "unavailable": "Payment system is not available. Please refresh the page."
+      "onlyCard": "বৰ্তমান কেৱল কাৰ্ড পেমেন্ট উপলব্ধ।",
+      "unavailable": "পেমেন্ট চিষ্টেম উপলব্ধ নহয়। পৃষ্ঠা ৰিফ্ৰেছ কৰক।"
     },
     "phone": {
-      "invalid": "Enter valid Indian number",
-      "invalidFormat": "Please enter a valid phone number"
+      "invalid": "বৈধ ভাৰতীয় নম্বৰ লিখক",
+      "invalidFormat": "বৈধ ফোন নম্বৰ লিখক"
     }
   },
   "ride": {
     "form": {
-      "requiredFields": "Please fill in all required fields.",
-      "invalidMobile": "Please enter a valid 10-digit mobile number."
+      "requiredFields": "অনুগ্ৰহ কৰি সকলো প্ৰয়োজনীয় ঘৰ পূৰণ কৰক।",
+      "invalidMobile": "অনুগ্ৰহ কৰি বৈধ ১০ সংখ্যাৰ মোবাইল নম্বৰ লিখক।"
     },
     "otp": {
-      "required": "Please enter all 6 digits.",
-      "incorrect": "Incorrect OTP. Please try again."
+      "required": "অনুগ্ৰহ কৰি সকলো ৬টা সংখ্যা লিখক।",
+      "incorrect": "ভুল OTP। পুনৰ চেষ্টা কৰক।"
     },
     "theme": {
-      "lightMode": "Light Mode ☀",
-      "darkMode": "Dark Mode 🌙"
+      "lightMode": "লাইট মোড ☀",
+      "darkMode": "ডাৰ্ক মোড 🌙"
     }
   },
   "feedback": {
-    "submitting": "Submitting feedback...",
-    "success": "Thank you for your feedback! We appreciate your input.",
-    "submitFailed": "Failed to submit feedback. Please try again or contact support.",
-    "retryButton": "Retry Submission"
+    "submitting": "প্ৰতিক্ৰিয়া জমা দিয়া হৈছে...",
+    "success": "আপোনাৰ মতামতৰ বাবে ধন্যবাদ! আমি ইয়াক মূল্য দিওঁ।",
+    "submitFailed": "মতামত জমা দিব পৰা নগ'ল। পুনৰ চেষ্টা কৰক বা সহায়ত যোগাযোগ কৰক।",
+    "retryButton": "পুনৰ জমা দিয়ক"
   },
   "partner": {
-    "submitFailedField": "Submission failed. Please check your connection and try again.",
-    "submitFailedToast": "Failed to submit partnership request. Please try again."
+    "submitFailedField": "জমা দিয়া ব্যৰ্থ হৈছে। অনুগ্ৰহ কৰি আপোনাৰ সংযোগ পৰীক্ষা কৰি পুনৰ চেষ্টা কৰক।",
+    "submitFailedToast": "সহযোগিতাৰ অনুৰোধ জমা দিব পৰা নগ'ল। অনুগ্ৰহ কৰি পুনৰ চেষ্টা কৰক।"
   },
   "errors": {
-    "storage": "Storage error. Your data may not be saved.",
-    "network": "Network error. Please check your connection.",
-    "cart": "Cart error. Please try again.",
-    "unhandled": "An error occurred. Please refresh the page.",
-    "promiseRejected": "An error occurred. Please try again."
+    "noItems": "উফ! কোনো বস্তু পোৱা নগ'ল।",
+    "loadError": "পণ্য লোড কৰিব পৰা নগ'ল। সংযোগ পৰীক্ষা কৰি পুনৰ চেষ্টা কৰক।",
+    "retry": "পুনৰ চেষ্টা কৰক",
+    "storage": "সংৰক্ষণ ত্ৰুটি। আপোনাৰ তথ্য সংৰক্ষিত নোহোৱা হ’ব পাৰে।",
+    "network": "নেটৱৰ্ক ত্ৰুটি। সংযোগ পৰীক্ষা কৰক।",
+    "cart": "কাৰ্ট ত্ৰুটি। পুনৰ চেষ্টা কৰক।",
+    "unhandled": "এটা ত্ৰুটি ঘটিছে। পৃষ্ঠা ৰিফ্ৰেছ কৰক।",
+    "promiseRejected": "এটা ত্ৰুটি ঘটিছে। পুনৰ চেষ্টা কৰক।"
   },
   "forgotPassword": {
-    "invalidEmail": "Please enter a valid email address",
-    "resetLinkSent": "Reset link resent to {email}"
+    "invalidEmail": "বৈধ ইমেইল ঠিকনা লিখক",
+    "resetLinkSent": "{email} লৈ পুনৰ ৰিচেট লিংক পঠিওৱা হৈছে"
   },
   "newsletter": {
-    "success": "Thank you for subscribing!\nYou will receive updates at: {email}"
+    "sectionTitle": "আমাক সাবস্ক্ৰাইব কৰক",
+    "mainTitle": "আমাৰ নিউজলেটাৰত সাবস্ক্ৰাইব কৰক",
+    "description": "প্ৰতিদিনৰ আপডেট পাবলৈ আপোনাৰ ইমেইল লিখক।",
+    "placeholder": "আপোনাৰ ইমেইল ঠিকনা লিখক",
+    "subscribeButton": "সাবস্ক্ৰাইব কৰক",
+    "success": "সাবস্ক্ৰাইব কৰাৰ বাবে ধন্যবাদ!\nআপুনি {email} ত আপডেট পাব"
   },
   "contributors": {
-    "failedTitle": "Failed to Load Contributors",
-    "failedMessage": "Unable to load contributor data. This might be due to API rate limits or network issues.",
-    "retry": "Retry",
-    "failedToast": "Failed to load contributors. Please try again."
+    "failedTitle": "অৱদানকাৰী লোড কৰিব পৰা নগ'ল",
+    "failedMessage": "অৱদানকাৰীৰ তথ্য লোড কৰিব পৰা নগ'ল। এইটো API সীমা বা নেটৱৰ্ক সমস্যাৰ বাবে হ’ব পাৰে।",
+    "retry": "পুনৰ চেষ্টা কৰক",
+    "failedToast": "অৱদানকাৰী লোড কৰিব পৰা নগ'ল। পুনৰ চেষ্টা কৰক।"
   },
   "i18n": {
-    "loadFailed": "Failed to load language translations. Some text may appear in English."
+    "loadFailed": "ভাষাৰ অনুবাদ লোড কৰিব পৰা নগ'ল। কিছুমান লেখা ইংৰাজীত দেখা যাব পাৰে।"
   },
   "nearby": {
-    "locationUnavailable": "Location services are unavailable.",
-    "locationUnavailableHint": "Please enable location or try again.",
-    "noLocation": "No nearby restaurants found. Try enabling location.",
-    "loadFailed": "Unable to load nearby restaurants right now. Please verify API key and internet connection.",
-    "apiFailed": "Google Maps request failed. Verify API key permissions for Maps JavaScript API and Places API.",
-    "requestingLocation": "Requesting your location permission...",
-    "locationFound": "Location found. Fetching top rated nearby restaurants...",
-    "defaultLocationWarning": "Location access unavailable. Showing top restaurants near default location.",
-    "showingTop": "Showing {count} top rated restaurants near you.",
-    "noRated": "No rated restaurants found in this area. Try retrying from a different location.",
-    "loading": "Loading...",
-    "noRatings": "No nearby restaurants with ratings were found in this area.",
-    "hoursUnavailable": "Hours unavailable",
-    "openNow": "Open now",
-    "closed": "Closed",
-    "addressUnavailable": "Address unavailable",
-    "restaurant": "Restaurant",
-    "ratingLabel": "Rating",
-    "youAreHere": "You are here"
+    "locationUnavailable": "লোকেশ্বন সেৱা উপলব্ধ নহয়।",
+    "locationUnavailableHint": "অনুগ্ৰহ কৰি লোকেশ্বন সক্ৰিয় কৰক বা পুনৰ চেষ্টা কৰক।",
+    "noLocation": "ওচৰৰ ৰেষ্টুৰেণ্ট নোপোৱা গৈছে। অনুগ্ৰহ কৰি লোকেশ্বন সক্ৰিয় কৰি চাওক।",
+    "loadFailed": "বৰ্তমান ওচৰৰ ৰেষ্টুৰেণ্ট লোড কৰিব পৰা নগ'ল। অনুগ্ৰহ কৰি API কী আৰু ইন্টাৰনেট সংযোগ পৰীক্ষা কৰক।",
+    "apiFailed": "Google Maps অনুৰোধ বিফল হৈছে। Maps JavaScript API আৰু Places API অনুমতি পৰীক্ষা কৰক।",
+    "requestingLocation": "আপোনাৰ লোকেশ্বন অনুমতি অনুৰোধ কৰা হৈছে...",
+    "locationFound": "লোকেশ্বন পোৱা গৈছে। ওচৰৰ শীৰ্ষ ৰেট কৰা ৰেষ্টুৰেণ্টসমূহ লোড কৰা হৈছে...",
+    "defaultLocationWarning": "লোকেশ্বন এক্সেছ উপলব্ধ নহয়। ডিফল্ট স্থানৰ ওচৰৰ শীৰ্ষ ৰেষ্টুৰেণ্ট দেখুওৱা হৈছে।",
+    "showingTop": "আপোনাৰ ওচৰত শীৰ্ষ {count} ৰেট কৰা ৰেষ্টুৰেন্ট দেখুওৱা হৈছে।",
+    "noRated": "এই অঞ্চলত ৰেট কৰা ৰেষ্টুৰেন্ট নোপোৱা গৈছে। অনুগ্ৰহ কৰি অন্য স্থানৰ পৰা পুনৰ চেষ্টা কৰক।",
+    "loading": "লোড কৰা হৈছে...",
+    "noRatings": "এই অঞ্চলত ৰেটিং থকা ওচৰৰ ৰেষ্টুৰেন্ট নোপোৱা গৈছে।",
+    "hoursUnavailable": "খোলা সময় উপলব্ধ নহয়",
+    "openNow": "এতিয়া খোলা",
+    "closed": "বন্ধ",
+    "addressUnavailable": "ঠিকনা উপলব্ধ নহয়",
+    "restaurant": "ৰেষ্টুৰেন্ট",
+    "ratingLabel": "ৰেটিং",
+    "youAreHere": "আপুনি ইয়াত আছে"
+  },
+  "login": {
+    "heroTitle": "পুনৰ স্বাগতম!",
+    "heroSubtitle": "আপোনাৰ প্ৰিয় খাদ্য মাত্ৰ এটা ক্লিক দূৰত।",
+    "signInTitle": "চাইন ইন",
+    "signInSubtitle": "পুনৰ স্বাগতম! অনুগ্ৰহ কৰি আপোনাৰ তথ্য দিয়ক।",
+    "signInBtn": "চাইন ইন",
+    "emailLabel": "ইমেইল ঠিকনা",
+    "emailPlaceholder": "your@email.com"
   }
 }

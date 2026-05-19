@@ -8,17 +8,18 @@
     "nearby": "ಹತ್ತಿರದ ರೆಸ್ಟೋರೆಂಟ್‌ಗಳು",
     "rideWithUs": "ನಮ್ಮೊಂದಿಗೆ ಸವಾರಿ ಮಾಡಿ",
     "searchPlaceholder": "ನಿಮ್ಮ ಆಹಾರವನ್ನು ಹುಡುಕಿ ...",
-    "darkMode": "ಡಾರ್ಕ್ ಮೋಡ್",
+    "darkMode": "ಗಾಢ ಮೋಡ್",
     "lightMode": "ಲೈಟ್ ಮೋಡ್",
-    "signIn": "ಸೈನ್ ಇನ್",
+    "signIn": "ಲಾಗಿನ್",
     "cart": "ಕಾರ್ಟ್",
-    "favorites": "ಮೆಚ್ಚಿನವುಗಳು"
+    "favorites": "ಮೆಚ್ಚಿನವು"
   },
   "hero": {
-    "title": "ನಿಮ್ಮ ಸ್ವಾದಿಷ್ಟವಾದ",
-    "highlight": "ಆಹಾರವನ್ನು ಆನಂದಿಸಿ",
-    "subtitle": "ನಾವು ವೇಗದ ಡೆಲಿವರಿಯೊಂದಿಗೆ ನಿಮ್ಮ ಹೊಟ್ಟೆಯನ್ನು ಸ್ವಾದಿಷ್ಟ ಆಹಾರದಿಂದ ತುಂಬುತ್ತೇವೆ",
-    "orderNow": "ಈಗ ಆರ್ಡರ್ ಮಾಡಿ"
+    "title": "ನಿಮ್ಮ ರುಚಿಕರವಾದ ಆಹಾರವನ್ನು",
+    "highlight": "ಆನಂದಿಸಿ",
+    "subtitle": "ನಾವು ವೇಗದ ಡೆಲಿವರಿಯೊಂದಿಗೆ ನಿಮ್ಮ ಹೊಟ್ಟೆಯನ್ನು ರುಚಿಕರವಾದ ಆಹಾರದಿಂದ ತುಂಬಿಸುತ್ತೇವೆ",
+    "orderNow": "ಈಗ ಆರ್ಡರ್ ಮಾಡಿ",
+    "viewPopular": "ಜನಪ್ರಿಯವನ್ನು ನೋಡಿ"
   },
   "services": {
     "sectionTitle": "ನಮ್ಮ ಸೇವೆಗಳು",
@@ -49,7 +50,7 @@
   "app": {
     "sectionTitle": "ನಮ್ಮ ಅಪ್ಲಿಕೇಶನ್",
     "mainTitle": "ನಿಮ್ಮ ಆಹಾರವನ್ನು ಆರ್ಡರ್ ಮಾಡುವ ಸರಳ ಮಾರ್ಗ",
-    "description": "ಬಯಸಿ. ಕಂಡುಹಿಡಿಯಿರಿ. ಎಲ್ಲಿಯಾದರೂ, ಯಾವಾಗಲಾದರೂ ವೇಗವಾಗಿ ಪಡೆಯಿರಿ.",
+    "description": "ಬಯಸು. ಹುಡುಕು. ಎಲ್ಲಿಯಾದರೂ, ಯಾವಾಗವಾದರೂ ವೇಗವಾಗಿ ಪಡೆಯಿರಿ.",
     "installButton": "ಅಪ್ಲಿಕೇಶನ್ ಅನ್ನು ಸ್ಥಾಪಿಸಿ"
   },
   "qr": {
@@ -71,7 +72,7 @@
     "description": "ನಾವು ನಿಮಗೆ ನಮ್ಮ ನ್ಯೂಸ್‌ಲೆಟರ್‌ಗೆ ಸಬ್‌ಸ್ಕ್ರೈಬ್ ಮಾಡಲು ಶಿಫಾರಸು ಮಾಡುತ್ತೇವೆ, ನಮ್ಮ ಬಗ್ಗೆ ದೈನಂದಿನ ನವೀಕರಣಗಳನ್ನು ಪಡೆಯಲು ನಿಮ್ಮ ಇಮೇಲ್ ಅನ್ನು ಕೆಳಗೆ ಬಿಡಿ.",
     "placeholder": "ನಿಮ್ಮ ಇಮೇಲ್ ವಿಳಾಸವನ್ನು ನಮೂದಿಸಿ",
     "subscribeButton": "ಸಬ್‌ಸ್ಕ್ರೈಬ್ ಮಾಡಿ",
-    "success": "Thank you for subscribing!\nYou will receive updates at: {email}"
+    "success": "ಸಬ್‌ಸ್ಕ್ರೈಬ್ ಮಾಡಿ ಧನ್ಯವಾದಗಳು!\nನೀವು {email} ನಲ್ಲಿ ನವೀಕರಣಗಳನ್ನು ಸ್ವೀಕರಿಸುತ್ತೀರಿ"
   },
   "footer": {
     "ourMenu": "ನಮ್ಮ ಮೆನು",
@@ -82,13 +83,13 @@
     "whyFoodie": "ಏಕೆ ಫೂಡಿ",
     "partnerWithUs": "ನಮ್ಮೊಂದಿಗೆ ಪಾಲುದಾರಿಕೆ ಮಾಡಿ",
     "aboutUs": "ನಮ್ಮ ಬಗ್ಗೆ",
-    "faq": "FAQಗಳು",
+    "faq": "ಸಾಮಾನ್ಯ ಪ್ರಶ್ನೆಗಳು",
     "support": "ಬೆಂಬಲ",
     "account": "ಖಾತೆ",
     "supportCenter": "ಬೆಂಬಲ ಕೇಂದ್ರ",
     "feedback": "ಪ್ರತಿಕ್ರಿಯೆ",
     "contactUs": "ನಮ್ಮನ್ನು ಸಂಪರ್ಕಿಸಿ",
-    "description": "ನಾವು ವೇಗದ ಡೆಲಿವರಿಯೊಂದಿಗೆ ನಿಮ್ಮ ಹೊಟ್ಟೆಯನ್ನು ಸ್ವಾದಿಷ್ಟ ಆಹಾರದಿಂದ ತುಂಬುತ್ತೇವೆ",
+    "description": "ನಾವು ವೇಗದ ಡೆಲಿವರಿಯೊಂದಿಗೆ ನಿಮ್ಮ ಹೊಟ್ಟೆಯನ್ನು ರುಚಿಕರವಾದ ಆಹಾರದಿಂದ ತುಂಬಿಸುತ್ತೇವೆ",
     "rideWithUs": "ನಮ್ಮೊಂದಿಗೆ ಸವಾರಿ ಮಾಡಿ"
   },
   "cart": {
@@ -123,22 +124,23 @@
     "noItems": "ಓಹ್! ಯಾವುದೇ ವಸ್ತುಗಳು ಲಭ್ಯವಿಲ್ಲ.",
     "loadError": "ಉತ್ಪನ್ನಗಳನ್ನು ಲೋಡ್ ಮಾಡಲು ಸಾಧ್ಯವಿಲ್ಲ. ದಯವಿಟ್ಟು ನಿಮ್ಮ ಸಂಪರ್ಕವನ್ನು ಪರಿಶೀಲಿಸಿ ಮತ್ತು ಮತ್ತೆ ಪ್ರಯತ್ನಿಸಿ.",
     "retry": "ಮತ್ತೆ ಪ್ರಯತ್ನಿಸಿ",
-    "storage": "Storage error. Your data may not be saved.",
-    "network": "Network error. Please check your connection.",
-    "cart": "Cart error. Please try again.",
-    "unhandled": "An error occurred. Please refresh the page.",
-    "promiseRejected": "An error occurred. Please try again."
+    "storage": "ಸಂಗ್ರಹ ತಪ್ಪು. ನಿಮ್ಮ ಡೇಟಾ ಉಳಿಯದಿರಬಹುದು.",
+    "network": "ಜಾಲದ ದೋಷ. ದಯವಿಟ್ಟು ನಿಮ್ಮ ಸಂಪರ್ಕವನ್ನು ಪರಿಶೀಲಿಸಿ.",
+    "cart": "ಕಾರ್ಟ್ ದೋಷ. ದಯವಿಟ್ಟು ಮತ್ತೆ ಪ್ರಯತ್ನಿಸಿ.",
+    "unhandled": "ದೋಷ ಸಂಭವಿಸಿದೆ. ದಯವಿಟ್ಟು ಪುಟವನ್ನು ರಿಫ್ರೆಶ್ ಮಾಡಿ.",
+    "promiseRejected": "ದೋಷ ಸಂಭವಿಸಿದೆ. ದಯವಿಟ್ಟು ಮತ್ತೆ ಪ್ರಯತ್ನಿಸಿ."
   },
   "languages": {
     "english": "English",
     "hindi": "हिंदी",
     "kannada": "ಕನ್ನಡ",
     "marathi": "मराठी",
-    "chinese": "中文"
+    "chinese": "中文",
+    "japanese": "日本語"
   },
   "aboutUs": {
     "hero": {
-      "title": "ಬಗ್ಗೆ",
+      "title": "ನಮ್ಮ ಬಗ್ಗೆ",
       "highlight": "ಫೂಡಿ",
       "subtitle": "ವೇಗದ ಸೇವೆಯೊಂದಿಗೆ ಸ್ವಾದಿಷ್ಟ ಆಹಾರವನ್ನು ತಲುಪಿಸುವಲ್ಲಿ ನಿಮ್ಮ ನಂಬಿಕಸ್ಥ ಪಾಲುದಾರ"
     },
@@ -172,9 +174,9 @@
       "title": "ಏಕೆ ಫೂಡಿಯನ್ನು ಆಯ್ಕೆ ಮಾಡಬೇಕು?",
       "subtitle": "ನಾವು ಮತ್ತೊಂದು ಆಹಾರ ಡೆಲಿವರಿ ಸೇವೆಯಲ್ಲ",
       "features": {
-        "fast": {
-          "title": "ಬಿಡುಗಡೆ ವೇಗ",
-          "description": "ಸರಾಸರಿ ಡೆಲಿವರಿ ಸಮಯ ಕೇವಲ 30 ನಿಮಿಷಗಳು. ಬಿಸಿ ಆಹಾರ, ಖಾತರಿ."
+          "fast": {
+            "title": "ಮಿಂಚಿನ ವೇಗ",
+            "description": "ಸರಾಸರಿ ಡೆಲಿವರಿ ಸಮಯ ಕೇವಲ 30 ನಿಮಿಷಗಳು. ಬಿಸಿ ಆಹಾರ, ಖಾತರಿ."
         },
         "quality": {
           "title": "ಪ್ರೀಮಿಯಂ ಗುಣಮಟ್ಟ",
@@ -182,7 +184,7 @@
         },
         "easy": {
           "title": "ಸುಲಭ ಆರ್ಡರಿಂಗ್",
-          "description": "ಹಸ್ತಾಮಲು ಆರ್ಡರಿಂಗ್‌ಗಾಗಿ ಸರಳ, ಸೂಕ್ತ ಅಪ್ಲಿಕೇಶನ್ ಮತ್ತು ವೆಬ್‌ಸೈಟ್."
+          "description": "ಸುಲಭ ಮತ್ತು ಸರಳ ಆರ್ಡರ್ ವ್ಯವಸ್ಥೆಯಿಗಾಗಿ ಬಳಕೆದಾರ ಸ್ನೇಹಿ ಅಪ್ಲಿಕೇಶನ್ ಮತ್ತು ವೆಬ್‌ಸೈಟ್."
         },
         "secure": {
           "title": "ಸುರಕ್ಷಿತ ಮತ್ತು ಸುರಕ್ಷಿತ",
@@ -247,103 +249,106 @@
     },
     "cta": {
       "title": "ಫೂಡಿ ಅನುಭವಕ್ಕೆ ಸಿದ್ಧರೇ?",
-      "subtitle": "ಸಾವಿರಾರು ಸಂತುಷ್ಟ ಗ್ರಾಹಕರೊಂದಿಗೆ ಸೇರಿಕೊಳ್ಳಿ ಮತ್ತು ಸ್ವಾದಿಷ್ಟ ಆಹಾರವನ್ನು ನಿಮ್ಮ ಬಾಗಿಲಿಗೆ ಡೆಲಿವರಿ ಮಾಡಿಸಿ",
+      "subtitle": "ಸಾವಿರಾರು ಸಂತುಷ್ಟ ಗ್ರಾಹಕರೊಂದಿಗೆ ಸೇರಿಕೊಳ್ಳಿ ಮತ್ತು ರುಚಿಕರವಾದ ಆಹಾರವನ್ನು ನಿಮ್ಮ ಬಾಗಿಲಿಗೆ ಡೆಲಿವರಿ ಮಾಡಿಸಿ",
       "signUp": "ಈಗ ಸೈನ್ ಅಪ್ ಮಾಡಿ",
       "browseMenu": "ಮೆನು ನೋಡಿ"
     }
   },
   "auth": {
-    "signupTagline": "Join Foodie today!",
-    "loginTagline": "Your favorite meals are just a click away.",
-    "guestLogin": "Enter as Guest",
-    "signInButton": "Sign In",
-    "userExists": "User with this email or phone already exists!",
-    "registrationSuccess": "Registration successful! Please login.",
-    "invalidCredentials": "Invalid email or password!",
-    "welcomeBack": "Welcome back, {name}!",
-    "googleLoginFailed": "Google Login failed. Please use regular login."
+    "signupTagline": "ಇಂದೇ ಫೂಡಿಯಲ್ಲಿ ಸೇರಿ!",
+    "loginTagline": "ನಿಮ್ಮ ಮೆಚ್ಚಿನ ಊಟಗಳು ಕೇವಲ ಒಂದು ಕ್ಲಿಕ್ ದೂರದಲ್ಲಿವೆ.",
+    "guestLogin": "ಅತಿಥಿಯಾಗಿ ಪ್ರವೇಶಿಸು",
+    "signInButton": "ಲಾಗಿನ್",
+    "userExists": "ಈ ಇಮೇಲ್ ಅಥವಾ ಫೋನ್ ಬಳಕೆದಾರ ಈಗಾಗಲೇ ಅಸ್ತित्वದಲ್ಲಿದೆ!",
+    "registrationSuccess": "ನೋಂದಣಿ ಯಶಸ್ವಿಯಾಗಿದೆ! ದಯವಿಟ್ಟು ಲಾಗಿನ್ ಮಾಡಿ.",
+    "invalidCredentials": "ಅಮಾನ್ಯ ಇಮೇಲ್ ಅಥವಾ ಪಾಸ್ವರ್ಡ್!",
+    "welcomeBack": "ನಿಮ್ಮಿಗೆ ಹಿಂತಿರುಗ ಸ್ವಾಗತ, {name}!",
+    "googleLoginFailed": "ಗೂಗಲ್ ಲಾಗಿನ್ ವಿಫಲವಾಗಿದೆ. ದಯವಿಟ್ಟು ಸಾಮಾನ್ಯ ಲಾಗಿನ್ ಬಳಸಿ."
   },
   "checkout": {
-    "zoneWarning": "Note: Your address is approximately {distance} km from Nashik. Delivery availability may vary.",
+    "zoneWarning": "ಗమనಿಸಿ: ನಿಮ್ಮ ವಿಳಾಸ ಸುಮಾರು {distance} ಕಿ.ಮೀ. ನಾಸಿಕ್‌ನಿಂದ ದೂರದಲ್ಲಿದೆ. ವಿತರಣೆ ಲಭ್ಯತೆ ಬದಲಾಗಬಹುದು.",
     "citySearch": {
-      "error": "Unable to search cities. Please check your connection and try again.",
-      "failed": "City search failed. Please try again."
+      "error": "ನಗರಗಳನ್ನು ಹುಡುಕಲು ಸಾಧ್ಯವಾಗುತ್ತಿಲ್ಲ. ದಯವಿಟ್ಟು ನಿಮ್ಮ ಸಂಪರ್ಕವನ್ನು ಪರಿಶೀಲಿಸಿ ಮತ್ತು ಮತ್ತೆ ಪ್ರಯತ್ನಿಸಿ.",
+      "failed": "ನಗರ ಹುಡುಕುವಿಕೆ ವಿಫಲವಾಗಿದೆ. ದಯವಿಟ್ಟು ಮತ್ತೆ ಪ್ರಯತ್ನಿಸಿ."
     },
     "pin": {
-      "invalidLength": "Pincode must be 6 digits",
-      "validating": "Validating pincode...",
-      "notFound": "Pincode not found",
-      "cityMismatch": "Pincode does not match selected city",
-      "validationSuccess": "Pincode validated successfully",
-      "validationNetworkFail": "Unable to validate pincode. Please check your connection and try again.",
-      "retryValidation": "Retry Validation",
-      "validationFailed": "PIN validation failed. Please try again."
+      "invalidLength": "ಪಿನ್‌ಕೋಡ್ 6 ಅಂಕೆಗಳಿರಬೇಕು",
+      "validating": "ಪಿನ್‌ಕೋಡ್ ಪರಿಶೀಲಿಸಲಾಗುತ್ತಿದೆ...",
+      "notFound": "ಪಿನ್‌ಕೋಡ್ ಕಂಡುಬಂದಿಲ್ಲ",
+      "cityMismatch": "ಪಿನ್‌ಕೋಡ್ ಆಯ್ದ ನಗರಕ್ಕೆ ಹೊಂದಿಕೆಯಾಗುವುದಿಲ್ಲ",
+      "validationSuccess": "ಪಿನ್‌ಕೋಡ್ ಯಶಸ್ವಿಯಾಗಿ ಪರಿಶೀಲಿಸಲಾಗಿದೆ",
+      "validationNetworkFail": "ಪಿನ್‌ಕೋಡ್ ಪರಿಶೀಲಿಸಲು ಸಾಧ್ಯವಾಗುತ್ತಿಲ್ಲ. ದಯವಿಟ್ಟು ನಿಮ್ಮ ಸಂಪರ್ಕವನ್ನು ಪರಿಶೀಲಿಸಿ ಮತ್ತು ಮತ್ತೆ ಪ್ರಯತ್ನಿಸಿ.",
+      "retryValidation": "ಪುನಃ ಪರಿಶೀಲಿಸಿ",
+      "validationFailed": "ಪಿನ್ ಪರಿಶೀಲನೆ ವಿಫಲವಾಗಿದೆ. ದಯವಿಟ್ಟು ಮತ್ತೆ ಪ್ರಯತ್ನಿಸಿ."
     },
     "payment": {
-      "onlyCard": "Currently only Card payment is integrated.",
-      "unavailable": "Payment system is not available. Please refresh the page."
+      "onlyCard": "ಪ್ರಸ್ತುತ ಕೇವಲ ಕಾರ್ಡ್ ಪಾವತಿ ಮಾತ್ರ ಹೊಂದಿಸಲಾಗಿದೆ.",
+      "unavailable": "ಪಾವತಿ ವ್ಯವಸ್ಥೆ ಲಭ್ಯವಿಲ್ಲ. ದಯವಿಟ್ಟು ಪುಟವನ್ನು ರಿಫ್ರೆಶ್ ಮಾಡಿ."
     },
     "phone": {
-      "invalid": "Enter valid Indian number",
-      "invalidFormat": "Please enter a valid phone number"
+      "invalid": "ದಯವಿಟ್ಟು ಮಾನ್ಯ ಭಾರತದ ಸಂಖ್ಯೆಯನ್ನು ನಮೂದಿಸಿ",
+      "invalidFormat": "ದಯವಿಟ್ಟು ಮಾನ್ಯ ಫೋನ್ ಸಂಖ್ಯೆಯನ್ನು ನಮೂದಿಸಿ"
     }
   },
   "ride": {
     "form": {
-      "requiredFields": "Please fill in all required fields.",
-      "invalidMobile": "Please enter a valid 10-digit mobile number."
+      "requiredFields": "ದಯವಿಟ್ಟು ಎಲ್ಲಾ ಅಗತ್ಯ ಕ್ಷೇತ್ರಗಳನ್ನು ತುಂಬಿ.",
+      "invalidMobile": "ದಯವಿಟ್ಟು ಮಾನ್ಯ 10-ಅಂಕಿ ಮೊಬೈಲ್ ಸಂಖ್ಯೆಯನ್ನು ನಮೂದಿಸಿ."
     },
     "otp": {
-      "required": "Please enter all 6 digits.",
-      "incorrect": "Incorrect OTP. Please try again."
+      "required": "ದಯವಿಟ್ಟು ಎಲ್ಲಾ 6 ಅಂಶಗಳನ್ನು ನಮೂದಿಸಿ.",
+      "incorrect": "ತಪ್ಪಾದ OTP. ದಯವಿಟ್ಟು ಮತ್ತೆ ಪ್ರಯತ್ನಿಸಿ."
     },
     "theme": {
-      "lightMode": "Light Mode ☀",
-      "darkMode": "Dark Mode 🌙"
+      "lightMode": "ಲೈಟ್ ಮೋಡ್ ☀",
+      "darkMode": "ಗಾಢ ಮೋಡ್ 🌙"
     }
   },
   "feedback": {
-    "submitting": "Submitting feedback...",
-    "success": "Thank you for your feedback! We appreciate your input.",
-    "submitFailed": "Failed to submit feedback. Please try again or contact support.",
-    "retryButton": "Retry Submission"
+    "submitting": "ಪ್ರತಿಕ್ರಿಯೆಯನ್ನು ಸಲ್ಲಿಸಲಾಗುತ್ತಿದೆ...",
+    "success": "ನಿಮ್ಮ ಪ್ರತಿಕ್ರಿಯೆಗೆ ಧನ್ಯವಾದಗಳು! ನಿಮ್ಮ ಅಭಿಪ್ರಾಯವನ್ನು ನಾವು ಮೆಚ್ಚುತ್ತೇವೆ.",
+    "submitFailed": "ಪ್ರತಿಕ್ರಿಯೆ ಸಲ್ಲಿಸಲಾಗಲಿಲ್ಲ. ದಯವಿಟ್ಟು ಮತ್ತೆ ಪ್ರಯತ್ನಿಸಿ ಅಥವಾ ಬೆಂಬಲವನ್ನು ಸಂಪರ್ಕಿಸಿ.",
+    "retryButton": "ಮತ್ತೆ ಸಲ್ಲಿಸಿ"
   },
   "partner": {
-    "submitFailedField": "Submission failed. Please check your connection and try again.",
-    "submitFailedToast": "Failed to submit partnership request. Please try again."
+    "submitFailedField": "ಸಲ್ಲಿಕೆ ವಿಫಲವಾಗಿದೆ. ದಯವಿಟ್ಟು ನಿಮ್ಮ ಸಂಪರ್ಕವನ್ನು ಪರಿಶೀಲಿಸಿ ಮತ್ತು ಮತ್ತೆ ಪ್ರಯತ್ನಿಸಿ.",
+    "submitFailedToast": "ಭಾಗীদಾರಿ ವಿನಂತಿಯನ್ನು ಸಲ್ಲಿಸಲು ವಿಫಲವಾಗಿದೆ. ದಯವಿಟ್ಟು ಮತ್ತೆ ಪ್ರಯತ್ನಿಸಿ."
   },
   "forgotPassword": {
-    "invalidEmail": "Please enter a valid email address",
-    "resetLinkSent": "Reset link resent to {email}"
+    "invalidEmail": "ದಯವಿಟ್ಟು ಮಾನ್ಯ ಇಮೇಲ್ ವಿಳಾಸವನ್ನು ನಮೂದಿಸಿ",
+    "resetLinkSent": "{email} ಗೆ ಮರುಹೊಂದಿಸಲಾಗಿದ ರೀಸೆಟ್ ಲಿಂಕ್"
   },
   "contributors": {
-    "failedTitle": "Failed to Load Contributors",
-    "failedMessage": "Unable to load contributor data. This might be due to API rate limits or network issues.",
-    "retry": "Retry",
-    "failedToast": "Failed to load contributors. Please try again."
+    "failedTitle": "ಯೋಗದಾನಕಾರರನ್ನು ಲೋಡ್ ಮಾಡಲು ವಿಫಲವಾಗಿದೆ",
+    "failedMessage": "ಯೋಗದಾನಕಾರರ ಡೇಟಾವನ್ನು ಲೋಡ್ ಮಾಡಲು ಸಾಧ್ಯವಾಗುತ್ತಿಲ್ಲ. ಇದಕ್ಕೆ API ದರ ಮಿತಿ ಅಥವಾ ಜಾಲದ ಸಮಸ್ಯೆಗಳ ಕಾರಣವಾಗಿರಬಹುದು.",
+    "retry": "ಮತ್ತೆ ಪ್ರಯತ್ನಿಸಿ",
+    "failedToast": "ಯೋಗದಾನಕಾರರನ್ನು ಲೋಡ್ ಮಾಡಲು ವಿಫಲವಾಗಿದೆ. ದಯವಿಟ್ಟು ಮತ್ತೆ ಪ್ರಯತ್ನಿಸಿ."
   },
   "i18n": {
-    "loadFailed": "Failed to load language translations. Some text may appear in English."
+    "loadFailed": "ಭಾಷಾ ಅನುವಾದಗಳನ್ನು ಲೋಡ್ ಮಾಡಲು ವಿಫಲವಾಗಿದೆ. ಕೆಲವು ಪಠ್ಯಗಳು ಇಂಗ್ಲಿಷ್‌ನಲ್ಲಿ ತೋರುತ್ತಿರಬಹುದು."
   },
   "nearby": {
-    "locationUnavailable": "Location services are unavailable.",
-    "locationUnavailableHint": "Please enable location or try again.",
-    "noLocation": "No nearby restaurants found. Try enabling location.",
-    "loadFailed": "Unable to load nearby restaurants right now. Please verify API key and internet connection.",
-    "apiFailed": "Google Maps request failed. Verify API key permissions for Maps JavaScript API and Places API.",
-    "requestingLocation": "Requesting your location permission...",
-    "locationFound": "Location found. Fetching top rated nearby restaurants...",
-    "defaultLocationWarning": "Location access unavailable. Showing top restaurants near default location.",
-    "showingTop": "Showing {count} top rated restaurants near you.",
-    "noRated": "No rated restaurants found in this area. Try retrying from a different location.",
-    "loading": "Loading...",
-    "noRatings": "No nearby restaurants with ratings were found in this area.",
-    "hoursUnavailable": "Hours unavailable",
-    "openNow": "Open now",
-    "closed": "Closed",
-    "addressUnavailable": "Address unavailable",
-    "restaurant": "Restaurant",
-    "ratingLabel": "Rating",
-    "youAreHere": "You are here"
+    "locationUnavailable": "ಸ್ಥಳ ಸೇವೆಗಳು ಲಭ್ಯವಿಲ್ಲ.",
+    "locationUnavailableHint": "ದಯವಿಟ್ಟು ಸ್ಥಳ ಸೇವೆಯನ್ನು ಸಕ್ರಿಯಗೊಳಿಸಿ ಅಥವಾ ಮತ್ತೆ ಪ್ರಯತ್ನಿಸಿ.",
+    "noLocation": "ಹತ್ತಿರದಲ್ಲಿನ ಯಾವುದೇ ರೆಸ್ಟೋರೆಂಟ್ ಕಂಡುಬಂದಿಲ್ಲ. ದಯವಿಟ್ಟು ಸ್ಥಳವನ್ನು ಸಕ್ರಿಯಗೊಳಿಸಿ.",
+    "loadFailed": "ಈಗ ಹತ್ತಿರದ ರೆಸ್ಟೋರೆಂಟ್‌ಗಳನ್ನು ಲೋಡ್ ಮಾಡಲು ಸಾಧ್ಯವಾಗುತ್ತಿಲ್ಲ. ದಯವಿಟ್ಟು API ಕೀ ಮತ್ತು ಇಂಟರ್ನೆಟ್ ಸಂಪರ್ಕವನ್ನು ಪರಿಶೀಲಿಸಿ.",
+    "apiFailed": "ಗೂಗಲ್ ನಕ್ಷೆಗಳ ವಿನಂತಿ ವಿಫಲವಾಗಿದೆ. Maps JavaScript API ಮತ್ತು Places API ಅನುದಾನಗಳನ್ನು ಪರಿಶೀಲಿಸಿ.",
+    "requestingLocation": "ನಿಮ್ಮ ಸ್ಥಳ ಅನುಮತಿಯನ್ನು ಕೇಳಲಾಗುತ್ತಿದೆ...",
+    "locationFound": "ಸ್ಥಳ ಕಂಡುಬಂದಿದೆ. ಹತ್ತಿರದ ಶ್ರೇಷ್ಠ ಅಂಕಗಳನ್ನು ಪಡೆದ ರೆಸ್ಟೋರೆಂಟ್‌ಗಳನ್ನು ತರಲಾಗಿದೆ...",
+    "defaultLocationWarning": "ಸ್ಥಳ ಪ್ರವೇಶ ಲಭ್ಯವಿಲ್ಲ. ಡೀಫಾಲ್ಟ್ ಸ್ಥಳದ ಹತ್ತಿರದ ಶ್ರೇಷ್ಠ ರೆಸ್ಟೋರೆಸ್ಟ್‌ಗಳನ್ನು ತೋರಿಸಲಾಗುತ್ತಿದೆ.",
+    "showingTop": "ನಿಮ್ಮ ಹತ್ತಿರದ {count} ಶ್ರೇಷ್ಠ ಅಂಕಗಳ ರೆಸ್ಟೋರೆಂಟ್‌ಗಳನ್ನು ತೋರಿಸಲಾಗುತ್ತಿದೆ.",
+    "noRated": "ಈ ಪ್ರದೇಶದಲ್ಲಿ ರೇಟಿಂಗ್ ಹೊಂದಿರುವ ಯಾವುದೇ ರೆಸ್ಟೋರೆಂಟ್ ಕಂಡುಬಂದಿಲ್ಲ. ಬೇರೆ ಸ್ಥಳದಿಂದ ಮತ್ತೆ ಪ್ರಯತ್ನಿಸಿ.",
+    "loading": "ಲೋಡ್ ಆಗುತ್ತಿದೆ...",
+    "noRatings": "ಈ ಪ್ರದೇಶದಲ್ಲಿ ರೇಟಿಂಗ್ ಹೊಂದಿರುವ ಯಾವುದೇ ಹತ್ತಿರದ ರೆಸ್ಟೋರೆಂಟ್ ಕಂಡುಬಂದಿಲ್ಲ.",
+    "hoursUnavailable": "ಸಮಯ ಲಭ್ಯವಿಲ್ಲ",
+    "openNow": "ಈಗ ತೆರೆಯಲಾಗಿದೆ",
+    "closed": "ಮುಗಿದಿದೆ",
+    "addressUnavailable": "ವಿಳಾಸ ಲಭ್ಯವಿಲ್ಲ",
+    "restaurant": "ರೆಸ್ಟೋರೆಂಟ್",
+    "ratingLabel": "ರೇಟಿಂಗ್",
+    "youAreHere": "ನೀವು ಇಲ್ಲಿ ಇದ್ದೀರಿ"
+  },
+  "order": {
+  "history": "ಆರ್ಡರ್ ಇತಿಹಾಸ"
   }
 }

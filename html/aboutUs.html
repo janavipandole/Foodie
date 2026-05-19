@@ -19,7 +19,11 @@
     <link rel="icon" href="../imgs/favicon.webp" type="image/webp" />
 
     <!-- Font (valid CDN) -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+    <link rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.0/css/all.min.css"
+        integrity="sha512-DxV+EoADOkOygM4IR9yXP8Sb2qwgidEmeqAEmDKIOfPRQZOWbXCzLC6vjbZyy0vPisbH2SyW27+ddLVCN+OMzQ=="
+        crossorigin="anonymous"
+        referrerpolicy="no-referrer" />
 
     <link rel="stylesheet" href="../css/style.css">
     <link rel="stylesheet" href="../css/aboutUs.css" />
@@ -38,11 +42,11 @@
         <!-- DESKTOP MENU -->
         <ul class="navList flex gap-1 between">
             <li><a href="./index.html#home" data-i18n="nav.home">Home</a></li>
-            <li><a href="./menu.html" data-i18n="nav.menu">Menu</a></li>
+            <li><a href="/html/menu.html" data-i18n="nav.menu">Menu</a></li>
             <li><a href="./my-favorites.html" data-i18n="nav.favorites"><i class="fa-solid fa-star"></i> Favorites</a></li>
             <li><a href="./order-history.html" data-i18n="nav.orderHistory"><i class="fa-solid fa-clock-rotate-left"></i> Order History</a></li>
-            <li><a href="./aboutUs.html" data-i18n="nav.about">About Us</a></li>
-            <li><a href="./contactUs.html" data-i18n="nav.contact">Contact Us</a></li>
+            <li><a href="/html/aboutUs.html" data-i18n="nav.about">About Us</a></li>
+            <li><a href="/html/contactUs.html" data-i18n="nav.contact">Contact Us</a></li>
             <li><a href="./nearbyres.html" data-i18n="nav.nearby">Nearby</a></li>
         </ul>
 
@@ -75,27 +79,28 @@
             </button>
 
             <!-- Cart Icon -->
-            <a href="./checkout.html" class="cart-icon">
+            <a href="./checkout.html" class="cart-icon" aria-label="Shopping cart">
                 <i class="fa-solid fa-bag-shopping"></i>
                 <span class="cart-value">0</span>
             </a>
 
             <!-- Sign-in button -->
-            <a href="./login.html" class="btn">
+            <a href="/html/login.html" class="btn">
                 <i class="fa-solid fa-user"></i>&nbsp;Sign in
             </a>
 
             <!-- Hamburger -->
-            <a href="#" class="hamberger"><i class="fa-solid fa-bars"></i></a>
+            <a href="#" class="hamberger" aria-label="Open menu"><i class="fa-solid fa-bars"></i></a>
         </div>
 
         <!-- MOBILE MENU -->
         <ul class="mobile-menu">
             <li><a href="./index.html#home" data-i18n="nav.home">Home</a></li>
-            <li><a href="./menu.html" data-i18n="nav.menu">Menu</a></li>
+            <li><a href="/html/menu.html" data-i18n="nav.menu">Menu</a></li>
             <li><a href="./my-favorites.html" data-i18n="nav.favorites"><i class="fa-solid fa-star"></i> Favorites</a></li>
-            <li><a href="./aboutUs.html" data-i18n="nav.about">About Us</a></li>
-            <li><a href="./contactUs.html" data-i18n="nav.contact">Contact Us</a></li>
+            <li><a href="./order-history.html" data-i18n="nav.orderHistory"><i class="fa-solid fa-clock-rotate-left"></i> Order History</a></li>
+            <li><a href="/html/aboutUs.html" data-i18n="nav.about">About Us</a></li>
+            <li><a href="/html/contactUs.html" data-i18n="nav.contact">Contact Us</a></li>
             <li><a href="./nearbyres.html" data-i18n="nav.nearby">Nearby</a></li>
             <li>
                 <button class="theme-toggle mobile-theme-toggle" aria-label="Toggle dark mode">
@@ -103,7 +108,7 @@
                 </button>
             </li>
             <li>
-                <a href="./login.html" class="btn">
+                <a href="/html/login.html" class="btn">
                     <i class="fa-solid fa-user"></i>&nbsp;Sign in
                 </a>
             </li>
@@ -372,8 +377,8 @@
             <p data-i18n="aboutUs.cta.subtitle">Join thousands of satisfied customers and enjoy delicious food delivered
                 to your doorstep</p>
             <div class="cta-buttons">
-                <a href="./signup.html" class="cta-btn primary" data-i18n="aboutUs.cta.signUp">Sign Up Now</a>
-                <a href="./menu.html" class="cta-btn primary" data-i18n="aboutUs.cta.browseMenu">Browse Menu</a>
+                <a href="/html/signup.html" class="cta-btn primary" data-i18n="aboutUs.cta.signUp">Sign Up Now</a>
+                <a href="/html/menu.html" class="cta-btn primary" data-i18n="aboutUs.cta.browseMenu">Browse Menu</a>
             </div>
         </div>
     </section>
@@ -384,7 +389,7 @@
         <i class="fa-brands fa-whatsapp"></i>
     </a>
 
-    <a href="#home" class="back-to-top" aria-label="Back to top">
+    <a href="#" class="back-to-top" aria-label="Back to top">
         <i class="fa-solid fa-arrow-up"></i>
     </a>
 
@@ -442,6 +447,23 @@
                 hamburger.addEventListener('click', (e) => {
                     e.preventDefault();
                     mobileMenu.classList.toggle('mobile-menu-active');
+
+                    const icon = hamburger.querySelector('i');
+                    icon.classList.toggle('fa-bars');
+                    icon.classList.toggle('fa-xmark');
+                });
+
+                document.addEventListener('click', (e) => {
+                    if (
+                        !hamburger.contains(e.target) &&
+                        !mobileMenu.contains(e.target)
+                    ) {
+                        mobileMenu.classList.remove('mobile-menu-active');
+
+                        const icon = hamburger.querySelector('i');
+                        icon.classList.add('fa-bars');
+                        icon.classList.remove('fa-xmark');
+                    }
                 });
             }
         })();
@@ -469,14 +491,14 @@
     </script>
 
 
-    <script src="../js/i18n.js"></script>
-    <script src="../js/language-dropdown.js"></script>
-    <script src="../js/footer.js"></script>
-    <script src="../js/cursor.js"></script>
-        <script src="../js/utils.js"></script>
+    <script src="../js/utils.js"></script>
     <script src="../js/error-handler.js"></script>
     <script src="../js/performance-patches.js"></script>
-<script src="../js/app.js"></script>
+    <script src="../js/i18n.js"></script>
+    <script src="../js/language-dropdown.js"></script>
+    <script src="../js/app.js"></script>
+    <script src="../js/footer.js"></script>
+    <script src="../js/cursor.js"></script>
 
 </body>
 

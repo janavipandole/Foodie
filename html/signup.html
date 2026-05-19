@@ -25,7 +25,7 @@
 </head>
 
 <body class="signup-page">
-  <a href="./index.html" class="back-home-btn">
+  <a href="./index.html" class="back-home-btn" aria-label="Back to home">
     <i class="fa-solid fa-arrow-left"></i>
   </a>
 
@@ -40,7 +40,9 @@
         <div class="auth-emoji" id="heroEmoji">
             <img src="../imgs/pancakes.webp" alt="Food" style="width: 150px; filter: drop-shadow(0 10px 20px rgba(0,0,0,0.3));">
         </div>
-        <h1 class="auth-logo">Join Foodie.</h1>
+        <h1 class="auth-logo" data-i18n="signup.heroTitle">
+          Join Foodie.
+        </h1>
         <p class="auth-tagline" id="heroTagline">Fresh rolls, happy souls!</p>
       </div>
       
@@ -63,8 +65,8 @@
               <label for="signupName">Full Name</label>
               <div class="input-wrapper">
                 <i class="fa-solid fa-user field-icon"></i>
-                <input type="text" id="signupName" placeholder="John Doe" required 
-                       pattern="[a-zA-Z\s]*" oninput="this.value = this.value.replace(/[^a-zA-Z\s]/g, '');" />
+                <input type="text" id="signupName" autocomplete="name" placeholder="John Doe" required 
+                       pattern="[A-Za-z\s'-]+" oninput="this.value = this.value.replace(/[^a-zA-Z\s'-]/g, '');" />
               </div>
             </div>
 
@@ -72,8 +74,7 @@
               <label for="signupEmail">Email Address</label>
               <div class="input-wrapper">
                 <i class="fa-solid fa-envelope field-icon"></i>
-                <input type="email" id="signupEmail" placeholder="your@email.com" required 
-                       pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$" 
+                <input type="email" id="signupEmail" autocomplete="email" placeholder="your@email.com" required 
                        oninput="this.value = this.value.toLowerCase().replace(/[^a-z0-9@.]/g, '');" />
               </div>
             </div>
@@ -82,8 +83,16 @@
               <label for="signupPhone">Phone Number</label>
               <div class="input-wrapper">
                 <i class="fa-solid fa-phone field-icon"></i>
-                <input type="tel" id="signupPhone" placeholder="0000000000" required 
-                       pattern="[0-9]*" oninput="this.value = this.value.replace(/[^0-9]/g, '');" />
+                <input
+                       type="tel"
+                       id="signupPhone"
+                       placeholder="0000000000"
+                       required
+                       pattern="[0-9]{10}"
+                       maxlength="10"
+                       autocomplete="tel"
+                       oninput="this.value = this.value.replace(/[^0-9]/g, '');"
+                    />
               </div>
             </div>
 
@@ -91,10 +100,14 @@
               <label for="signupPassword">Password</label>
               <div class="input-wrapper">
                 <i class="fa-solid fa-lock field-icon"></i>
-                <input type="password" id="signupPassword" placeholder="Create strong password" required 
+                <input type="password" id="signupPassword" autocomplete="new-password" placeholder="Create strong password" required 
                        pattern="(?=.*[A-Z])(?=.*[!@#$%^&*(),.?\&quot;:{}|<>]).{6,}" 
                        title="Must contain at least one uppercase letter, one special character, and be at least 6 characters long" />
-                <button type="button" class="eye-btn" onclick="togglePassword('signupPassword')">
+                <button
+                  type="button"
+                  class="eye-btn"
+                  onclick="togglePassword('signupPassword')"
+                  aria-label="Toggle password visibility">
                   <i class="fa-solid fa-eye"></i>
                 </button>
               </div>
@@ -118,7 +131,7 @@
           </div>
 
           <p class="auth-footer">
-            Already have an account? <a href="./login.html" class="accent-link">Login here</a>
+            Already have an account? <a href="/html/login.html" class="accent-link">Login here</a>
           </p>
         </div>
       </div>

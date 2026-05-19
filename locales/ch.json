@@ -11,14 +11,16 @@
     "darkMode": "深色模式",
     "lightMode": "浅色模式",
     "signIn": "登录",
-    "cart": "购物车"
+    "cart": "购物车",
+    "favorites": "收藏",
+    "orderHistory": "订单历史"
   },
   "hero": {
     "title": "享受您的美味",
     "highlight": "美食",
     "subtitle": "我们通过快速配送为您送上美味佳肴",
     "orderNow": "立即下单",
-    "viewPopular": "View Popular"
+    "viewPopular": "查看热门"
   },
   "services": {
     "sectionTitle": "我们的服务",
@@ -71,7 +73,7 @@
     "description": "输入您的电子邮件以接收我们的每日更新。",
     "placeholder": "输入您的电子邮件地址",
     "subscribeButton": "订阅",
-    "success": "Thank you for subscribing!\nYou will receive updates at: {email}"
+    "success": "感谢您的订阅！\n您将通过 {email} 接收更新"
   },
   "footer": {
     "ourMenu": "我们的菜单",
@@ -123,11 +125,11 @@
     "noItems": "哎呀！没有可用项目。",
     "loadError": "无法加载产品。请检查您的连接并重试。",
     "retry": "重试",
-    "storage": "Storage error. Your data may not be saved.",
-    "network": "Network error. Please check your connection.",
-    "cart": "Cart error. Please try again.",
-    "unhandled": "An error occurred. Please refresh the page.",
-    "promiseRejected": "An error occurred. Please try again."
+    "storage": "存储错误。您的数据可能无法保存。",
+    "network": "网络错误。请检查您的连接。",
+    "cart": "购物车错误。请重试。",
+    "unhandled": "发生错误。请刷新页面。",
+    "promiseRejected": "发生错误。请重试。"
   },
   "languages": {
     "english": "English",
@@ -137,97 +139,119 @@
     "chinese": "中文"
   },
   "auth": {
-    "signupTagline": "Join Foodie today!",
-    "loginTagline": "Your favorite meals are just a click away.",
-    "guestLogin": "Enter as Guest",
-    "signInButton": "Sign In",
-    "userExists": "User with this email or phone already exists!",
-    "registrationSuccess": "Registration successful! Please login.",
-    "invalidCredentials": "Invalid email or password!",
-    "welcomeBack": "Welcome back, {name}!",
-    "googleLoginFailed": "Google Login failed. Please use regular login."
+    "signupTagline": "立即加入 Foodie！",
+    "loginTagline": "您喜爱的美食只需轻轻一点。",
+    "guestLogin": "以访客身份进入",
+    "signInButton": "登录",
+    "userExists": "该邮箱或手机号的用户已存在！",
+    "registrationSuccess": "注册成功！请登录。",
+    "invalidCredentials": "邮箱或密码无效！",
+    "welcomeBack": "欢迎回来，{name}！",
+    "googleLoginFailed": "Google 登录失败。请使用普通登录。"
   },
   "checkout": {
-    "zoneWarning": "Note: Your address is approximately {distance} km from Nashik. Delivery availability may vary.",
+    "zoneWarning": "注意：您的地址距离 Nashik 约 {distance} 公里。配送范围可能有所不同。",
     "citySearch": {
-      "error": "Unable to search cities. Please check your connection and try again.",
-      "failed": "City search failed. Please try again."
+      "error": "无法搜索城市。请检查您的连接后重试。",
+      "failed": "城市搜索失败。请重试。"
     },
     "pin": {
-      "invalidLength": "Pincode must be 6 digits",
-      "validating": "Validating pincode...",
-      "notFound": "Pincode not found",
-      "cityMismatch": "Pincode does not match selected city",
-      "validationSuccess": "Pincode validated successfully",
-      "validationNetworkFail": "Unable to validate pincode. Please check your connection and try again.",
-      "retryValidation": "Retry Validation",
-      "validationFailed": "PIN validation failed. Please try again."
+      "invalidLength": "邮政编码必须为 6 位数字",
+      "validating": "正在验证邮政编码...",
+      "notFound": "未找到邮政编码",
+      "cityMismatch": "邮政编码与所选城市不匹配",
+      "validationSuccess": "邮政编码验证成功",
+      "validationNetworkFail": "无法验证邮政编码。请检查您的连接后重试。",
+      "retryValidation": "重新验证",
+      "validationFailed": "邮政编码验证失败。请重试。"
     },
     "payment": {
-      "onlyCard": "Currently only Card payment is integrated.",
-      "unavailable": "Payment system is not available. Please refresh the page."
+      "onlyCard": "目前仅支持银行卡支付。",
+      "unavailable": "支付系统不可用。请刷新页面。"
     },
     "phone": {
-      "invalid": "Enter valid Indian number",
-      "invalidFormat": "Please enter a valid phone number"
+      "invalid": "请输入有效的印度手机号",
+      "invalidFormat": "请输入有效的电话号码"
     }
   },
   "ride": {
     "form": {
-      "requiredFields": "Please fill in all required fields.",
-      "invalidMobile": "Please enter a valid 10-digit mobile number."
+      "requiredFields": "请填写所有必填字段。",
+      "invalidMobile": "请输入有效的 10 位手机号码。"
     },
     "otp": {
-      "required": "Please enter all 6 digits.",
-      "incorrect": "Incorrect OTP. Please try again."
+      "required": "请输入完整的 6 位数字。",
+      "incorrect": "OTP 错误。请重试。"
     },
     "theme": {
-      "lightMode": "Light Mode ☀",
-      "darkMode": "Dark Mode 🌙"
+      "lightMode": "浅色模式 ☀",
+      "darkMode": "深色模式 🌙"
     }
   },
   "feedback": {
-    "submitting": "Submitting feedback...",
-    "success": "Thank you for your feedback! We appreciate your input.",
-    "submitFailed": "Failed to submit feedback. Please try again or contact support.",
-    "retryButton": "Retry Submission"
+    "submitting": "正在提交反馈...",
+    "success": "感谢您的反馈！我们非常重视您的意见。",
+    "submitFailed": "提交反馈失败。请重试或联系支持。",
+    "retryButton": "重新提交"
   },
   "partner": {
-    "submitFailedField": "Submission failed. Please check your connection and try again.",
-    "submitFailedToast": "Failed to submit partnership request. Please try again."
+    "submitFailedField": "提交失败。请检查您的连接后重试。",
+    "submitFailedToast": "提交合作请求失败。请重试。"
   },
   "forgotPassword": {
-    "invalidEmail": "Please enter a valid email address",
-    "resetLinkSent": "Reset link resent to {email}"
+    "invalidEmail": "请输入有效的电子邮件地址",
+    "resetLinkSent": "重置链接已重新发送至 {email}"
   },
   "contributors": {
-    "failedTitle": "Failed to Load Contributors",
-    "failedMessage": "Unable to load contributor data. This might be due to API rate limits or network issues.",
-    "retry": "Retry",
-    "failedToast": "Failed to load contributors. Please try again."
+    "failedTitle": "加载贡献者失败",
+    "failedMessage": "无法加载贡献者数据。这可能是由于 API 限制或网络问题造成的。",
+    "retry": "重试",
+    "failedToast": "加载贡献者失败。请重试。"
+  },
+  "aboutUs": {
+    "hero": {
+      "title": "关于我们",
+      "highlight": "Foodie",
+      "subtitle": "您值得信赖的美食快速配送伙伴"
+    },
+    "story": {
+      "title": "我们的故事",
+      "para1": "Foodie 成立于 2022 年，旨在通过快速可靠的配送服务，将美食爱好者与他们喜爱的餐厅连接起来。",
+      "para2": "我们相信，美味食物应该随时随地轻松获得。我们的团队努力确保每一份订单都能热腾腾、新鲜送达。",
+      "para3": "在 Foodie，我们不仅配送食物，更传递快乐。"
+    }
   },
   "i18n": {
-    "loadFailed": "Failed to load language translations. Some text may appear in English."
+    "loadFailed": "无法加载语言翻译。部分文本可能仍显示为英文。"
   },
   "nearby": {
-    "locationUnavailable": "Location services are unavailable.",
-    "locationUnavailableHint": "Please enable location or try again.",
-    "noLocation": "No nearby restaurants found. Try enabling location.",
-    "loadFailed": "Unable to load nearby restaurants right now. Please verify API key and internet connection.",
-    "apiFailed": "Google Maps request failed. Verify API key permissions for Maps JavaScript API and Places API.",
-    "requestingLocation": "Requesting your location permission...",
-    "locationFound": "Location found. Fetching top rated nearby restaurants...",
-    "defaultLocationWarning": "Location access unavailable. Showing top restaurants near default location.",
-    "showingTop": "Showing {count} top rated restaurants near you.",
-    "noRated": "No rated restaurants found in this area. Try retrying from a different location.",
-    "loading": "Loading...",
-    "noRatings": "No nearby restaurants with ratings were found in this area.",
-    "hoursUnavailable": "Hours unavailable",
-    "openNow": "Open now",
-    "closed": "Closed",
-    "addressUnavailable": "Address unavailable",
-    "restaurant": "Restaurant",
-    "ratingLabel": "Rating",
-    "youAreHere": "You are here"
+    "locationUnavailable": "定位服务不可用。",
+    "locationUnavailableHint": "请启用定位或重试。",
+    "noLocation": "未找到附近餐厅。请尝试启用定位。",
+    "loadFailed": "当前无法加载附近餐厅。请检查 API 密钥和网络连接。",
+    "apiFailed": "Google Maps 请求失败。请检查 Maps JavaScript API 和 Places API 权限。",
+    "requestingLocation": "正在请求您的定位权限...",
+    "locationFound": "已获取定位。正在加载附近高评分餐厅...",
+    "defaultLocationWarning": "无法访问定位。正在显示默认位置附近的热门餐厅。",
+    "showingTop": "正在显示您附近评分最高的 {count} 家餐厅。",
+    "noRated": "此区域没有评分餐厅。请尝试其他位置。",
+    "loading": "加载中...",
+    "noRatings": "此区域未找到带评分的附近餐厅。",
+    "hoursUnavailable": "营业时间不可用",
+    "openNow": "营业中",
+    "closed": "已关闭",
+    "addressUnavailable": "地址不可用",
+    "restaurant": "餐厅",
+    "ratingLabel": "评分",
+    "youAreHere": "您在这里"
+  },
+  "login": {
+    "heroTitle": "欢迎回来！",
+    "heroSubtitle": "您喜爱的美食只需轻轻一点。",
+    "signInTitle": "登录",
+    "signInSubtitle": "欢迎回来！请输入您的信息。",
+    "signInBtn": "登录",
+    "emailLabel": "电子邮件地址",
+    "emailPlaceholder": "your@email.com"
   }
 }

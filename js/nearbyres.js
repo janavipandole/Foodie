@@ -120,7 +120,7 @@ restaurants.forEach((res, index) => {
           <p class="para" style="font-size: 0.9rem; margin-bottom: 15px;">${res.description}</p>
           <p><strong>Cuisine:</strong> ${res.type}</p>
           <p><strong>Status:</strong> Open Now</p>
-          <a href="./menu.html" class="btn" style="margin-top: 20px; display: inline-block;">View Menu</a>
+          <a href="/html/menu.html" class="btn" style="margin-top: 20px; display: inline-block;">View Menu</a>
         </div>
       </div>
     </div>

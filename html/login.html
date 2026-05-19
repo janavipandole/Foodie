@@ -50,7 +50,7 @@
 </head>
 
 <body class="signup-page login-page">
-  <a href="./index.html" class="back-home-btn">
+  <a href="./index.html" class="back-home-btn" aria-label="Back to home">
     <i class="fa-solid fa-arrow-left"></i>
   </a>
   <button id="themeToggle" class="theme-toggle-btn" aria-label="Toggle Dark Mode">
@@ -64,8 +64,10 @@
         <div class="auth-emoji">
           <img src="../imgs/pizza.webp" alt="Food" style="width: 150px; filter: drop-shadow(0 10px 20px rgba(0,0,0,0.3));">
         </div>
-        <h1 class="auth-logo">Welcome Back!</h1>
-        <p class="auth-tagline">Your favorite meals are just a click away.</p>
+        <h1 class="auth-logo" data-i18n="login.heroTitle">Welcome Back!</h1>
+        <p class="auth-tagline" data-i18n="login.heroSubtitle">
+          Your favorite meals are just a click away.
+        </p>      
       </div>
       <div class="auth-decoration deco-1"></div>
       <div class="auth-decoration deco-2"></div>
@@ -76,13 +78,17 @@
       <div class="auth-form-box">
         <div class="auth-box active">
           <div class="auth-header">
-            <h2>Sign In</h2>
-            <p>Welcome back! Please enter your details.</p>
+            <h2 data-i18n="login.signInTitle">Sign In</h2>
+            <p data-i18n="login.signInSubtitle">
+              Welcome back! Please enter your details.
+            </p>
           </div>
 
           <!-- Tab Switcher -->
           <div class="tab-switcher">
-            <button class="tab-btn active" id="tabLogin" onclick="showTab('login')">Sign In</button>
+            <button class="tab-btn active" id="tabLogin" data-i18n="login.signInBtn">
+              Sign In
+            </button>
             <button class="tab-btn" id="tabDemo" onclick="showTab('demo')"><i class="fa-solid fa-user-secret"></i> Demo Login</button>
           </div>
 
@@ -90,19 +96,40 @@
           <div class="login-section" id="loginSection">
             <form id="loginForm" onsubmit="handleLogin(event)">
               <div class="input-group">
-                <label for="loginEmail">Email Address</label>
+                <label for="loginEmail" data-i18n="login.emailLabel">
+                  Email Address
+                </label>
                 <div class="input-wrapper">
                   <i class="fa-solid fa-envelope field-icon"></i>
-                  <input type="email" id="loginEmail" placeholder="your@email.com" required />
+                  <input
+                    type="email"
+                    id="loginEmail"
+                    data-i18n-placeholder="login.emailPlaceholder"
+                    placeholder="your@email.com"
+                    autocomplete="email"
+                    required
+                  />
                 </div>
               </div>
 
               <div class="input-group">
-                <label for="loginPassword">Password</label>
+                <label for="loginPassword" data-i18n="login.passwordLabel">
+                  Password
+                </label>
                 <div class="input-wrapper">
                   <i class="fa-solid fa-lock field-icon"></i>
-                  <input type="password" id="loginPassword" placeholder="Enter password" required />
-                  <button type="button" class="eye-btn" onclick="togglePassword('loginPassword')">
+                  <input
+                    type="password"
+                    id="loginPassword"
+                    placeholder="Enter password"
+                    autocomplete="current-password"
+                    required
+                  />
+                  <button
+                    type="button"
+                    class="eye-btn"
+                    onclick="togglePassword('loginPassword')"
+                    aria-label="Toggle password visibility">
                     <i class="fa-solid fa-eye"></i>
                   </button>
                 </div>
@@ -150,7 +177,7 @@
           </div>
 
           <p class="auth-footer">
-            Don't have an account? <a href="./signup.html" class="accent-link">Sign Up here</a>
+            Don't have an account? <a href="/html/signup.html" class="accent-link">Sign Up here</a>
           </p>
         </div>
       </div>
