@@ -2613,6 +2613,7 @@
         flex-direction: column;
     }
 }
+<<<<<<< HEAD
 /* Nearby Fallback UI */
 .nearby-fallback-ui {
     display: flex;
@@ -2641,4 +2642,37 @@
 .nearby-fallback-hint {
     font-size: 13px !important;
     color: #aaa;
+=======
+
+/* ===== Recommendations Section ===== */
+#recommendations {
+    display: none; /* shown by JS once data is ready */
+}
+
+.rec-grid {
+    justify-content: center;
+}
+
+.rec-card {
+    cursor: default;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+}
+
+.rec-card .card-image img {
+    width: 10rem;
+    filter: drop-shadow(rgba(0,0,0,0.2) 0px 10px 10px);
+}
+
+.rec-card h4 {
+    margin-top: 0.6rem;
+}
+
+@media screen and (max-width: 800px) {
+    .rec-grid {
+        gap: 1.5rem;
+    }
+>>>>>>> 557b6cf (feat: add Smart Recommended for You Section based on Order History)
 }
