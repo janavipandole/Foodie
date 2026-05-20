@@ -440,3 +440,118 @@ footer {
 .user-profile-badge:active .profile-dropdown {
     display: block;
 }
+
+/* Navbar issue #583: compact, single-row desktop header */
+header .navbar.wrapper {
+    display: grid !important;
+    grid-template-columns: auto minmax(0, 1fr) auto;
+    align-items: center;
+    gap: 1rem !important;
+    width: 100%;
+    max-width: 1280px !important;
+    min-height: 4.25rem;
+    padding-inline: clamp(1rem, 3vw, 2.5rem) !important;
+}
+
+.navList {
+    justify-content: center !important;
+    min-width: 0;
+    gap: clamp(0.45rem, 1vw, 0.9rem) !important;
+}
+
+.navList li a {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.25rem;
+    font-size: clamp(0.82rem, 0.8vw, 0.95rem) !important;
+    padding: 0.45rem 0.35rem !important;
+}
+
+.desktop-action {
+    justify-content: flex-end;
+    flex-wrap: nowrap !important;
+    min-width: 0;
+    gap: 0.55rem !important;
+}
+
+.desktop-action .custom-select {
+    flex: 0 0 6.75rem;
+    width: 6.75rem !important;
+}
+
+.navbar-search {
+    flex: 0 1 13rem;
+    min-width: 9rem;
+}
+
+.navbar-search input,
+.navbar-search input[type="text"] {
+    width: 100% !important;
+    min-width: 0;
+}
+
+.navbar-search input:focus,
+.navbar-search input[type="text"]:focus {
+    width: 100% !important;
+}
+
+.desktop-action .theme-toggle,
+.desktop-action .cart-icon,
+.desktop-action .hamberger {
+    flex: 0 0 auto;
+}
+
+.desktop-action .btn {
+    white-space: nowrap;
+    padding-inline: 1rem !important;
+}
+
+@media (max-width: 1180px) {
+    header .navbar.wrapper {
+        grid-template-columns: auto 1fr;
+    }
+
+    .navList {
+        display: none !important;
+    }
+
+    .desktop-action .hamberger {
+        display: inline-flex !important;
+    }
+}
+
+@media (max-width: 980px) {
+    .desktop-action .btn,
+    .desktop-action .custom-select {
+        display: none !important;
+    }
+}
+
+@media (max-width: 760px) {
+    header .navbar.wrapper {
+        min-height: 3.75rem;
+        padding-inline: 1rem !important;
+    }
+
+    .desktop-action {
+        display: flex !important;
+    }
+
+    .desktop-action .navbar-search {
+        display: none !important;
+    }
+
+    .desktop-action .theme-toggle {
+        width: 2.25rem !important;
+        height: 2.25rem !important;
+    }
+
+    .desktop-action .cart-icon {
+        font-size: 1.15rem;
+    }
+
+    .mobile-menu {
+        top: calc(100% + 0.5rem) !important;
+        width: min(20rem, calc(100vw - 2rem)) !important;
+    }
+}
