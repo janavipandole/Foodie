@@ -57,7 +57,7 @@ p {
 header {
     backdrop-filter: blur(20px);
     -webkit-backdrop-filter: blur(20px);
-    background-color: var(--glass-bg) !important;
+    background-color:  var(--glass-bg) !important;
     border-bottom: 1px solid var(--glass-border);
     height: auto !important;
     padding-block: 0.35rem !important;
@@ -74,12 +74,39 @@ header {
     margin: 0 auto !important;
     gap: 1.2rem !important; /* Reduced gap */
     padding-inline: 0.5rem !important; /* Minimal inline padding */
+    
 }
 
 .navList {
     flex-wrap: nowrap !important;
     white-space: nowrap;
     gap: 0.8rem !important; /* Tighter links */
+}
+.navList li a {
+    position: relative;
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+.navList li a::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    bottom: -4px;
+    width: 0%;
+    height: 2px;
+    background: #ff7b00;
+    transition: width 0.3s ease;
+    border-radius: 10px;
+}
+
+.navList li a:hover::after,
+.navList li.active a::after {
+    width: 100%;
+}
+
+.navList li a:hover {
+    color: #ff7b00 !important;
 }
 
 .desktop-action {
@@ -201,6 +228,42 @@ header {
 
 [data-theme="dark"] .navList li a {
     color: #eeeeee !important;
+}
+
+.notification-icon {
+    position: relative;
+    width: 40px;
+    height: 40px;
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(255,255,255,0.08);
+    border: 1px solid rgba(255,255,255,0.12);
+    transition: all 0.3s ease;
+    color: var(--text-primary);
+}
+
+.notification-icon:hover {
+    background: rgba(255,123,0,0.1);
+    transform: translateY(-2px);
+    color: #ff7b00;
+}
+
+.notification-badge {
+    position: absolute;
+    top: 4px;
+    right: 4px;
+    width: 16px;
+    height: 16px;
+    border-radius: 50%;
+    background: #ff3d00;
+    color: white;
+    font-size: 0.6rem;
+    font-weight: bold;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 /* Active Navigation Link Highlighting */
