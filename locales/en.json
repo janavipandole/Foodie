@@ -68,6 +68,11 @@
     "downloads": "Downloads"
   },
   "newsletter": {
+    "sectionTitle": "Our Subscribe",
+    "mainTitle": "Subscribe to Our newsletter",
+    "description": "We recommend you to Subscribe our",
+    "placeholder": "Enter your email address",
+    "subscribeButton": "Subscribe",
     "success": "Thank you for subscribing!\nYou will receive updates at: {email}"
   },
   "footer": {
@@ -121,7 +126,8 @@
     "network": "Network error. Please check your connection.",
     "unhandled": "An error occurred. Please refresh the page.",
     "promiseRejected": "An error occurred. Please try again.",
-    "cart": "Cart error. Please try again."
+    "cart": "Cart error. Please try again.",
+    "retry": "Try Again"
   },
   "nearby": {
     "sectionTitle": "Nearby Picks",

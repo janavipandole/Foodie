@@ -1,4 +1,4 @@
-    @import url('https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&family=Montserrat:wght@100..900&family=Nunito:ital,wght@0,200..1000;1,200..1000&family=PT+Sans:ital,wght@0,400;0,700;1,400;1,700&family=Roboto+Condensed:ital,wght@0,100..900;1,100..900&family=Roboto:wdth,wght@87.5,600&display=swap');
+    @import url('https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,300;0,400;0,700;1,100;1,300;1,400;1,700;1,900&family=Montserrat:wght@100..900&family=Nunito:ital,wght@0,200..1000;1,200..1000&family=PT+Sans:ital,wght@0,400;0,700;1,400;1,700&family=Roboto+Condensed:ital,wght@0,100..900;1,100..900&family=Roboto:wdth,wght@87.5,600&display=swap');
 
     * {
         padding: 0;
@@ -1066,6 +1066,34 @@
         color: #FFFFFF;
     }
 
+    /* FEEDBACK FLOATING BUTTON */
+    .feedback-fab {
+        position: fixed;
+        right: 1rem;
+        top: 50%;
+        transform: translateY(-50%);
+        width: 3rem;
+        height: 3rem;
+        border-radius: 50%;
+        background: var(--gold-finger);
+        color: var(--lead);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 1.5rem;
+        box-shadow: 0 4px 10px var(--shadow-strong);
+        transition: transform 0.3s ease, box-shadow 0.3s ease, background 0.3s ease;
+        z-index: 10;
+        text-decoration: none;
+    }
+
+    .feedback-fab:hover {
+        transform: translateY(-50%) scale(1.1);
+        box-shadow: 0 6px 14px var(--shadow-strong);
+        background: var(--lead);
+        color: var(--pure-while);
+    }
+
     /* --- Responsiveness --- */
 
     /* 1. Tablet and Desktop screens (768px and up) */
@@ -1082,17 +1110,34 @@
         .whatsapp-fab:hover {
             box-shadow: 0 8px 16px var(--shadow-strong);
         }
+
+        .feedback-fab {
+            right: 1.5rem;
+            width: 3.5rem;
+            height: 3.5rem;
+            font-size: 1.8rem;
+            box-shadow: 0 6px 12px var(--shadow-strong);
+        }
+
+        .feedback-fab:hover {
+            box-shadow: 0 8px 16px var(--shadow-strong);
+        }
     }
 
     /* 2. Accessibility: Respect user preference for reduced motion */
     @media (prefers-reduced-motion: reduce) {
-        .whatsapp-fab {
+        .whatsapp-fab, .feedback-fab {
             transition: none;
             animation: none;
         }
 
         .whatsapp-fab:hover {
             transform: none; 
+            box-shadow: 0 6px 12px var(--shadow-strong);
+        }
+
+        .feedback-fab:hover {
+            transform: translateY(-50%);
             box-shadow: 0 6px 12px var(--shadow-strong);
         }
     }
@@ -2613,7 +2658,6 @@
         flex-direction: column;
     }
 }
-<<<<<<< HEAD
 /* Nearby Fallback UI */
 .nearby-fallback-ui {
     display: flex;
@@ -2642,7 +2686,7 @@
 .nearby-fallback-hint {
     font-size: 13px !important;
     color: #aaa;
-=======
+}
 
 /* ===== Recommendations Section ===== */
 #recommendations {
@@ -2674,5 +2718,54 @@
     .rec-grid {
         gap: 1.5rem;
     }
->>>>>>> 557b6cf (feat: add Smart Recommended for You Section based on Order History)
+}
+
+/* ===== Floating Feedback Button ===== */
+.floating-feedback-btn {
+    position: fixed;
+    right: 0;
+    top: 50%;
+    transform: translateY(-50%);
+    z-index: 9999;
+
+    background-color: var(--gold-finger);
+    color: var(--lead);
+    border: none;
+    border-radius: 8px 0 0 8px;   /* rounded on left only — "docked" to right edge */
+    padding: 14px 10px;
+    
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 6px;
+
+    cursor: pointer;
+    text-decoration: none;
+    font-family: inherit;
+    font-size: 0.75rem;
+    font-weight: 700;
+    letter-spacing: 0.05em;
+    writing-mode: vertical-rl;   /* text runs vertically */
+
+    box-shadow: -2px 0 12px var(--shadow-strong);
+    transition: padding 0.3s ease, background-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.floating-feedback-btn:hover {
+    background-color: var(--gold-hover);
+    padding: 14px 14px;           /* expands slightly on hover */
+    box-shadow: -4px 0 20px var(--shadow-strong);
+}
+
+.floating-feedback-btn i {
+    font-size: 1rem;
+    writing-mode: horizontal-tb;  /* icon stays upright */
+}
+
+/* Responsive: shrink on mobile */
+@media (max-width: 480px) {
+    .floating-feedback-btn {
+        padding: 10px 8px;
+        font-size: 0.65rem;
+    }
 }

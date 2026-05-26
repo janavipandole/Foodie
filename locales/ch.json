@@ -252,6 +252,6 @@
     "signInSubtitle": "欢迎回来！请输入您的信息。",
     "signInBtn": "登录",
     "emailLabel": "电子邮件地址",
-    "emailPlaceholder": "your@email.com"
+    "emailPlaceholder": "请输入您的邮箱"
   }
 }
