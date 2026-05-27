@@ -62,11 +62,14 @@
     }
 
     [data-theme="dark"] .social-media {
-        background-color: var(--text-secondary) !important;
+        background: rgba(255, 255, 255, 0.08);
+        border: 1px solid rgba(242, 189, 18, 0.25);
     }
 
     [data-theme="dark"] .social-media:hover {
-        background-color: var(--gold-finger) !important;
+        background: rgba(242, 189, 18, 0.15);
+        border-color: #F2BD12;
+        box-shadow: 0 0 12px rgba(242, 189, 18, 0.35);
     }
 
     [data-theme="dark"] .btn:hover {
@@ -82,6 +85,13 @@
     [data-theme="dark"] .quatity-btn:hover {
         background: var(--text-primary);
         color: var(--bg-primary);
+    }
+
+    [data-theme="dark"] .feedback-fab:hover {
+    transform: translateY(-50%) scale(1.1);
+    box-shadow: 0 6px 20px rgba(242, 189, 18, 0.65);
+    background: #FFD700;
+    color: #1A1A1A;
     }
 
     body {
@@ -2760,6 +2770,14 @@
 .floating-feedback-btn i {
     font-size: 1rem;
     writing-mode: horizontal-tb;  /* icon stays upright */
+}
+
+.text-center .fa-solid,
+.feature-icon .fa-solid,
+.mission-icon .fa-solid,
+.team-photo .fa-solid {
+  color: #f57418f8;
+  border: 2px solid #f4b400;
 }
 
 /* Responsive: shrink on mobile */
