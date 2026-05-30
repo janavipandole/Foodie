@@ -333,6 +333,13 @@ header {
     animation: floating 6s ease-in-out infinite;
 }
 
+[data-theme="dark"] .floating-food {
+    opacity: 0.75;
+    color: #F2BD12;
+    text-shadow: 0 0 12px rgba(242, 189, 18, 0.55);
+    filter: drop-shadow(0 0 6px rgba(242, 189, 18, 0.4));
+}
+
 @keyframes floating {
     0%, 100% { transform: translateY(0) rotate(0deg); }
     50% { transform: translateY(-15px) rotate(8deg); }
@@ -483,7 +490,7 @@ footer {
     p { font-size: 1rem !important; }
     
     .desktop-action { display: none !important; } /* Hide desktop actions on mobile */
-    .hamberger { display: block !important; }
+    .hamberger { display: flex !important; }
     
     .hero-section { text-align: center !important; }
     .hero-section .content { padding: 0 !important; }
