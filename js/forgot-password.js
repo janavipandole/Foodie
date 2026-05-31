@@ -142,6 +142,5 @@ document.addEventListener('DOMContentLoaded', () => {
 
   // Expose functions globally
   window.handleForgotPassword = handleForgotPassword;
-  window.resendEmail = resendEmail;
   window.switchToEmailForm = switchToEmailForm;
 });
