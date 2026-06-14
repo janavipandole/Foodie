@@ -70,12 +70,11 @@ async function initData() {
 
     // Import error handling utilities
     const {
-        retry,
-        NetworkError,
-        showErrorToast,
-        errorLogger
+        retry = async (fn) => fn(),
+        NetworkError = Error,
+        showErrorToast = console.error,
+        errorLogger = { log: console.error }
     } = window.FoodieErrorHandler || {};
-
     try {
         // Show loading
         setLoadingState(document.body, true, 'Loading contributors...');
