@@ -70,12 +70,11 @@ async function initData() {
 
     // Import error handling utilities
     const {
-        retry,
-        NetworkError,
-        showErrorToast,
-        errorLogger
+        retry = async (fn) => fn(),
+        NetworkError = Error,
+        showErrorToast = console.error,
+        errorLogger = { log: console.error }
     } = window.FoodieErrorHandler || {};
-
     try {
         // Show loading
         setLoadingState(document.body, true, 'Loading contributors...');
@@ -141,9 +140,9 @@ async function fetchAllPulls() {
 
     // Import error handling utilities
     const {
-        retry,
-        NetworkError,
-        errorLogger
+        retry = async (fn) => fn(),
+        NetworkError = Error,
+        errorLogger = { log: console.error }
     } = window.FoodieErrorHandler || {};
 
     // Fetching top 300 recent PRs. Increase page limit if needed, but be wary of API limits.
@@ -439,9 +438,9 @@ async function fetchRecentActivity() {
 
     // Import error handling utilities
     const {
-        retry,
-        NetworkError,
-        errorLogger
+        retry = async (fn) => fn(),
+        NetworkError = Error,
+        errorLogger = { log: console.error }
     } = window.FoodieErrorHandler || {};
 
     try {
