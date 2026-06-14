@@ -438,9 +438,9 @@ async function fetchRecentActivity() {
 
     // Import error handling utilities
     const {
-        retry,
-        NetworkError,
-        errorLogger
+        retry = async (fn) => fn(),
+        NetworkError = Error,
+        errorLogger = { log: console.error }
     } = window.FoodieErrorHandler || {};
 
     try {
