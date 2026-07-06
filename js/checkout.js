@@ -616,7 +616,7 @@
     if (!finalTotalEl || !orderIdEl) return;
 
     const totalAmount = parseFloat(finalTotalEl.textContent.replace(/[₹$]/g, "")) * 100;
-    const orderId = "FD" + Date.now().toString().slice(-8);
+    const orderId = "FD-" + crypto.randomUUID().split('-')[0].toUpperCase();
     orderIdEl.textContent = orderId;
 
     const options = {
@@ -628,7 +628,7 @@
       handler: function (response) {
         console.log("Payment Success:", response);
 
-        const orderId = "FD" + Date.now().toString().slice(-8);
+    
         const order = {
           id: orderId,
           items: cartData,
