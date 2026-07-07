@@ -180,13 +180,13 @@
               <p style="font-size:0.95rem; margin-bottom:1rem;">
                 OTP sent to <strong id="otpPhone"></strong>
               </p>
-              <div class="otp-boxes">
-                <input class="otp-input" type="text" maxlength="1" inputmode="numeric" />
-                <input class="otp-input" type="text" maxlength="1" inputmode="numeric" />
-                <input class="otp-input" type="text" maxlength="1" inputmode="numeric" />
-                <input class="otp-input" type="text" maxlength="1" inputmode="numeric" />
-                <input class="otp-input" type="text" maxlength="1" inputmode="numeric" />
-                <input class="otp-input" type="text" maxlength="1" inputmode="numeric" />
+              <div class="otp-boxes" role="group" aria-label="Enter one-time password">
+                <input class="otp-input" type="text" maxlength="1" inputmode="numeric" aria-label="OTP digit 1" />
+                <input class="otp-input" type="text" maxlength="1" inputmode="numeric" aria-label="OTP digit 2" />
+                <input class="otp-input" type="text" maxlength="1" inputmode="numeric" aria-label="OTP digit 3" />
+                <input class="otp-input" type="text" maxlength="1" inputmode="numeric" aria-label="OTP digit 4" />
+                <input class="otp-input" type="text" maxlength="1" inputmode="numeric" aria-label="OTP digit 5" />
+                <input class="otp-input" type="text" maxlength="1" inputmode="numeric" aria-label="OTP digit 6" />
               </div>
               <p id="otpError" class="otp-error" style="display:none;">
                 Incorrect OTP. Please try again.

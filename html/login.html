@@ -95,7 +95,7 @@
                 <label for="loginEmail">Email Address</label>
                 <div class="input-wrapper">
                   <i class="fa-solid fa-envelope field-icon"></i>
-                  <input type="email" id="loginEmail" placeholder="your@email.com" required />
+                  <input type="email" id="loginEmail"   placeholder="your@email.com" required aria-label="Email Address" />
                 </div>
               </div>
 
@@ -103,8 +103,8 @@
                 <label for="loginPassword">Password</label>
                 <div class="input-wrapper">
                   <i class="fa-solid fa-lock field-icon"></i>
-                  <input type="password" id="loginPassword" placeholder="Enter password" required />
-                  <button type="button" class="eye-btn" onclick="togglePassword('loginPassword')">
+                  <input type="password" id="loginPassword" placeholder="Enter password" required aria-label="Password" />
+                  <button type="button" class="eye-btn"  onclick="togglePassword('loginPassword')">
                     <i class="fa-solid fa-eye"></i>
                   </button>
                 </div>
@@ -126,7 +126,7 @@
               <label for="demoName">Your Name</label>
               <div class="input-wrapper">
                 <i class="fa-solid fa-user field-icon"></i>
-                <input type="text" id="demoName" placeholder="Enter any name" />
+                <input type="text" id="demoName"  placeholder="Enter any name" aria-label="Your Name" />
               </div>
             </div>
 
@@ -134,7 +134,7 @@
               <label for="demoGender">Gender (for profile picture)</label>
               <div class="input-wrapper">
                 <i class="fa-solid fa-venus-mars field-icon"></i>
-                <select id="demoGender" class="custom-select-input">
+                <select id="demoGender" class="custom-select-input" aria-label="Gender">
                   <option value="none">Prefer not to say</option>
                   <option value="male">Male</option>
                   <option value="female">Female</option>

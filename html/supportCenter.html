@@ -274,15 +274,15 @@
         <p>Describe your issue and our support team will get back to you soon.</p>
 
         <form class="support-form" action="#" method="post">
-            <input type="text" name="name" placeholder="Your Full Name" required>
-            <input type="email" name="email" placeholder="Your Email Address" required>
-            <select name="category" required>
+            <input type="text" name="name" aria-label="Your Full Name" placeholder="Your Full Name" required>
+            <input type="email" name="email" aria-label="Your Email Address" placeholder="Your Email Address" required>
+            <select name="category" aria-label="Select Issue Category" required>
                 <option value="">Select Issue Category</option>
                 <option value="account">Account Issues</option>
                 <option value="order">Order Problems</option>
                 <option value="general">General Help</option>
             </select>
-            <textarea name="message" placeholder="Describe your issue in detail..." required></textarea>
+            <textarea name="message" aria-label="Describe your issue in detail..." placeholder="Describe your issue in detail..." required></textarea>
             <button  type="submit" aria-label="Submit Query">Submit Query</button>
         </form>
     </section>
