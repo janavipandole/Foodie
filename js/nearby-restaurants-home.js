@@ -193,6 +193,7 @@
             map,
             position: place.geometry.location,
             title: place.name || t('nearby.restaurant', 'Restaurant'),
+        });
         marker.addListener('click', () => {
             const rating = typeof place.rating === 'number' ? place.rating.toFixed(1) : 'N/A';
             const address = place.vicinity || place.formatted_address || 'Address unavailable';
