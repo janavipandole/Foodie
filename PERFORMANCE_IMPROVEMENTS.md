@@ -81,16 +81,7 @@ Core utility functions for performance and safety:
 - HTML sanitization
 - Viewport detection
 
-### 2. `js/performance-patches.js`
-Performance optimization patches for app.js:
-- Optimized scroll handler
-- Efficient cart operations
-- DocumentFragment rendering
-- Event delegation setup
-- Lazy loading implementation
-- Memory leak prevention
-
-### 3. `js/error-handler.js`
+### 2. `js/error-handler.js`
 Comprehensive error handling system:
 - Custom error classes
 - Error logger with persistence
@@ -108,7 +99,6 @@ Comprehensive error handling system:
 <!-- Add before app.js -->
 <script src="../js/utils.js"></script>
 <script src="../js/error-handler.js"></script>
-<script src="../js/performance-patches.js"></script>
 <script src="../js/app.js"></script>
 ```
 
@@ -142,7 +132,7 @@ window.addEventListener('beforeunload', cleanup);
 
 #### For Scroll Performance
 ```javascript
-// Import throttle from utils.js or performance-patches.js
+// Import throttle from utils.js
 const handleScroll = throttle(() => {
     if (window.scrollY > 400) {
         backToTop?.classList.add('visible');
@@ -156,7 +146,7 @@ window.addEventListener('scroll', handleScroll, { passive: true });
 
 #### For Cart Operations
 ```javascript
-// Use optimized version from performance-patches.js
+// Use optimized version from app.js
 const updateTotalPrice = updateTotalPriceOptimized;
 ```
 
@@ -259,7 +249,7 @@ if (data) {
 
 ### Throttle/Debounce Timing
 ```javascript
-// Adjust in utils.js or performance-patches.js
+// Adjust in utils.js
 const SCROLL_THROTTLE = 100; // ms
 const SEARCH_DEBOUNCE = 300; // ms
 const FILTER_DEBOUNCE = 150; // ms
@@ -332,7 +322,6 @@ performance.memory.usedJSHeapSize / 1048576 // MB
 ### Phase 1: Add New Files (This PR)
 - Add utils.js
 - Add error-handler.js
-- Add performance-patches.js
 - No breaking changes
 
 ### Phase 2: Gradual Integration (Future PR)
