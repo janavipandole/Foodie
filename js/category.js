@@ -77,7 +77,7 @@ async function loadCategories() {
                 <div class="error-icon">⚠️</div>
                 <h3>Unable to Load Cuisines</h3>
                 <p>We're having trouble loading the cuisine categories right now. Please check your connection and try again.</p>
-                <button class="retry-btn" onclick="loadCategories()">Retry</button>
+                <button  class="retry-btn" onclick="loadCategories()" aria-label="Retry">Retry</button>
             </div>
         `;
     }

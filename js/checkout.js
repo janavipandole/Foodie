@@ -271,7 +271,7 @@
         suggestionsEl.classList.remove('open');
         return;
       }
-      suggestionsEl.innerHTML = results.map((it, idx) => `<button type="button" role="option" class="autocomplete-item" data-idx="${idx}">${escapeHtml(it.label)}</button>`).join('');
+      suggestionsEl.innerHTML = results.map((it, idx) => `<button type="button" role="option"  class="autocomplete-item" data-idx="${idx}" aria-label="${escapeHtml(it.label)}" >${escapeHtml(it.label)}</button>`).join('');
       suggestionsEl.classList.add('open');
 
       suggestionsEl.querySelectorAll('.autocomplete-item').forEach((btn) => {

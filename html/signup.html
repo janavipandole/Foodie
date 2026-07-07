@@ -95,7 +95,7 @@
                 <input type="password" id="signupPassword" placeholder="Create strong password" required 
                        pattern="(?=.*[A-Z])(?=.*[!@#$%^&*(),.?\&quot;:{}|<>]).{6,}" 
                        title="Must contain at least one uppercase letter, one special character, and be at least 6 characters long" />
-                <button type="button" class="eye-btn" onclick="togglePassword('signupPassword')">
+                <button type="button" class="eye-btn" aria-label="Toggle password visibility" onclick="togglePassword('signupPassword')">
                   <i class="fa-solid fa-eye"></i>
                 </button>
               </div>
@@ -109,7 +109,7 @@
               </label>
             </div>
 
-            <button type="submit" class="submit-btn">Create Account</button>
+            <button type="submit"   class="submit-btn" aria-label="Create Account">Create Account</button>
           </form>
 
           <div class="auth-divider"><span>OR SIGN UP WITH</span></div>
@@ -119,7 +119,7 @@
           </div>
 
           <p class="auth-footer">
-            Already have an account? <a href="./login.html" class="accent-link">Login here</a>
+            Already have an account? <a href="./login.html" class="accent-link" aria-label="Login here">Login here</a>    
           </p>
         </div>
       </div>

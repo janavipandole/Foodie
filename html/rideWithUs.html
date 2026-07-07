@@ -173,7 +173,7 @@
                 <input type="tel" id="partnerMobile" placeholder="+91 12345 67890"
                   pattern="[0-9]{10}" title="Enter a valid 10-digit mobile number" required />
               </div>
-              <button type="submit" class="btn get-otp-btn" id="getOtpBtn">Get OTP</button>
+              <button type="submit" class="btn get-otp-btn" aria-label="Get OTP" id="getOtpBtn">Get OTP</button>
             </form>
             <!-- Step 2: OTP Verification -->
             <div id="otpStep" style="display:none;">
@@ -191,10 +191,10 @@
               <p id="otpError" class="otp-error" style="display:none;">
                 Incorrect OTP. Please try again.
               </p>
-              <button class="btn get-otp-btn" id="verifyOtpBtn">Verify OTP</button>
+              <button class="btn get-otp-btn"  id="verifyOtpBtn" aria-label="Verify OTP">Verify OTP</button>
               <p class="resend-row">
                 <span id="resendTimer">Resend OTP in <strong id="countdown">30</strong>s</span>
-                <button id="resendBtn" class="resend-btn" style="display:none;">Resend OTP</button>
+                <button id="resendBtn" class="resend-btn" style="display:none;" aria-label="Resend OTP">Resend OTP</button>
               </p>
             </div>
 

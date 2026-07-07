@@ -143,7 +143,7 @@
                 <div class="profile-content">
                     <div class="profile-avatar-wrapper">
                         <img id="userLargeAvatar" src="../imgs/profile1.webp" alt="Profile">
-                        <button class="avatar-edit-btn"><i class="fa-solid fa-camera"></i></button>
+                        <button class="avatar-edit-btn" aria-label="Edit Avatar"><i class="fa-solid fa-camera"></i></button>
                     </div>
                     <div class="profile-info">
                         <h1 id="userFullName">User Name</h1>
@@ -151,8 +151,8 @@
                         <span class="badge">Verified Foodie</span>
                     </div>
                     <div class="profile-cta">
-                        <button class="btn btn-outline" onclick="logoutUser(event)">Logout</button>
-                        <button class="btn" onclick="openEditModal()">Edit Profile</button>
+                        <button class="btn btn-outline" aria-label="Logout" onclick="logoutUser(event)">Logout</button>
+                        <button class="btn" aria-label="Edit Profile" onclick="openEditModal()">Edit Profile</button>
                     </div>
                 </div>
             </div>
@@ -162,7 +162,7 @@
                 <div class="modal-content card">
                     <div class="modal-header flex between">
                         <h3>Edit Profile</h3>
-                        <button class="close-modal" onclick="closeEditModal()">&times;</button>
+                        <button class="close-modal" aria-label="Close Modal"                 onclick="closeEditModal()">&times;</button>
                     </div>
                     <form onsubmit="handleProfileUpdate(event)">
                         <div class="input-group">
@@ -177,7 +177,7 @@
                             <label>Phone Number</label>
                             <input type="tel" id="editPhone" required>
                         </div>
-                        <button type="submit" class="btn w-full mt-1">Save Changes</button>
+                        <button type="submit" class="btn w-full mt-1" aria-label="Save Changes">Save Changes</button>
                     </form>
                 </div>
             </div>

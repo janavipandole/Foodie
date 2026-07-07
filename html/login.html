@@ -83,7 +83,8 @@
 
           <!-- Tab Switcher -->
           <div class="tab-switcher">
-            <button class="tab-btn active" id="tabLogin" onclick="showTab('login')">Sign In</button>
+            <button class="tab-btn active" 
+            id="tabLogin" onclick="showTab('login')">Sign In</button>
             <button class="tab-btn" id="tabDemo" onclick="showTab('demo')"><i class="fa-solid fa-user-secret"></i> Demo Login</button>
           </div>
 
@@ -113,7 +114,9 @@
                 <a href="./forgot-password.html" class="forgot-link">Forgot password?</a>
               </div>
 
-              <button type="submit" class="submit-btn">Sign In</button>
+              <button type="submit" 
+              aria-label="Submit"
+              class="submit-btn">Sign In</button>
             </form>
           </div>
 
@@ -139,7 +142,9 @@
               </div>
             </div>
 
-            <button type="button" class="submit-btn" onclick="enterAsGuest()">
+            <button type="button" 
+            aria-label="Enter as Guest"
+            class="submit-btn" onclick="enterAsGuest()">
               <i class="fa-solid fa-right-to-bracket"></i> Enter as Guest
             </button>
           </div>
