@@ -109,17 +109,17 @@
 
     <!-- Desktop nav links -->
     <ul class="navList" role="list">
-      <li><a href="./index.html#home"      data-i18n="nav.home">Home</a></li>
-      <li><a href="./menu.html"            data-i18n="nav.menu">Menu</a></li>
-      <li><a href="./my-favorites.html"    data-i18n="nav.favorites">
+      <li><a href="./index.html#home"      data-i18n="Home">Home</a></li>
+      <li><a href="./menu.html"            data-i18n="Menu">Menu</a></li>
+      <li><a href="./my-favorites.html"    data-i18n="Favorites">
             <i class="fa-solid fa-star" aria-hidden="true"></i> Favorites
           </a></li>
-      <li><a href="./order-history.html"   data-i18n="nav.orderHistory">
+      <li><a href="./order-history.html"   data-i18n="OrderHistory">
             <i class="fa-solid fa-clock-rotate-left" aria-hidden="true"></i> Orders
           </a></li>
-      <li><a href="./aboutUs.html"         data-i18n="nav.about">About</a></li>
-      <li><a href="./contactUs.html"       data-i18n="nav.contact">Contact</a></li>
-      <li><a href="./nearbyres.html"       data-i18n="nav.nearby">Nearby</a></li>
+      <li><a href="./aboutUs.html"         data-i18n="About">About</a></li>
+      <li><a href="./contactUs.html"       data-i18n="Contact">Contact</a></li>
+      <li><a href="./nearbyres.html"       data-i18n="Nearby">Nearby</a></li>
     </ul>
 
     <!-- Desktop actions -->
@@ -274,15 +274,15 @@
         <p>Describe your issue and our support team will get back to you soon.</p>
 
         <form class="support-form" action="#" method="post">
-            <input type="text" name="name" placeholder="Your Full Name" required>
-            <input type="email" name="email" placeholder="Your Email Address" required>
-            <select name="category" required>
+            <input type="text" name="name" aria-label="Your Full Name" placeholder="Your Full Name" required>
+            <input type="email" name="email" aria-label="Your Email Address" placeholder="Your Email Address" required>
+            <select name="category" aria-label="Select Issue Category" required>
                 <option value="">Select Issue Category</option>
                 <option value="account">Account Issues</option>
                 <option value="order">Order Problems</option>
                 <option value="general">General Help</option>
             </select>
-            <textarea name="message" placeholder="Describe your issue in detail..." required></textarea>
+            <textarea name="message" aria-label="Describe your issue in detail..." placeholder="Describe your issue in detail..." required></textarea>
             <button  type="submit" aria-label="Submit Query">Submit Query</button>
         </form>
     </section>

@@ -211,17 +211,17 @@
 
     <!-- Desktop nav links -->
     <ul class="navList" role="list">
-      <li><a href="./index.html#home"      data-i18n="nav.home">Home</a></li>
-      <li><a href="./menu.html"            data-i18n="nav.menu">Menu</a></li>
-      <li><a href="./my-favorites.html"    data-i18n="nav.favorites">
+      <li><a href="./index.html#home"      data-i18n="Home">Home</a></li>
+      <li><a href="./menu.html"            data-i18n="Menu">Menu</a></li>
+      <li><a href="./my-favorites.html"    data-i18n="Favorites">
             <i class="fa-solid fa-star" aria-hidden="true"></i> Favorites
           </a></li>
-      <li><a href="./order-history.html"   data-i18n="nav.orderHistory">
+      <li><a href="./order-history.html"   data-i18n="OrderHistory">
             <i class="fa-solid fa-clock-rotate-left" aria-hidden="true"></i> Orders
           </a></li>
-      <li><a href="./aboutUs.html"         data-i18n="nav.about">About</a></li>
-      <li><a href="./contactUs.html"       data-i18n="nav.contact">Contact</a></li>
-      <li><a href="./nearbyres.html"       data-i18n="nav.nearby">Nearby</a></li>
+      <li><a href="./aboutUs.html"         data-i18n="About">About</a></li>
+      <li><a href="./contactUs.html"       data-i18n="Contact">Contact</a></li>
+      <li><a href="./nearbyres.html"       data-i18n="Nearby">Nearby</a></li>
     </ul>
 
     <!-- Desktop actions -->
@@ -355,14 +355,14 @@
       <h2>Website Feedback</h2>
       <p>Tell us what you think about our website design, speed, and navigation.</p>
       <form id="web-feedback-form">
-        <input type="text" placeholder="Your Name" required>
-        <input type="email" placeholder="Your Email" required>
+        <input type="text" aria-label="Your Name" placeholder="Your Name" required>
+        <input type="email" aria-label="Your Email" placeholder="Your Email" required>
         <div class="rating">
-          <input type="radio" name="web" id="w5" required><label for="w5">★</label>
-          <input type="radio" name="web" id="w4"><label for="w4">★</label>
-          <input type="radio" name="web" id="w3"><label for="w3">★</label>
-          <input type="radio" name="web" id="w2"><label for="w2">★</label>
-          <input type="radio" name="web" id="w1"><label for="w1">★</label>
+          <input type="radio" name="web"    id="w5" required><label for="w5">★</label>
+          <input type="radio" name="web" aria-label="Rate 4 stars" id="w4"><label for="w4">★</label>
+          <input type="radio" name="web" aria-label="Rate 3 stars" id="w3"><label for="w3">★</label>
+          <input type="radio" name="web" aria-label="Rate 2 stars" id="w2"><label for="w2">★</label>
+          <input type="radio" name="web" aria-label="Rate 1 star" id="w1"><label for="w1">★</label>
         </div>
         <textarea placeholder="Your feedback..." required></textarea>
         <button type="submit" aria-label="Submit Feedback" class="submit-btn">Submit Feedback</button>
@@ -374,16 +374,16 @@
       <h2>App Feedback</h2>
       <p>Share your experience with our mobile application and features.</p>
       <form id="app-feedback-form">
-        <input type="text" placeholder="Your Name" required>
-        <input type="email" placeholder="Your Email" required>
+        <input type="text" aria-label="Your Name" placeholder="Your Name" required>
+        <input type="email" aria-label="Your Email" placeholder="Your Email" required>
         <div class="rating">
-          <input type="radio" name="app" id="a5" required><label for="a5">★</label>
-          <input type="radio" name="app" id="a4"><label for="a4">★</label>
-          <input type="radio" name="app" id="a3"><label for="a3">★</label>
-          <input type="radio" name="app" id="a2"><label for="a2">★</label>
-          <input type="radio" name="app" id="a1"><label for="a1">★</label>
+          <input type="radio" name="app" aria-label="Rate 5 stars" id="a5" required><label for="a5">★</label>
+          <input type="radio" name="app" aria-label="Rate 4 stars" id="a4"><label for="a4">★</label>
+          <input type="radio" name="app" aria-label="Rate 3 stars" id="a3"><label for="a3">★</label>
+          <input type="radio" name="app" aria-label="Rate 2 stars" id="a2"><label for="a2">★</label>
+          <input type="radio" name="app" aria-label="Rate 1 star" id="a1"><label for="a1">★</label>
         </div>
-        <textarea placeholder="Your feedback..." required></textarea>
+        <textarea aria-label="Your feedback..." placeholder="Your feedback..." required></textarea>
         <button type="submit" aria-label="Submit Feedback" class="submit-btn">Submit Feedback</button>
       </form>
     </div>
@@ -393,16 +393,16 @@
       <h2>Service Feedback</h2>
       <p>Help us improve food delivery, customer support, and service quality.</p>
       <form id="service-feedback-form">
-        <input type="text" placeholder="Your Name" required>
-        <input type="email" placeholder="Your Email" required>
+        <input type="text" aria-label="Your Name" placeholder="Your Name" required>
+        <input type="email" aria-label="Your Email" placeholder="Your Email" required>
         <div class="rating">
-          <input type="radio" name="service" id="s5" required><label for="s5">★</label>
-          <input type="radio" name="service" id="s4"><label for="s4">★</label>
-          <input type="radio" name="service" id="s3"><label for="s3">★</label>
-          <input type="radio" name="service" id="s2"><label for="s2">★</label>
-          <input type="radio" name="service" id="s1"><label for="s1">★</label>
+          <input type="radio" name="service" aria-label="Rate 5 stars" id="s5" required><label for="s5">★</label>
+          <input type="radio" name="service" aria-label="Rate 4 stars" id="s4"><label for="s4">★</label>
+          <input type="radio" name="service" aria-label="Rate 3 stars"             id="s3"><label for="s3">★</label>
+          <input type="radio" name="service" aria-label="Rate 2 stars" id="s2"><label for="s2">★</label>
+          <input type="radio" name="service" aria-label="Rate 1 star" id="s1"><label for="s1">★</label>
         </div>
-        <textarea placeholder="Your feedback..." required></textarea>
+        <textarea aria-label="Your feedback..."  placeholder="Your feedback..." required></textarea>
         <button type="submit" aria-label="Submit Feedback" class="submit-btn">Submit Feedback</button>
       </form>
     </div>
@@ -434,11 +434,11 @@
         <div class="form-group">
           <label>Rating *</label>
           <div class="rating">
-            <input type="radio" id="star5" name="rating" value="5"><label for="star5" title="5 stars">★</label>
-            <input type="radio" id="star4" name="rating" value="4"><label for="star4" title="4 stars">★</label>
-            <input type="radio" id="star3" name="rating" value="3"><label for="star3" title="3 stars">★</label>
-            <input type="radio" id="star2" name="rating" value="2"><label for="star2" title="2 stars">★</label>
-            <input type="radio" id="star1" name="rating" value="1"><label for="star1" title="1 star">★</label>
+            <input type="radio" id="star5" name="rating" value="5" aria-label="Rate 5 stars"><label for="star5" title="5 stars">★</label>
+            <input type="radio" id="star4" name="rating" value="4" aria-label="Rate 4 stars"><label for="star4" title="4 stars">★</label>
+            <input type="radio" id="star3" name="rating" value="3" aria-label="Rate 3 stars"><label for="star3" title="3 stars">★</label>
+            <input type="radio" id="star2" name="rating" value="2" aria-label="Rate 2 stars"><label for="star2" title="2 stars">★</label>
+            <input type="radio" id="star1" name="rating" value="1" aria-label="Rate 1 star "><label for="star1" title="1 star">★</label>
           </div>
         </div>
 

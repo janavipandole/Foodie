@@ -45,17 +45,17 @@
 
     <!-- Desktop nav links -->
     <ul class="navList" role="list">
-      <li><a href="./index.html#home"      data-i18n="nav.home">Home</a></li>
-      <li><a href="./menu.html"            data-i18n="nav.menu">Menu</a></li>
-      <li><a href="./my-favorites.html"    data-i18n="nav.favorites">
+      <li><a href="./index.html#home"      data-i18n="Home">Home</a></li>
+      <li><a href="./menu.html"            data-i18n="Menu">Menu</a></li>
+      <li><a href="./my-favorites.html"    data-i18n="Favorites">
             <i class="fa-solid fa-star" aria-hidden="true"></i> Favorites
           </a></li>
-      <li><a href="./order-history.html"   data-i18n="nav.orderHistory">
+      <li><a href="./order-history.html"   data-i18n="OrderHistory">
             <i class="fa-solid fa-clock-rotate-left" aria-hidden="true"></i> Orders
           </a></li>
-      <li><a href="./aboutUs.html"         data-i18n="nav.about">About</a></li>
-      <li><a href="./contactUs.html"       data-i18n="nav.contact">Contact</a></li>
-      <li><a href="./nearbyres.html"       data-i18n="nav.nearby">Nearby</a></li>
+      <li><a href="./aboutUs.html"         data-i18n="About">About</a></li>
+      <li><a href="./contactUs.html"       data-i18n="Contact">Contact</a></li>
+      <li><a href="./nearbyres.html"       data-i18n="Nearby">Nearby</a></li>
     </ul>
 
     <!-- Desktop actions -->
@@ -181,39 +181,39 @@
           <form id="checkoutForm">
             <div class="form-group">
               <label for="fullName">Full Name *</label>
-              <input type="text" id="fullName" name="fullName" required />
+              <input type="text" id="fullName" aria-label="Full Name" name="fullName" required />
               <span class="error-message">Please enter your full name</span>
             </div>
 
             <div class="form-group">
               <label for="email">Email Address *</label>
-              <input type="email" id="email" name="email" required />
+              <input type="email" id="email" aria-label="Email Address" name="email" required />
               <span class="error-message">Please enter a valid email</span>
             </div>
 
             <div class="form-group">
               <label for="phone">Phone Number *</label>
-              <input type="tel" id="phone" name="phone" required />
+              <input type="tel" id="phone" aria-label="Phone Number" name="phone" required />
               <span class="error-message">Please enter a valid phone number</span>
             </div>
 
             <div class="form-group">
               <label for="address">Delivery Address *</label>
-              <textarea id="address" name="address" rows="3" required></textarea>
+              <textarea id="address" aria-label="Delivery Address" name="address" rows="3" required></textarea>
               <span class="error-message">Please enter your delivery address</span>
             </div>
 
             <div class="form-row">
               <div class="form-group">
                 <label for="city">City *</label>
-                <input type="text" id="city" name="city" required autocomplete="address-level2" autocapitalize="none"
+                <input type="text" id="city" name="city" required aria-label="City" autocomplete="address-level2" autocapitalize="none"
                   spellcheck="false" placeholder="Enter your city" />
                 <span class="error-message">Required</span>
                 <div id="citySuggestions" class="autocomplete-list" role="listbox" aria-label="City suggestions"></div>
               </div>
               <div class="form-group">
                 <label for="zipCode">ZIP Code *</label>
-                <input type="text" id="zipCode" name="zipCode" required />
+                <input type="text" id="zipCode" aria-label="ZIP Code" name="zipCode" required />
                 <span class="error-message">Required</span>
               </div>
             </div>
