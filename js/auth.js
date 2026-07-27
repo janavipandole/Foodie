@@ -116,8 +116,17 @@ function switchForm(formType) {
 }
 window.switchForm = switchForm;
 
+// Hash password using SHA-256
+async function hashPassword(password) {
+  const encoder = new TextEncoder();
+  const data = encoder.encode(password);
+  const hashBuffer = await crypto.subtle.digest('SHA-256', data);
+  const hashArray = Array.from(new Uint8Array(hashBuffer));
+  return hashArray.map(b => b.toString(16).padStart(2, '0')).join('');
+}
+
 // ===== LocalStorage Auth Implementation =====
-function handleSignup(event) {
+async function handleSignup(event) {
   event.preventDefault();
   const name = document.getElementById('signupName').value;
   const email = document.getElementById('signupEmail').value;
@@ -130,7 +139,8 @@ function handleSignup(event) {
     return;
   }
 
-  users.push({ name, email, phone, password });
+  const hashedPassword = await hashPassword(password);
+  users.push({ name, email, phone, password: hashedPassword });
   localStorage.setItem('foodie_users', JSON.stringify(users));
   showToast(t('auth.registrationSuccess', 'Registration successful! Please login.'), "success");
   switchForm('login');
@@ -178,7 +188,7 @@ function toggleDemoMode(state) {
 }
 window.toggleDemoMode = toggleDemoMode;
 
-function handleLogin(event) {
+async function handleLogin(event) {
   event.preventDefault();
   const demoFields = document.getElementById('demoLoginFields');
   const isDemo = demoFields && (demoFields.style.display === 'block' || window.getComputedStyle(demoFields).display === 'block');
@@ -202,9 +212,10 @@ function handleLogin(event) {
 
   const email = document.getElementById('loginEmail').value;
   const password = document.getElementById('loginPassword').value;
+  const hashedPassword = await hashPassword(password);
 
   const users = JSON.parse(localStorage.getItem('foodie_users') || '[]');
-  const user = users.find(u => u.email === email && u.password === password);
+  const user = users.find(u => u.email === email && (u.password === hashedPassword || u.password === password));
 
   if (user) {
     loginUser(user);
