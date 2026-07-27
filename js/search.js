@@ -53,6 +53,9 @@ if (searchInput) {
                     childList: true,
                     subtree: true
                 });
+                
+                // Fix for #698: Disconnect observer after timeout on non-search pages
+                setTimeout(() => observer.disconnect(), 5000);
             }
         }
     }
