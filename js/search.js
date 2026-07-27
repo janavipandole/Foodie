@@ -1,9 +1,26 @@
 const searchInput = document.getElementById("search");
 const searchBtn = document.getElementById("search-btn");
 
-function searchFood() {
+// Debounce helper
+function debounce(func, wait) {
+    let timeout;
+    return function(...args) {
+        clearTimeout(timeout);
+        timeout = setTimeout(() => func.apply(this, args), wait);
+    };
+}
+
+// Sanitization helper
+function sanitizeHTML(str) {
+    const temp = document.createElement('div');
+    temp.textContent = str;
+    return temp.innerHTML;
+}
+
+function searchFoodLogic() {
     if (!searchInput) return;
-    const query = searchInput.value.toLowerCase();
+    const rawQuery = searchInput.value;
+    const query = sanitizeHTML(rawQuery).toLowerCase();
     const menuCards = document.querySelectorAll(".order-card");
 
     menuCards.forEach(card => {
@@ -18,16 +35,16 @@ function searchFood() {
     });
 }
 
+const searchFood = debounce(searchFoodLogic, 300);
+
 // Trigger search on button click (if button exists)
 if (searchBtn) {
-    searchBtn.addEventListener("click", searchFood);
+    searchBtn.addEventListener("click", searchFoodLogic);
 }
 
-// Trigger search on pressing "Enter"
+// Trigger search on input (real-time with debounce)
 if (searchInput) {
-    searchInput.addEventListener("keyup", (e) => {
-        if(e.key === "Enter") searchFood();
-    });
+    searchInput.addEventListener("input", searchFood);
     
     // Check for search query in URL and auto-populate search input
     const urlParams = new URLSearchParams(window.location.search);
@@ -37,13 +54,13 @@ if (searchInput) {
         // Wait for menu cards to be loaded before searching
         const menuCards = document.querySelectorAll(".order-card");
         if (menuCards.length > 0) {
-            searchFood();
+            searchFoodLogic();
         } else {
             // If cards aren't loaded yet, wait for them
             const observer = new MutationObserver((mutations, obs) => {
                 const cards = document.querySelectorAll(".order-card");
                 if (cards.length > 0) {
-                    searchFood();
+                    searchFoodLogic();
                     obs.disconnect();
                 }
             });
