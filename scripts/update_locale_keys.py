@@ -1,3 +1,4 @@
+import sys
 import json
 from pathlib import Path
 
@@ -117,8 +118,49 @@ def merge(a, b):
             if k not in a:
                 a[k] = v
 
-for locale_file in sorted(root.glob('*.json')):
-    data = json.loads(locale_file.read_text(encoding='utf-8'))
-    merge(data, new_keys)
-    locale_file.write_text(json.dumps(data, ensure_ascii=False, indent=2), encoding='utf-8')
-    print(f'Updated {locale_file.name}')
+def update_locale_file(locale_file: Path) -> bool:
+    try:
+        text = locale_file.read_text(encoding='utf-8')
+        data = json.loads(text)
+    except json.JSONDecodeError as e:
+        print(f"ERROR: JSON decoding failed for {locale_file.name} -> {e}")
+        return False
+    except Exception as e:
+        print(f"ERROR: Could not read file {locale_file.name} -> {e}")
+        return False
+
+    # Structure validation: Ensure root is a dictionary object
+    if not isinstance(data, dict):
+        print(f"ERROR: Invalid structure in {locale_file.name}. Root element must be a dictionary/JSON object.")
+        return False
+
+    try:
+        merge(data, new_keys)
+        updated_text = json.dumps(data, ensure_ascii=False, indent=2)
+        locale_file.write_text(updated_text, encoding='utf-8')
+        print(f"Updated {locale_file.name}")
+        return True
+    except Exception as e:
+        print(f"ERROR: Failed to write updated keys to {locale_file.name} -> {e}")
+        return False
+
+def main():
+    if not root.exists():
+        print(f"ERROR: Locales directory not found at {root}")
+        sys.exit(1)
+
+    success = True
+    locale_files = list(root.glob('*.json'))
+    
+    if not locale_files:
+        print(f"WARNING: No JSON locale files found in {root}")
+
+    for locale_file in sorted(locale_files):
+        if not update_locale_file(locale_file):
+            success = False
+
+    if not success:
+        sys.exit(1)
+
+if __name__ == '__main__':
+    main()
