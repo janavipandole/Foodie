@@ -106,7 +106,30 @@ export function renderOrder(order) {
             <p>${order.deliveryInfo.email || ''}</p>
             ${order.deliveryInfo.notes ? `<p><em>${order.deliveryInfo.notes}</em></p>` : ''}
         </div>` : ''}
+        <div class="order-actions" style="margin-top: 15px; text-align: right;">
+            <button class="btn btn-export-pdf" data-order-id="${order.id}">
+                <i class="fa-solid fa-file-pdf"></i> Export PDF
+            </button>
+        </div>
     `;
+
+    const exportBtn = orderCard.querySelector('.btn-export-pdf');
+    if (exportBtn && typeof html2pdf !== 'undefined') {
+        exportBtn.addEventListener('click', () => {
+            exportBtn.style.display = 'none'; // Hide button in PDF
+            const opt = {
+                margin:       10,
+                filename:     `Order_${order.id}.pdf`,
+                image:        { type: 'jpeg', quality: 0.98 },
+                html2canvas:  { scale: 2 },
+                jsPDF:        { unit: 'mm', format: 'a4', orientation: 'portrait' }
+            };
+            
+            html2pdf().from(orderCard).set(opt).save().then(() => {
+                exportBtn.style.display = 'inline-block'; // Show button again
+            });
+        });
+    }
 
     return orderCard;
 }
