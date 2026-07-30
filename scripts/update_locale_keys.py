@@ -120,28 +120,32 @@ def merge(a, b):
 
 def update_locale_file(locale_file: Path) -> bool:
     try:
+        # Step 1: Read file content with UTF-8 encoding
         text = locale_file.read_text(encoding='utf-8')
-        data = json.loads(text)
-    except json.JSONDecodeError as e:
-        print(f"ERROR: JSON decoding failed for {locale_file.name} -> {e}")
-        return False
     except Exception as e:
-        print(f"ERROR: Could not read file {locale_file.name} -> {e}")
-        return False
-
-    # Structure validation: Ensure root is a dictionary object
-    if not isinstance(data, dict):
-        print(f"ERROR: Invalid structure in {locale_file.name}. Root element must be a dictionary/JSON object.")
+        print(f"WARNING/ERROR: Failed to read file {locale_file.name} -> {e}")
         return False
 
     try:
+        # Step 2: Parse JSON structure
+        data = json.loads(text)
+    except json.JSONDecodeError as e:
+        print(f"WARNING/ERROR: JSON decoding failed for {locale_file.name} -> {e}")
+        return False
+
+    if not isinstance(data, dict):
+        print(f"WARNING/ERROR: Invalid root structure in {locale_file.name}. Expected a JSON object/dictionary.")
+        return False
+
+    try:
+        # Step 3: Merge keys and write back updated content securely
         merge(data, new_keys)
         updated_text = json.dumps(data, ensure_ascii=False, indent=2)
         locale_file.write_text(updated_text, encoding='utf-8')
         print(f"Updated {locale_file.name}")
         return True
     except Exception as e:
-        print(f"ERROR: Failed to write updated keys to {locale_file.name} -> {e}")
+        print(f"WARNING/ERROR: Failed to write updated keys to {locale_file.name} -> {e}")
         return False
 
 def main():
@@ -151,7 +155,7 @@ def main():
 
     success = True
     locale_files = list(root.glob('*.json'))
-    
+
     if not locale_files:
         print(f"WARNING: No JSON locale files found in {root}")
 
@@ -159,6 +163,7 @@ def main():
         if not update_locale_file(locale_file):
             success = False
 
+    # Ensure non-zero exit code on failure
     if not success:
         sys.exit(1)
 
