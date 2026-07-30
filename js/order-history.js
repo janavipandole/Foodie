@@ -1,111 +1,194 @@
-(function () {
-  'use strict';
+/**
+ * Order History Module
+ * Manages fetching, sorting, date formatting, status badge styling, and rendering of user order history.
+ */
 
-  function formatDate(isoString) {
-    const date = new Date(isoString);
-    return date.toLocaleDateString('en-IN', {
-      year: 'numeric',
-      month: 'short',
-      day: 'numeric',
-      hour: '2-digit',
-      minute: '2-digit'
-    });
-  }
-
-  function getStatusColor(status) {
-    switch (status.toLowerCase()) {
-      case 'delivered': return 'status-delivered';
-      case 'pending': return 'status-pending';
-      case 'cancelled': return 'status-cancelled';
-      default: return 'status-pending';
+/**
+ * Formats an ISO date string into a readable Indian locale format.
+ * @param {string} isoString - Date string to format
+ * @returns {string} Formatted date string
+ */
+export function formatDate(isoString) {
+    if (!isoString) return 'N/A';
+    try {
+        const date = new Date(isoString);
+        if (isNaN(date.getTime())) return String(isoString);
+        return date.toLocaleDateString('en-IN', {
+            year: 'numeric',
+            month: 'short',
+            day: 'numeric',
+            hour: '2-digit',
+            minute: '2-digit'
+        });
+    } catch (e) {
+        return String(isoString);
     }
-  }
+}
 
-  function renderOrder(order) {
+/**
+ * Maps order status strings to appropriate UI color classes.
+ * @param {string} status - Order status
+ * @returns {string} Status class name
+ */
+export function getStatusColor(status) {
+    if (!status || typeof status !== 'string') return 'status-pending';
+    switch (status.toLowerCase().trim()) {
+        case 'delivered':
+            return 'status-delivered';
+        case 'pending':
+            return 'status-pending';
+        case 'cancelled':
+            return 'status-cancelled';
+        default:
+            return 'status-pending';
+    }
+}
+
+/**
+ * Renders a single order card element.
+ * @param {Object} order - Order object containing items, total, status, and timestamp
+ * @returns {HTMLElement|string} Rendered order card element or HTML string
+ */
+export function renderOrder(order) {
+    const statusClass = getStatusColor(order.status);
+    const formattedDate = formatDate(order.timestamp);
+
+    const itemsHtml = (order.items || []).map(item => {
+        const parsedPrice = parseFloat(String(item.price || '0').replace(/[₹$]/g, '')) || 0;
+        const itemTotal = (item.quantity || 1) * parsedPrice;
+        return `
+            <div class="order-item">
+                <img src="${item.image || ''}" alt="${item.name || 'Item'}">
+                <div class="order-item-details">
+                    <div class="order-item-name">${item.name || 'Product'}</div>
+                    <div class="order-item-quantity">Qty: ${item.quantity || 1}</div>
+                </div>
+                <div class="order-item-price">₹${itemTotal.toFixed(2)}</div>
+            </div>
+        `;
+    }).join('');
+
+    const totalAmount = Number.isFinite(order.total) ? order.total.toFixed(2) : '0.00';
+
+    if (typeof document === 'undefined') {
+        return `<div class="order-card">
+            <div class="order-header">
+                <div class="order-id">Order #${order.id || 'N/A'}</div>
+                <div class="order-status ${statusClass}">${order.status || 'Unknown'}</div>
+            </div>
+            <div class="order-timestamp">${formattedDate}</div>
+            <div class="order-items">${itemsHtml}</div>
+            <div class="order-total"><span>Total: ₹${totalAmount}</span></div>
+        </div>`;
+    }
+
     const orderCard = document.createElement('div');
     orderCard.className = 'order-card';
-
-    const itemsHtml = order.items.map(item => `
-      <div class="order-item">
-        <img src="${item.image}" alt="${item.name}">
-        <div class="order-item-details">
-          <div class="order-item-name">${item.name}</div>
-          <div class="order-item-quantity">Qty: ${item.quantity}</div>
-        </div>
-        <div class="order-item-price">₹${(item.quantity * parseFloat(item.price.replace(/[₹$]/g, ''))).toFixed(2)}</div>
-      </div>
-    `).join('');
-
     orderCard.innerHTML = `
-      <div class="order-header">
-        <div class="order-id">Order #${order.id}</div>
-        <div class="order-status ${getStatusColor(order.status)}">${order.status}</div>
-      </div>
-      <div class="order-timestamp">${formatDate(order.timestamp)}</div>
-      <div class="order-items">
-        ${itemsHtml}
-      </div>
-      <div class="order-total">
-        <span>Total: ₹${order.total.toFixed(2)}</span>
-      </div>
-      <div class="order-delivery-info">
-        <h4>Delivery Details</h4>
-        <p><strong>${order.deliveryInfo.fullName}</strong></p>
-        <p>${order.deliveryInfo.address}</p>
-        <p>${order.deliveryInfo.city}, ${order.deliveryInfo.zipCode}</p>
-        <p>${order.deliveryInfo.phone}</p>
-        <p>${order.deliveryInfo.email}</p>
-        ${order.deliveryInfo.notes ? `<p><em>${order.deliveryInfo.notes}</em></p>` : ''}
-      </div>
-      <div class="order-actions" style="margin-top: 15px; text-align: right;">
-        <button class="btn btn-export-pdf" data-order-id="${order.id}">
-          <i class="fa-solid fa-file-pdf"></i> Export PDF
-        </button>
-      </div>
+        <div class="order-header">
+            <div class="order-id">Order #${order.id || 'N/A'}</div>
+            <div class="order-status ${statusClass}">${order.status || 'Unknown'}</div>
+        </div>
+        <div class="order-timestamp">${formattedDate}</div>
+        <div class="order-items">
+            ${itemsHtml}
+        </div>
+        <div class="order-total">
+            <span>Total: ₹${totalAmount}</span>
+        </div>
+        ${order.deliveryInfo ? `
+        <div class="order-delivery-info">
+            <h4>Delivery Details</h4>
+            <p><strong>${order.deliveryInfo.fullName || ''}</strong></p>
+            <p>${order.deliveryInfo.address || ''}</p>
+            <p>${order.deliveryInfo.city || ''}, ${order.deliveryInfo.zipCode || ''}</p>
+            <p>${order.deliveryInfo.phone || ''}</p>
+            <p>${order.deliveryInfo.email || ''}</p>
+            ${order.deliveryInfo.notes ? `<p><em>${order.deliveryInfo.notes}</em></p>` : ''}
+        </div>` : ''}
+        <div class="order-actions" style="margin-top: 15px; text-align: right;">
+            <button class="btn btn-export-pdf" data-order-id="${order.id}">
+                <i class="fa-solid fa-file-pdf"></i> Export PDF
+            </button>
+        </div>
     `;
 
     const exportBtn = orderCard.querySelector('.btn-export-pdf');
-    exportBtn.addEventListener('click', () => {
-      exportBtn.style.display = 'none'; // Hide button in PDF
-      const opt = {
-        margin:       10,
-        filename:     `Order_${order.id}.pdf`,
-        image:        { type: 'jpeg', quality: 0.98 },
-        html2canvas:  { scale: 2 },
-        jsPDF:        { unit: 'mm', format: 'a4', orientation: 'portrait' }
-      };
-      
-      html2pdf().from(orderCard).set(opt).save().then(() => {
-        exportBtn.style.display = 'inline-block'; // Show button again
-      });
-    });
+    if (exportBtn && typeof html2pdf !== 'undefined') {
+        exportBtn.addEventListener('click', () => {
+            exportBtn.style.display = 'none'; // Hide button in PDF
+            const opt = {
+                margin:       10,
+                filename:     `Order_${order.id}.pdf`,
+                image:        { type: 'jpeg', quality: 0.98 },
+                html2canvas:  { scale: 2 },
+                jsPDF:        { unit: 'mm', format: 'a4', orientation: 'portrait' }
+            };
+            
+            html2pdf().from(orderCard).set(opt).save().then(() => {
+                exportBtn.style.display = 'inline-block'; // Show button again
+            });
+        });
+    }
 
     return orderCard;
-  }
+}
 
-  function loadOrders() {
+/**
+ * Loads orders from localStorage and populates the order history DOM container.
+ * @returns {Array} Loaded and sorted orders array
+ */
+export function loadOrders() {
+    if (typeof localStorage === 'undefined') return [];
     const orders = JSON.parse(localStorage.getItem('foodie:orders') || '[]');
+    
+    if (typeof document === 'undefined') return orders;
+
     const ordersList = document.getElementById('ordersList');
     const emptyMessage = document.getElementById('emptyOrdersMessage');
 
+    if (!ordersList || !emptyMessage) return orders;
+
     if (orders.length === 0) {
-      emptyMessage.style.display = 'block';
-      ordersList.style.display = 'none';
-      return;
+        emptyMessage.style.display = 'block';
+        ordersList.style.display = 'none';
+        return orders;
     }
 
     emptyMessage.style.display = 'none';
     ordersList.style.display = 'grid';
 
     // Sort orders by timestamp (most recent first)
-    orders.sort((a, b) => new Date(b.timestamp) - new Date(a.timestamp));
+    orders.sort((a, b) => new Date(b.timestamp || 0) - new Date(a.timestamp || 0));
 
     ordersList.innerHTML = '';
     orders.forEach(order => {
-      ordersList.appendChild(renderOrder(order));
+        const card = renderOrder(order);
+        if (card instanceof HTMLElement) {
+            ordersList.appendChild(card);
+        } else if (typeof card === 'string') {
+            ordersList.insertAdjacentHTML('beforeend', card);
+        }
     });
-  }
 
-  // Initialize when DOM is ready
-  document.addEventListener('DOMContentLoaded', loadOrders);
-})();
+    return orders;
+}
+
+// ===== DOM INITIALIZATION =====
+if (typeof document !== 'undefined') {
+    document.addEventListener('DOMContentLoaded', loadOrders);
+}
+
+// Global window bindings for legacy script execution
+if (typeof window !== 'undefined') {
+    window.formatDate = formatDate;
+    window.getStatusColor = getStatusColor;
+    window.renderOrder = renderOrder;
+    window.loadOrders = loadOrders;
+    window.orderHistoryModule = {
+        formatDate,
+        getStatusColor,
+        renderOrder,
+        loadOrders
+    };
+}
