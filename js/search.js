@@ -94,7 +94,6 @@ if (typeof document !== 'undefined') {
             searchInput.addEventListener("keyup", (e) => {
                 if (e.key === "Enter") searchFood();
             });
-            
             // Check for search query in URL and auto-populate search input
             if (typeof window !== 'undefined') {
                 const urlParams = new URLSearchParams(window.location.search);
@@ -120,9 +119,12 @@ if (typeof document !== 'undefined') {
                                 childList: true,
                                 subtree: true
                             });
+                            // Fix for #698: Disconnect observer after timeout on non-search pages
+                            setTimeout(() => observer.disconnect(), 5000);
                         }
                     }
                 }
+            }
             }
         }
     });
