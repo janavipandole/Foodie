@@ -1,19 +1,10 @@
-document.addEventListener('DOMContentLoaded', () => {
-    // Initialize AOS animations
-    if (typeof AOS !== 'undefined') {
-        AOS.init({
-            duration: 800,
-            easing: 'ease-out',
-            once: true,
-            offset: 50
-        });
-    }
-
-    loadCategories();
-});
+/**
+ * Category Module
+ * Handles loading, grouping, sorting, and rendering of food cuisines/categories.
+ */
 
 // ===== LOADING STATE MANAGEMENT =====
-function setLoadingState(element, isLoading, message = 'Loading...') {
+export function setLoadingState(element, isLoading, message = 'Loading...') {
     if (!element) return;
 
     const existingLoader = element.querySelector('.loading-overlay');
@@ -37,7 +28,7 @@ function setLoadingState(element, isLoading, message = 'Loading...') {
     }
 }
 
-function showRetryButton(container, retryFn, message = 'Retry') {
+export function showRetryButton(container, retryFn, message = 'Retry') {
     const existingRetry = container.querySelector('.retry-btn');
     if (existingRetry) existingRetry.remove();
 
@@ -51,10 +42,11 @@ function showRetryButton(container, retryFn, message = 'Retry') {
     container.appendChild(retryBtn);
 }
 
-async function loadCategories() {
+/**
+ * Loads category products from products.json.
+ */
+export async function loadCategories() {
     const container = document.getElementById('categoryContainer');
-
-    //FIX: Prevent crash if container is missing
     if (!container) return;
 
     try {
@@ -70,21 +62,25 @@ async function loadCategories() {
     } catch (error) {
         setLoadingState(container, false);
 
-
-        // Show user-friendly error message
         container.innerHTML = `
             <div class="error-state" style="grid-column: 1/-1;">
                 <div class="error-icon">⚠️</div>
                 <h3>Unable to Load Cuisines</h3>
                 <p>We're having trouble loading the cuisine categories right now. Please check your connection and try again.</p>
-                <button  class="retry-btn" onclick="loadCategories()" aria-label="Retry">Retry</button>
+                <button class="retry-btn" onclick="loadCategories()" aria-label="Retry">Retry</button>
             </div>
         `;
     }
 }
 
-function renderCategories(products, container) {
-    // 1. Group products by Cuisine
+/**
+ * Groups and renders categories into the given container.
+ * @param {Array} products - Array of product objects
+ * @param {HTMLElement} container - DOM container element
+ */
+export function renderCategories(products, container) {
+    if (!container) return;
+
     const cuisineMap = {};
 
     products.forEach(product => {
@@ -93,30 +89,23 @@ function renderCategories(products, container) {
             cuisineMap[cuisine] = {
                 name: cuisine,
                 count: 0,
-                // Use the image of the first product found for this cuisine
                 image: product.image
             };
         }
         cuisineMap[cuisine].count++;
     });
 
-    // 2. Convert map to array and sort alphabetically
     const categories = Object.values(cuisineMap).sort((a, b) => a.name.localeCompare(b.name));
 
-    // 3. Clear loading state
     container.innerHTML = '';
 
-    // 4. Generate Cards
     categories.forEach((cat, index) => {
         const card = document.createElement('div');
         card.className = 'category-card';
         card.setAttribute('data-aos', 'fade-up');
-        card.setAttribute('data-aos-delay', (index * 100).toString()); // Staggered animation
+        card.setAttribute('data-aos-delay', (index * 100).toString());
 
-        // Clicking the card redirects to menu.html filtered by this cuisine
-        // using the dedicated 'cuisine' parameter.
         card.onclick = () => {
-            // Encode the cuisine name for the URL
             window.location.href = `../html/menu.html?cuisine=${encodeURIComponent(cat.name)}`;
         };
 
@@ -135,4 +124,28 @@ function renderCategories(products, container) {
 
         container.appendChild(card);
     });
+}
+
+// ===== DOM INITIALIZATION =====
+if (typeof document !== 'undefined') {
+    document.addEventListener('DOMContentLoaded', () => {
+        if (typeof AOS !== 'undefined') {
+            AOS.init({
+                duration: 800,
+                easing: 'ease-out',
+                once: true,
+                offset: 50
+            });
+        }
+
+        loadCategories();
+    });
+}
+
+// Global window bindings for legacy script execution
+if (typeof window !== 'undefined') {
+    window.loadCategories = loadCategories;
+    window.renderCategories = renderCategories;
+    window.setLoadingState = setLoadingState;
+    window.showRetryButton = showRetryButton;
 }
