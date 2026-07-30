@@ -73,14 +73,14 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 
 // ===== Helper Functions =====
-function updateThemeIcon(theme) {
+export function updateThemeIcon(theme) {
   const btn = document.getElementById('themeToggle');
   if (!btn) return;
   const icon = btn.querySelector('i');
   if (icon) icon.className = theme === 'dark' ? 'fa-solid fa-sun' : 'fa-solid fa-moon';
 }
 
-function togglePassword(inputId) {
+export function togglePassword(inputId) {
   const input = document.getElementById(inputId);
   if (!input) return;
   const btn = input.nextElementSibling;
@@ -96,7 +96,7 @@ function togglePassword(inputId) {
 }
 window.togglePassword = togglePassword;
 
-function switchForm(formType) {
+export function switchForm(formType) {
   const loginForm = document.getElementById("loginForm");
   const signupForm = document.getElementById("signupForm");
   const heroEmoji = document.getElementById("heroEmoji");
@@ -117,7 +117,7 @@ function switchForm(formType) {
 window.switchForm = switchForm;
 
 // ===== LocalStorage Auth Implementation =====
-function handleSignup(event) {
+export function handleSignup(event) {
   event.preventDefault();
   const name = document.getElementById('signupName').value;
   const email = document.getElementById('signupEmail').value;
@@ -137,7 +137,7 @@ function handleSignup(event) {
 }
 window.handleSignup = handleSignup;
 
-function toggleDemoMode(state) {
+export function toggleDemoMode(state) {
   const checkbox = document.getElementById('demoToggle');
   const regularFields = document.getElementById('regularLoginFields');
   const demoFields = document.getElementById('demoLoginFields');
@@ -160,7 +160,6 @@ function toggleDemoMode(state) {
     passwordGroup.style.display = 'none';
     loginBtn.textContent = t('auth.guestLogin', 'Enter as Guest');
     
-    // Remove required from hidden fields to prevent form submission errors
     if (loginEmail) loginEmail.removeAttribute('required');
     if (loginPassword) loginPassword.removeAttribute('required');
     if (demoName) demoName.setAttribute('required', 'required');
@@ -170,7 +169,6 @@ function toggleDemoMode(state) {
     passwordGroup.style.display = 'block';
     loginBtn.textContent = t('auth.signInButton', 'Sign In');
     
-    // Restore required attributes
     if (loginEmail) loginEmail.setAttribute('required', 'required');
     if (loginPassword) loginPassword.setAttribute('required', 'required');
     if (demoName) demoName.removeAttribute('required');
@@ -178,7 +176,7 @@ function toggleDemoMode(state) {
 }
 window.toggleDemoMode = toggleDemoMode;
 
-function handleLogin(event) {
+export function handleLogin(event) {
   event.preventDefault();
   const demoFields = document.getElementById('demoLoginFields');
   const isDemo = demoFields && (demoFields.style.display === 'block' || window.getComputedStyle(demoFields).display === 'block');
@@ -187,7 +185,7 @@ function handleLogin(event) {
     const demoName = document.getElementById('demoName').value || 'Guest User';
     const gender = document.getElementById('demoGender').value;
     
-    let defaultAvatar = '../imgs/user-avatar.png'; // Fallback
+    let defaultAvatar = '../imgs/user-avatar.png';
     if (gender === 'male') defaultAvatar = '../imgs/profile1.webp';
     if (gender === 'female') defaultAvatar = '../imgs/profile3.webp';
 
@@ -214,7 +212,7 @@ function handleLogin(event) {
 }
 window.handleLogin = handleLogin;
 
-function loginUser(user) {
+export function loginUser(user) {
   localStorage.setItem('loggedInUser', JSON.stringify({
     name: user.name,
     email: user.email,
@@ -228,7 +226,7 @@ function loginUser(user) {
 }
 
 // ===== Google Auth Implementation =====
-function handleGoogleResponse(response) {
+export function handleGoogleResponse(response) {
   try {
     const userData = decodeJwtResponse(response.credential);
     loginUser({ name: userData.name, email: userData.email, picture: userData.picture });
@@ -237,7 +235,7 @@ function handleGoogleResponse(response) {
   }
 }
 
-function decodeJwtResponse(token) {
+export function decodeJwtResponse(token) {
   const base64Url = token.split(".")[1];
   const base64 = base64Url.replace(/-/g, "+").replace(/_/g, "/");
   const jsonPayload = decodeURIComponent(
@@ -249,10 +247,8 @@ function decodeJwtResponse(token) {
   return JSON.parse(jsonPayload);
 }
 
-// Removed legacy loginWithPhone
-
 // ===== Toast Notification Helper =====
-function showToast(message, type = "info") {
+export function showToast(message, type = "info") {
   const toast = document.createElement('div');
   toast.className = `auth-toast ${type}`;
   toast.innerHTML = `
