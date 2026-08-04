@@ -11,5 +11,9 @@
       "16": "popup.html",
       "48": "popup.html"
     }
+    "default_title": "Open Foodie"
+  },
+  "icons": {
+    "128": "icons/icon128.png"
   }
 }

@@ -1,20 +1,10 @@
-// Sample unit test for app.js
-// You can expand this with real functions from app.js or any files you want to test.
+import { loadCart } from '../app.js';
 
 // Mock localStorage for testing
 const CART_STORAGE_KEY = 'foodie:cart';
 global.localStorage = {
   getItem: jest.fn(),
   setItem: jest.fn(),
-};
-
-// Redefine loadCart for test (since app.js does not export)
-const loadCart = () => {
-  try {
-    const raw = global.localStorage.getItem(CART_STORAGE_KEY) || '[]';
-    const arr = JSON.parse(raw);
-    return Array.isArray(arr) ? arr : [];
-  } catch (_) { return []; }
 };
 
 describe('App Module', () => {
