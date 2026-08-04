@@ -3,6 +3,17 @@ let productsPath = '../products.json';
 const isUsingServer = window.location.protocol !== 'file:';
 const _retry = async (fn) => fn();
 
+// ===== SERVICE WORKER PWA REGISTRATION =====
+if ('serviceWorker' in navigator && window.location.protocol !== 'file:') {
+  window.addEventListener('load', () => {
+    navigator.serviceWorker.register('/sw.js').then((registration) => {
+      console.log('PWA ServiceWorker registered with scope:', registration.scope);
+    }).catch((err) => {
+      console.warn('PWA ServiceWorker registration failed:', err);
+    });
+  });
+}
+
 // ===== LOADING STATE MANAGEMENT =====
 let loadingStates = new Map();
 
