@@ -52,7 +52,7 @@ export const rafThrottle = (func) => {
     let rafId = null;
     return function executedFunction(...args) {
         const context = this;
-        if (rafId === null) {
+        if (rafId === null && typeof requestAnimationFrame !== 'undefined') {
             rafId = requestAnimationFrame(() => {
                 func.apply(context, args);
                 rafId = null;
@@ -66,6 +66,7 @@ export const rafThrottle = (func) => {
  */
 export const storage = {
     get(key, defaultValue = null) {
+        if (typeof localStorage === 'undefined') return defaultValue;
         try {
             const item = localStorage.getItem(key);
             return item ? JSON.parse(item) : defaultValue;
@@ -76,6 +77,7 @@ export const storage = {
     },
     
     set(key, value) {
+        if (typeof localStorage === 'undefined') return false;
         try {
             localStorage.setItem(key, JSON.stringify(value));
             return true;
@@ -86,6 +88,7 @@ export const storage = {
     },
     
     remove(key) {
+        if (typeof localStorage === 'undefined') return false;
         try {
             localStorage.removeItem(key);
             return true;
@@ -96,6 +99,7 @@ export const storage = {
     },
     
     clear() {
+        if (typeof localStorage === 'undefined') return false;
         try {
             localStorage.clear();
             return true;
@@ -112,7 +116,8 @@ export const storage = {
  * @param {Element} parent - Parent element (default: document)
  * @returns {Element|null} Found element or null
  */
-export const safeQuerySelector = (selector, parent = document) => {
+export const safeQuerySelector = (selector, parent = (typeof document !== 'undefined' ? document : null)) => {
+    if (!parent) return null;
     try {
         return parent.querySelector(selector);
     } catch (error) {
@@ -127,7 +132,8 @@ export const safeQuerySelector = (selector, parent = document) => {
  * @param {Element} parent - Parent element (default: document)
  * @returns {NodeList|Array} Found elements or empty array
  */
-export const safeQuerySelectorAll = (selector, parent = document) => {
+export const safeQuerySelectorAll = (selector, parent = (typeof document !== 'undefined' ? document : null)) => {
+    if (!parent) return [];
     try {
         return parent.querySelectorAll(selector);
     } catch (error) {
@@ -172,9 +178,10 @@ export class EventManager {
  * Intersection Observer helper for lazy loading
  * @param {Function} callback - Callback when element intersects
  * @param {Object} options - Intersection observer options
- * @returns {IntersectionObserver} Observer instance
+ * @returns {IntersectionObserver|null} Observer instance
  */
 export const createIntersectionObserver = (callback, options = {}) => {
+    if (typeof IntersectionObserver === 'undefined') return null;
     const defaultOptions = {
         root: null,
         rootMargin: '50px',
@@ -214,8 +221,9 @@ export const parsePrice = (priceString) => {
  * @returns {boolean} Is valid email
  */
 export const isValidEmail = (email) => {
+    if (!email || typeof email !== 'string') return false;
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-    return emailRegex.test(email);
+    return emailRegex.test(email.trim());
 };
 
 /**
@@ -224,6 +232,7 @@ export const isValidEmail = (email) => {
  * @returns {string} Sanitized HTML
  */
 export const sanitizeHTML = (html) => {
+    if (typeof document === 'undefined') return String(html || '');
     const temp = document.createElement('div');
     temp.textContent = html;
     return temp.innerHTML;
@@ -249,7 +258,7 @@ export const deepClone = (obj) => {
  * @returns {boolean} Is in viewport
  */
 export const isInViewport = (element) => {
-    if (!element) return false;
+    if (!element || typeof window === 'undefined' || typeof document === 'undefined') return false;
     const rect = element.getBoundingClientRect();
     return (
         rect.top >= 0 &&
@@ -258,3 +267,23 @@ export const isInViewport = (element) => {
         rect.right <= (window.innerWidth || document.documentElement.clientWidth)
     );
 };
+
+// Global window bindings for legacy script execution
+if (typeof window !== 'undefined') {
+    window.utilsModule = {
+        debounce,
+        throttle,
+        rafThrottle,
+        storage,
+        safeQuerySelector,
+        safeQuerySelectorAll,
+        EventManager,
+        createIntersectionObserver,
+        formatCurrency,
+        parsePrice,
+        isValidEmail,
+        sanitizeHTML,
+        deepClone,
+        isInViewport
+    };
+}
