@@ -116,8 +116,35 @@ function switchForm(formType) {
 }
 window.switchForm = switchForm;
 
+// ===== Cryptographic Helper Utilities =====
+async function hashPassword(password, salt) {
+  const encoder = new TextEncoder();
+  const data = encoder.encode(password + salt);
+  if (window.crypto && window.crypto.subtle) {
+    const buffer = await window.crypto.subtle.digest('SHA-256', data);
+    return Array.from(new Uint8Array(buffer)).map(b => b.toString(16).padStart(2, '0')).join('');
+  }
+  // Fallback hash method if subtle crypto is unavailable
+  let hash = 0;
+  const str = password + salt;
+  for (let i = 0; i < str.length; i++) {
+    hash = (hash << 5) - hash + str.charCodeAt(i);
+    hash |= 0;
+  }
+  return 'fallback_' + Math.abs(hash).toString(16);
+}
+
+function generateSalt() {
+  if (window.crypto && window.crypto.getRandomValues) {
+    const array = new Uint8Array(16);
+    window.crypto.getRandomValues(array);
+    return Array.from(array, b => b.toString(16).padStart(2, '0')).join('');
+  }
+  return Math.random().toString(36).substring(2) + Date.now().toString(36);
+}
+
 // ===== LocalStorage Auth Implementation =====
-function handleSignup(event) {
+async function handleSignup(event) {
   event.preventDefault();
   const name = document.getElementById('signupName').value;
   const email = document.getElementById('signupEmail').value;
@@ -130,7 +157,10 @@ function handleSignup(event) {
     return;
   }
 
-  users.push({ name, email, phone, password });
+  const salt = generateSalt();
+  const passwordHash = await hashPassword(password, salt);
+
+  users.push({ name, email, phone, passwordHash, salt });
   localStorage.setItem('foodie_users', JSON.stringify(users));
   showToast(t('auth.registrationSuccess', 'Registration successful! Please login.'), "success");
   switchForm('login');
@@ -178,7 +208,7 @@ function toggleDemoMode(state) {
 }
 window.toggleDemoMode = toggleDemoMode;
 
-function handleLogin(event) {
+async function handleLogin(event) {
   event.preventDefault();
   const demoFields = document.getElementById('demoLoginFields');
   const isDemo = demoFields && (demoFields.style.display === 'block' || window.getComputedStyle(demoFields).display === 'block');
@@ -204,22 +234,42 @@ function handleLogin(event) {
   const password = document.getElementById('loginPassword').value;
 
   const users = JSON.parse(localStorage.getItem('foodie_users') || '[]');
-  const user = users.find(u => u.email === email && u.password === password);
+  const user = users.find(u => u.email === email);
 
   if (user) {
-    loginUser(user);
-  } else {
-    showToast(t('auth.invalidCredentials', 'Invalid email or password!'), "error");
+    let isValid = false;
+    if (user.passwordHash && user.salt) {
+      const computedHash = await hashPassword(password, user.salt);
+      isValid = (computedHash === user.passwordHash);
+    } else if (user.password) {
+      // Legacy backwards compatibility check (migrates user)
+      isValid = (user.password === password);
+      if (isValid) {
+        user.salt = generateSalt();
+        user.passwordHash = await hashPassword(password, user.salt);
+        delete user.password;
+        localStorage.setItem('foodie_users', JSON.stringify(users));
+      }
+    }
+
+    if (isValid) {
+      loginUser(user);
+      return;
+    }
   }
+
+  showToast(t('auth.invalidCredentials', 'Invalid email or password!'), "error");
 }
 window.handleLogin = handleLogin;
 
 function loginUser(user) {
+  const sessionExp = Date.now() + (24 * 60 * 60 * 1000); // 24 hours
   localStorage.setItem('loggedInUser', JSON.stringify({
     name: user.name,
     email: user.email,
     phone: user.phone || '',
-    picture: user.picture || '../imgs/profile1.webp'
+    picture: user.picture || '../imgs/profile1.webp',
+    exp: sessionExp
   }));
   showToast(t('auth.welcomeBack', 'Welcome back, {name}!').replace('{name}', user.name), "success");
   setTimeout(() => {
