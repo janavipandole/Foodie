@@ -1,5 +1,9 @@
-// Sample reviews data
-const reviewsData = [
+/**
+ * Reviews Module
+ * Manages sample review datasets, star rating generation, and dynamic Swiper review slide rendering.
+ */
+
+export const reviewsData = [
     {
         name: "Deepak Kumar",
         image: "../imgs/profile1.jpeg",
@@ -20,11 +24,16 @@ const reviewsData = [
     }
 ];
 
-// Function to generate star rating HTML
-function generateStars(rating) {
+/**
+ * Generates HTML string representing star ratings.
+ * @param {number} rating - Rating count (0-5)
+ * @returns {string} HTML string of star icons
+ */
+export function generateStars(rating) {
     let stars = '';
+    const validRating = Number.isFinite(rating) ? Math.max(0, Math.min(5, rating)) : 0;
     for (let i = 0; i < 5; i++) {
-        if (i < rating) {
+        if (i < validRating) {
             stars += '<i class="fa-solid fa-star highlighted-star"></i>';
         } else {
             stars += '<i class="fa-solid fa-star"></i>';
@@ -33,31 +42,49 @@ function generateStars(rating) {
     return stars;
 }
 
-// Function to load reviews dynamically
-function loadReviews() {
+/**
+ * Loads reviews dynamically into the Swiper container.
+ */
+export function loadReviews() {
+    if (typeof document === 'undefined') return;
     const reviewsContainer = document.getElementById('dynamic-reviews');
     if (!reviewsContainer) return;
 
+    reviewsContainer.innerHTML = '';
     reviewsData.forEach(review => {
         const reviewSlide = document.createElement('div');
         reviewSlide.className = 'swiper-slide';
         reviewSlide.innerHTML = `
             <div class="flex gap-3 mt-4">
                 <div class="profile">
-                    <img src="${review.image}" alt="${review.name}">
+                    <img src="${review.image || ''}" alt="${review.name || 'User'}">
                 </div>
                 <div class="">
-                    <h4>${review.name}</h4>
+                    <h4>${review.name || 'Anonymous'}</h4>
                     <div class="star mt-half">
                         ${generateStars(review.rating)}
                     </div>
                 </div>
             </div>
-            <p class="para">${review.review}</p>
+            <p class="para">${review.review || ''}</p>
         `;
         reviewsContainer.appendChild(reviewSlide);
     });
 }
 
-// Initialize reviews when DOM is loaded
-document.addEventListener('DOMContentLoaded', loadReviews);
+// ===== DOM INITIALIZATION =====
+if (typeof document !== 'undefined') {
+    document.addEventListener('DOMContentLoaded', loadReviews);
+}
+
+// Global window bindings for legacy script execution
+if (typeof window !== 'undefined') {
+    window.reviewsData = reviewsData;
+    window.generateStars = generateStars;
+    window.loadReviews = loadReviews;
+    window.reviewsModule = {
+        reviewsData,
+        generateStars,
+        loadReviews
+    };
+}

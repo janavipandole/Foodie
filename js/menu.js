@@ -1,4 +1,8 @@
-(function() {
+/**
+ * Menu Module
+ * Manages product catalog loading, filtering, searching, and favorite toggling.
+ */
+
 let allProducts = [];
 let currentFilters = {
   search: '',
@@ -9,13 +13,27 @@ let currentFilters = {
   favOnly: false
 };
 
-async function loadProducts() {
-  const res = await fetch('../products.json');
-  allProducts = await res.json();
-  renderCards(allProducts);
+/**
+ * Loads products from the JSON catalog and initial-renders cards.
+ * @returns {Promise<Array>} Loaded products array
+ */
+export async function loadProducts() {
+  try {
+    const res = await fetch('../products.json');
+    allProducts = await res.json();
+    renderCards(allProducts);
+    return allProducts;
+  } catch (error) {
+    console.error('Failed to load products:', error);
+    return [];
+  }
 }
 
-function getFilteredProducts() {
+/**
+ * Filters the product catalog based on search query, price, cuisine, rating, type, and favorites.
+ * @returns {Array} Filtered products array
+ */
+export function getFilteredProducts() {
   return allProducts.filter(p => {
     const price = parseInt(p.price);
     if (currentFilters.search && !p.name.toLowerCase().includes(currentFilters.search.toLowerCase())) return false;
@@ -28,22 +46,30 @@ function getFilteredProducts() {
     if (currentFilters.rating === 'above3' && p.rating < 3) return false;
     if (currentFilters.rating === 'below3' && p.rating >= 3) return false;
     if (currentFilters.favOnly) {
-      const favs = JSON.parse(localStorage.getItem('favorites') || '[]');
+      const favs = typeof localStorage !== 'undefined' ? JSON.parse(localStorage.getItem('favorites') || '[]') : [];
       if (!favs.includes(p.id)) return false;
     }
     return true;
   });
 }
 
-function renderCards(products) {
+/**
+ * Renders product cards into the DOM container.
+ * @param {Array} products - Products to render
+ */
+export function renderCards(products) {
+  if (typeof document === 'undefined') return;
   const container = document.getElementById('itemsNotAvailable');
+  if (!container) return;
+  
   container.innerHTML = '';
   if (products.length === 0) {
     container.innerHTML = '<p style="text-align:center;width:100%;padding:40px;">No items found.</p>';
     return;
   }
+  
   products.forEach(p => {
-    const favs = JSON.parse(localStorage.getItem('favorites') || '[]');
+    const favs = typeof localStorage !== 'undefined' ? JSON.parse(localStorage.getItem('favorites') || '[]') : [];
     const isFav = favs.includes(p.id);
     const card = document.createElement('div');
     card.className = 'order-card';
@@ -56,27 +82,41 @@ function renderCards(products) {
       <p style="color:#888;font-size:13px;">${p.cuisine} • ${p.type}</p>
       <p style="font-size:13px;">⭐ ${p.rating}</p>
       <p style="font-weight:bold;">₹${p.price}</p>
-      <button onclick="addToCart(${p.id})" style="margin-top:8px;width:100%;padding:8px;background:#ff6b6b;color:#fff;border:none;border-radius:6px;cursor:pointer;">Add to Cart</button>
+      <button class="add-cart-btn" data-id="${p.id}" style="margin-top:8px;width:100%;padding:8px;background:#ff6b6b;color:#fff;border:none;border-radius:6px;cursor:pointer;">Add to Cart</button>
     `;
     card.querySelector('.fav-icon').addEventListener('click', () => toggleFav(p.id, card));
+    card.querySelector('.add-cart-btn').addEventListener('click', () => addToCart(p.id));
     container.appendChild(card);
   });
 }
 
-function toggleFav(id, card) {
+/**
+ * Toggles a product's favorite status in localStorage.
+ * @param {string|number} id - Product ID
+ * @param {HTMLElement} card - Card element reference
+ * @returns {Array} Updated favorite IDs
+ */
+export function toggleFav(id, card) {
+  if (typeof localStorage === 'undefined') return [];
   let favs = JSON.parse(localStorage.getItem('favorites') || '[]');
   if (favs.includes(id)) {
     favs = favs.filter(f => f !== id);
-    card.querySelector('.fav-icon').textContent = '🤍';
+    if (card) card.querySelector('.fav-icon').textContent = '🤍';
   } else {
     favs.push(id);
-    card.querySelector('.fav-icon').textContent = '❤️';
+    if (card) card.querySelector('.fav-icon').textContent = '❤️';
   }
   localStorage.setItem('favorites', JSON.stringify(favs));
   if (currentFilters.favOnly) renderCards(getFilteredProducts());
+  return favs;
 }
 
-function showAddToCartToast(message) {
+/**
+ * Displays a toast notification message.
+ * @param {string} message - Message to display
+ */
+export function showAddToCartToast(message) {
+  if (typeof document === 'undefined') return;
   if (typeof showToast === 'function') { showToast(message); return; }
   const container = document.querySelector('.toast-container') || document.body;
   const toast = document.createElement('div');
@@ -86,22 +126,39 @@ function showAddToCartToast(message) {
   setTimeout(() => toast.remove(), 2500);
 }
 
-window.addToCart = function(id) {
+/**
+ * Adds a product to the user's cart in localStorage.
+ * @param {string|number} id - Product ID
+ */
+export function addToCart(id) {
   const product = allProducts.find(p => p.id === id);
-  if (!product) return;
+  if (!product || typeof localStorage === 'undefined') return;
+  
   let cart = JSON.parse(localStorage.getItem('foodie:cart') || '[]');
   const existing = cart.find(i => i.id === id);
   if (existing) existing.quantity += 1;
   else cart.push({ ...product, quantity: 1 });
+  
   localStorage.setItem('foodie:cart', JSON.stringify(cart));
-  const cartValue = document.querySelector('.cart-value');
-  if (cartValue) cartValue.textContent = cart.reduce((a, i) => a + i.quantity, 0);
+  
+  if (typeof document !== 'undefined') {
+    const cartValue = document.querySelector('.cart-value');
+    if (cartValue) cartValue.textContent = cart.reduce((a, i) => a + i.quantity, 0);
+  }
+  
   showAddToCartToast(`${product.name} added to cart!`);
-};
+}
 
-function bindDropdown(selectorId, filterKey) {
+/**
+ * Binds custom dropdown options to filters.
+ * @param {string} selectorId - Container ID
+ * @param {string} filterKey - Filter key
+ */
+export function bindDropdown(selectorId, filterKey) {
+  if (typeof document === 'undefined') return;
   const container = document.getElementById(selectorId);
   if (!container) return;
+  
   container.querySelectorAll('.options li').forEach(li => {
     li.addEventListener('mousedown', (e) => {
       currentFilters[filterKey] = li.dataset.value;
@@ -110,34 +167,62 @@ function bindDropdown(selectorId, filterKey) {
   });
 }
 
-document.addEventListener('DOMContentLoaded', () => {
-  loadProducts();
+// ===== DOM INITIALIZATION =====
+if (typeof document !== 'undefined') {
+  document.addEventListener('DOMContentLoaded', () => {
+    loadProducts();
 
-  document.getElementById('search').addEventListener('input', e => {
-    currentFilters.search = e.target.value;
-    renderCards(getFilteredProducts());
-  });
+    const searchInput = document.getElementById('search');
+    if (searchInput) {
+      searchInput.addEventListener('input', e => {
+        currentFilters.search = e.target.value;
+        renderCards(getFilteredProducts());
+      });
+    }
 
-  document.getElementById('filterVeg').addEventListener('click', () => {
-    currentFilters.type = 'veg';
-    renderCards(getFilteredProducts());
-  });
-  document.getElementById('filterNonVeg').addEventListener('click', () => {
-    currentFilters.type = 'non-veg';
-    renderCards(getFilteredProducts());
-  });
-  document.getElementById('filterAll').addEventListener('click', () => {
-    currentFilters.type = 'all';
-    renderCards(getFilteredProducts());
-  });
+    const filterVeg = document.getElementById('filterVeg');
+    if (filterVeg) filterVeg.addEventListener('click', () => {
+      currentFilters.type = 'veg';
+      renderCards(getFilteredProducts());
+    });
 
-  document.getElementById('favToggle').addEventListener('click', () => {
-    currentFilters.favOnly = !currentFilters.favOnly;
-    renderCards(getFilteredProducts());
-  });
+    const filterNonVeg = document.getElementById('filterNonVeg');
+    if (filterNonVeg) filterNonVeg.addEventListener('click', () => {
+      currentFilters.type = 'non-veg';
+      renderCards(getFilteredProducts());
+    });
 
-  bindDropdown('priceSelector', 'price');
-  bindDropdown('cuisineSelector', 'cuisine');
-  bindDropdown('ratingSelector', 'rating');
-});
-})();
+    const filterAll = document.getElementById('filterAll');
+    if (filterAll) filterAll.addEventListener('click', () => {
+      currentFilters.type = 'all';
+      renderCards(getFilteredProducts());
+    });
+
+    const favToggle = document.getElementById('favToggle');
+    if (favToggle) favToggle.addEventListener('click', () => {
+      currentFilters.favOnly = !currentFilters.favOnly;
+      renderCards(getFilteredProducts());
+    });
+
+    bindDropdown('priceSelector', 'price');
+    bindDropdown('cuisineSelector', 'cuisine');
+    bindDropdown('ratingSelector', 'rating');
+  });
+}
+
+// Global window bindings for legacy script execution
+if (typeof window !== 'undefined') {
+  window.addToCart = addToCart;
+  window.loadProducts = loadProducts;
+  window.getFilteredProducts = getFilteredProducts;
+  window.renderCards = renderCards;
+  window.toggleFav = toggleFav;
+  window.menuModule = {
+    loadProducts,
+    getFilteredProducts,
+    renderCards,
+    toggleFav,
+    addToCart,
+    bindDropdown
+  };
+}

@@ -73,14 +73,14 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 
 // ===== Helper Functions =====
-function updateThemeIcon(theme) {
+export function updateThemeIcon(theme) {
   const btn = document.getElementById('themeToggle');
   if (!btn) return;
   const icon = btn.querySelector('i');
   if (icon) icon.className = theme === 'dark' ? 'fa-solid fa-sun' : 'fa-solid fa-moon';
 }
 
-function togglePassword(inputId) {
+export function togglePassword(inputId) {
   const input = document.getElementById(inputId);
   if (!input) return;
   const btn = input.nextElementSibling;
@@ -96,7 +96,7 @@ function togglePassword(inputId) {
 }
 window.togglePassword = togglePassword;
 
-function switchForm(formType) {
+export function switchForm(formType) {
   const loginForm = document.getElementById("loginForm");
   const signupForm = document.getElementById("signupForm");
   const heroEmoji = document.getElementById("heroEmoji");
@@ -145,6 +145,17 @@ function generateSalt() {
 
 // ===== LocalStorage Auth Implementation =====
 async function handleSignup(event) {
+// Hash password using SHA-256
+async function hashPassword(password) {
+  const encoder = new TextEncoder();
+  const data = encoder.encode(password);
+  const hashBuffer = await crypto.subtle.digest('SHA-256', data);
+  const hashArray = Array.from(new Uint8Array(hashBuffer));
+  return hashArray.map(b => b.toString(16).padStart(2, '0')).join('');
+}
+
+// ===== LocalStorage Auth Implementation =====
+export async function handleSignup(event) {
   event.preventDefault();
   const name = document.getElementById('signupName').value;
   const email = document.getElementById('signupEmail').value;
@@ -161,13 +172,15 @@ async function handleSignup(event) {
   const passwordHash = await hashPassword(password, salt);
 
   users.push({ name, email, phone, passwordHash, salt });
+  const hashedPassword = await hashPassword(password);
+  users.push({ name, email, phone, password: hashedPassword });
   localStorage.setItem('foodie_users', JSON.stringify(users));
   showToast(t('auth.registrationSuccess', 'Registration successful! Please login.'), "success");
   switchForm('login');
 }
 window.handleSignup = handleSignup;
 
-function toggleDemoMode(state) {
+export function toggleDemoMode(state) {
   const checkbox = document.getElementById('demoToggle');
   const regularFields = document.getElementById('regularLoginFields');
   const demoFields = document.getElementById('demoLoginFields');
@@ -190,7 +203,6 @@ function toggleDemoMode(state) {
     passwordGroup.style.display = 'none';
     loginBtn.textContent = t('auth.guestLogin', 'Enter as Guest');
     
-    // Remove required from hidden fields to prevent form submission errors
     if (loginEmail) loginEmail.removeAttribute('required');
     if (loginPassword) loginPassword.removeAttribute('required');
     if (demoName) demoName.setAttribute('required', 'required');
@@ -200,7 +212,6 @@ function toggleDemoMode(state) {
     passwordGroup.style.display = 'block';
     loginBtn.textContent = t('auth.signInButton', 'Sign In');
     
-    // Restore required attributes
     if (loginEmail) loginEmail.setAttribute('required', 'required');
     if (loginPassword) loginPassword.setAttribute('required', 'required');
     if (demoName) demoName.removeAttribute('required');
@@ -209,6 +220,7 @@ function toggleDemoMode(state) {
 window.toggleDemoMode = toggleDemoMode;
 
 async function handleLogin(event) {
+export async function handleLogin(event) {
   event.preventDefault();
   const demoFields = document.getElementById('demoLoginFields');
   const isDemo = demoFields && (demoFields.style.display === 'block' || window.getComputedStyle(demoFields).display === 'block');
@@ -217,7 +229,7 @@ async function handleLogin(event) {
     const demoName = document.getElementById('demoName').value || 'Guest User';
     const gender = document.getElementById('demoGender').value;
     
-    let defaultAvatar = '../imgs/user-avatar.png'; // Fallback
+    let defaultAvatar = '../imgs/user-avatar.png';
     if (gender === 'male') defaultAvatar = '../imgs/profile1.webp';
     if (gender === 'female') defaultAvatar = '../imgs/profile3.webp';
 
@@ -232,9 +244,11 @@ async function handleLogin(event) {
 
   const email = document.getElementById('loginEmail').value;
   const password = document.getElementById('loginPassword').value;
+  const hashedPassword = await hashPassword(password);
 
   const users = JSON.parse(localStorage.getItem('foodie_users') || '[]');
   const user = users.find(u => u.email === email);
+  const user = users.find(u => u.email === email && (u.password === hashedPassword || u.password === password));
 
   if (user) {
     let isValid = false;
@@ -264,6 +278,7 @@ window.handleLogin = handleLogin;
 
 function loginUser(user) {
   const sessionExp = Date.now() + (24 * 60 * 60 * 1000); // 24 hours
+export function loginUser(user) {
   localStorage.setItem('loggedInUser', JSON.stringify({
     name: user.name,
     email: user.email,
@@ -278,7 +293,7 @@ function loginUser(user) {
 }
 
 // ===== Google Auth Implementation =====
-function handleGoogleResponse(response) {
+export function handleGoogleResponse(response) {
   try {
     const userData = decodeJwtResponse(response.credential);
     loginUser({ name: userData.name, email: userData.email, picture: userData.picture });
@@ -287,7 +302,7 @@ function handleGoogleResponse(response) {
   }
 }
 
-function decodeJwtResponse(token) {
+export function decodeJwtResponse(token) {
   const base64Url = token.split(".")[1];
   const base64 = base64Url.replace(/-/g, "+").replace(/_/g, "/");
   const jsonPayload = decodeURIComponent(
@@ -299,10 +314,8 @@ function decodeJwtResponse(token) {
   return JSON.parse(jsonPayload);
 }
 
-// Removed legacy loginWithPhone
-
 // ===== Toast Notification Helper =====
-function showToast(message, type = "info") {
+export function showToast(message, type = "info") {
   const toast = document.createElement('div');
   toast.className = `auth-toast ${type}`;
   toast.innerHTML = `
