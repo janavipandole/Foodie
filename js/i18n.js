@@ -5,11 +5,21 @@ class I18n {
         const browserLang = (navigator.language || navigator.userLanguage || "en").split("-")[0];
         this.currentLang = storedLang || (["en", "hi"].includes(browserLang) ? browserLang : "en");
         
+/**
+ * Internationalization (i18n) Module
+ * Manages locale translations, dictionary fetching, and DOM string replacements.
+ */
+
+export class I18n {
+    constructor() {
+        this.currentLang = typeof localStorage !== 'undefined' ? (localStorage.getItem("foodie:lang") || "en") : "en";
         this.translations = {};
         this.fallbackTranslations = {};
         this.observer = null;
 
-        document.addEventListener("DOMContentLoaded", () => this.init());
+        if (typeof document !== 'undefined') {
+            document.addEventListener("DOMContentLoaded", () => this.init());
+        }
     }
 
     async init() {
@@ -20,20 +30,16 @@ class I18n {
     }
 
     async loadTranslations(lang) {
+        const errorHandler = typeof window !== 'undefined' ? window.FoodieErrorHandler : {};
         const {
-            retry,
-            NetworkError,
-            showErrorToast,
-            errorLogger
-        } = window.FoodieErrorHandler || { 
-            retry: async (fn) => fn(), 
-            NetworkError: Error,
-            showErrorToast: console.error,
-            errorLogger: { log: console.error }
-        };
+            retry = async (fn) => fn(),
+            NetworkError = Error,
+            showErrorToast = console.error,
+            errorLogger = { log: console.error }
+        } = errorHandler || {};
 
         try {
-            const isInsideHTML = window.location.pathname.includes("/html/");
+            const isInsideHTML = typeof window !== 'undefined' && window.location.pathname.includes("/html/");
             const basePath = isInsideHTML ? "../locales/" : "./locales/";
 
             // Load primary language with retry
@@ -83,6 +89,7 @@ class I18n {
         if (window.safeLocalStorage) {
             window.safeLocalStorage.setItem("foodie:lang", lang);
         } else {
+        if (typeof localStorage !== 'undefined') {
             localStorage.setItem("foodie:lang", lang);
         }
 
@@ -114,6 +121,10 @@ class I18n {
 
     // Translate DOM nodes
     applyTranslations(container = document) {
+    // Faster DOM translation (one pass)
+    applyTranslations() {
+        if (typeof document === 'undefined') return;
+
         const selectors = {
             text: "[data-i18n]",
             placeholder: "[data-i18n-placeholder]",
@@ -158,6 +169,20 @@ class I18n {
                 translations: this.translations
             }
         }));
+        // Update HTML lang
+        if (document.documentElement) {
+            document.documentElement.lang = this.currentLang;
+        }
+
+        // Notify other scripts
+        if (typeof window !== 'undefined') {
+            window.dispatchEvent(new CustomEvent("languageChanged", {
+                detail: {
+                    language: this.currentLang,
+                    translations: this.translations
+                }
+            }));
+        }
     }
 
     // Dynamic Node Observer
@@ -181,6 +206,7 @@ class I18n {
     }
 
     initLanguageSelector() {
+        if (typeof document === 'undefined') return;
         const selector = document.querySelector("#language-select");
         if (!selector) return;
 
@@ -191,6 +217,7 @@ class I18n {
     }
 
     updateLanguageSelector() {
+        if (typeof document === 'undefined') return;
         const selector = document.querySelector("#language-select");
         if (selector) selector.value = this.currentLang;
     }
@@ -199,3 +226,18 @@ class I18n {
 // Global instance
 window.i18n = new I18n();
 window.t = (key, params = {}, fallback = "") => window.i18n?.t(key, params, fallback) || fallback || key;
+export const i18n = new I18n();
+
+/**
+ * Global helper translation function
+ */
+export function t(key, fallback = "") {
+    return i18n?.t(key, fallback) || fallback || key;
+}
+
+// Global window bindings for legacy script execution
+if (typeof window !== 'undefined') {
+    window.I18n = I18n;
+    window.i18n = i18n;
+    window.t = t;
+}

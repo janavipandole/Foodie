@@ -1,21 +1,7 @@
-// Sample unit test for auth.js
-// You can expand this with real functions from auth.js or any files you want to test.
+import { decodeJwtResponse } from '../auth.js';
 
 // Mock atob for Node.js environment
 global.atob = str => Buffer.from(str, 'base64').toString('binary');
-
-// Redefine decodeJwtResponse for test (since auth.js does not export)
-function decodeJwtResponse(token) {
-  const base64Url = token.split(".")[1];
-  const base64 = base64Url.replace(/-/g, "+").replace(/_/g, "/");
-  const jsonPayload = decodeURIComponent(
-    global.atob(base64)
-      .split("")
-      .map(c => "%" + ("00" + c.charCodeAt(0).toString(16)).slice(-2))
-      .join("")
-  );
-  return JSON.parse(jsonPayload);
-}
 
 describe('Auth Module', () => {
   test('decodeJwtResponse decodes JWT payload', () => {
