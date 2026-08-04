@@ -74,7 +74,7 @@ describe('Utils Module', () => {
       const input = '<script>alert("xss")</script>';
       const sanitized = sanitizeHTML(input);
       expect(sanitized).not.toContain('<script>');
-      expect(sanitized).toBe('&lt;script&gt;alert("xss")&lt;/script&gt;');
+      expect(sanitized).toBe('&lt;script&gt;alert(&quot;xss&quot;)&lt;/script&gt;');
     });
 
     test('escapes quotes and special characters', () => {
