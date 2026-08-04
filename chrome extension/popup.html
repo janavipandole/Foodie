@@ -4,17 +4,54 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>🍽️ Foodie</title>
+  <title>Foodie Companion</title>
   <link rel="stylesheet" href="popup.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
 </head>
 
 <body>
-  <div id="container">
-    <h2>🍴 Foodie</h2>
-    <p>Fully Responsive Food Delivery App — browse menus, customize orders, and track deliveries in real-time.</p>
+  <div id="app-container">
+    <header class="ext-header">
+      <div class="logo">
+        <i class="fa-solid fa-utensils"></i> Foodie<span>.</span>
+      </div>
+      <button id="themeToggle" class="icon-btn" title="Toggle Theme">
+        <i class="fa-solid fa-moon"></i>
+      </button>
+    </header>
 
-    <button id="openApp" aria-label="Open App">🚀 Open Foodie</button>
-    <p class="hint">Quick access to your food delivery dashboard</p>
+    <!-- LIVE ACTIVE ORDER STATUS -->
+    <div id="orderStatusCard" class="card active-order-card">
+      <div class="card-header">
+        <span class="card-title"><i class="fa-solid fa-clock-rotate-left"></i> Active Order</span>
+        <span id="orderBadge" class="badge status-pending">Checking...</span>
+      </div>
+      <div class="card-body">
+        <div id="orderIdText" class="order-id">No active order</div>
+        <div id="orderEtaText" class="order-eta">Estimated Delivery: -- mins</div>
+        <div class="progress-bar-bg">
+          <div id="orderProgressBar" class="progress-bar-fill" style="width: 0%;"></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- CART SUMMARY -->
+    <div id="cartSummaryCard" class="card cart-card">
+      <div class="card-header">
+        <span class="card-title"><i class="fa-solid fa-bag-shopping"></i> Shopping Cart</span>
+        <span id="cartCountBadge" class="badge badge-cart">0 Items</span>
+      </div>
+      <div class="card-body cart-body">
+        <div class="cart-total-text">Total: <strong id="cartTotalText">₹0.00</strong></div>
+      </div>
+    </div>
+
+    <!-- QUICK ACTIONS -->
+    <div class="actions-group">
+      <button id="openAppBtn" class="btn btn-primary"><i class="fa-solid fa-rocket"></i> Open Foodie</button>
+      <button id="trackOrdersBtn" class="btn btn-secondary"><i class="fa-solid fa-location-dot"></i> Track Orders</button>
+      <button id="clearCartBtn" class="btn btn-danger"><i class="fa-solid fa-trash-can"></i> Clear Cart</button>
+    </div>
   </div>
 
   <script src="popup.js"></script>
