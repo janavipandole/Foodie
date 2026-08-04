@@ -122,7 +122,7 @@ async function initData() {
                     <div class="error-icon">⚠️</div>
                     <h3>${t('contributors.failedTitle', 'Failed to Load Contributors')}</h3>
                     <p>${t('contributors.failedMessage', 'Unable to load contributor data. This might be due to API rate limits or network issues.')}</p>
-                    <button class="retry-btn" onclick="initializeData()">${t('contributors.retry', 'Retry')}</button>
+                    <button class="retry-btn" onclick="initData()">${t('contributors.retry', 'Retry')}</button>
                 </div>
             `;
         }
