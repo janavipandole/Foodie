@@ -4,7 +4,7 @@
  */
 
 // ===== ERROR TYPES =====
-const ErrorTypes = {
+export const ErrorTypes = {
     NETWORK: 'NetworkError',
     VALIDATION: 'ValidationError',
     STORAGE: 'StorageError',
@@ -16,7 +16,7 @@ const ErrorTypes = {
 
 // ===== CUSTOM ERROR CLASSES =====
 
-class FoodieError extends Error {
+export class FoodieError extends Error {
     constructor(message, type = ErrorTypes.UNKNOWN, details = {}) {
         super(message);
         this.name = 'FoodieError';
@@ -26,21 +26,21 @@ class FoodieError extends Error {
     }
 }
 
-class NetworkError extends FoodieError {
+export class NetworkError extends FoodieError {
     constructor(message, details = {}) {
         super(message, ErrorTypes.NETWORK, details);
         this.name = 'NetworkError';
     }
 }
 
-class ValidationError extends FoodieError {
+export class ValidationError extends FoodieError {
     constructor(message, details = {}) {
         super(message, ErrorTypes.VALIDATION, details);
         this.name = 'ValidationError';
     }
 }
 
-class StorageError extends FoodieError {
+export class StorageError extends FoodieError {
     constructor(message, details = {}) {
         super(message, ErrorTypes.STORAGE, details);
         this.name = 'StorageError';
@@ -49,7 +49,7 @@ class StorageError extends FoodieError {
 
 // ===== ERROR LOGGER =====
 
-class ErrorLogger {
+export class ErrorLogger {
     constructor() {
         this.errors = [];
         this.maxErrors = 50; // Keep last 50 errors
@@ -64,8 +64,8 @@ class ErrorLogger {
             stack: error.stack,
             context,
             timestamp: new Date().toISOString(),
-            userAgent: navigator.userAgent,
-            url: window.location.href
+            userAgent: typeof navigator !== 'undefined' ? navigator.userAgent : '',
+            url: typeof window !== 'undefined' ? window.location.href : ''
         };
         
         this.errors.push(errorEntry);
@@ -117,8 +117,10 @@ class ErrorLogger {
     
     persistErrors() {
         try {
-            const recentErrors = this.errors.slice(-10); // Store last 10
-            localStorage.setItem('foodie:errors', JSON.stringify(recentErrors));
+            if (typeof localStorage !== 'undefined') {
+                const recentErrors = this.errors.slice(-10); // Store last 10
+                localStorage.setItem('foodie:errors', JSON.stringify(recentErrors));
+            }
         } catch (e) {
             console.warn('Could not persist errors:', e);
         }
@@ -126,9 +128,11 @@ class ErrorLogger {
     
     loadPersistedErrors() {
         try {
-            const stored = localStorage.getItem('foodie:errors');
-            if (stored) {
-                this.errors = JSON.parse(stored);
+            if (typeof localStorage !== 'undefined') {
+                const stored = localStorage.getItem('foodie:errors');
+                if (stored) {
+                    this.errors = JSON.parse(stored);
+                }
             }
         } catch (e) {
             console.warn('Could not load persisted errors:', e);
@@ -136,6 +140,7 @@ class ErrorLogger {
     }
     
     isDevelopment() {
+        if (typeof window === 'undefined') return false;
         return window.location.hostname === 'localhost' || 
                window.location.hostname === '127.0.0.1';
     }
@@ -146,7 +151,7 @@ class ErrorLogger {
 }
 
 // Global error logger instance
-const errorLogger = new ErrorLogger();
+export const errorLogger = new ErrorLogger();
 errorLogger.loadPersistedErrors();
 
 // ===== ERROR HANDLERS =====
@@ -154,7 +159,7 @@ errorLogger.loadPersistedErrors();
 /**
  * Handle localStorage errors gracefully
  */
-const handleStorageError = (operation, key, error) => {
+export const handleStorageError = (operation, key, error) => {
     const storageError = new StorageError(
         `Failed to ${operation} localStorage key: ${key}`,
         { operation, key, originalError: error.message }
@@ -163,7 +168,8 @@ const handleStorageError = (operation, key, error) => {
     errorLogger.log(storageError);
     
     // Show user-friendly message
-    showErrorToast(t('errors.storage', 'Storage error. Your data may not be saved.'));
+    const msg = typeof t === 'function' ? t('errors.storage', 'Storage error. Your data may not be saved.') : 'Storage error. Your data may not be saved.';
+    showErrorToast(msg);
     
     return null;
 };
@@ -171,7 +177,7 @@ const handleStorageError = (operation, key, error) => {
 /**
  * Handle network errors
  */
-const handleNetworkError = (url, error) => {
+export const handleNetworkError = (url, error) => {
     const networkError = new NetworkError(
         `Network request failed: ${url}`,
         { url, originalError: error.message }
@@ -180,7 +186,8 @@ const handleNetworkError = (url, error) => {
     errorLogger.log(networkError);
     
     // Show user-friendly message
-    showErrorToast(t('errors.network', 'Network error. Please check your connection.'));
+    const msg = typeof t === 'function' ? t('errors.network', 'Network error. Please check your connection.') : 'Network error. Please check your connection.';
+    showErrorToast(msg);
     
     return null;
 };
@@ -188,7 +195,7 @@ const handleNetworkError = (url, error) => {
 /**
  * Handle validation errors
  */
-const handleValidationError = (field, message) => {
+export const handleValidationError = (field, message) => {
     const validationError = new ValidationError(
         `Validation failed for ${field}: ${message}`,
         { field, message }
@@ -205,7 +212,7 @@ const handleValidationError = (field, message) => {
 /**
  * Handle DOM errors
  */
-const handleDOMError = (selector, operation, error) => {
+export const handleDOMError = (selector, operation, error) => {
     const domError = new FoodieError(
         `DOM operation failed: ${operation} on ${selector}`,
         ErrorTypes.DOM,
@@ -220,7 +227,7 @@ const handleDOMError = (selector, operation, error) => {
 /**
  * Handle cart errors
  */
-const handleCartError = (operation, productId, error) => {
+export const handleCartError = (operation, productId, error) => {
     const cartError = new FoodieError(
         `Cart operation failed: ${operation} for product ${productId}`,
         ErrorTypes.CART,
@@ -229,7 +236,8 @@ const handleCartError = (operation, productId, error) => {
     
     errorLogger.log(cartError);
     
-    showErrorToast(t('errors.cart', 'Cart error. Please try again.'));
+    const msg = typeof t === 'function' ? t('errors.cart', 'Cart error. Please try again.') : 'Cart error. Please try again.';
+    showErrorToast(msg);
     
     return false;
 };
@@ -239,9 +247,10 @@ const handleCartError = (operation, productId, error) => {
 /**
  * Safe localStorage wrapper
  */
-const safeLocalStorage = {
+export const safeLocalStorage = {
     getItem(key, defaultValue = null) {
         try {
+            if (typeof localStorage === 'undefined') return defaultValue;
             const item = localStorage.getItem(key);
             return item !== null ? JSON.parse(item) : defaultValue;
         } catch (error) {
@@ -251,6 +260,7 @@ const safeLocalStorage = {
     
     setItem(key, value) {
         try {
+            if (typeof localStorage === 'undefined') return false;
             localStorage.setItem(key, JSON.stringify(value));
             return true;
         } catch (error) {
@@ -261,6 +271,7 @@ const safeLocalStorage = {
     
     removeItem(key) {
         try {
+            if (typeof localStorage === 'undefined') return false;
             localStorage.removeItem(key);
             return true;
         } catch (error) {
@@ -273,8 +284,9 @@ const safeLocalStorage = {
 /**
  * Safe DOM query
  */
-const safeQuery = (selector, parent = document) => {
+export const safeQuery = (selector, parent = typeof document !== 'undefined' ? document : null) => {
     try {
+        if (!parent) return null;
         return parent.querySelector(selector);
     } catch (error) {
         handleDOMError(selector, 'querySelector', error);
@@ -285,8 +297,9 @@ const safeQuery = (selector, parent = document) => {
 /**
  * Safe DOM query all
  */
-const safeQueryAll = (selector, parent = document) => {
+export const safeQueryAll = (selector, parent = typeof document !== 'undefined' ? document : null) => {
     try {
+        if (!parent) return [];
         return Array.from(parent.querySelectorAll(selector));
     } catch (error) {
         handleDOMError(selector, 'querySelectorAll', error);
@@ -297,7 +310,7 @@ const safeQueryAll = (selector, parent = document) => {
 /**
  * Safe fetch wrapper
  */
-const safeFetch = async (url, options = {}) => {
+export const safeFetch = async (url, options = {}) => {
     try {
         const response = await fetch(url, options);
         
@@ -314,7 +327,7 @@ const safeFetch = async (url, options = {}) => {
 /**
  * Safe JSON parse
  */
-const safeJSONParse = (jsonString, defaultValue = null) => {
+export const safeJSONParse = (jsonString, defaultValue = null) => {
     try {
         return JSON.parse(jsonString);
     } catch (error) {
@@ -332,7 +345,7 @@ const safeJSONParse = (jsonString, defaultValue = null) => {
 /**
  * Retry mechanism for failed operations
  */
-const retry = async (fn, maxAttempts = 3, delay = 1000) => {
+export const retry = async (fn, maxAttempts = 3, delay = 1000) => {
     for (let attempt = 1; attempt <= maxAttempts; attempt++) {
         try {
             return await fn();
@@ -355,7 +368,7 @@ const retry = async (fn, maxAttempts = 3, delay = 1000) => {
 /**
  * Circuit breaker pattern for failing operations
  */
-class CircuitBreaker {
+export class CircuitBreaker {
     constructor(threshold = 5, timeout = 60000) {
         this.failureCount = 0;
         this.threshold = threshold;
@@ -406,7 +419,8 @@ class CircuitBreaker {
 /**
  * Show error toast notification
  */
-const showErrorToast = (message, duration = 3000) => {
+export const showErrorToast = (message, duration = 3000) => {
+    if (typeof document === 'undefined') return;
     const toast = document.createElement('div');
     toast.className = 'toast error-toast';
     toast.innerHTML = `
@@ -428,7 +442,8 @@ const showErrorToast = (message, duration = 3000) => {
 /**
  * Show field-specific error
  */
-const showFieldError = (fieldId, message) => {
+export const showFieldError = (fieldId, message) => {
+    if (typeof document === 'undefined') return;
     const field = document.getElementById(fieldId);
     if (!field) return;
     
@@ -455,7 +470,8 @@ const showFieldError = (fieldId, message) => {
 /**
  * Escape HTML to prevent XSS
  */
-const escapeHTML = (str) => {
+export const escapeHTML = (str) => {
+    if (typeof document === 'undefined') return str;
     const div = document.createElement('div');
     div.textContent = str;
     return div.innerHTML;
@@ -463,48 +479,51 @@ const escapeHTML = (str) => {
 
 // ===== GLOBAL ERROR HANDLERS =====
 
-/**
- * Handle uncaught errors
- */
-window.addEventListener('error', (event) => {
-    errorLogger.log(new FoodieError(
-        event.message,
-        ErrorTypes.UNKNOWN,
-        {
-            filename: event.filename,
-            lineno: event.lineno,
-            colno: event.colno,
-            stack: event.error?.stack
+if (typeof window !== 'undefined') {
+    /**
+     * Handle uncaught errors
+     */
+    window.addEventListener('error', (event) => {
+        errorLogger.log(new FoodieError(
+            event.message,
+            ErrorTypes.UNKNOWN,
+            {
+                filename: event.filename,
+                lineno: event.lineno,
+                colno: event.colno,
+                stack: event.error?.stack
+            }
+        ));
+        
+        // Prevent default error handling in production
+        if (!errorLogger.isDevelopment()) {
+            event.preventDefault();
+            const msg = typeof t === 'function' ? t('errors.unhandled', 'An error occurred. Please refresh the page.') : 'An error occurred. Please refresh the page.';
+            showErrorToast(msg);
         }
-    ));
-    
-    // Prevent default error handling in production
-    if (!errorLogger.isDevelopment()) {
-        event.preventDefault();
-        showErrorToast(t('errors.unhandled', 'An error occurred. Please refresh the page.'));
-    }
-});
+    });
 
-/**
- * Handle unhandled promise rejections
- */
-window.addEventListener('unhandledrejection', (event) => {
-    errorLogger.log(new FoodieError(
-        event.reason?.message || 'Unhandled promise rejection',
-        ErrorTypes.UNKNOWN,
-        { reason: event.reason }
-    ));
-    
-    if (!errorLogger.isDevelopment()) {
-        event.preventDefault();
-        showErrorToast(t('errors.promiseRejected', 'An error occurred. Please try again.'));
-    }
-});
+    /**
+     * Handle unhandled promise rejections
+     */
+    window.addEventListener('unhandledrejection', (event) => {
+        errorLogger.log(new FoodieError(
+            event.reason?.message || 'Unhandled promise rejection',
+            ErrorTypes.UNKNOWN,
+            { reason: event.reason }
+        ));
+        
+        if (!errorLogger.isDevelopment()) {
+            event.preventDefault();
+            const msg = typeof t === 'function' ? t('errors.promiseRejected', 'An error occurred. Please try again.') : 'An error occurred. Please try again.';
+            showErrorToast(msg);
+        }
+    });
+}
 
-// ===== EXPORTS =====
-
-if (typeof module !== 'undefined' && module.exports) {
-    module.exports = {
+// Global Export for browser modules
+if (typeof window !== 'undefined') {
+    window.FoodieErrorHandler = {
         ErrorTypes,
         FoodieError,
         NetworkError,
@@ -527,27 +546,3 @@ if (typeof module !== 'undefined' && module.exports) {
         showFieldError
     };
 }
-
-// Global Export for browser modules
-window.FoodieErrorHandler = {
-    ErrorTypes,
-    FoodieError,
-    NetworkError,
-    ValidationError,
-    StorageError,
-    errorLogger,
-    handleStorageError,
-    handleNetworkError,
-    handleValidationError,
-    handleDOMError,
-    handleCartError,
-    safeLocalStorage,
-    safeQuery,
-    safeQueryAll,
-    safeFetch,
-    safeJSONParse,
-    retry,
-    CircuitBreaker,
-    showErrorToast,
-    showFieldError
-};
