@@ -3,6 +3,19 @@
  * Encapsulates state management and exports initialization helpers cleanly.
  */
 
+// ===== SERVICE WORKER PWA REGISTRATION =====
+if ('serviceWorker' in navigator && window.location.protocol !== 'file:') {
+  window.addEventListener('load', () => {
+    navigator.serviceWorker.register('/sw.js').then((registration) => {
+      console.log('PWA ServiceWorker registered with scope:', registration.scope);
+    }).catch((err) => {
+      console.warn('PWA ServiceWorker registration failed:', err);
+    });
+  });
+}
+
+// ===== LOADING STATE MANAGEMENT =====
+let loadingStates = new Map();
 // Encapsulated state management (preventing global scope pollution)
 const appState = {
   productsPath: '../products.json',

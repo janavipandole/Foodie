@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Offline - Foodie</title>
+  <link rel="stylesheet" href="../css/style.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <style>
+    body {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 100vh;
+      margin: 0;
+      background: var(--bg-color, #f8f9fa);
+      font-family: 'Outfit', sans-serif;
+      text-align: center;
+      padding: 20px;
+    }
+    .offline-card {
+      background: var(--bg-secondary, #ffffff);
+      padding: 40px 30px;
+      border-radius: 16px;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+      max-width: 420px;
+      width: 100%;
+    }
+    .offline-icon {
+      font-size: 4rem;
+      color: #ff6b6b;
+      margin-bottom: 20px;
+    }
+    h1 { margin-bottom: 10px; font-size: 1.8rem; color: var(--text-color, #2d3436); }
+    p { color: var(--text-muted, #636e72); margin-bottom: 24px; font-size: 1rem; line-height: 1.5; }
+    .btn-retry {
+      background: #ff6b6b;
+      color: white;
+      border: none;
+      padding: 12px 24px;
+      border-radius: 8px;
+      font-size: 1rem;
+      font-weight: 600;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+    }
+  </style>
+</head>
+<body>
+  <div class="offline-card">
+    <div class="offline-icon"><i class="fa-solid fa-wifi"></i></div>
+    <h1>You're Currently Offline</h1>
+    <p>Please check your internet connection. You can still access your saved orders and active cart offline!</p>
+    <button class="btn-retry" onclick="window.location.reload()">
+      <i class="fa-solid fa-arrows-rotate"></i> Try Reconnecting
+    </button>
+  </div>
+</body>
+</html>
