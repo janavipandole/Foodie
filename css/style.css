@@ -2813,3 +2813,44 @@ main {
         font-size: 0.65rem;
     }
 }
+
+/* ===== UNIFIED MOBILE RESPONSIVENESS & ACCESSIBILITY ===== */
+html, body {
+  max-width: 100vw;
+  overflow-x: hidden;
+}
+
+@media (max-width: 768px) {
+  h1 { font-size: 1.8rem !important; }
+  h2 { font-size: 1.4rem !important; }
+
+  .card-list, .menu-grid, .hero-grid, .orders-grid, .category-grid {
+    grid-template-columns: 1fr !important;
+    gap: 1.25rem !important;
+  }
+
+  button, input[type="button"], input[type="submit"], .btn, select, .custom-select {
+    min-height: 44px !important;
+    font-size: 0.95rem;
+  }
+
+  .container, .wrapper, .main-content {
+    padding-left: 1rem !important;
+    padding-right: 1rem !important;
+  }
+}
+
+@media (max-width: 480px) {
+  h1 { font-size: 1.5rem !important; }
+  h2 { font-size: 1.2rem !important; }
+
+  .filter-bar {
+    flex-direction: column !important;
+    align-items: stretch !important;
+  }
+
+  .filter-bar input, .filter-bar button, .filter-bar select {
+    width: 100% !important;
+  }
+}
+
