@@ -52,12 +52,20 @@ export const toggleTheme = (themeToggles = document.querySelectorAll('.theme-tog
     if (next === 'dark') html.setAttribute('data-theme', 'dark');
     else html.removeAttribute('data-theme');
     
+    if (window.safeLocalStorage) {
+        window.safeLocalStorage.setItem('theme', next);
+    } else {
+        localStorage.setItem('theme', next);
+    }
+    updateThemeIcons(next);
     localStorage.setItem('theme', next);
     updateThemeIcons(next, themeToggles);
     setTimeout(() => html.classList.remove('theme-transition'), 600);
 };
 
 // ===== AUTH & PROFILE UI =====
+function updateNavbarProfile() {
+    const user = window.safeLocalStorage ? window.safeLocalStorage.getItem('loggedInUser') : JSON.parse(localStorage.getItem('loggedInUser') || 'null');
 export function updateNavbarProfile() {
     const user = JSON.parse(localStorage.getItem('loggedInUser'));
     const authBtns = document.querySelectorAll('.btn[href*="signup.html"]');
@@ -70,7 +78,7 @@ export function updateNavbarProfile() {
             profileBadge.className = 'user-profile-badge';
             profileBadge.innerHTML = `
                 <img src="${user.picture || '../imgs/profile1.webp'}" alt="Profile" class="user-avatar-small">
-                <span class="user-name-text">${user.name.split(' ')[0]}</span>
+                <span class="user-name-text">${(user.name || 'User').split(' ')[0]}</span>
                 <i class="fa-solid fa-chevron-down ms-1"></i>
                 <div class="profile-dropdown">
                     <a href="./profile.html"><i class="fa-solid fa-user-gear"></i> Profile</a>
@@ -85,6 +93,13 @@ export function updateNavbarProfile() {
     }
 }
 
+function logoutUser(e) {
+    e.preventDefault();
+    if (window.safeLocalStorage) {
+        window.safeLocalStorage.removeItem('loggedInUser');
+    } else {
+        localStorage.removeItem('loggedInUser');
+    }
 export function logoutUser(e) {
     if (e) e.preventDefault();
     localStorage.removeItem('loggedInUser');
@@ -108,7 +123,54 @@ export function highlightActiveNavLink() {
     });
 }
 
+// ===== THROTTLED SCROLL & TEARDOWN CLEANUP =====
+let scrollHandler = null;
+
+function setupScrollPerformance() {
+    const backToTop = document.querySelector('.back-to-top');
+    if (!backToTop) return;
+
+    const throttleFn = window.throttle || ((fn, delay) => {
+        let last = 0;
+        return (...args) => {
+            const now = Date.now();
+            if (now - last >= delay) {
+                last = now;
+                fn(...args);
+            }
+        };
+    });
+
+    scrollHandler = throttleFn(() => {
+        if (window.scrollY > 300) {
+            backToTop.classList.add('visible');
+        } else {
+            backToTop.classList.remove('visible');
+        }
+    }, 100);
+
+    window.addEventListener('scroll', scrollHandler, { passive: true });
+}
+
+// Global Exception Catchers
+window.addEventListener('unhandledrejection', (event) => {
+    if (window.errorLogger) {
+        window.errorLogger.log(event.reason, { type: 'UNHANDLED_REJECTION' });
+    }
+});
+
+// Teardown Handler
+window.addEventListener('beforeunload', () => {
+    if (scrollHandler) {
+        window.removeEventListener('scroll', scrollHandler);
+    }
+});
+
 // ===== INITIALIZATION =====
+document.addEventListener('DOMContentLoaded', () => {
+    const theme = (window.safeLocalStorage ? window.safeLocalStorage.getItem('theme') : localStorage.getItem('theme')) || 'light';
+    updateThemeIcons(theme);
+    themeToggles.forEach(btn => btn.addEventListener('click', toggleTheme));
 export function initializeApp() {
     const themeToggles = document.querySelectorAll('.theme-toggle');
     const theme = localStorage.getItem('theme') || 'light';
@@ -116,6 +178,7 @@ export function initializeApp() {
     themeToggles.forEach(btn => btn.addEventListener('click', () => toggleTheme(themeToggles)));
 
     updateNavbarProfile();
+    setupScrollPerformance();
 
     const hamburger = document.querySelector('.hamberger');
     const mobileMenu = document.querySelector('.mobile-menu');
@@ -127,6 +190,20 @@ export function initializeApp() {
         icon?.classList.toggle("fa-bars");
     });
 
+    function highlightActiveNavLink() {
+        const currentPage = window.location.pathname.split('/').pop() || 'index.html';
+        const navLinks = document.querySelectorAll('.navList a, .mobile-menu a');
+        
+        navLinks.forEach(link => {
+            const href = link.getAttribute('href');
+            const linkPage = href ? href.split('/').pop() : '';
+            link.parentElement?.classList.remove('active');
+            if (linkPage === currentPage || (currentPage === '' && linkPage === 'index.html#home')) {
+                link.parentElement?.classList.add('active');
+            }
+        });
+    }
+    
     highlightActiveNavLink();
 }
 
