@@ -73,14 +73,14 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 
 // ===== Helper Functions =====
-function updateThemeIcon(theme) {
+export function updateThemeIcon(theme) {
   const btn = document.getElementById('themeToggle');
   if (!btn) return;
   const icon = btn.querySelector('i');
   if (icon) icon.className = theme === 'dark' ? 'fa-solid fa-sun' : 'fa-solid fa-moon';
 }
 
-function togglePassword(inputId) {
+export function togglePassword(inputId) {
   const input = document.getElementById(inputId);
   if (!input) return;
   const btn = input.nextElementSibling;
@@ -96,7 +96,7 @@ function togglePassword(inputId) {
 }
 window.togglePassword = togglePassword;
 
-function switchForm(formType) {
+export function switchForm(formType) {
   const loginForm = document.getElementById("loginForm");
   const signupForm = document.getElementById("signupForm");
   const heroEmoji = document.getElementById("heroEmoji");
@@ -116,8 +116,46 @@ function switchForm(formType) {
 }
 window.switchForm = switchForm;
 
+// ===== Cryptographic Helper Utilities =====
+async function hashPassword(password, salt) {
+  const encoder = new TextEncoder();
+  const data = encoder.encode(password + salt);
+  if (window.crypto && window.crypto.subtle) {
+    const buffer = await window.crypto.subtle.digest('SHA-256', data);
+    return Array.from(new Uint8Array(buffer)).map(b => b.toString(16).padStart(2, '0')).join('');
+  }
+  // Fallback hash method if subtle crypto is unavailable
+  let hash = 0;
+  const str = password + salt;
+  for (let i = 0; i < str.length; i++) {
+    hash = (hash << 5) - hash + str.charCodeAt(i);
+    hash |= 0;
+  }
+  return 'fallback_' + Math.abs(hash).toString(16);
+}
+
+function generateSalt() {
+  if (window.crypto && window.crypto.getRandomValues) {
+    const array = new Uint8Array(16);
+    window.crypto.getRandomValues(array);
+    return Array.from(array, b => b.toString(16).padStart(2, '0')).join('');
+  }
+  return Math.random().toString(36).substring(2) + Date.now().toString(36);
+}
+
 // ===== LocalStorage Auth Implementation =====
-function handleSignup(event) {
+async function handleSignup(event) {
+// Hash password using SHA-256
+async function hashPassword(password) {
+  const encoder = new TextEncoder();
+  const data = encoder.encode(password);
+  const hashBuffer = await crypto.subtle.digest('SHA-256', data);
+  const hashArray = Array.from(new Uint8Array(hashBuffer));
+  return hashArray.map(b => b.toString(16).padStart(2, '0')).join('');
+}
+
+// ===== LocalStorage Auth Implementation =====
+export async function handleSignup(event) {
   event.preventDefault();
   const name = document.getElementById('signupName').value;
   const email = document.getElementById('signupEmail').value;
@@ -130,14 +168,19 @@ function handleSignup(event) {
     return;
   }
 
-  users.push({ name, email, phone, password });
+  const salt = generateSalt();
+  const passwordHash = await hashPassword(password, salt);
+
+  users.push({ name, email, phone, passwordHash, salt });
+  const hashedPassword = await hashPassword(password);
+  users.push({ name, email, phone, password: hashedPassword });
   localStorage.setItem('foodie_users', JSON.stringify(users));
   showToast(t('auth.registrationSuccess', 'Registration successful! Please login.'), "success");
   switchForm('login');
 }
 window.handleSignup = handleSignup;
 
-function toggleDemoMode(state) {
+export function toggleDemoMode(state) {
   const checkbox = document.getElementById('demoToggle');
   const regularFields = document.getElementById('regularLoginFields');
   const demoFields = document.getElementById('demoLoginFields');
@@ -160,7 +203,6 @@ function toggleDemoMode(state) {
     passwordGroup.style.display = 'none';
     loginBtn.textContent = t('auth.guestLogin', 'Enter as Guest');
     
-    // Remove required from hidden fields to prevent form submission errors
     if (loginEmail) loginEmail.removeAttribute('required');
     if (loginPassword) loginPassword.removeAttribute('required');
     if (demoName) demoName.setAttribute('required', 'required');
@@ -170,7 +212,6 @@ function toggleDemoMode(state) {
     passwordGroup.style.display = 'block';
     loginBtn.textContent = t('auth.signInButton', 'Sign In');
     
-    // Restore required attributes
     if (loginEmail) loginEmail.setAttribute('required', 'required');
     if (loginPassword) loginPassword.setAttribute('required', 'required');
     if (demoName) demoName.removeAttribute('required');
@@ -178,7 +219,8 @@ function toggleDemoMode(state) {
 }
 window.toggleDemoMode = toggleDemoMode;
 
-function handleLogin(event) {
+async function handleLogin(event) {
+export async function handleLogin(event) {
   event.preventDefault();
   const demoFields = document.getElementById('demoLoginFields');
   const isDemo = demoFields && (demoFields.style.display === 'block' || window.getComputedStyle(demoFields).display === 'block');
@@ -187,7 +229,7 @@ function handleLogin(event) {
     const demoName = document.getElementById('demoName').value || 'Guest User';
     const gender = document.getElementById('demoGender').value;
     
-    let defaultAvatar = '../imgs/user-avatar.png'; // Fallback
+    let defaultAvatar = '../imgs/user-avatar.png';
     if (gender === 'male') defaultAvatar = '../imgs/profile1.webp';
     if (gender === 'female') defaultAvatar = '../imgs/profile3.webp';
 
@@ -202,24 +244,47 @@ function handleLogin(event) {
 
   const email = document.getElementById('loginEmail').value;
   const password = document.getElementById('loginPassword').value;
+  const hashedPassword = await hashPassword(password);
 
   const users = JSON.parse(localStorage.getItem('foodie_users') || '[]');
-  const user = users.find(u => u.email === email && u.password === password);
+  const user = users.find(u => u.email === email);
+  const user = users.find(u => u.email === email && (u.password === hashedPassword || u.password === password));
 
   if (user) {
-    loginUser(user);
-  } else {
-    showToast(t('auth.invalidCredentials', 'Invalid email or password!'), "error");
+    let isValid = false;
+    if (user.passwordHash && user.salt) {
+      const computedHash = await hashPassword(password, user.salt);
+      isValid = (computedHash === user.passwordHash);
+    } else if (user.password) {
+      // Legacy backwards compatibility check (migrates user)
+      isValid = (user.password === password);
+      if (isValid) {
+        user.salt = generateSalt();
+        user.passwordHash = await hashPassword(password, user.salt);
+        delete user.password;
+        localStorage.setItem('foodie_users', JSON.stringify(users));
+      }
+    }
+
+    if (isValid) {
+      loginUser(user);
+      return;
+    }
   }
+
+  showToast(t('auth.invalidCredentials', 'Invalid email or password!'), "error");
 }
 window.handleLogin = handleLogin;
 
 function loginUser(user) {
+  const sessionExp = Date.now() + (24 * 60 * 60 * 1000); // 24 hours
+export function loginUser(user) {
   localStorage.setItem('loggedInUser', JSON.stringify({
     name: user.name,
     email: user.email,
     phone: user.phone || '',
-    picture: user.picture || '../imgs/profile1.webp'
+    picture: user.picture || '../imgs/profile1.webp',
+    exp: sessionExp
   }));
   showToast(t('auth.welcomeBack', 'Welcome back, {name}!').replace('{name}', user.name), "success");
   setTimeout(() => {
@@ -228,7 +293,7 @@ function loginUser(user) {
 }
 
 // ===== Google Auth Implementation =====
-function handleGoogleResponse(response) {
+export function handleGoogleResponse(response) {
   try {
     const userData = decodeJwtResponse(response.credential);
     loginUser({ name: userData.name, email: userData.email, picture: userData.picture });
@@ -237,7 +302,7 @@ function handleGoogleResponse(response) {
   }
 }
 
-function decodeJwtResponse(token) {
+export function decodeJwtResponse(token) {
   const base64Url = token.split(".")[1];
   const base64 = base64Url.replace(/-/g, "+").replace(/_/g, "/");
   const jsonPayload = decodeURIComponent(
@@ -249,10 +314,8 @@ function decodeJwtResponse(token) {
   return JSON.parse(jsonPayload);
 }
 
-// Removed legacy loginWithPhone
-
 // ===== Toast Notification Helper =====
-function showToast(message, type = "info") {
+export function showToast(message, type = "info") {
   const toast = document.createElement('div');
   toast.className = `auth-toast ${type}`;
   toast.innerHTML = `

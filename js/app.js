@@ -1,12 +1,31 @@
-// ===== FIX: Define missing variables =====
-let productsPath = '../products.json';
-const isUsingServer = window.location.protocol !== 'file:';
-const _retry = async (fn) => fn();
+/**
+ * Main Application Module
+ * Encapsulates state management and exports initialization helpers cleanly.
+ */
+
+// ===== SERVICE WORKER PWA REGISTRATION =====
+if ('serviceWorker' in navigator && window.location.protocol !== 'file:') {
+  window.addEventListener('load', () => {
+    navigator.serviceWorker.register('/sw.js').then((registration) => {
+      console.log('PWA ServiceWorker registered with scope:', registration.scope);
+    }).catch((err) => {
+      console.warn('PWA ServiceWorker registration failed:', err);
+    });
+  });
+}
 
 // ===== LOADING STATE MANAGEMENT =====
 let loadingStates = new Map();
+// Encapsulated state management (preventing global scope pollution)
+const appState = {
+  productsPath: '../products.json',
+  isUsingServer: typeof window !== 'undefined' ? window.location.protocol !== 'file:' : false,
+  loadingStates: new Map()
+};
 
-function setLoadingState(element, isLoading, message = 'Loading...') {
+export const _retry = async (fn) => fn();
+
+export function setLoadingState(element, isLoading, message = 'Loading...') {
   if (!element) return;
   const existingLoader = element.querySelector('.loading-overlay');
   if (isLoading) {
@@ -27,17 +46,8 @@ function setLoadingState(element, isLoading, message = 'Loading...') {
   }
 }
 
-// ===== ELEMENT SELECTORS =====
-const cartIcon = document.querySelector('.cart-icon');
-const cartTab = document.querySelector('.cart-tab');
-const closeBtn = document.querySelector('.close-btn');
-const cartValue = document.querySelector('.cart-value');
-const hamburger = document.querySelector('.hamberger');
-const mobileMenu = document.querySelector('.mobile-menu');
-const themeToggles = document.querySelectorAll('.theme-toggle');
-
 // ===== THEME TOGGLE LOGIC =====
-const updateThemeIcons = (theme) => {
+export const updateThemeIcons = (theme, themeToggles = document.querySelectorAll('.theme-toggle')) => {
     themeToggles.forEach(toggle => {
         const icon = toggle.querySelector('i');
         const label = toggle.querySelector('span');
@@ -46,7 +56,7 @@ const updateThemeIcons = (theme) => {
     });
 };
 
-const toggleTheme = () => {
+export const toggleTheme = (themeToggles = document.querySelectorAll('.theme-toggle')) => {
     const html = document.documentElement;
     const current = html.getAttribute('data-theme') || 'light';
     const next = current === 'dark' ? 'light' : 'dark';
@@ -55,17 +65,24 @@ const toggleTheme = () => {
     if (next === 'dark') html.setAttribute('data-theme', 'dark');
     else html.removeAttribute('data-theme');
     
-    localStorage.setItem('theme', next);
+    if (window.safeLocalStorage) {
+        window.safeLocalStorage.setItem('theme', next);
+    } else {
+        localStorage.setItem('theme', next);
+    }
     updateThemeIcons(next);
+    localStorage.setItem('theme', next);
+    updateThemeIcons(next, themeToggles);
     setTimeout(() => html.classList.remove('theme-transition'), 600);
 };
 
 // ===== AUTH & PROFILE UI =====
 function updateNavbarProfile() {
+    const user = window.safeLocalStorage ? window.safeLocalStorage.getItem('loggedInUser') : JSON.parse(localStorage.getItem('loggedInUser') || 'null');
+export function updateNavbarProfile() {
     const user = JSON.parse(localStorage.getItem('loggedInUser'));
     const authBtns = document.querySelectorAll('.btn[href*="signup.html"]');
     
-    // Check if badge already exists to prevent duplication
     if (document.querySelector('.user-profile-badge')) return;
 
     if (user && authBtns.length > 0) {
@@ -74,36 +91,110 @@ function updateNavbarProfile() {
             profileBadge.className = 'user-profile-badge';
             profileBadge.innerHTML = `
                 <img src="${user.picture || '../imgs/profile1.webp'}" alt="Profile" class="user-avatar-small">
-                <span class="user-name-text">${user.name.split(' ')[0]}</span>
+                <span class="user-name-text">${(user.name || 'User').split(' ')[0]}</span>
                 <i class="fa-solid fa-chevron-down ms-1"></i>
                 <div class="profile-dropdown">
                     <a href="./profile.html"><i class="fa-solid fa-user-gear"></i> Profile</a>
-                    <a href="#" onclick="logoutUser(event)"><i class="fa-solid fa-right-from-bracket"></i> Logout</a>
+                    <a href="#" id="logout-link"><i class="fa-solid fa-right-from-bracket"></i> Logout</a>
                 </div>
             `;
             btn.parentNode.replaceChild(profileBadge, btn);
+            
+            const logoutLink = profileBadge.querySelector('#logout-link');
+            logoutLink?.addEventListener('click', logoutUser);
         });
     }
 }
 
 function logoutUser(e) {
     e.preventDefault();
+    if (window.safeLocalStorage) {
+        window.safeLocalStorage.removeItem('loggedInUser');
+    } else {
+        localStorage.removeItem('loggedInUser');
+    }
+export function logoutUser(e) {
+    if (e) e.preventDefault();
     localStorage.removeItem('loggedInUser');
     window.location.reload();
 }
-window.logoutUser = logoutUser;
+
+// ===== ACTIVE NAVIGATION LINK HIGHLIGHTING =====
+export function highlightActiveNavLink() {
+    const currentPage = window.location.pathname.split('/').pop() || 'index.html';
+    const navLinks = document.querySelectorAll('.navList a, .mobile-menu a');
+    
+    navLinks.forEach(link => {
+        const href = link.getAttribute('href');
+        const linkPage = href ? href.split('/').pop() : '';
+        
+        link.parentElement?.classList.remove('active');
+        
+        if (linkPage === currentPage || (currentPage === '' && linkPage === 'index.html#home')) {
+            link.parentElement?.classList.add('active');
+        }
+    });
+}
+
+// ===== THROTTLED SCROLL & TEARDOWN CLEANUP =====
+let scrollHandler = null;
+
+function setupScrollPerformance() {
+    const backToTop = document.querySelector('.back-to-top');
+    if (!backToTop) return;
+
+    const throttleFn = window.throttle || ((fn, delay) => {
+        let last = 0;
+        return (...args) => {
+            const now = Date.now();
+            if (now - last >= delay) {
+                last = now;
+                fn(...args);
+            }
+        };
+    });
+
+    scrollHandler = throttleFn(() => {
+        if (window.scrollY > 300) {
+            backToTop.classList.add('visible');
+        } else {
+            backToTop.classList.remove('visible');
+        }
+    }, 100);
+
+    window.addEventListener('scroll', scrollHandler, { passive: true });
+}
+
+// Global Exception Catchers
+window.addEventListener('unhandledrejection', (event) => {
+    if (window.errorLogger) {
+        window.errorLogger.log(event.reason, { type: 'UNHANDLED_REJECTION' });
+    }
+});
+
+// Teardown Handler
+window.addEventListener('beforeunload', () => {
+    if (scrollHandler) {
+        window.removeEventListener('scroll', scrollHandler);
+    }
+});
 
 // ===== INITIALIZATION =====
 document.addEventListener('DOMContentLoaded', () => {
-    // Theme Init
-    const theme = localStorage.getItem('theme') || 'light';
+    const theme = (window.safeLocalStorage ? window.safeLocalStorage.getItem('theme') : localStorage.getItem('theme')) || 'light';
     updateThemeIcons(theme);
     themeToggles.forEach(btn => btn.addEventListener('click', toggleTheme));
+export function initializeApp() {
+    const themeToggles = document.querySelectorAll('.theme-toggle');
+    const theme = localStorage.getItem('theme') || 'light';
+    updateThemeIcons(theme, themeToggles);
+    themeToggles.forEach(btn => btn.addEventListener('click', () => toggleTheme(themeToggles)));
 
-    // Profile Init
     updateNavbarProfile();
+    setupScrollPerformance();
 
-    // Mobile Menu
+    const hamburger = document.querySelector('.hamberger');
+    const mobileMenu = document.querySelector('.mobile-menu');
     hamburger?.addEventListener('click', (e) => {
         e.preventDefault();
         mobileMenu?.classList.toggle("mobile-menu-active");
@@ -112,19 +203,14 @@ document.addEventListener('DOMContentLoaded', () => {
         icon?.classList.toggle("fa-bars");
     });
 
-    // ===== ACTIVE NAVIGATION LINK HIGHLIGHTING =====
     function highlightActiveNavLink() {
         const currentPage = window.location.pathname.split('/').pop() || 'index.html';
         const navLinks = document.querySelectorAll('.navList a, .mobile-menu a');
         
         navLinks.forEach(link => {
             const href = link.getAttribute('href');
-            const linkPage = href.split('/').pop();
-            
-            // Remove active class from all links
+            const linkPage = href ? href.split('/').pop() : '';
             link.parentElement?.classList.remove('active');
-            
-            // Add active class to matching link
             if (linkPage === currentPage || (currentPage === '' && linkPage === 'index.html#home')) {
                 link.parentElement?.classList.add('active');
             }
@@ -132,4 +218,8 @@ document.addEventListener('DOMContentLoaded', () => {
     }
     
     highlightActiveNavLink();
-});
+}
+
+if (typeof document !== 'undefined') {
+    document.addEventListener('DOMContentLoaded', initializeApp);
+}
