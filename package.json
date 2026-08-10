@@ -8,6 +8,7 @@
   },
   "scripts": {
     "test": "jest",
+    "optimize-imgs": "node scripts/optimize-images.js",
     "deploy": "wrangler deploy",
     "preview": "wrangler dev"
   },
