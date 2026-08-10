@@ -1,23 +1,6 @@
 import React from "react";
 import "./ResourcesPage.css";
-
-const resources = [
-  {
-    title: "Farming Tips",
-    description: "Learn seasonal crop care, irrigation methods, and pest control techniques.",
-    items: ["Seasonal crop care", "Water management", "Pest prevention"],
-  },
-  {
-    title: "Articles",
-    description: "Explore latest agriculture trends and government schemes.",
-    items: ["Agriculture trends", "Govt. schemes", "Organic farming"],
-  },
-  {
-    title: "Guides",
-    description: "Step-by-step farming guides for better yield.",
-    items: ["Soil testing guide", "Fertilizer usage", "Crop rotation"],
-  },
-];
+import { resources } from "./data/resourcesData.js";
 
 export default function ResourcesPage() {
   return (

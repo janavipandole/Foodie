@@ -170,6 +170,14 @@
     <div id="ordersList" class="orders-grid">
       <!-- Orders will be dynamically inserted here -->
     </div>
+
+    <!-- ORDER DETAILS & TRACKING MODAL -->
+    <div id="orderDetailsModal" class="order-modal-overlay" style="display: none;">
+      <div class="order-modal-content">
+        <button id="closeOrderModal" class="modal-close-btn">&times;</button>
+        <div id="modalOrderBody"></div>
+      </div>
+    </div>
   </main>
 
   <footer id="contacts" data-aos="fade-up"></footer>
@@ -234,6 +242,7 @@
   <script src="../js/footer.js"></script>
   <script src="../js/order-history.js"></script>
     <script src="../js/floating-feedback.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
 </body>
 
 </html>

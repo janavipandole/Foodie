@@ -1,4 +1,13 @@
-function loadFooter() {
+/**
+ * Footer Module
+ * Dynamically injects footer HTML and handles translations and AOS refreshes.
+ */
+
+/**
+ * Loads and injects the footer HTML into the #contacts container,
+ * applies i18n translations, and triggers AOS refresh.
+ */
+export function loadFooter() {
     const footerHTML = `
         <div class="footer-container">
             <div class="flex wrapper gap-4">
@@ -25,7 +34,7 @@ function loadFooter() {
                     <li>
                         <h4 data-i18n="footer.ourMenu">Our Menu</h4>
                     </li>
-                    <li class="mt-one"><a href="./Special-dishes·.html" class="footer-link"
+                    <li class="mt-one"><a href="./special-dishes.html" class="footer-link"
                             data-i18n="footer.special">Special</a></li>
                     <li class="mt-one"><a href="./popular.html" class="footer-link" data-i18n="footer.popular">Popular</a>
                     </li>
@@ -49,54 +58,54 @@ function loadFooter() {
                 </ul>
 
                 <ul class="footer-wrapper">
-    <li>
-        <h4 data-i18n="footer.support">Support</h4>
-    </li>
+                    <li>
+                        <h4 data-i18n="footer.support">Support</h4>
+                    </li>
 
-    <li class="mt-one">
-        <a href="./signup.html" class="footer-link" data-i18n="footer.account">
-            Account
-        </a>
-    </li>
+                    <li class="mt-one">
+                        <a href="./signup.html" class="footer-link" data-i18n="footer.account">
+                            Account
+                        </a>
+                    </li>
 
-    <li class="mt-one">
-        <a href="./supportCenter.html" class="footer-link" data-i18n="footer.supportCenter">
-            Support center
-        </a>
-    </li>
+                    <li class="mt-one">
+                        <a href="./supportCenter.html" class="footer-link" data-i18n="footer.supportCenter">
+                            Support center
+                        </a>
+                    </li>
 
-    <li class="mt-one">
-        <a href="./privacy-policy.html" class="footer-link">
-            Privacy Policy
-        </a>
-    </li>
+                    <li class="mt-one">
+                        <a href="./privacy-policy.html" class="footer-link">
+                            Privacy Policy
+                        </a>
+                    </li>
 
-    <li class="mt-one">
-        <a href="./terms-of-service.html" class="footer-link">
-            Terms of Service
-        </a>
-    </li>
+                    <li class="mt-one">
+                        <a href="./terms-of-service.html" class="footer-link">
+                            Terms of Service
+                        </a>
+                    </li>
 
-    <li class="mt-one">
-        <a href="./feedback.html" class="footer-link" data-i18n="footer.feedback">
-            Feedback
-        </a>
-    </li>
+                    <li class="mt-one">
+                        <a href="./feedback.html" class="footer-link" data-i18n="footer.feedback">
+                            Feedback
+                        </a>
+                    </li>
 
-    <li class="mt-one">
-        <a href="./contactUs.html" class="footer-link" data-i18n="footer.contactUs">
-            Contact Us
-        </a>
-    </li>
+                    <li class="mt-one">
+                        <a href="./contactUs.html" class="footer-link" data-i18n="footer.contactUs">
+                            Contact Us
+                        </a>
+                    </li>
 
-    <li class="mt-one">
-        <a href="./contributors.html" class="footer-link" data-i18n="Contribution">
-            Contributors
-        </a>
-    </li>
-</ul>
-</div>
-</div>
+                    <li class="mt-one">
+                        <a href="./contributors.html" class="footer-link" data-i18n="Contribution">
+                            Contributors
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
     `;
 
     const footerElement = document.getElementById('contacts');
@@ -117,4 +126,12 @@ function loadFooter() {
     }
 }
 
-document.addEventListener('DOMContentLoaded', loadFooter);
+// Auto-initialize on DOM load
+if (typeof document !== 'undefined') {
+    document.addEventListener('DOMContentLoaded', loadFooter);
+}
+
+// Global window binding for backward compatibility
+if (typeof window !== 'undefined') {
+    window.loadFooter = loadFooter;
+}

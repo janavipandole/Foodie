@@ -1,11 +1,19 @@
 {
   "manifest_version": 3,
-  "name": "🍽️ Foodie - Responsive Food Delivery App",
-  "version": "1.0.0",
-  "description": "Quick access to Foodie — a fully responsive food delivery platform built with HTML, CSS, and JS. Browse menus, customize orders, and track deliveries instantly.",
-  "permissions": ["tabs"],
+  "name": "🍽️ Foodie - Real-Time Food Tracker",
+  "version": "1.1.0",
+  "description": "Live food order tracking, active cart counter, and quick navigation companion extension for Foodie web application.",
+  "permissions": ["storage", "activeTab"],
   "action": {
     "default_popup": "popup.html",
+    "default_title": "Foodie Delivery Tracker",
+    "default_icon": {
+      "16": "popup.html",
+      "48": "popup.html"
+    }
     "default_title": "Open Foodie"
+  },
+  "icons": {
+    "128": "icons/icon128.png"
   }
 }
