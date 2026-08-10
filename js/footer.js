@@ -25,7 +25,7 @@ function loadFooter() {
                     <li>
                         <h4 data-i18n="footer.ourMenu">Our Menu</h4>
                     </li>
-                    <li class="mt-one"><a href="./Special-dishes·.html" class="footer-link"
+                    <li class="mt-one"><a href="./special-dishes.html" class="footer-link"
                             data-i18n="footer.special">Special</a></li>
                     <li class="mt-one"><a href="./popular.html" class="footer-link" data-i18n="footer.popular">Popular</a>
                     </li>
