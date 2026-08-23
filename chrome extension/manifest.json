@@ -1,5 +1,12 @@
 {
   "manifest_version": 3,
+  "name": "🍽️ Foodie - Responsive Food Delivery App",
+  "version": "1.2.0",
+  "description": "Quick access to Foodie — a fully responsive food delivery platform built with HTML, CSS, and JS. OAuth2 SSO & cross-context cart sync.",
+  "permissions": ["tabs", "storage", "identity"],
+  "background": {
+    "service_worker": "background.js"
+  },
   "name": "🍽️ Foodie - Real-Time Food Tracker",
   "version": "1.1.0",
   "description": "Live food order tracking, active cart counter, and quick navigation companion extension for Foodie web application.",
