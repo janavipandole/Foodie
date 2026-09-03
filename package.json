@@ -17,7 +17,7 @@
   "license": "ISC",
   "devDependencies": {
     "jest": "^30.2.0",
-    "wrangler": "^4.115.0"
+    "wrangler": "^4.127.1"
   },
   "dependencies": {
     "sharp": "^0.34.5"
